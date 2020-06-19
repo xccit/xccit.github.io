@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>hexo | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node+Github搭建Hexo博客1.环境准备nodejs v8.0以上git for windowswindows2.node镜像源改为淘宝源（安装cnpm）1npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao  在windows环境下使用管理员打开CMD输入以上命令  安装完后使用cnpm -v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo">
+<meta property="og:url" content="http://yoursite.com/2020/06/19/hexo/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Node+Github搭建Hexo博客1.环境准备nodejs v8.0以上git for windowswindows2.node镜像源改为淘宝源（安装cnpm）1npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao  在windows环境下使用管理员打开CMD输入以上命令  安装完后使用cnpm -v">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619192137519.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619201130014.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619204457388.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619204652361.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619205216242.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619205301154.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619211326699.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619211511009.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619211911767.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619212052538.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619212527019.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619212727329.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619212826309.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619213301409.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619213501648.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619213614573.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619214440691.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619215246402.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619221834453.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619222142223.png">
+<meta property="og:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619222251498.png">
+<meta property="article:published_time" content="2020-06-19T14:29:44.621Z">
+<meta property="article:modified_time" content="2020-06-19T14:26:39.706Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619192137519.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/19/hexo/" class="article-date">
+  <time datetime="2020-06-19T14:29:44.621Z" itemprop="datePublished">2020-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Node-Github搭建Hexo博客"><a href="#Node-Github搭建Hexo博客" class="headerlink" title="Node+Github搭建Hexo博客"></a>Node+Github搭建Hexo博客</h1><h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h2><h3 id="nodejs-v8-0以上"><a href="#nodejs-v8-0以上" class="headerlink" title="nodejs v8.0以上"></a>nodejs v8.0以上</h3><h3 id="git-for-windows"><a href="#git-for-windows" class="headerlink" title="git for windows"></a>git for windows</h3><h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><h2 id="2-node镜像源改为淘宝源（安装cnpm）"><a href="#2-node镜像源改为淘宝源（安装cnpm）" class="headerlink" title="2.node镜像源改为淘宝源（安装cnpm）"></a>2.node镜像源改为淘宝源（安装cnpm）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao</span><br></pre></td></tr></table></figure>
+
+<p>在windows环境下使用管理员打开CMD输入以上命令</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619192137519.png" alt="image-20200619192137519"></p>
+<p>安装完后使用cnpm -v,输出以下信息代表成功！</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619201130014.png" alt="image-20200619201130014"></p>
+<p>可能会出现cnpm不是一个变量等问题，这个时候输命令: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config get prefix</span><br></pre></td></tr></table></figure>
+
+<p>把输出的路径添加到环境变量<strong>Path</strong>中即可</p>
+<h2 id="3-使用cnpm安装hexo"><a href="#3-使用cnpm安装hexo" class="headerlink" title="3.使用cnpm安装hexo"></a>3.使用cnpm安装hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>输入上述命令</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619204457388.png" alt="image-20200619204457388"></p>
+<p>感受到了，是成功的香气！</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619204652361.png" alt="image-20200619204652361"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+
+<p>同理，使用hexo -v验证</p>
+<h2 id="4-博客初始化"><a href="#4-博客初始化" class="headerlink" title="4.博客初始化"></a>4.博客初始化</h2><p>在自己电脑的某个路径下新建一个文件夹，起名随意，然后在git命令行中操作:</p>
+<p>以我的G:\Blog 为例：</p>
+<p>git安装后在某个路径下鼠标右击会弹出git bash here和git gui here，我们点git bash here,因为接下来的一切都是为了博客上传至github做准备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619205216242.png" alt="image-20200619205216242"></p>
+<p>这是路径，在空白处右击使用git bash here</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619205301154.png" alt="image-20200619205301154"></p>
+<p><strong>ps：如果在接下来的操作中出现什么错误，直接把这个Blog干掉重来就是！</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>完事儿之后就会自动从github上下载hexo，但是这一步已经不只是慢这个字可以形容，所以耐心等待就好。</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619211326699.png" alt="image-20200619211326699"></p>
+<p>可以看一下已经下载好了，并且自带一个主题叫做landscape</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619211511009.png" alt="image-20200619211511009"></p>
+<p>然后就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l ，可以看到帮我们下载了这么多东西</span><br></pre></td></tr></table></figure>
+
+<p>接下来，启动hexo :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>s就是start的简写，然后看效果：</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619211911767.png" alt="image-20200619211911767"></p>
+<p>hexo为我们提供了一个访问地址，localhost:4000，就是本地的4000端口访问它，我们来试试！</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619212052538.png" alt="image-20200619212052538"></p>
+<p>好了，毕竟这只是本地访问，我们不可能搭建博客给自己用，所以需要部署在远程服务器，这里我推荐使用github</p>
+<h2 id="5-部署HEXO至GitHub"><a href="#5-部署HEXO至GitHub" class="headerlink" title="5.部署HEXO至GitHub"></a>5.部署HEXO至GitHub</h2><h3 id="5-1首先注册github"><a href="#5-1首先注册github" class="headerlink" title="5.1首先注册github"></a>5.1首先注册github</h3><p>网址为：<a href="https://github.com" target="_blank" rel="noopener">https://github.com</a></p>
+<p>或者直接使用<a href="https://github.com/join?source=login进行注册，注册完毕点击页面右上角的Sign" target="_blank" rel="noopener">https://github.com/join?source=login进行注册，注册完毕点击页面右上角的Sign</a> in</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619212527019.png" alt="image-20200619212527019"></p>
+<p>Username填上一个用户名，最少短位，太长了影响域名效果</p>
+<p>邮箱就使用QQ邮箱就好</p>
+<p>然后密码长度必须够15位，不做解释</p>
+<p>注册完毕进行登录：</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619212727329.png" alt="image-20200619212727329"></p>
+<p>进去之后new一个repository</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619212826309.png" alt="image-20200619212826309"></p>
+<p>Repository name使用：</p>
+<p>username.github.io</p>
+<p>比如我的就是xccit.github.io</p>
+<p>因为我之前已经创建过了，所以就直接跳过，你们写完就点击下面的Create repository</p>
+<h3 id="5-2创建一篇新博文"><a href="#5-2创建一篇新博文" class="headerlink" title="5.2创建一篇新博文"></a>5.2创建一篇新博文</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n</span><br></pre></td></tr></table></figure>
+
+<p>使用这条命令：</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619213301409.png" alt="image-20200619213301409"></p>
+<p>然后可以看到在这个目录下就有一个名为：My First Blog Text.md</p>
+<p>因为hexo博客都是使用markdown语法写，所以我们可以使用Typora这个软件来编辑它。</p>
+<p>然后使用Typora这样写:(写之前打开这个md文件)</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619213501648.png" alt="image-20200619213501648"></p>
+<p>然后这样写：</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619213614573.png" alt="image-20200619213614573"></p>
+<p>然后分别使用如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>接下来重新访问localhost:4000</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619214440691.png" alt="image-20200619214440691"></p>
+<p>OK，刚才写的就出现了！</p>
+<h3 id="5-3部署到github"><a href="#5-3部署到github" class="headerlink" title="5.3部署到github"></a>5.3部署到github</h3><h4 id="5-3-1安装git部署工具"><a href="#5-3-1安装git部署工具" class="headerlink" title="5.3.1安装git部署工具"></a>5.3.1安装git部署工具</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-2配置yml"><a href="#5-3-2配置yml" class="headerlink" title="5.3.2配置yml"></a>5.3.2配置yml</h4><p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<p>然后按键盘的i键，</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619215246402.png" alt="image-20200619215246402"></p>
+<p>i键完了后一直按下键，找到deployer，</p>
+<p>然后这么写：</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619221834453.png" alt="image-20200619221834453"></p>
+<p>repo的值是你的仓库地址，别搞错了，抄我的就不对了。</p>
+<p>然后按esc，输入:wq，然后回车就完成了。</p>
+<h4 id="5-3-3部署"><a href="#5-3-3部署" class="headerlink" title="5.3.3部署"></a>5.3.3部署</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619222142223.png" alt="image-20200619222142223"></p>
+<p>完成！</p>
+<p><img src="C:%5CUsers%5CChinaGeekXcc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200619222251498.png" alt="image-20200619222251498"></p>
+<p>刷新一下github仓库，直接浏览器按F5或者刷新按钮即可，就可以看到我们的博客项目。</p>
+<p>然后使用你的github仓库域名访问，比如我的：<a href="https://xccit/xccit.github.io" target="_blank" rel="noopener">https://xccit/xccit.github.io</a></p>
+<h2 id="寄语：没有一步登天的操作，如果有，那你铁定是在睡觉！"><a href="#寄语：没有一步登天的操作，如果有，那你铁定是在睡觉！" class="headerlink" title="寄语：没有一步登天的操作，如果有，那你铁定是在睡觉！"></a>寄语：没有一步登天的操作，如果有，那你铁定是在睡觉！</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/19/hexo/" data-id="ckbmb86ax0000dgw09t1z66y9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/19/html/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">html</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/19/hexo/">hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/19/html/">html</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
