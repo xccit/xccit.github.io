@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> - Xccit&#39;s Blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Java,SpringBoot,MyBatis,SpringCloud,OSS,UBUNTU配置SSH
+author:xccit
+
+开启root用户:12sudo passwd root设置root密码
+
+
+
+安装SSH：12345sudo apt install openss,"> 
+    <meta name="author" content="Xccit"> 
+    <link rel="alternative" href="atom.xml" title="Xccit&#39;s Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content=" - Xccit&#39;s Blog"/>
+    <meta name="twitter:description" content="Java,SpringBoot,MyBatis,SpringCloud,OSS,UBUNTU配置SSH
+author:xccit
+
+开启root用户:12sudo passwd root设置root密码
+
+
+
+安装SSH：12345sudo apt install openss,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Xccit&#39;s Blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content=" - Xccit&#39;s Blog"/>
+    <meta property="og:description" content="Java,SpringBoot,MyBatis,SpringCloud,OSS,UBUNTU配置SSH
+author:xccit
+
+开启root用户:12sudo passwd root设置root密码
+
+
+
+安装SSH：12345sudo apt install openss,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Xccit&#39;s Blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle"></h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title"></h1>
+        <div class="stuff">
+            <span>四月 09, 2022</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="UBUNTU配置SSH"><a href="#UBUNTU配置SSH" class="headerlink" title="UBUNTU配置SSH"></a>UBUNTU配置SSH</h1><blockquote>
+<p>author:xccit</p>
+</blockquote>
+<h2 id="开启root用户"><a href="#开启root用户" class="headerlink" title="开启root用户:"></a>开启root用户:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br><span class="line">设置root密码</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装SSH："><a href="#安装SSH：" class="headerlink" title="安装SSH："></a>安装SSH：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server</span><br><span class="line">sudo apt install openssh-client</span><br><span class="line">sudo service ssh start</span><br><span class="line">sudo apt install vim</span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<p>接下来会进入一个文件:按<strong>i</strong>进入insert模式:</p>
+<p><img src="/2022/04/09/UBUNTU%E9%85%8D%E7%BD%AESSH/image-20220326234151333.png" alt="image-20220326234151333"></p>
+<p>修改这里，将框起来的第一句前面有#就别管，没#就加上#</p>
+<p>第二句必须自己打上去 注意大小写</p>
+<p>然后按esc 输入:wq</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ssh restart</span><br></pre></td></tr></table></figure>
+
+<p>使用Xshell，输入IP，用户名填写root 然后输入root密码 成功使用root用户连接SSH</p>
+<p><img src="/2022/04/09/UBUNTU%E9%85%8D%E7%BD%AESSH/image-20220326234528751.png" alt="image-20220326234528751"></p>
+<p>通过命令查看 当前用户是root</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UBUNTU%E9%85%8D%E7%BD%AESSH"><span class="toc-number">1.</span> <span class="toc-text">UBUNTU配置SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AFroot%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.</span> <span class="toc-text">开启root用户:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85SSH%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">安装SSH：</span></a></li></ol></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
