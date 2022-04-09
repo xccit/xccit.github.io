@@ -12,12 +12,13 @@
     <meta name="keywords" content="Fechin,"> 
     <meta name="description" content="Java,SpringBoot,MyBatis,SpringCloud,OSS,UBUNTU配置SSH
 author:xccit
+title: Ununtu配置SSH
 
 开启root用户:12sudo passwd root设置root密码
 
 
 
-安装SSH：12345sudo apt install openss,"> 
+安装SSH：12345sudo,"> 
     <meta name="author" content="Xccit"> 
     <link rel="alternative" href="atom.xml" title="Xccit&#39;s Blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -28,12 +29,13 @@ author:xccit
     <meta name="twitter:title" content=" - Xccit&#39;s Blog"/>
     <meta name="twitter:description" content="Java,SpringBoot,MyBatis,SpringCloud,OSS,UBUNTU配置SSH
 author:xccit
+title: Ununtu配置SSH
 
 开启root用户:12sudo passwd root设置root密码
 
 
 
-安装SSH：12345sudo apt install openss,"/>
+安装SSH：12345sudo,"/>
     
     
     
@@ -43,12 +45,13 @@ author:xccit
     <meta property="og:title" content=" - Xccit&#39;s Blog"/>
     <meta property="og:description" content="Java,SpringBoot,MyBatis,SpringCloud,OSS,UBUNTU配置SSH
 author:xccit
+title: Ununtu配置SSH
 
 开启root用户:12sudo passwd root设置root密码
 
 
 
-安装SSH：12345sudo apt install openss,"/>
+安装SSH：12345sudo,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -86,6 +89,7 @@ author:xccit
         <div class="content markdown">
             <h1 id="UBUNTU配置SSH"><a href="#UBUNTU配置SSH" class="headerlink" title="UBUNTU配置SSH"></a>UBUNTU配置SSH</h1><blockquote>
 <p>author:xccit</p>
+<p>title: Ununtu配置SSH</p>
 </blockquote>
 <h2 id="开启root用户"><a href="#开启root用户" class="headerlink" title="开启root用户:"></a>开启root用户:</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br><span class="line">设置root密码</span><br></pre></td></tr></table></figure>
 
@@ -94,18 +98,18 @@ author:xccit
 <h2 id="安装SSH："><a href="#安装SSH：" class="headerlink" title="安装SSH："></a>安装SSH：</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server</span><br><span class="line">sudo apt install openssh-client</span><br><span class="line">sudo service ssh start</span><br><span class="line">sudo apt install vim</span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
 
 <p>接下来会进入一个文件:按<strong>i</strong>进入insert模式:</p>
-<p><img src="/2022/04/09/UBUNTU%E9%85%8D%E7%BD%AESSH/image-20220326234151333.png" alt="image-20220326234151333"></p>
+<p><img src="/2022/04/09/UBUNTU%E9%85%8D%E7%BD%AESSH/image-20220326234151333.png" alt="UBUNTU配置SSH.assets/image-20220326234151333.png"></p>
 <p>修改这里，将框起来的第一句前面有#就别管，没#就加上#</p>
 <p>第二句必须自己打上去 注意大小写</p>
 <p>然后按esc 输入:wq</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ssh restart</span><br></pre></td></tr></table></figure>
 
 <p>使用Xshell，输入IP，用户名填写root 然后输入root密码 成功使用root用户连接SSH</p>
-<p><img src="/2022/04/09/UBUNTU%E9%85%8D%E7%BD%AESSH/image-20220326234528751.png" alt="image-20220326234528751"></p>
+<p><img src="/2022/04/09/UBUNTU%E9%85%8D%E7%BD%AESSH/image-20220326234528751.png" alt="UBUNTU配置SSH.assets/image-20220326234528751.png"></p>
 <p>通过命令查看 当前用户是root</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="">
             </audio>
             
@@ -136,10 +140,6 @@ author:xccit
 
 
     </div>
-    
-        <div class="side">
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UBUNTU%E9%85%8D%E7%BD%AESSH"><span class="toc-number">1.</span> <span class="toc-text">UBUNTU配置SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AFroot%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.</span> <span class="toc-text">开启root用户:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85SSH%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">安装SSH：</span></a></li></ol></li></ol>	
-        </div>
     
 </div>
 
