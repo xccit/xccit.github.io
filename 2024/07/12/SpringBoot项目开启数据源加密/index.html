@@ -175,7 +175,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/SpringBoot/" style="color: #ff7d73">
+                <a href="/tags/SpringBoot/" style="color: #00bcd4">
                     SpringBoot
                 </a>
             </span>
@@ -232,19 +232,19 @@ public class TestDBAuth &#123;
     &#125;
 &#125;
 </code></pre>
-<p><img src="https://s2.51cto.com/images/blog/front/202406/4673e8b8870676cbbfb953a2fbcefb389201fd.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image.png"><br>如图,看到输出结果是这样就对了</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240712234044350.png" alt="image-20240712234044350"><br>如图,看到输出结果是这样就对了</p>
 <h4 id="2-1-4-重新配置数据源"><a href="#2-1-4-重新配置数据源" class="headerlink" title="2.1.4 重新配置数据源"></a>2.1.4 重新配置数据源</h4><blockquote>
-<p>将加密后的结果按如图配置:<br><img src="https://s2.51cto.com/images/blog/front/202406/b175d8c431b2f962bfc0369192f013df2ca35c.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image.png"><br>SpringBoot在启动的时候会根据ENC()来判断是否有加密，如果有会根据配置的盐和算法进行解码。</p>
+<p>将加密后的结果按如图配置:<br><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240712234128978.png" alt="image-20240712234128978"><br>SpringBoot在启动的时候会根据ENC()来判断是否有加密，如果有会根据配置的盐和算法进行解码。</p>
 </blockquote>
 <h4 id="2-1-5-启动时加上环境变量"><a href="#2-1-5-启动时加上环境变量" class="headerlink" title="2.1.5 启动时加上环境变量"></a>2.1.5 启动时加上环境变量</h4><blockquote>
-<p>这里在测试阶段可以使用IDEA加环境变量的方式启动<br><img src="https://s2.51cto.com/images/blog/front/202406/9210b8403c2b3e210dc53542815a68480ff5e9.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image.png"><br>PASSWORD: jasypt配置中的key<br>ADMIN:测试类中加盐字段的值,必须保持一致,不然数据源密码会解密失败</p>
+<p>这里在测试阶段可以使用IDEA加环境变量的方式启动<br><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240712234156051.png" alt="image-20240712234156051"><br>PASSWORD: jasypt配置中的key<br>ADMIN:测试类中加盐字段的值,必须保持一致,不然数据源密码会解密失败</p>
 </blockquote>
 <blockquote>
 <p>打成jar包后可以使用命令行参数启动:</p>
 </blockquote>
 <pre><code class="shell">java -jar xxx.jar PASSWORD=ADMIN
 </code></pre>
-<h2 id="3-看一下效果"><a href="#3-看一下效果" class="headerlink" title="3.看一下效果"></a>3.看一下效果</h2><p><img src="https://s2.51cto.com/images/blog/front/202406/152f38447aad7f6b423216498b948bdc0746a6.png?x-oss-process=image/watermark,size_14,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=" alt="image.png"></p>
+<h2 id="3-看一下效果"><a href="#3-看一下效果" class="headerlink" title="3.看一下效果"></a>3.看一下效果</h2><p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240712234218352.png" alt="image-20240712234218352"></p>
 <p>正常启动,无报错,如果对数据库操作报密码错误,请检查盐值。</p>
 
     </div>
