@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SpringBoot自定义Starter | xccitのblog</title>
+    <meta name="author" content="CH_ywx" />
+    <meta name="description" content="贩卖温柔のselling kindness" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/myavatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>XCCITのBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;XCCITのBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>SpringBoot自定义Starter</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/1
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/springboot/" style="color: #ff7d73">
+                    springboot
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="SpringBoot自定义Starter"><a href="#SpringBoot自定义Starter" class="headerlink" title="SpringBoot自定义Starter"></a>SpringBoot自定义Starter</h1><h2 id="1-何为Starter"><a href="#1-何为Starter" class="headerlink" title="1.何为Starter?"></a>1.何为Starter?</h2><p><code>Starter</code>顾名思义,就是SpringBoot工程的起步依赖,例如SpringBoot工程自身的<code>spring-boot-starter</code>,整合MyBatis时用的<code>mybatis-spring-boot-starter</code>,有了起步依赖,SpringBoot工程在引入该坐标后就可以完成自动注入等工作,大大提高了开发效率。</p>
+<h2 id="2-如何自定义？"><a href="#2-如何自定义？" class="headerlink" title="2.如何自定义？"></a>2.如何自定义？</h2><p>首先,起步依赖必须遵守SpringBoot工程的规范,先看一下官网文档:</p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html#features.developing-auto-configuration.custom-starter.starter-module">Creating Your Own Auto-configuration :: Spring Boot</a></p>
+<p>我们以mybatis的起步依赖为例,至少需要准备两个工程:</p>
+<ul>
+<li>custom-mybatis-boot-starter</li>
+<li>custom-mybatis-boot-autoconfigure</li>
+</ul>
+<p>其中starter只是一个空工程,只需要一个<code>pom.xml</code>,用来整合<code>autoconfigure</code>完成自动配置,而<code>autoconfigure</code>则依赖于<code>mybatis</code>及<code>mybatis-spring</code>等依赖,因为mybatis已经针对spring做了整合包,许多配置已经写好,不需要我们再写,只需要按照SpringBoot的规则做好starter方便与SpringBoot进行整合即可。</p>
+<h2 id="3-自定义MyBatis起步依赖"><a href="#3-自定义MyBatis起步依赖" class="headerlink" title="3.自定义MyBatis起步依赖"></a>3.自定义MyBatis起步依赖</h2><h3 id="1-创建两个工程"><a href="#1-创建两个工程" class="headerlink" title="1.创建两个工程"></a>1.创建两个工程</h3><p><code>custom-mybatis-boot-starter</code>与<code>custom-mybatis-boot-autoconfigure</code></p>
+<h3 id="2-autoconfigure工程"><a href="#2-autoconfigure工程" class="headerlink" title="2.autoconfigure工程"></a>2.autoconfigure工程</h3><h4 id="2-1加入需要的依赖"><a href="#2-1加入需要的依赖" class="headerlink" title="2.1加入需要的依赖"></a>2.1加入需要的依赖</h4><pre><code class="xml">&lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+      &lt;version&gt;3.0.3&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+  &lt;version&gt;3.5.14&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+  &lt;version&gt;3.3.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
+  &lt;version&gt;3.0.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h4 id="2-2编写自动配置类"><a href="#2-2编写自动配置类" class="headerlink" title="2.2编写自动配置类"></a>2.2编写自动配置类</h4><pre><code class="java">package io.xccit.config;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.context.annotation.Bean;
+
+import javax.sql.DataSource;
+import java.util.List;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/8/1
+ * &lt;p&gt;Mybatis自动配置类&lt;/p&gt;
+ */
+@AutoConfiguration
+public class CustomMybatisAutoConfigure &#123;
+
+    /**
+     * 当容器中存在DataSource时，自动配置SqlSessionFactoryBean
+     * @param dataSource
+     * @return
+     */
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource)&#123;
+        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+        factoryBean.setDataSource(dataSource);
+        return factoryBean;
+    &#125;
+
+    /**
+     * 当容器中存在SqlSessionFactoryBean时，自动配置MapperScannerConfigurer
+     * @param beanFactory
+     * @return
+     */
+    @ConditionalOnBean(SqlSessionFactoryBean.class)
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer(BeanFactory beanFactory)&#123;
+        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
+        List&lt;String&gt; packages = AutoConfigurationPackages.get(beanFactory);
+        configurer.setBasePackage(packages.get(0));
+        configurer.setAnnotationClass(Mapper.class);
+        return configurer;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="2-3定义自动配置的注册文件"><a href="#2-3定义自动配置的注册文件" class="headerlink" title="2.3定义自动配置的注册文件"></a>2.3定义自动配置的注册文件</h4><pre><code class="imports">io.xccit.config.CustomMybatisAutoConfigure
+</code></pre>
+<p>文件定义时需要注意:</p>
+<ul>
+<li><p>SpringBoot2.7及以上,文件名为: <a href="........%5CIdeaProjects%5Cboot-study-code%5Ccustom-mybatis-boot-autoconfigure%5Csrc%5Cmain%5Cresources%5CMETA-INF%5Cspring%5Corg.springframework.boot.autoconfigure.AutoConfiguration.imports">org.springframework.boot.autoconfigure.AutoConfiguration.imports</a> </p>
+</li>
+<li><p>SpringBoot2.7以下,文件名为: <code>spring.factories</code></p>
+</li>
+<li><p>文件所在的位置为:resources&#x2F;META-INF&#x2F;spring&#x2F;</p>
+</li>
+</ul>
+<p>以上条件缺一不可,不然SpringBoot无法完成自动配置,配置类中的Bean则无法注入,如果不熟悉该流程,可以参考SpringBoot官方文档: <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html#features.developing-auto-configuration.locating-auto-configuration-candidates">Creating Your Own Auto-configuration :: Spring Boot</a></p>
+<p>我们来看一下该工程的结构:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240801221146687.png" alt="image-20240801221146687"></p>
+<h3 id="3-starter工程"><a href="#3-starter工程" class="headerlink" title="3.starter工程"></a>3.starter工程</h3><p>starter工程只需要在<code>pom.xml</code>中引入<code>autoconfigure</code>及依赖的包,Spring官方也推荐我们这么做</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240801221315675.png" alt="image-20240801221315675"></p>
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><h3 id="4-1新建一个SpringBoot工程"><a href="#4-1新建一个SpringBoot工程" class="headerlink" title="4.1新建一个SpringBoot工程"></a>4.1新建一个SpringBoot工程</h3><pre><code class="xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;!--引入自定义starter--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.xccit&lt;/groupId&gt;
+        &lt;artifactId&gt;custom-mybatis-boot-starter&lt;/artifactId&gt;
+        &lt;version&gt;1.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;
+        &lt;scope&gt;runtime&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;mybatis-spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;version&gt;3.0.3&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;version&gt;1.18.30&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<h3 id="4-2-配置数据源"><a href="#4-2-配置数据源" class="headerlink" title="4.2 配置数据源"></a>4.2 配置数据源</h3><pre><code class="yaml">spring:
+  application:
+    name: test
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot3_study?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;allowPublicKeyRetrieval=true
+    username: root
+    password: 1209
+</code></pre>
+<h3 id="4-3编写组件"><a href="#4-3编写组件" class="headerlink" title="4.3编写组件"></a>4.3编写组件</h3><pre><code class="java">package io.xccit.controller;
+
+import io.xccit.entity.User;
+import io.xccit.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserController&lt;/p&gt;
+ */
+@RestController
+@RequestMapping(&quot;/user&quot;)
+public class UserController &#123;
+
+    @Autowired
+    private IUserService userService;
+
+    @GetMapping(&quot;/&#123;id&#125;&quot;)
+    public User selectUserByID(@PathVariable Integer id) &#123;
+        return userService.selectUserByID(id);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;用户&lt;/p&gt;
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private Integer gender;
+    private String phone;
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.mapper;
+
+import io.xccit.entity.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserMapper&lt;/p&gt;
+ */
+@Mapper
+public interface IUserMapper &#123;
+
+    @Select(&quot;SELECT id,name,age,gender,phone FROM user WHERE id = #&#123;id&#125;&quot;)
+    public User selectUserByID(Integer id);
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.service;
+
+import io.xccit.entity.User;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserService&lt;/p&gt;
+ */
+public interface IUserService &#123;
+
+    public User selectUserByID(Integer id);
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.service.impl;
+
+import io.xccit.entity.User;
+import io.xccit.mapper.IUserMapper;
+import io.xccit.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserService实现&lt;/p&gt;
+ */
+@Service
+public class UserServiceImpl implements IUserService &#123;
+
+    @Autowired
+    private IUserMapper userMapper;
+
+    @Override
+    public User selectUserByID(Integer id) &#123;
+        return userMapper.selectUserByID(id);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="4-4启动测试"><a href="#4-4启动测试" class="headerlink" title="4.4启动测试"></a>4.4启动测试</h3><p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240801221844965.png" alt="image-20240801221844965"></p>
+<blockquote>
+<p>至此,大功告成,Java实习生,希望各位大佬指正批评</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 xccitのblog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;CH_ywx
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

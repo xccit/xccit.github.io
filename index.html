@@ -181,6 +181,303 @@
         
 
 <div class="post">
+    <a href="/2024/08/01/SpringBoot%E8%87%AA%E5%AE%9A%E4%B9%89Starter/">
+        <h2 class="post-title">SpringBoot自定义Starter</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/1
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="SpringBoot自定义Starter"><a href="#SpringBoot自定义Starter" class="headerlink" title="SpringBoot自定义Starter"></a>SpringBoot自定义Starter</h1><h2 id="1-何为Starter"><a href="#1-何为Starter" class="headerlink" title="1.何为Starter?"></a>1.何为Starter?</h2><p><code>Starter</code>顾名思义,就是SpringBoot工程的起步依赖,例如SpringBoot工程自身的<code>spring-boot-starter</code>,整合MyBatis时用的<code>mybatis-spring-boot-starter</code>,有了起步依赖,SpringBoot工程在引入该坐标后就可以完成自动注入等工作,大大提高了开发效率。</p>
+<h2 id="2-如何自定义？"><a href="#2-如何自定义？" class="headerlink" title="2.如何自定义？"></a>2.如何自定义？</h2><p>首先,起步依赖必须遵守SpringBoot工程的规范,先看一下官网文档:</p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html#features.developing-auto-configuration.custom-starter.starter-module">Creating Your Own Auto-configuration :: Spring Boot</a></p>
+<p>我们以mybatis的起步依赖为例,至少需要准备两个工程:</p>
+<ul>
+<li>custom-mybatis-boot-starter</li>
+<li>custom-mybatis-boot-autoconfigure</li>
+</ul>
+<p>其中starter只是一个空工程,只需要一个<code>pom.xml</code>,用来整合<code>autoconfigure</code>完成自动配置,而<code>autoconfigure</code>则依赖于<code>mybatis</code>及<code>mybatis-spring</code>等依赖,因为mybatis已经针对spring做了整合包,许多配置已经写好,不需要我们再写,只需要按照SpringBoot的规则做好starter方便与SpringBoot进行整合即可。</p>
+<h2 id="3-自定义MyBatis起步依赖"><a href="#3-自定义MyBatis起步依赖" class="headerlink" title="3.自定义MyBatis起步依赖"></a>3.自定义MyBatis起步依赖</h2><h3 id="1-创建两个工程"><a href="#1-创建两个工程" class="headerlink" title="1.创建两个工程"></a>1.创建两个工程</h3><p><code>custom-mybatis-boot-starter</code>与<code>custom-mybatis-boot-autoconfigure</code></p>
+<h3 id="2-autoconfigure工程"><a href="#2-autoconfigure工程" class="headerlink" title="2.autoconfigure工程"></a>2.autoconfigure工程</h3><h4 id="2-1加入需要的依赖"><a href="#2-1加入需要的依赖" class="headerlink" title="2.1加入需要的依赖"></a>2.1加入需要的依赖</h4><pre><code class="xml">&lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+      &lt;version&gt;3.0.3&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+  &lt;version&gt;3.5.14&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+  &lt;version&gt;3.3.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
+  &lt;version&gt;3.0.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h4 id="2-2编写自动配置类"><a href="#2-2编写自动配置类" class="headerlink" title="2.2编写自动配置类"></a>2.2编写自动配置类</h4><pre><code class="java">package io.xccit.config;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.context.annotation.Bean;
+
+import javax.sql.DataSource;
+import java.util.List;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/8/1
+ * &lt;p&gt;Mybatis自动配置类&lt;/p&gt;
+ */
+@AutoConfiguration
+public class CustomMybatisAutoConfigure &#123;
+
+    /**
+     * 当容器中存在DataSource时，自动配置SqlSessionFactoryBean
+     * @param dataSource
+     * @return
+     */
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource)&#123;
+        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+        factoryBean.setDataSource(dataSource);
+        return factoryBean;
+    &#125;
+
+    /**
+     * 当容器中存在SqlSessionFactoryBean时，自动配置MapperScannerConfigurer
+     * @param beanFactory
+     * @return
+     */
+    @ConditionalOnBean(SqlSessionFactoryBean.class)
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer(BeanFactory beanFactory)&#123;
+        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
+        List&lt;String&gt; packages = AutoConfigurationPackages.get(beanFactory);
+        configurer.setBasePackage(packages.get(0));
+        configurer.setAnnotationClass(Mapper.class);
+        return configurer;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="2-3定义自动配置的注册文件"><a href="#2-3定义自动配置的注册文件" class="headerlink" title="2.3定义自动配置的注册文件"></a>2.3定义自动配置的注册文件</h4><pre><code class="imports">io.xccit.config.CustomMybatisAutoConfigure
+</code></pre>
+<p>文件定义时需要注意:</p>
+<ul>
+<li><p>SpringBoot2.7及以上,文件名为: <a href="........%5CIdeaProjects%5Cboot-study-code%5Ccustom-mybatis-boot-autoconfigure%5Csrc%5Cmain%5Cresources%5CMETA-INF%5Cspring%5Corg.springframework.boot.autoconfigure.AutoConfiguration.imports">org.springframework.boot.autoconfigure.AutoConfiguration.imports</a> </p>
+</li>
+<li><p>SpringBoot2.7以下,文件名为: <code>spring.factories</code></p>
+</li>
+<li><p>文件所在的位置为:resources&#x2F;META-INF&#x2F;spring&#x2F;</p>
+</li>
+</ul>
+<p>以上条件缺一不可,不然SpringBoot无法完成自动配置,配置类中的Bean则无法注入,如果不熟悉该流程,可以参考SpringBoot官方文档: <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html#features.developing-auto-configuration.locating-auto-configuration-candidates">Creating Your Own Auto-configuration :: Spring Boot</a></p>
+<p>我们来看一下该工程的结构:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240801221146687.png" alt="image-20240801221146687"></p>
+<h3 id="3-starter工程"><a href="#3-starter工程" class="headerlink" title="3.starter工程"></a>3.starter工程</h3><p>starter工程只需要在<code>pom.xml</code>中引入<code>autoconfigure</code>及依赖的包,Spring官方也推荐我们这么做</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240801221315675.png" alt="image-20240801221315675"></p>
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><h3 id="4-1新建一个SpringBoot工程"><a href="#4-1新建一个SpringBoot工程" class="headerlink" title="4.1新建一个SpringBoot工程"></a>4.1新建一个SpringBoot工程</h3><pre><code class="xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;!--引入自定义starter--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.xccit&lt;/groupId&gt;
+        &lt;artifactId&gt;custom-mybatis-boot-starter&lt;/artifactId&gt;
+        &lt;version&gt;1.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;
+        &lt;scope&gt;runtime&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;mybatis-spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;version&gt;3.0.3&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;version&gt;1.18.30&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<h3 id="4-2-配置数据源"><a href="#4-2-配置数据源" class="headerlink" title="4.2 配置数据源"></a>4.2 配置数据源</h3><pre><code class="yaml">spring:
+  application:
+    name: test
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot3_study?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;allowPublicKeyRetrieval=true
+    username: root
+    password: 1209
+</code></pre>
+<h3 id="4-3编写组件"><a href="#4-3编写组件" class="headerlink" title="4.3编写组件"></a>4.3编写组件</h3><pre><code class="java">package io.xccit.controller;
+
+import io.xccit.entity.User;
+import io.xccit.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserController&lt;/p&gt;
+ */
+@RestController
+@RequestMapping(&quot;/user&quot;)
+public class UserController &#123;
+
+    @Autowired
+    private IUserService userService;
+
+    @GetMapping(&quot;/&#123;id&#125;&quot;)
+    public User selectUserByID(@PathVariable Integer id) &#123;
+        return userService.selectUserByID(id);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;用户&lt;/p&gt;
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private Integer gender;
+    private String phone;
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.mapper;
+
+import io.xccit.entity.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserMapper&lt;/p&gt;
+ */
+@Mapper
+public interface IUserMapper &#123;
+
+    @Select(&quot;SELECT id,name,age,gender,phone FROM user WHERE id = #&#123;id&#125;&quot;)
+    public User selectUserByID(Integer id);
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.service;
+
+import io.xccit.entity.User;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserService&lt;/p&gt;
+ */
+public interface IUserService &#123;
+
+    public User selectUserByID(Integer id);
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.service.impl;
+
+import io.xccit.entity.User;
+import io.xccit.mapper.IUserMapper;
+import io.xccit.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserService实现&lt;/p&gt;
+ */
+@Service
+public class UserServiceImpl implements IUserService &#123;
+
+    @Autowired
+    private IUserMapper userMapper;
+
+    @Override
+    public User selectUserByID(Integer id) &#123;
+        return userMapper.selectUserByID(id);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="4-4启动测试"><a href="#4-4启动测试" class="headerlink" title="4.4启动测试"></a>4.4启动测试</h3><p><img src="https://fastly.jsdelivr.net/gh/xccit/xccit.github.io/images_resource/image-20240801221844965.png" alt="image-20240801221844965"></p>
+<blockquote>
+<p>至此,大功告成,Java实习生,希望各位大佬指正批评</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/springboot/" style="color: #00bcd4">springboot</a>
+        </span>
+        
+    </div>
+    <a href="/2024/08/01/SpringBoot%E8%87%AA%E5%AE%9A%E4%B9%89Starter/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/07/21/ruoyi-vue%E5%A6%82%E4%BD%95%E4%B8%8D%E9%AA%8C%E8%AF%81Token%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%8F%A3/">
         <h2 class="post-title">ruoyi-vue如何不验证Token访问接口</h2>
     </a>
@@ -539,7 +836,7 @@ redis-server /etc/redis/config/redis.conf
         
         <span class="tag">
             
-            <a href="/tags/docker/" style="color: #ff7d73">docker</a>
+            <a href="/tags/docker/" style="color: #00bcd4">docker</a>
         </span>
         
     </div>
@@ -607,7 +904,7 @@ REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDe
         
         <span class="tag">
             
-            <a href="/tags/%E4%BF%A1%E5%AE%89/" style="color: #ff7d73">信安</a>
+            <a href="/tags/%E4%BF%A1%E5%AE%89/" style="color: #03a9f4">信安</a>
         </span>
         
     </div>
@@ -707,7 +1004,7 @@ public class TestDBAuth &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
         </span>
         
     </div>
