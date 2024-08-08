@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>SpringBoot项目开启数据源加密 | xccitのblog</title>
+    <title>Linux挂载光盘安装软件 | xccitのblog</title>
     <meta name="author" content="CH_ywx" />
     <meta name="description" content="贩卖温柔のselling kindness" />
     <meta name="keywords" content="" />
@@ -156,14 +156,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>SpringBoot项目开启数据源加密</h1>
+        <h1>Linux挂载光盘安装软件</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/7/12
+            2024/8/8
         </span>
         
         
@@ -175,8 +175,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/SpringBoot/" style="color: #ffa2c4">
-                    SpringBoot
+                <a href="/tags/Linux/" style="color: #ff7d73">
+                    Linux
                 </a>
             </span>
             
@@ -185,67 +185,66 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="SpringBoot实现数据源加密"><a href="#SpringBoot实现数据源加密" class="headerlink" title="SpringBoot实现数据源加密"></a>SpringBoot实现数据源加密</h1><h2 id="1-为什么要进行数据源加密"><a href="#1-为什么要进行数据源加密" class="headerlink" title="1.为什么要进行数据源加密?"></a>1.为什么要进行数据源加密?</h2><blockquote>
-<p>项目测试阶段,较为严苛的公司一般都需要进行数据源加密,特别是一些特殊部门的外包项目,测试文档中对数据源加密的测试流程很严格,不然会在项目被反编译时暴露数据源信息。</p>
-</blockquote>
-<h2 id="2-如何进行数据源加密"><a href="#2-如何进行数据源加密" class="headerlink" title="2.如何进行数据源加密?"></a>2.如何进行数据源加密?</h2><h3 id="2-1-使用jasypt"><a href="#2-1-使用jasypt" class="headerlink" title="2.1 使用jasypt"></a>2.1 使用jasypt</h3><blockquote>
-<p>实现数据源加密的方式有很多,以jasypt为例</p>
-</blockquote>
-<h4 id="2-1-1-引入jar"><a href="#2-1-1-引入jar" class="headerlink" title="2.1.1 引入jar"></a>2.1.1 引入jar</h4><blockquote>
-<p>我们创建一个工程,引入jar信息:</p>
-</blockquote>
-<pre><code class="xml">        &lt;dependency&gt;
-            &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
-            &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;
-            &lt;version&gt;3.0.5&lt;/version&gt;
-        &lt;/dependency&gt;
+        <h1 id="挂载光盘安装Linux软件包"><a href="#挂载光盘安装Linux软件包" class="headerlink" title="挂载光盘安装Linux软件包"></a>挂载光盘安装Linux软件包</h1><pre><code class="shell">mkdir /media/CentOS
+mount -t /dev/cdrom /media/CentOS
+df -HT
+cd /etc/yum.repos.d/
+mkdir ./bak
+mv ./*.repo ./bak/
+cp ./bak/CentOS-Media.repo .
+vim CentOS-Media.repo
 </code></pre>
-<h4 id="2-1-2-配置加密信息"><a href="#2-1-2-配置加密信息" class="headerlink" title="2.1.2 配置加密信息"></a>2.1.2 配置加密信息</h4><blockquote>
-<p>以SpringBoot工程为例,在yml或properties配置文件中配置如下信息:</p>
-</blockquote>
-<pre><code class="yaml"># 数据源加密
-jasypt:
-  encryptor:
-    password: $&#123;PASSWORD&#125;
-    algorithm: PBEWithHMACSHA512AndAES_256
-</code></pre>
-<h4 id="2-1-3-编写测试类"><a href="#2-1-3-编写测试类" class="headerlink" title="2.1.3 编写测试类"></a>2.1.3 编写测试类</h4><pre><code class="java">/**
- * @author CH_ywx
- * @version 1.0
- * @create 2024/6/9
- * &lt;p&gt;&lt;/p&gt;
- */
-@SpringBootTest
-public class TestDBAuth &#123;
+<p>更改后的文件:</p>
+<pre><code class="shell"># CentOS-Media.repo
+#
+#  This repo can be used with mounted DVD media, verify the mount point for
+#  CentOS-7.  You can use this repo and yum to install items directly off the
+#  DVD ISO that we release.
+#
+# To use this repo, put in your DVD and use it with the other repos too:
+#  yum --enablerepo=c7-media [command]
+#  
+# or for ONLY the media repo, do this:
+#
+#  yum --disablerepo=\* --enablerepo=c7-media [command]
 
-    @Test
-    public void test()&#123;
-        // PBEWithHMACSHA512AndAES_256加密方式,看配置文件
-        AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
-        textEncryptor.setPassword(&quot;ADMIN&quot;); //参数为加盐的值
-        String myEncryptedText = textEncryptor.encrypt(&quot;Xccit.1209&quot;); //参数为真实密码
-        //加密后的结果
-        System.out.println(myEncryptedText);
-        String plainText = textEncryptor.decrypt(myEncryptedText);
-        //解密后的结果
-        System.out.println(plainText);
-    &#125;
-&#125;
+[c7-media]
+name=CentOS-$releasever - Media
+baseurl=file:///media/CentOS7/  ---需要改的地方，挂载的光驱
+gpgcheck=1
+enabled=1 ---从0改到1开启光驱
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+~                                                                               
+~                                                                               
+~                                                
 </code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234044350.png" alt="image-20240712234044350"><br>如图,看到输出结果是这样就对了</p>
-<h4 id="2-1-4-重新配置数据源"><a href="#2-1-4-重新配置数据源" class="headerlink" title="2.1.4 重新配置数据源"></a>2.1.4 重新配置数据源</h4><blockquote>
-<p>将加密后的结果按如图配置:<br><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234128978.png" alt="image-20240712234128978"><br>SpringBoot在启动的时候会根据ENC()来判断是否有加密，如果有会根据配置的盐和算法进行解码。</p>
-</blockquote>
-<h4 id="2-1-5-启动时加上环境变量"><a href="#2-1-5-启动时加上环境变量" class="headerlink" title="2.1.5 启动时加上环境变量"></a>2.1.5 启动时加上环境变量</h4><blockquote>
-<p>这里在测试阶段可以使用IDEA加环境变量的方式启动<br><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234156051.png" alt="image-20240712234156051"><br>PASSWORD: jasypt配置中的key<br>ADMIN:测试类中加盐字段的值,必须保持一致,不然数据源密码会解密失败</p>
-</blockquote>
-<blockquote>
-<p>打成jar包后可以使用命令行参数启动:</p>
-</blockquote>
-<pre><code class="shell">java -jar xxx.jar PASSWORD=ADMIN
+<p> 依次执行以下命令:  </p>
+<pre><code class="shell">yum clean all
+yum repolist
+yum install ftp
 </code></pre>
-<h2 id="3-看一下效果"><a href="#3-看一下效果" class="headerlink" title="3.看一下效果"></a>3.看一下效果</h2><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234218352.png" alt="image-20240712234218352"></p>
-<p>正常启动,无报错,如果对数据库操作报密码错误,请检查盐值。</p>
+<h2 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h2><pre><code class="shell">yum install telnet telnet-server xinetd
+service xinetd start
+vim /etc/xinetd.d/telnet
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210415185927765.png" alt="image-20210415185927765"></p>
+<pre><code class="shell">service xinetd restart
+</code></pre>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><pre><code class="shell">yum install sshd  / openssh*
+service sshd start
+</code></pre>
+<h2 id="Vsftpd"><a href="#Vsftpd" class="headerlink" title="Vsftpd"></a>Vsftpd</h2><pre><code class="shell">yum install vsftpd
+service vsftpd start
+iptables -I INPUT -p tcp 21 --dport -j ACCEPT
+iptables -I INPUT -p udp 21 --dport -j ACCEPT
+vim /etc/vsftpd/vsftpd.conf,修改anonymous_enable = NO  --禁止匿名用户登陆
+去掉chroot_local_user = yes前的注释，限制用户访问家目录之外的地方
+</code></pre>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><pre><code class="shell">yum install mysql mysql-server mysql-devel
+service mysqld start
+mysql -u root password &#39;password&#39;   --给mysql的root用户设置密码
+</code></pre>
 
     </div>
     
