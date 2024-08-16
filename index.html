@@ -181,6 +181,240 @@
         
 
 <div class="post">
+    <a href="/2024/08/13/vite-vue3%E5%B0%81%E8%A3%85request-js/">
+        <h2 class="post-title">&#39;vite+vue3封装request.js&#39;</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/13
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="vite-vue3封装request-js"><a href="#vite-vue3封装request-js" class="headerlink" title="vite+vue3封装request.js"></a>vite+vue3封装request.js</h1><h2 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h2><ul>
+<li><p>1.安装node.js</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/en">Node.js — Run JavaScript Everywhere (nodejs.org)</a></p>
+</blockquote>
+<p>尽量安装LTS版本</p>
+</li>
+<li><p>2.创建工程</p>
+<blockquote>
+<p>npm init vite@latest</p>
+<p>选择<code>vue</code></p>
+<p>选择<code>3</code></p>
+<p>输入项目名称，例如<code>my-vue3-project</code></p>
+<p>选择存放项目的路径</p>
+<p>cd my-vue3-project<br>npm run dev</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="初始化工程"><a href="#初始化工程" class="headerlink" title="初始化工程"></a>初始化工程</h2><h3 id="1-安装axios"><a href="#1-安装axios" class="headerlink" title="1.安装axios"></a>1.安装axios</h3><pre><code class="shell">npm install axios
+</code></pre>
+<h3 id="2-封装request-js"><a href="#2-封装request-js" class="headerlink" title="2.封装request.js"></a>2.封装request.js</h3><p>在<code>src</code>下新建<code>utils</code>文件夹，新建<code>request.js</code></p>
+<pre><code class="javascript">import axios from &quot;axios&quot;
+import &#123; ElMessage &#125; from &#39;element-plus&#39;;
+import &#123;useTokenStore&#125; from &quot;@/store/token.js&quot;;
+
+const baseURL = &#39;/api&#39;
+// 创建axios实例
+const service = axios.create(&#123;
+    baseURL: baseURL, // 设置默认的 API 地址，url = baseURL + url（使用proxy代理时此处可不写）
+    timeout: 5000,	// 设置请求超时时间
+&#125;)
+
+//请求拦截器
+service.interceptors.request.use(
+    (config)=&gt;&#123;
+        let tokenStore = useTokenStore()
+        if (tokenStore.token)&#123;
+            config.headers.Authorization = tokenStore.token
+        &#125;
+        return config
+    &#125;,
+    (error)=&gt;&#123;
+        ElMessage.error(error.message)
+        return Promise.reject(error)
+    &#125;
+)
+
+// 响应拦截器
+service.interceptors.response.use(
+    // 响应数据，2xx 范围内的状态码都会触发该函数。
+    (response) =&gt; &#123;
+        if (response.data.code == 200)&#123;
+            const &#123; status, data &#125; = response;
+            if (status === 200) &#123;
+                const &#123; code, message &#125; = data;
+                // 根据后端返回的自定义状态码 code 进行错误信息提示（根据具体需求确定是否需要书写）
+                switch (code) &#123;
+                    case 401:
+                        ElMessage(&#123; message: message, type: &#39;error&#39; &#125;)
+                        return Promise.reject(data);
+                    default:
+                        return data;
+                &#125;
+            &#125;
+        &#125;else&#123;
+            return Promise.reject(response.data)
+        &#125;
+    &#125;,
+    (error) =&gt; &#123;
+        if (error.response) &#123;
+            const &#123; status, data &#125; = error.response;
+            ElMessage(&#123; message: data.message, type: &#39;error&#39; &#125;)
+            // if (status === 500) &#123;
+            //     ElMessage(&#123; message: data.message, type: &#39;error&#39; &#125;)
+            // &#125; else if (status === 401) &#123;
+            //     ElMessage(&#123; message: data.message, type: &#39;error&#39; &#125;)
+            // &#125; else &#123;
+            //     ElMessage(&#123; message: data.message || &#39;未知错误！&#39;, type: &#39;error&#39; &#125;)
+            // &#125;
+        &#125; else if (error.request) &#123;
+            // 请求已发送，未收到响应
+            ElMessage(&#123; message: error.message || &#39;请求已发送，未收到响应信息！&#39;, type: &#39;error&#39; &#125;)
+        &#125; else &#123;
+            // 其他错误
+            ElMessage(&#123; message: error.message, type: &#39;error&#39; &#125;)
+        &#125;
+        // 若简写，上面代码可省略，只写此一行
+        return Promise.reject(error);
+    &#125;
+)
+
+export default service;
+</code></pre>
+<h3 id="3-使用pinia进行状态管理"><a href="#3-使用pinia进行状态管理" class="headerlink" title="3.使用pinia进行状态管理"></a>3.使用pinia进行状态管理</h3><p>后端接口一般都是需要验证token来进行访问的：</p>
+<p>新建<code>src/store/token.js</code></p>
+<pre><code class="javascript">import &#123;defineStore&#125; from &#39;pinia&#39;
+import &#123;ref&#125; from &quot;vue&quot;;
+
+export const useTokenStore = defineStore(&#39;token&#39;,()=&gt;&#123;
+    const token = ref(&#39;&#39;)
+    const setToken = (newToken)=&gt;&#123;
+        token.value = newToken
+    &#125;
+
+    const removeToken = ()=&gt;&#123;
+        token.value = &#39;&#39;
+    &#125;
+
+    return &#123;token,setToken,removeToken&#125;
+&#125;)
+</code></pre>
+<p>这里定义了pinia状态管理的js文件，但是我们需要在<code>main.js</code>中使用pinia</p>
+<pre><code class="javascript">import &#123;createPinia&#125; from &#39;pinia&#39;
+const pinia = createPinia()
+
+const app = createApp(App)
+app.use(ElementPlus,&#123;locale&#125;)
+    .use(router)
+    .use(pinia)
+app.mount(&#39;#app&#39;)
+</code></pre>
+<p>忽略掉ElementPlus与locale以及router,并且在上面的<code>request.js</code>文件中，同样引入了<code>token.js</code>,这是为了方便将登录后获得的token传给请求拦截器，在请求头<code>Headers</code>中加入token</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>定义接口文件<code>api/user.js</code></p>
+<pre><code class="javascript">import request from &#39;@/utils/request.js&#39;
+
+const baseUrl = &#39;/user&#39;
+export const register = (params)=&gt;&#123;
+    return request(&#123;
+        method: &quot;POST&quot;,
+        url: `$&#123;baseUrl&#125;/register`,
+        params: params
+    &#125;)
+&#125;
+
+export const login = (params)=&gt;&#123;
+    return request(&#123;
+        method: &quot;POST&quot;,
+        url: `$&#123;baseUrl&#125;/login`,
+        params: params
+    &#125;)
+&#125;
+
+export const logout = ()=&gt;&#123;
+    return request(&#123;
+        method: &quot;POST&quot;,
+        url: `$&#123;baseUrl&#125;/logout`
+    &#125;)
+&#125;
+</code></pre>
+<p>定义接口文件<code>category.js</code></p>
+<pre><code class="javascript">import request from &#39;@/utils/request.js&#39;
+
+const baseUrl = &#39;/category&#39;
+export const list = ()=&gt;&#123;
+    return request(&#123;
+        method: &#39;GET&#39;,
+        url: `$&#123;baseUrl&#125;`
+    &#125;)
+&#125;
+
+export const insert = (category)=&gt;&#123;
+    return request(&#123;
+        method: &#39;POST&#39;,
+        url:`$&#123;baseUrl&#125;`,
+        data: category
+    &#125;)
+&#125;
+
+export const update = (category)=&gt;&#123;
+    return request(&#123;
+        method: &#39;PUT&#39;,
+        url: `$&#123;baseUrl&#125;`,
+        data: category
+    &#125;)
+&#125;
+
+export const remove = (id)=&gt;&#123;
+    return request(&#123;
+        method: &#39;DELETE&#39;,
+        url: `$&#123;baseUrl&#125;/$&#123;id&#125;`
+    &#125;)
+&#125;
+
+export const detail = (id)=&gt;&#123;
+    return request(&#123;
+        method: &#39;GET&#39;,
+        url: `$&#123;baseUrl&#125;/detail`,
+        params: id
+    &#125;)
+&#125;
+</code></pre>
+<p>登录后发送请求，浏览器控制台：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/QQ_1723528176173.png" alt="QQ_1723528176173" style="zoom:150%;" />
+
+<p><code>前端新手，若有不对欢迎指正</code></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00bcd4">前端开发</a>
+        </span>
+        
+    </div>
+    <a href="/2024/08/13/vite-vue3%E5%B0%81%E8%A3%85request-js/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/08/08/Java%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/">
         <h2 class="post-title">Java基础笔记</h2>
     </a>
@@ -3039,7 +3273,7 @@ class Outerr&#123;
         
         <span class="tag">
             
-            <a href="/tags/Java/" style="color: #03a9f4">Java</a>
+            <a href="/tags/Java/" style="color: #00a596">Java</a>
         </span>
         
     </div>
@@ -3138,7 +3372,7 @@ mysql -u root password &#39;password&#39;   --给mysql的root用户设置密码
         
         <span class="tag">
             
-            <a href="/tags/Linux/" style="color: #03a9f4">Linux</a>
+            <a href="/tags/Linux/" style="color: #ffa2c4">Linux</a>
         </span>
         
     </div>
@@ -3432,7 +3666,7 @@ public AjaxResult update(@RequestBody @Validated(Category.Update.class) Category
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #03a9f4">SpringBoot</a>
         </span>
         
     </div>
@@ -3576,7 +3810,7 @@ public class LoginInterceptor implements HandlerInterceptor &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
         </span>
         
     </div>
@@ -3908,7 +4142,7 @@ public class UserServiceImpl implements IUserService &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #00a596">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
         </span>
         
     </div>
@@ -3978,7 +4212,7 @@ public List&lt;User&gt; list(User user)
         
         <span class="tag">
             
-            <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #00bcd4">若依二次开发</a>
+            <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #00a596">若依二次开发</a>
         </span>
         
     </div>
@@ -4274,7 +4508,7 @@ redis-server /etc/redis/config/redis.conf
         
         <span class="tag">
             
-            <a href="/tags/docker/" style="color: #ffa2c4">docker</a>
+            <a href="/tags/docker/" style="color: #ff7d73">docker</a>
         </span>
         
     </div>
@@ -4442,7 +4676,7 @@ public class TestDBAuth &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #03a9f4">SpringBoot</a>
         </span>
         
     </div>
