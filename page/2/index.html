@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>ruoyi-vue如何不验证Token访问接口 | xccitのblog</title>
+    <title>xccitのblog</title>
     <meta name="author" content="CH_ywx" />
     <meta name="description" content="人生如逆旅,我亦是行人" />
     <meta name="keywords" content="" />
@@ -42,9 +42,7 @@
 
 
 
-
-
-
+<script src="/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -154,76 +152,169 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>ruoyi-vue如何不验证Token访问接口</h1>
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>xccitのblog</h1>
+                <h3>like life | like myself</h3>
+                <h5>人生如逆旅,我亦是行人</h5>
+            </div>
+        </span>
     </div>
-    <div class="info">
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2024/07/12/SpringBoot%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E6%95%B0%E6%8D%AE%E6%BA%90%E5%8A%A0%E5%AF%86/">
+        <h2 class="post-title">SpringBoot项目开启数据源加密</h2>
+    </a>
+    <div class="category-and-date">
+        
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/7/21
+            2024/7/12
         </span>
         
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #00bcd4">
-                    若依二次开发
-                </a>
-            </span>
-            
-        </span>
         
     </div>
-    
-    <div class="content" v-pre>
-        <h1 id="Ruoyi-vue如何不验证Token访问接口"><a href="#Ruoyi-vue如何不验证Token访问接口" class="headerlink" title="Ruoyi-vue如何不验证Token访问接口"></a>Ruoyi-vue如何不验证Token访问接口</h1><blockquote>
-<p>若依前后端分离项目中,默认使用代码生成的接口是需要验证Token才能调用的,自己编写的接口如果没有经过配置,也需要验证Token,如果需要跳过Token验证直接访问,我们该怎么做呢?</p>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="SpringBoot实现数据源加密"><a href="#SpringBoot实现数据源加密" class="headerlink" title="SpringBoot实现数据源加密"></a>SpringBoot实现数据源加密</h1><h2 id="1-为什么要进行数据源加密"><a href="#1-为什么要进行数据源加密" class="headerlink" title="1.为什么要进行数据源加密?"></a>1.为什么要进行数据源加密?</h2><blockquote>
+<p>项目测试阶段,较为严苛的公司一般都需要进行数据源加密,特别是一些特殊部门的外包项目,测试文档中对数据源加密的测试流程很严格,不然会在项目被反编译时暴露数据源信息。</p>
 </blockquote>
-<h2 id="1-配置匿名访问"><a href="#1-配置匿名访问" class="headerlink" title="1.配置匿名访问"></a>1.配置匿名访问</h2><p>在<code>ruoyi-framework</code>模块下<code>SecurityConfig</code>类中的<code>configure</code>方法中添加匿名访问配置:</p>
-<pre><code class="java">.antMatchers(&quot;/路径/**&quot;).permitAll()
+<h2 id="2-如何进行数据源加密"><a href="#2-如何进行数据源加密" class="headerlink" title="2.如何进行数据源加密?"></a>2.如何进行数据源加密?</h2><h3 id="2-1-使用jasypt"><a href="#2-1-使用jasypt" class="headerlink" title="2.1 使用jasypt"></a>2.1 使用jasypt</h3><blockquote>
+<p>实现数据源加密的方式有很多,以jasypt为例</p>
+</blockquote>
+<h4 id="2-1-1-引入jar"><a href="#2-1-1-引入jar" class="headerlink" title="2.1.1 引入jar"></a>2.1.1 引入jar</h4><blockquote>
+<p>我们创建一个工程,引入jar信息:</p>
+</blockquote>
+<pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
+            &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;3.0.5&lt;/version&gt;
+        &lt;/dependency&gt;
 </code></pre>
-<p>例如:</p>
-<pre><code class="java">.antMatchers(&quot;/user/**&quot;).permitAll()
+<h4 id="2-1-2-配置加密信息"><a href="#2-1-2-配置加密信息" class="headerlink" title="2.1.2 配置加密信息"></a>2.1.2 配置加密信息</h4><blockquote>
+<p>以SpringBoot工程为例,在yml或properties配置文件中配置如下信息:</p>
+</blockquote>
+<pre><code class="yaml"># 数据源加密
+jasypt:
+  encryptor:
+    password: $&#123;PASSWORD&#125;
+    algorithm: PBEWithHMACSHA512AndAES_256
 </code></pre>
-<h2 id="2-添加-Anonymous-注解"><a href="#2-添加-Anonymous-注解" class="headerlink" title="2.添加*@Anonymous*注解"></a>2.添加*@Anonymous*注解</h2><pre><code class="java">/*类上定义匿名注解，作用于所有的方法*/
-@Anonymous
-@RestController
-@RequestMapping(&quot;/user&quot;)
-public class UserController extends BaseController
-&#123;
+<h4 id="2-1-3-编写测试类"><a href="#2-1-3-编写测试类" class="headerlink" title="2.1.3 编写测试类"></a>2.1.3 编写测试类</h4><pre><code class="java">/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/6/9
+ * &lt;p&gt;&lt;/p&gt;
+ */
+@SpringBootTest
+public class TestDBAuth &#123;
 
+    @Test
+    public void test()&#123;
+        // PBEWithHMACSHA512AndAES_256加密方式,看配置文件
+        AES256TextEncryptor textEncryptor = new AES256TextEncryptor();
+        textEncryptor.setPassword(&quot;ADMIN&quot;); //参数为加盐的值
+        String myEncryptedText = textEncryptor.encrypt(&quot;Xccit.1209&quot;); //参数为真实密码
+        //加密后的结果
+        System.out.println(myEncryptedText);
+        String plainText = textEncryptor.decrypt(myEncryptedText);
+        //解密后的结果
+        System.out.println(plainText);
+    &#125;
 &#125;
 </code></pre>
-<pre><code class="java">/*方法定义匿名注解，作用于单独的方法*/
-@Anonymous
-@GetMapping(&quot;/list&quot;)
-public List&lt;User&gt; list(User user)
-&#123;
-    List&lt;User&gt; userList = userService.selectList(user);
-    return AjaxResult.success(userList);
-&#125;
-</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234044350.png" alt="image-20240712234044350"><br>如图,看到输出结果是这样就对了</p>
+<h4 id="2-1-4-重新配置数据源"><a href="#2-1-4-重新配置数据源" class="headerlink" title="2.1.4 重新配置数据源"></a>2.1.4 重新配置数据源</h4><blockquote>
+<p>将加密后的结果按如图配置:<br><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234128978.png" alt="image-20240712234128978"><br>SpringBoot在启动的时候会根据ENC()来判断是否有加密，如果有会根据配置的盐和算法进行解码。</p>
+</blockquote>
+<h4 id="2-1-5-启动时加上环境变量"><a href="#2-1-5-启动时加上环境变量" class="headerlink" title="2.1.5 启动时加上环境变量"></a>2.1.5 启动时加上环境变量</h4><blockquote>
+<p>这里在测试阶段可以使用IDEA加环境变量的方式启动<br><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234156051.png" alt="image-20240712234156051"><br>PASSWORD: jasypt配置中的key<br>ADMIN:测试类中加盐字段的值,必须保持一致,不然数据源密码会解密失败</p>
+</blockquote>
 <blockquote>
-<p>匿名访问的方法上面<code>@PreAuthorize</code>权限注解也需要去掉，因为已经使用匿名访问了，权限自然也不需要去验证了。</p>
+<p>打成jar包后可以使用命令行参数启动:</p>
 </blockquote>
-<p>最后重启项目即可跳过Token访问接口</p>
+<pre><code class="shell">java -jar xxx.jar PASSWORD=ADMIN
+</code></pre>
+<h2 id="3-看一下效果"><a href="#3-看一下效果" class="headerlink" title="3.看一下效果"></a>3.看一下效果</h2><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240712234218352.png" alt="image-20240712234218352"></p>
+<p>正常启动,无报错,如果对数据库操作报密码错误,请检查盐值。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/SpringBoot/" style="color: #ffa2c4">SpringBoot</a>
+        </span>
+        
+    </div>
+    <a href="/2024/07/12/SpringBoot%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E6%95%B0%E6%8D%AE%E6%BA%90%E5%8A%A0%E5%AF%86/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">2</span>
+    
+    
+    
+    
+</div>
 
     </div>
     
-    
-    
-    
-    
-    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/myavatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">CH_ywx</div>
+        <div class="description">
+            <p>贩卖温柔の優しさを振りまく<br>   QQ: 1571466236<br>WECHAT: lucky_all_time_max</p>
+
+        </div>
+        
+        
+    </div>
+</div>
+
+    </div>
     
 </div>
 
@@ -255,12 +346,6 @@ public List&lt;User&gt; list(User user)
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-
-
-
-
     
 </body>
 </html>

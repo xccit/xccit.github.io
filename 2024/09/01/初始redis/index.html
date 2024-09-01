@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>ruoyi-vue如何不验证Token访问接口 | xccitのblog</title>
+    <title>&#39;初始redis&#39; | xccitのblog</title>
     <meta name="author" content="CH_ywx" />
     <meta name="description" content="人生如逆旅,我亦是行人" />
     <meta name="keywords" content="" />
@@ -156,14 +156,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>ruoyi-vue如何不验证Token访问接口</h1>
+        <h1>&#39;初始redis&#39;</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/7/21
+            2024/9/1
         </span>
         
         
@@ -175,8 +175,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #00bcd4">
-                    若依二次开发
+                <a href="/tags/Redis/" style="color: #00a596">
+                    Redis
                 </a>
             </span>
             
@@ -185,37 +185,104 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="Ruoyi-vue如何不验证Token访问接口"><a href="#Ruoyi-vue如何不验证Token访问接口" class="headerlink" title="Ruoyi-vue如何不验证Token访问接口"></a>Ruoyi-vue如何不验证Token访问接口</h1><blockquote>
-<p>若依前后端分离项目中,默认使用代码生成的接口是需要验证Token才能调用的,自己编写的接口如果没有经过配置,也需要验证Token,如果需要跳过Token验证直接访问,我们该怎么做呢?</p>
+        <h1 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h1><blockquote>
+<p>Redis是使用C语言开发的一款高性能开源键值对非关系性数据库,数据间没有必然的关联关系,内部采用单线程机制进行工作,有高性能、高并发的特性,可进行数据持久化,数据灾难恢复</p>
 </blockquote>
-<h2 id="1-配置匿名访问"><a href="#1-配置匿名访问" class="headerlink" title="1.配置匿名访问"></a>1.配置匿名访问</h2><p>在<code>ruoyi-framework</code>模块下<code>SecurityConfig</code>类中的<code>configure</code>方法中添加匿名访问配置:</p>
-<pre><code class="java">.antMatchers(&quot;/路径/**&quot;).permitAll()
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>通过百度网盘分享的文件：Redis-x64-3.2.100.msi<br>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/11co2TyJzmNyj4dw8NJWHIg?pwd=1209">https://pan.baidu.com/s/11co2TyJzmNyj4dw8NJWHIg?pwd=1209</a><br>提取码：1209</p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p><a target="_blank" rel="noopener" href="https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-linux/">Install Redis on Linux | Docs</a></p>
+<h1 id="Redis使用场景"><a href="#Redis使用场景" class="headerlink" title="Redis使用场景"></a>Redis使用场景</h1><h2 id="作为缓存使用"><a href="#作为缓存使用" class="headerlink" title="作为缓存使用"></a>作为缓存使用</h2><ul>
+<li>业务功能设计,例如:秒杀、促销、抢票等</li>
+<li>高频访问数据,例如:在线人数统计</li>
+</ul>
+<h2 id="系统功能优化"><a href="#系统功能优化" class="headerlink" title="系统功能优化"></a>系统功能优化</h2><ul>
+<li>单服务器升级集群</li>
+<li>Session、Token管理</li>
+</ul>
+<h1 id="Redis基本使用"><a href="#Redis基本使用" class="headerlink" title="Redis基本使用"></a>Redis基本使用</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><pre><code class="shell">select 0 //选择0号数据库(0-15)
+dbsize //当前数据库key的总数
+exists key //查看某个key是否存在,存在返回1,不存在返回0
+keys * //获取当前数据库所有键
+get key //获取key对应的value
+type key //获取件对应的value的类型
+del key //删除指定的key:value
+expire key num //key:键 num:数字 给key设置n秒后过期
+ttl key //查看key剩余的过期时间
+persist key //去除key的过期时间
 </code></pre>
-<p>例如:</p>
-<pre><code class="java">.antMatchers(&quot;/user/**&quot;).permitAll()
-</code></pre>
-<h2 id="2-添加-Anonymous-注解"><a href="#2-添加-Anonymous-注解" class="headerlink" title="2.添加*@Anonymous*注解"></a>2.添加*@Anonymous*注解</h2><pre><code class="java">/*类上定义匿名注解，作用于所有的方法*/
-@Anonymous
-@RestController
-@RequestMapping(&quot;/user&quot;)
-public class UserController extends BaseController
-&#123;
+<h2 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h2><ul>
+<li>bind: 绑定redis自身的服务器的ip，不是绑定访问过来的IP地址，默认是127.0.0.1，即只允许本地访问</li>
+<li>port:  指定redis监听端口，默认为6379</li>
+<li>requirepass:  设置连接密码，客户端连接时，需要密码认证</li>
+<li>protected-mode: 开启保护模式(默认开启)，若开启且bind未配置密码也未设置，redis只接受本机连接</li>
+<li>timeout: 设置客户端连接时的超时时间，单位为秒，默认值：0代表禁用，永不关闭</li>
+</ul>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>Redis中的数据类型针对的是value的值,key永远是字符串</p>
+<h3 id="1-string字符串"><a href="#1-string字符串" class="headerlink" title="1.string字符串"></a>1.string字符串</h3><pre><code class="shell">set key value //存储
+get key //获取
+del key //删除
 
-&#125;
+mset key1 value1 key2 value2 ……  //存储多个
+mget key1 key2 …… //获取多个
+
+setex key seconds value //设置秒
+setex key milliseconds value //设置毫秒
 </code></pre>
-<pre><code class="java">/*方法定义匿名注解，作用于单独的方法*/
-@Anonymous
-@GetMapping(&quot;/list&quot;)
-public List&lt;User&gt; list(User user)
-&#123;
-    List&lt;User&gt; userList = userService.selectList(user);
-    return AjaxResult.success(userList);
-&#125;
+<h3 id="2-Hash哈希类型"><a href="#2-Hash哈希类型" class="headerlink" title="2.Hash哈希类型"></a>2.Hash哈希类型</h3><pre><code class="shell">hset key field value //存储 hset user username zhangsan
+hget key field  //获取一个  hget user username
+hgetall key //获取全部
+hdel key field  //删除 hdel user username
 </code></pre>
-<blockquote>
-<p>匿名访问的方法上面<code>@PreAuthorize</code>权限注解也需要去掉，因为已经使用匿名访问了，权限自然也不需要去验证了。</p>
+<h3 id="3-list列表类型"><a href="#3-list列表类型" class="headerlink" title="3.list列表类型"></a>3.list列表类型</h3><ul>
+<li>采用双向链表linkedlist,支持重复元素</li>
+<li>可以添加一个元素到列表的头部或者尾部</li>
+</ul>
+<pre><code class="shell">lpush key value //将元素添加到列表头部
+rpush key value //将元素添加到列表尾部
+lrange key start end //获取start-end索引位置的元素
+lrange key 0 -1 //获取所有元素
+lpop key //删除最左边的元素
+rpop //删除最右边的元素
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240901102627970.png" alt="image-20240901102627970"></p>
+<h3 id="4-set集合类型"><a href="#4-set集合类型" class="headerlink" title="4.set集合类型"></a>4.set集合类型</h3><h4 id="4-1无序集合"><a href="#4-1无序集合" class="headerlink" title="4.1无序集合"></a>4.1无序集合</h4><blockquote>
+<p>不允许重复,元素无序</p>
 </blockquote>
-<p>最后重启项目即可跳过Token访问接口</p>
+<pre><code class="shell">sadd key value //存储
+sadd key value1,value2... //存储多个
+smembers key //获取该key的所有元素
+srem key value //删除该key的value
+</code></pre>
+<h4 id="4-2有序集合"><a href="#4-2有序集合" class="headerlink" title="4.2有序集合"></a>4.2有序集合</h4><blockquote>
+<p>元素不允许重复,但元素有序,每个元素都会关联一个double类型的分数</p>
+</blockquote>
+<pre><code class="shell">zadd key score value //存储
+zrange key start end //获取start至end之间的元素
+zrange key 0 -1 withscores //获取全部并带着分数
+zrem key value //删除该key的value
+</code></pre>
+<h1 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h1><h2 id="RDB方式"><a href="#RDB方式" class="headerlink" title="RDB方式"></a>RDB方式</h2><blockquote>
+<p>默认的数据持久化方式,不需要配置,在一定的时间间隔中,检测key的变化,最终持久化数据</p>
+</blockquote>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><code>redis.conf:</code></p>
+<ul>
+<li>save 500 1  :900秒后至少有1个key发生改变就持久化一次</li>
+<li>save 200 10  :300秒后至少有10key发生改变就持久化一次</li>
+<li>save 100 100 :50秒后至少有10000个key发生改变就持久化一次</li>
+</ul>
+<blockquote>
+<p>注意:修改配置文件后需要重启redis服务</p>
+</blockquote>
+<h2 id="AOF方式"><a href="#AOF方式" class="headerlink" title="AOF方式"></a>AOF方式</h2><blockquote>
+<p>通过日志记录对的方式,记录每一条命令的操作。每次操作后持久化数据。</p>
+</blockquote>
+<p><code>redis.conf</code></p>
+<ul>
+<li>appendonly no（关闭）</li>
+<li>appendonly yes（开启）</li>
+<li>appendfsync always  每次操作都持久化</li>
+<li>appendfsync everysec  每隔一秒持久化（默认值）</li>
+<li>appendfsync no  不持久化</li>
+</ul>
 
     </div>
     
