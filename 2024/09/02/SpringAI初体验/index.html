@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SpringAI初体验 | xccitのblog</title>
+    <meta name="author" content="CH_ywx" />
+    <meta name="description" content="人生如逆旅,我亦是行人" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/myavatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>XCCITのBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;XCCITのBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>SpringAI初体验</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/2
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/SpringAI/" style="color: #03a9f4">
+                    SpringAI
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="SpringAI简介"><a href="#SpringAI简介" class="headerlink" title="SpringAI简介"></a>SpringAI简介</h1><p>Spring AI是一个<code>基于Spring Boot</code>框架的AI应用开发工具包。它旨在简化A!模型的集成和部署，使开发者能够更快地构建智能应用。SpringAI提供了一系列功能，包括对话管理、自然语言处理、图像识别等，其中<code>ChatGPT</code>就是其中之一。</p>
+<h1 id="SpringAI环境搭建"><a href="#SpringAI环境搭建" class="headerlink" title="SpringAI环境搭建"></a>SpringAI环境搭建</h1><h2 id="1-创建SpringBoot工程"><a href="#1-创建SpringBoot工程" class="headerlink" title="1.创建SpringBoot工程"></a>1.创建SpringBoot工程</h2><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240902223807549.png" alt="image-20240902223807549"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240902223945095.png" alt="image-20240902223945095"></p>
+<blockquote>
+<p><code>Tips:</code>SpringBoot3必须使用JDK17及以上版本,请求接口需要使用到WEB模块,所以导入Spring Web,我们选择使用ChatGpt,所以导入openai依赖</p>
+</blockquote>
+<p>创建完成的项目依赖应该如下:</p>
+<pre><code class="xml">    &lt;properties&gt;
+        &lt;java.version&gt;17&lt;/java.version&gt;
+        &lt;spring-ai.version&gt;1.0.0-M2&lt;/spring-ai.version&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.ai&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-ai-openai-spring-boot-starter&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework.ai&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-ai-bom&lt;/artifactId&gt;
+                &lt;version&gt;$&#123;spring-ai.version&#125;&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+</code></pre>
+<blockquote>
+<p><code>Tips:</code>由于阿里等maven仓库未能及时更新SpringAI的依赖,所以Maven配置阿里仓库等国内源会导致依赖下载失败,可以使用maven公共仓库以及配合科学上网解决此问题</p>
+</blockquote>
+<h2 id="2-接口申请"><a href="#2-接口申请" class="headerlink" title="2.接口申请"></a>2.接口申请</h2><p>由于ChatGpt需要使用<code>科学上网</code>外加<code>$</code>支付,可以使用国内的OpenAI中转站,这里使用<a target="_blank" rel="noopener" href="https://api.xty.app/">https://api.xty.app/</a></p>
+<h3 id="2-1-注册"><a href="#2-1-注册" class="headerlink" title="2.1 注册"></a>2.1 注册</h3><p>使用<code>https://api.xty.app/register?aff=iz9s</code>链接进行注册,可以获得<code>1.0$</code>的免费额度</p>
+<h3 id="2-2-生成令牌"><a href="#2-2-生成令牌" class="headerlink" title="2.2 生成令牌"></a>2.2 生成令牌</h3><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240902224738699.png" alt="image-20240902224738699"></p>
+<p>点击此处使用账户送的<code>1.0$</code>申请令牌即可</p>
+<h2 id="3-接口开发"><a href="#3-接口开发" class="headerlink" title="3.接口开发"></a>3.接口开发</h2><h3 id="3-1-配置AI参数"><a href="#3-1-配置AI参数" class="headerlink" title="3.1 配置AI参数"></a>3.1 配置AI参数</h3><pre><code class="yaml">spring:
+  # ChatGPT配置
+  ai:
+    openai:
+      api-key: 你申请到的key
+      base-url: https://api.xty.app
+      chat:
+        options:
+          model: gpt-3.5-turbo
+</code></pre>
+<p>关于配置,可以在<a target="_blank" rel="noopener" href="https://api.xty.app/%E6%9F%A5%E7%9C%8B%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B">https://api.xty.app/查看使用教程</a></p>
+<p>关于SpringAI的更多配置,可以在<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-ai/reference/api/chat/openai-chat.html#_sample_controller%E8%BF%9B%E8%A1%8C%E6%9F%A5%E7%9C%8B%E5%8F%8A%E9%85%8D%E7%BD%AE">https://docs.spring.io/spring-ai/reference/api/chat/openai-chat.html#_sample_controller进行查看及配置</a></p>
+<h3 id="3-2-接口定义"><a href="#3-2-接口定义" class="headerlink" title="3.2 接口定义"></a>3.2 接口定义</h3><pre><code class="java">/**
+ * @author CH_ywx
+ * @version 1.0
+ * @create 2024/9/2
+ * &lt;p&gt;AI测试控制器&lt;/p&gt;
+ */
+@CrossOrigin
+@RestController
+public class OpenAIController &#123;
+    private final OpenAiChatModel chatModel;
+
+    @Autowired
+    public OpenAIController(OpenAiChatModel chatModel) &#123;
+        this.chatModel = chatModel;
+    &#125;
+    @GetMapping(&quot;/ai/generate&quot;)
+    public Map generate(@RequestParam(value = &quot;message&quot;, defaultValue = &quot;Tell me a joke&quot;) String message) &#123;
+        return Map.of(&quot;generation&quot;, chatModel.call(message));
+    &#125;
+
+    @GetMapping(value = &quot;/ai/generateStream&quot;,produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux&lt;String&gt; generateStream(@RequestParam(value = &quot;message&quot;, defaultValue = &quot;Tell me a joke&quot;) String message) &#123;
+//        Prompt prompt = new Prompt(new UserMessage(message));
+        Flux&lt;String&gt; stream = chatModel.stream(message);
+        return stream;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>以上代码在官网都可以copy的到,稍加改动即可</p>
+</blockquote>
+<h3 id="3-3-测试"><a href="#3-3-测试" class="headerlink" title="3.3 测试"></a>3.3 测试</h3><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240902225103791.png" alt="image-20240902225103791"></p>
+<h2 id="4-接入前端测试"><a href="#4-接入前端测试" class="headerlink" title="4.接入前端测试"></a>4.接入前端测试</h2><h3 id="4-1-创建Vue项目"><a href="#4-1-创建Vue项目" class="headerlink" title="4.1 创建Vue项目"></a>4.1 创建Vue项目</h3><pre><code class="javascript">npm create vite
+填写项目信息,选择vue项目,javascript语言
+cd /项目根路径
+npm run dev
+</code></pre>
+<h3 id="4-2-删除项目自带的组件及css等无关配置"><a href="#4-2-删除项目自带的组件及css等无关配置" class="headerlink" title="4.2 删除项目自带的组件及css等无关配置"></a>4.2 删除项目自带的组件及css等无关配置</h3><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240902225259851.png" alt="image-20240902225259851"></p>
+<h3 id="4-3-改造App-vue"><a href="#4-3-改造App-vue" class="headerlink" title="4.3 改造App.vue"></a>4.3 改造App.vue</h3><pre><code class="vue">&lt;script setup&gt;
+  import &#123;ref&#125; from &#39;vue&#39;
+  const message = ref(&#39;&#39;)
+  const result = ref([])
+  const sendMessage = ()=&gt;&#123;
+    //事件流请求
+    let source = new EventSource(`http://localhost:8080/ai/generateStream?message=$&#123;message.value&#125;`)
+    source.onmessage = (event)=&gt;&#123;
+      result.value.push(event.data)
+    &#125;
+  &#125;
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;h1&gt;小昕AI v1.0&lt;/h1&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;historyWindow&quot;&gt;
+      &lt;span v-for=&quot;(text,index) in result&quot; :key=&quot;index&quot;&gt;
+        &#123;&#123;text&#125;&#125;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;chatWindow&quot;&gt;
+      &lt;textarea class=&quot;chatText&quot; v-model=&quot;message&quot;&gt;
+      &lt;/textarea&gt;
+      &lt;button class=&quot;chatSend&quot; @click=&quot;sendMessage()&quot;&gt;发&amp;nbsp;&amp;nbsp;送&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+  *&#123;
+    margin: 0px;
+    padding: 0px;
+  &#125;
+  .container&#123;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+  &#125;
+  .historyWindow&#123;
+    //background-color: aqua;
+    width: 100%;
+    height: 600px;
+    border: 3px solid aqua;
+    border-radius: 5px;
+    color: black;
+  &#125;
+  .chatWindow&#123;
+    display: flex;
+    //background-color: #646cff;
+    width: 100%;
+    height: 100px;
+  &#125;
+  .chatText&#123;
+    width: 80%;
+    height: 100%;
+  &#125;
+  .chatSend&#123;
+    width: 10%;
+    height: 50px;
+    flex: content;
+    margin-top: 50px;
+    color: aqua;
+    font-size: 30px;
+  &#125;
+&lt;/style&gt;
+</code></pre>
+<h3 id="4-4-测试"><a href="#4-4-测试" class="headerlink" title="4.4 测试"></a>4.4 测试</h3><pre><code class="javascript">npm run dev
+</code></pre>
+<blockquote>
+<p><code>Tips:</code>接入的模型为ChatGpt3.5,可以进行聊天对话,资料查询等等功能</p>
+</blockquote>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240902230707068.png" alt="image-20240902230707068"></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 xccitのblog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;CH_ywx
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

