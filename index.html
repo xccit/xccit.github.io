@@ -181,6 +181,269 @@
         
 
 <div class="post">
+    <a href="/2024/09/17/Spring%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        <h2 class="post-title">Spring快速入门</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/17
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="Spring快速入门"><a href="#Spring快速入门" class="headerlink" title="Spring快速入门"></a>Spring快速入门</h1><h2 id="Spring概述"><a href="#Spring概述" class="headerlink" title="Spring概述"></a>Spring概述</h2><p>Spring框架是一个开源的J2EE应用程序框架，由Rod Johnson发起，旨在解决开发者在J2EE开发中遇到的常见问题。**‌ 它提供了一个轻量级的容器，通过<code>控制反转IoC</code>和<code>面向切面编程（AOP)</code>等核心机制，简化了企业级应用程序的开发。Spring框架不仅限于服务器端开发，而且由于其简单性、可测试性和松耦合性，可以应用于绝大部分Java应用中。</p>
+<h2 id="Spring特性"><a href="#Spring特性" class="headerlink" title="Spring特性"></a>Spring特性</h2><p>Spring框架的主要特性包括：</p>
+<ol>
+<li>‌<strong>轻量级</strong>‌：Spring的核心jar包很小，对代码几乎无污染，提供了轻量级的解决方案。</li>
+<li>‌<strong>面向接口编程</strong>‌：Spring底层设计遵循面向接口的开发规范，通过接口定义实现类的行为，提高了代码的灵活性和可扩展性。</li>
+<li>‌<strong>AOP支持</strong>‌：Spring提供了强大的AOP支持，使得开发者可以方便地处理日志、事务、权限验证等公共功能。</li>
+<li>‌<strong>整合其他框架</strong>‌：Spring可以单独使用，也可以与其他框架（如Struts、Hibernate等）无缝集成，降低了使用难度。</li>
+<li>‌<strong>降低API使用难度</strong>‌：Spring对Java EE API进行了封装，使其更易于使用，同时也降低了开发难度。</li>
+</ol>
+<p>Spring框架的架构包括多个模块，如Core模块提供基本的IOC和AOP功能，Data模块提供持久化数据的访问框架，而Web模块则提供Web应用程序的基础功能和编程框架。Spring框架的工作流程涉及嵌入容器中运行，通过定义Bean和配置XML文件来实现应用程序的启动和Bean的管理。</p>
+<p>总的来说，Spring框架通过其简洁的设计、强大的功能和灵活的扩展性，成为了Java企业级应用开发的首选框架之一‌。</p>
+<h2 id="IoC"><a href="#IoC" class="headerlink" title="IoC"></a>IoC</h2><p><code>IOC</code>全称<code>Inverse Of Control</code>,中文翻译为<code>控制反转</code>,是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。IOC的一个重点是在系统运行中，动态的向某个对象提供它所需要的其他对象。这一点是通过DI（<code>Dependency Injection</code>，依赖注入）来实现的。</p>
+<h3 id="IoC初体验"><a href="#IoC初体验" class="headerlink" title="IoC初体验"></a>IoC初体验</h3><h4 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1.环境搭建"></a>1.环境搭建</h4><ul>
+<li><p>创建Maven工程</p>
+</li>
+<li><p>引入依赖</p>
+<pre><code class="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+  &lt;version&gt;6.1.12&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>创建实体类</p>
+<pre><code class="java">@Data
+public class Person &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+&#125;
+</code></pre>
+</li>
+<li><p>简化实体类操作</p>
+<pre><code class="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+  &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+  &lt;version&gt;1.18.34&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>Spring配置文件</p>
+<p><code>applicationContext.xml</code></p>
+<p>命名并不是统一的,有些开发会习惯性的命名为<code>spring.xml</code></p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+    &lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+        &lt;property name=&quot;name&quot; value=&quot;lucy&quot;/&gt;
+        &lt;property name=&quot;age&quot; value=&quot;18&quot;/&gt;
+        &lt;property name=&quot;gender&quot; value=&quot;女&quot;/&gt;
+        &lt;property name=&quot;id&quot; value=&quot;1&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+</li>
+<li><p>测试</p>
+<pre><code class="java">public class App &#123;
+    public static void main( String[] args ) &#123;
+/*        Person person = new Person();
+        person.setId(1);
+        person.setName(&quot;张三&quot;);
+        person.setAge(20);
+        person.setGender(&quot;男&quot;);
+        System.out.println(person);*/
+        //ioc
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+        Person person = (Person) context.getBean(&quot;person&quot;);
+        System.out.println(person);
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>使用<code>ApplicationContext</code>来new实现类<code>ClassPathXmlApplicationContext</code>来加载配置文件,还有<code>FileSystemXmlApplicationContext</code>可加载非本项目的配置文件,只需全路径即可。获取Bean的方式也并不是只有使用配置文件的<code>id属性值</code>一种,还可以直接用<code>Xxx.class</code></p>
+</blockquote>
+</li>
+</ul>
+<p>输出结果:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240917224205210.png" alt="image-20240917224205210"></p>
+<h4 id="2-配置文件详解"><a href="#2-配置文件详解" class="headerlink" title="2.配置文件详解"></a>2.配置文件详解</h4><ul>
+<li><p><code>beans</code>:根标签,管理所有的bean</p>
+</li>
+<li><p><code>bean</code>:配置每一个需要被Spring管理的bean</p>
+<ul>
+<li><p><code>name</code>:给bean起一个名字,值不唯一</p>
+</li>
+<li><p><code>id</code>属性:给bean起一个名字,值唯一</p>
+</li>
+<li><p><code>class</code>属性:bean的全路径</p>
+</li>
+<li><p><code>property</code>标签:bean的属性</p>
+<p>​	<code>name</code>: 属性名</p>
+<p>​	<code>value</code>:属性值,只能写基本类型及字符串String</p>
+<p>​	<code>ref</code>:属性值,可以写引用类型,引用另外一个bean</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-复杂类型配置"><a href="#3-复杂类型配置" class="headerlink" title="3.复杂类型配置"></a>3.复杂类型配置</h4><h5 id="新建Cat类"><a href="#新建Cat类" class="headerlink" title="新建Cat类"></a>新建Cat类</h5><pre><code class="java">@Data
+public class Cat &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private String breed;
+&#125;
+</code></pre>
+<h5 id="改变Person"><a href="#改变Person" class="headerlink" title="改变Person"></a>改变Person</h5><pre><code class="java">@Data
+public class Person &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private Cat cat;
+&#125;
+</code></pre>
+<h5 id="配置person和cat"><a href="#配置person和cat" class="headerlink" title="配置person和cat"></a>配置person和cat</h5><pre><code class="xml">&lt;bean id=&quot;cat&quot; class=&quot;io.xccit.entity.Cat&quot;&gt;
+    &lt;property name=&quot;name&quot; value=&quot;mimi&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;3&quot;/&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;母&quot;/&gt;
+    &lt;property name=&quot;breed&quot; value=&quot;英国短毛猫&quot;/&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+    &lt;property name=&quot;name&quot; value=&quot;lucy&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;/&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;女&quot;/&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;cat&quot; ref=&quot;cat&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><pre><code class="java">ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+Person person = context.getBean(Person.class);
+System.out.println(person);
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240917225416370.png" alt="image-20240917225416370"></p>
+<h3 id="Ioc底层原理"><a href="#Ioc底层原理" class="headerlink" title="Ioc底层原理"></a>Ioc底层原理</h3><h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ul>
+<li>1.读取配置文件,解析</li>
+<li>2.通过反射机制实例化配置文件中的bean</li>
+</ul>
+<h4 id="手写Ioc"><a href="#手写Ioc" class="headerlink" title="手写Ioc"></a>手写Ioc</h4><h5 id="1-创建Maven工程"><a href="#1-创建Maven工程" class="headerlink" title="1.创建Maven工程"></a>1.创建Maven工程</h5><h5 id="2-引入依赖"><a href="#2-引入依赖" class="headerlink" title="2.引入依赖"></a>2.引入依赖</h5><pre><code class="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+  &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+  &lt;version&gt;1.18.34&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- dom4j 解析xml --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;dom4j&lt;/groupId&gt;
+  &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
+  &lt;version&gt;1.6.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h5 id="3-复制上一份代码中的配置文件及实体类"><a href="#3-复制上一份代码中的配置文件及实体类" class="headerlink" title="3.复制上一份代码中的配置文件及实体类"></a>3.复制上一份代码中的配置文件及实体类</h5><h5 id="4-定义ApplicationContext接口"><a href="#4-定义ApplicationContext接口" class="headerlink" title="4.定义ApplicationContext接口"></a>4.定义ApplicationContext接口</h5><pre><code class="java">public interface ApplicationContext &#123;
+    
+&#125;
+</code></pre>
+<h5 id="5-定义ClassPathXmlApplicationContext实现类"><a href="#5-定义ClassPathXmlApplicationContext实现类" class="headerlink" title="5.定义ClassPathXmlApplicationContext实现类"></a>5.定义ClassPathXmlApplicationContext实现类</h5><pre><code class="java">public class ClassPathXmlApplicationContext implements ApplicationContext &#123;
+
+&#125;
+</code></pre>
+<h5 id="6-定义-实现方法"><a href="#6-定义-实现方法" class="headerlink" title="6.定义&#x2F;实现方法"></a>6.定义&#x2F;实现方法</h5><pre><code class="java">public interface ApplicationContext &#123;
+    public Object getBean(String beanId);
+&#125;
+</code></pre>
+<pre><code class="java">public class ClassPathXmlApplicationContext implements ApplicationContext &#123;
+    private String configPath;
+    private Map&lt;String, Object&gt; beanMap = new HashMap&lt;&gt;();
+    public ClassPathXmlApplicationContext() &#123;
+        //指定默认的配置文件
+        this.configPath = &quot;spring02-custom-ioc\\src\\main\\resources\\applicationContext.xml&quot;;
+        analysisConfig(this.configPath);
+    &#125;
+    public ClassPathXmlApplicationContext(String configPath) &#123;
+        analysisConfig(configPath);
+    &#125;
+
+    /**
+     * 解析配置文件，将配置文件中的bean标签解析为bean对象，并放入beanMap中
+     * @param configPath 配置文件
+     */
+    public void analysisConfig(String configPath)&#123;
+        SAXReader saxReader = new SAXReader();
+        try &#123;
+            Document document = saxReader.read(configPath);
+            Element root = document.getRootElement();
+            Iterator&lt;Element&gt; elementIterator = root.elementIterator();
+            while(elementIterator.hasNext())&#123;
+                Element element = elementIterator.next();
+                if(&quot;bean&quot;.equals(element.getName()))&#123;
+                    String id = element.attributeValue(&quot;id&quot;);
+                    String className = element.attributeValue(&quot;class&quot;);
+                    Class&lt;?&gt; clazz = Class.forName(className);
+                    Object bean = clazz.newInstance();
+                    beanMap.put(id,bean);
+                &#125;
+            &#125;
+        &#125; catch (DocumentException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (ClassNotFoundException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (InstantiationException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (IllegalAccessException e) &#123;
+            throw new RuntimeException(e);
+        &#125;
+    &#125;
+
+    @Override
+    public Object getBean(String beanId) &#123;
+        return beanMap.get(beanId);
+    &#125;
+&#125;
+</code></pre>
+<h5 id="7-测试"><a href="#7-测试" class="headerlink" title="7.测试"></a>7.测试</h5><pre><code class="java">public class App &#123;
+    public static void main( String[] args ) &#123;
+        ApplicationContext context = new ClassPathXmlApplicationContext();
+        Person person = (Person) context.getBean(&quot;person&quot;);
+        System.out.println(person);
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240918212023333.png" alt="image-20240918212023333"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/SSM/" style="color: #00bcd4">SSM</a>
+        </span>
+        
+    </div>
+    <a href="/2024/09/17/Spring%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/09/02/SpringAI%E5%88%9D%E4%BD%93%E9%AA%8C/">
         <h2 class="post-title">SpringAI初体验</h2>
     </a>
@@ -383,7 +646,7 @@ npm run dev
         
         <span class="tag">
             
-            <a href="/tags/SpringAI/" style="color: #ffa2c4">SpringAI</a>
+            <a href="/tags/SpringAI/" style="color: #ff7d73">SpringAI</a>
         </span>
         
     </div>
@@ -520,7 +783,7 @@ zrem key value //删除该key的value
         
         <span class="tag">
             
-            <a href="/tags/Redis/" style="color: #03a9f4">Redis</a>
+            <a href="/tags/Redis/" style="color: #ff7d73">Redis</a>
         </span>
         
     </div>
@@ -754,7 +1017,7 @@ export const detail = (id)=&gt;&#123;
         
         <span class="tag">
             
-            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #03a9f4">前端开发</a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #ffa2c4">前端开发</a>
         </span>
         
     </div>
@@ -3620,7 +3883,7 @@ class Outerr&#123;
         
         <span class="tag">
             
-            <a href="/tags/Java/" style="color: #00bcd4">Java</a>
+            <a href="/tags/Java/" style="color: #ff7d73">Java</a>
         </span>
         
     </div>
@@ -4013,7 +4276,7 @@ public AjaxResult update(@RequestBody @Validated(Category.Update.class) Category
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #03a9f4">SpringBoot</a>
         </span>
         
     </div>
@@ -4157,7 +4420,7 @@ public class LoginInterceptor implements HandlerInterceptor &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #ffa2c4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #03a9f4">SpringBoot</a>
         </span>
         
     </div>
@@ -4489,7 +4752,7 @@ public class UserServiceImpl implements IUserService &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #ffa2c4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
         </span>
         
     </div>
@@ -4559,307 +4822,11 @@ public List&lt;User&gt; list(User user)
         
         <span class="tag">
             
-            <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #ff7d73">若依二次开发</a>
+            <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #00a596">若依二次开发</a>
         </span>
         
     </div>
     <a href="/2024/07/21/ruoyi-vue%E5%A6%82%E4%BD%95%E4%B8%8D%E9%AA%8C%E8%AF%81Token%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%8F%A3/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/07/13/Docker%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">Docker基础笔记</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/7/13
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="Docker笔记"><a href="#Docker笔记" class="headerlink" title="Docker笔记"></a>Docker笔记</h1><h2 id="1-系统准备"><a href="#1-系统准备" class="headerlink" title="1.系统准备"></a>1.系统准备</h2><h3 id="1-1配置网络"><a href="#1-1配置网络" class="headerlink" title="1.1配置网络"></a>1.1配置网络</h3><h3 id="1-2yum包更新到最新"><a href="#1-2yum包更新到最新" class="headerlink" title="1.2yum包更新到最新"></a>1.2yum包更新到最新</h3><blockquote>
-<p>yum update</p>
-</blockquote>
-<h3 id="1-3安装依赖的软件包"><a href="#1-3安装依赖的软件包" class="headerlink" title="1.3安装依赖的软件包"></a>1.3安装依赖的软件包</h3><blockquote>
-<p>sudo yum install -y yum-utils device-mapper-persistent-data lvm2</p>
-</blockquote>
-<h3 id="1-4设置docker-yum源"><a href="#1-4设置docker-yum源" class="headerlink" title="1.4设置docker-yum源"></a>1.4设置docker-yum源</h3><blockquote>
-<p>特别注意复制粘贴后.repo可能会丢</p>
-</blockquote>
-<pre><code class="shell">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dockerce.
-repo
-</code></pre>
-<blockquote>
-<p>会出现Could not fetch&#x2F;save url <a target="_blank" rel="noopener" href="https://download.docker.com/linux/centos/dockerce.repo">https://download.docker.com/linux/centos/dockerce.repo</a>                                                                                                           to file &#x2F;etc&#x2F;yum.repos.d&#x2F;dockerce.repo: [Errno 14] HTTPS Error 404 - Not Found</p>
-</blockquote>
-<h4 id="推荐方式"><a href="#推荐方式" class="headerlink" title="推荐方式:"></a>推荐方式:</h4><pre><code class="shell">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-
-sudo yum makecache fast
-</code></pre>
-<h2 id="2-安装Docker"><a href="#2-安装Docker" class="headerlink" title="2.安装Docker"></a>2.安装Docker</h2><h3 id="2-1安装Docker"><a href="#2-1安装Docker" class="headerlink" title="2.1安装Docker"></a>2.1安装Docker</h3><pre><code class="shell">yum install -y docker-ce
-</code></pre>
-<h3 id="2-2查看docker版本-验证是否安装"><a href="#2-2查看docker版本-验证是否安装" class="headerlink" title="2.2查看docker版本(验证是否安装)"></a>2.2查看docker版本(验证是否安装)</h3><pre><code class="shell">docker version
-</code></pre>
-<h3 id="2-3查看docker是否启动"><a href="#2-3查看docker是否启动" class="headerlink" title="2.3查看docker是否启动"></a>2.3查看docker是否启动</h3><pre><code class="shell">ps -ef | grep docker
-</code></pre>
-<h3 id="2-4启动docker并加入开机启动"><a href="#2-4启动docker并加入开机启动" class="headerlink" title="2.4启动docker并加入开机启动"></a>2.4启动docker并加入开机启动</h3><pre><code class="shell">systemctl start docker
-systemctl enable docker
-</code></pre>
-<h2 id="3-卸载Docker"><a href="#3-卸载Docker" class="headerlink" title="3.卸载Docker"></a>3.卸载Docker</h2><h3 id="3-1查看Docker状态"><a href="#3-1查看Docker状态" class="headerlink" title="3.1查看Docker状态"></a>3.1查看Docker状态</h3><pre><code class="shell">systemctl status docker
-</code></pre>
-<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414114858954.png" alt="image-20230414114858954" style="zoom:50%;" />
-
-<h3 id="3-2运行状态需要停止docker"><a href="#3-2运行状态需要停止docker" class="headerlink" title="3.2运行状态需要停止docker"></a>3.2运行状态需要停止docker</h3><pre><code class="shell">systemctl stop docker
-</code></pre>
-<h3 id="3-3查看yum安装的docker包"><a href="#3-3查看yum安装的docker包" class="headerlink" title="3.3查看yum安装的docker包"></a>3.3查看yum安装的docker包</h3><pre><code class="shell">yum list installed |grep docker
-</code></pre>
-<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414115322102.png" alt="image-20230414115322102" style="zoom:50%;" />
-
-<h3 id="3-4查看docker相关的rpm源文件"><a href="#3-4查看docker相关的rpm源文件" class="headerlink" title="3.4查看docker相关的rpm源文件"></a>3.4查看docker相关的rpm源文件</h3><pre><code class="shell">rpm -qa | grep docker
-</code></pre>
-<h3 id="3-5删除yum安装的docker文件包"><a href="#3-5删除yum安装的docker文件包" class="headerlink" title="3.5删除yum安装的docker文件包"></a>3.5删除yum安装的docker文件包</h3><pre><code class="shell">yum -y remove 文件包
-</code></pre>
-<blockquote>
-<p>文件包: yum list installed | grep docker输出的所有包</p>
-<p>删完之后可以再看一下docker的rpm源文件</p>
-</blockquote>
-<h3 id="3-6删除docker镜像文件"><a href="#3-6删除docker镜像文件" class="headerlink" title="3.6删除docker镜像文件"></a>3.6删除docker镜像文件</h3><blockquote>
-<p>默认在&#x2F;var&#x2F;lib&#x2F;docker</p>
-</blockquote>
-<pre><code class="shell">rm -rf /var/lib/docker
-</code></pre>
-<h2 id="4-删除服务并重新运行"><a href="#4-删除服务并重新运行" class="headerlink" title="4.删除服务并重新运行"></a>4.删除服务并重新运行</h2><h3 id="3-1-删除之前部署的服务"><a href="#3-1-删除之前部署的服务" class="headerlink" title="3.1 删除之前部署的服务"></a>3.1 删除之前部署的服务</h3><pre><code class="shell">docker rm st-test-ui
-</code></pre>
-<h3 id="3-2-重新运行"><a href="#3-2-重新运行" class="headerlink" title="3.2 重新运行"></a>3.2 重新运行</h3><pre><code class="shell">docker run -itd --name st-test-ui --publish 9595:80 -v /home/nodejs/st-testnginx/
-default.conf:/etc/nginx/conf.d/default.conf -v /home/nodejs/st-testnginx/:/
-usr/share/nginx/html/ nginx:luxi
-</code></pre>
-<h3 id="3-3-查看default-conf"><a href="#3-3-查看default-conf" class="headerlink" title="3.3 查看default.conf"></a>3.3 查看default.conf</h3><blockquote>
-<p> 在st-test-nginx目录下的home&#x2F;nodejs中就能看到default.conf文件了</p>
-</blockquote>
-<h2 id="5-设置镜像加速器"><a href="#5-设置镜像加速器" class="headerlink" title="5.设置镜像加速器"></a>5.设置镜像加速器</h2><blockquote>
-<p>阿里云控制台—&gt;搜索镜像加速器</p>
-<p>或者点链接:<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">容器镜像服务 (aliyun.com)</a></p>
-</blockquote>
-<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414120336687.png" alt="image-20230414120336687" style="zoom:33%;" />
-
-<blockquote>
-<p>依次执行以上4句命令</p>
-</blockquote>
-<h4 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h4><pre><code class="shell">sudo mkdir -p /etc/docker
-
-sudo tee /etc/docker/daemon.json &lt;&lt;-&#39;EOF&#39;
-&#123;
-  &quot;registry-mirrors&quot;: [&quot;https://gseqhafl.mirror.aliyuncs.com&quot;]
-&#125;
-EOF
-
-sudo systemctl daemon-reload
-
-sudo systemctl restart docker
-</code></pre>
-<h2 id="6-Docker常用命令"><a href="#6-Docker常用命令" class="headerlink" title="6.Docker常用命令"></a>6.Docker常用命令</h2><h3 id="1-查看安装的docker镜像"><a href="#1-查看安装的docker镜像" class="headerlink" title="1.查看安装的docker镜像"></a>1.查看安装的docker镜像</h3><pre><code class="shell">docker images
-</code></pre>
-<h3 id="2-启动-停止-重启-开机自启"><a href="#2-启动-停止-重启-开机自启" class="headerlink" title="2.启动,停止,重启,开机自启"></a>2.启动,停止,重启,开机自启</h3><pre><code class="shell">systemctl start docker
-systemctl stop docker
-systemctl restart docker
-systemctl enable docker
-</code></pre>
-<h3 id="3-删除安装的docker镜像"><a href="#3-删除安装的docker镜像" class="headerlink" title="3.删除安装的docker镜像"></a>3.删除安装的docker镜像</h3><pre><code class="shell">docker rmi 镜像名:版本号
-例如: docker rmi redis:6.0
-</code></pre>
-<h3 id="4-安装镜像"><a href="#4-安装镜像" class="headerlink" title="4.安装镜像"></a>4.安装镜像</h3><pre><code class="shell">docker search 镜像名
-例如:docker search redis
-</code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414130643663.png" alt="image-20230414130643663"></p>
-<blockquote>
-<p>下载镜像</p>
-</blockquote>
-<pre><code class="shell">docker pull 服务名 #默认下载最高版本
-docker pull 服务名:版本号 #指定下载版本
-</code></pre>
-<blockquote>
-<p>如果不知道版本,进入docker官网查询:<a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub Container Image Library | App Containerization</a></p>
-</blockquote>
-<p>网站左上角搜索服务名,选择自己需要下载的包,点进去,查看版本列表</p>
-<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414200231807.png" alt="image-20230414200231807" style="zoom:33%;" />
-
-<p>支持的所有版本都在此页面.</p>
-<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20230414200554571.png" alt="image-20230414200554571" style="zoom:50%;" />
-
-<h3 id="5-启动镜像"><a href="#5-启动镜像" class="headerlink" title="5.启动镜像"></a>5.启动镜像</h3><pre><code class="shell">docker run -id --name=实例名称 -p 端口:端口 镜像名:版本号 /bin/bash
-例如:docker run -id --name=xccit_redis -p 6379:6379 redis:6.0 /bin/bash
-</code></pre>
-<blockquote>
-<p>参数:</p>
-<p>​	-i :交互式操作,保持容器运行。-it创建后自动进入容器，退出终端后自动关闭容器。</p>
-<p>​	-t:终端。</p>
-<p>​	-d:后台运行，退出终端后不会关闭容器。</p>
-<p>​	–name:给实例取个名字。</p>
-<p>​	xccit_redis:实例名。</p>
-<p>​	-p:端口。</p>
-<p>​	-it一般用来运行交互式容器，即一次交互后退出即可。-id一般用来运行后台守护容器，例如MySQL,Tomcat。</p>
-<p>​	&#x2F;bin&#x2F;bash:交互式Shell。</p>
-</blockquote>
-<p>举个例子:</p>
-<pre><code class="shell">docker run -it --name=xccit_redis -p 6379:6379 redis:6.0 /bin/bash
-</code></pre>
-<p>运行以上命令，redis不会在后台停留，并且运行完之后会直接进入到redis操作shell中。</p>
-<pre><code class="shell">docker run -id --name=xccit_redis -p 6379:6379 redis:6.0 /bin/bash
-</code></pre>
-<p>运行以上命令，redis会在后台停留，并且运行完之后不会直接进入到redis操作shell中,如果要进入到redis操作shell中，需要使用到docker exec…</p>
-<pre><code class="shell">docker run -itd --name=xccit_redis -p 6379:6379 redis:6.0 /bin/bash
-</code></pre>
-<p>运行以上命令，redis会在后台停留，并且运行完之后会直接进入到redis操作shell中。</p>
-<h3 id="6-查看所有镜像实例的状态"><a href="#6-查看所有镜像实例的状态" class="headerlink" title="6.查看所有镜像实例的状态"></a>6.查看所有镜像实例的状态</h3><pre><code class="shell">docker ps -a #实例的所有信息
-docker ps -aq #实例的ID
-</code></pre>
-<h3 id="7-Linux本地连接实例"><a href="#7-Linux本地连接实例" class="headerlink" title="7.Linux本地连接实例"></a>7.Linux本地连接实例</h3><pre><code class="shell">docker exec -it 实例名 /bin/bash
-例如:docker exec -it xccit_redis /bin/bash
-</code></pre>
-<blockquote>
-<p>连接redis:</p>
-<p>​	redis-cli</p>
-<p>退出redis实例</p>
-<p>exit</p>
-<p>参数解析:</p>
-<p>​	exec:执行</p>
-<p>​	-it:带命令行的方式及可以后台</p>
-<p>​	xccit_redis:实例名称</p>
-<p>​	&#x2F;bin&#x2F;bash:以命令行的方式打开</p>
-</blockquote>
-<blockquote>
-<p>注意:此实例是一个独立的Linux子系统,通过<br>    cd &#x2F;</p>
-<p>​	ls</p>
-<p>两条命令,可以看到存在的目录跟一个全新的Linux基本一致,并且在宿主机中新建目录,在此实例中是看不到该宿主机中存在的目录的,即在此宿主机中运行10个redis实例,相当于在此宿主机中安装了10个Linux子系统</p>
-</blockquote>
-<h3 id="8-停止与启动实例"><a href="#8-停止与启动实例" class="headerlink" title="8.停止与启动实例"></a>8.停止与启动实例</h3><blockquote>
-<p>停止实例</p>
-</blockquote>
-<pre><code class="shell">docker stop 实例名称 #方式一
-docker stop 实例ID #方式二(适合有多个相同实例)
-docker stop `实例ID1,实例ID2...` #同时停止多个实例,ID可以简写
-docker stop `docker ps -aq` #停止所有实例
-</code></pre>
-<blockquote>
-<p>开启实例</p>
-</blockquote>
-<pre><code class="shell">docker start 实例名称 #方式一
-docker start 实例ID #方式二(适合多个相同实例)
-docker start `实例ID1,实例ID2...` #同时开启多个实例,ID可以简写
-docker start `docker ps -aq` #查看所有实例li
-</code></pre>
-<blockquote>
-<p>ID简写:</p>
-<p>​	注意:如果嫌实例ID太长,可以只敲前面两三位,但必须保证前面两三位中没有其他实例ID冲突,不然会启动&#x2F;停	    	止失败</p>
-</blockquote>
-<h3 id="9-删除docker实例"><a href="#9-删除docker实例" class="headerlink" title="9.删除docker实例"></a>9.删除docker实例</h3><pre><code class="shell">docker rm 实例ID #删除一个
-docker rm `docker ps -a` #删除所有
-</code></pre>
-<blockquote>
-<p>注意:删除时,实例需在停止运行状态</p>
-</blockquote>
-<blockquote>
-<p>如需删除所有运行中的实例:</p>
-</blockquote>
-<pre><code class="shell">docker stop `docker ps -aq` #停止实例
-docker rm `docker ps -aq` #删除实例
-docker ps -aq #查看实例是否还存在
-</code></pre>
-<h2 id="7-安装mysql"><a href="#7-安装mysql" class="headerlink" title="7.安装mysql"></a>7.安装mysql</h2><pre><code class="shell">docker pull mysql
-#3307对外开放 3306本机访问(password自定义密码)
-docker run --name b2c_mysql -p 3306:3306 -v /b2c/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=password -d mysql --character-set-server=UTF8MB4 --collation-server=utf8mb4_unicode_ci
-#本机登录
- docker exec -it b2c_mysql bash
- mysql -uroot -p
-#开启远程访问
-grant all privileges on *.*  to &#39;root&#39;@&#39;%&#39;; #用户授权
-flush privileges; #刷新权限
-</code></pre>
-<blockquote>
-<p>注意:需要TCP&#x2F;UDP双向开放3307端口</p>
-</blockquote>
-<h2 id="8-安装elasticSearch"><a href="#8-安装elasticSearch" class="headerlink" title="8.安装elasticSearch"></a>8.安装elasticSearch</h2><pre><code class="shell">docker network create es-net
-
-docker pull elasticsearch:7.12.1
-
-docker pull kibana:7.12.1
-
-docker run -d --name b2c_elasticsearch -e &quot;ES_JAVA_OPTS=-Xms512m -Xmx512m&quot; -e &quot;discovery.type=single-node&quot; -v es-data:/usr/shar/elasticsearch/data -v es-plugins:/usr/share/elasticsearch/plugins --privileged --network es-net -p 9200:9200 -p 9300:9300 elasticsearch:7.12.1
-
-docker run -d --name kibana -e ELASTICSEARCH_HOSTS=http://b2c_elasticsearch:9200 --network=es-net -p 5601:5601 kibana:7.12.1
-
-docker volume inspect es-plugins
-</code></pre>
-<pre><code class="shell">[root@VM-16-10-centos ~]# docker volume inspect es-plugins
-[
-    &#123;
-        &quot;CreatedAt&quot;: &quot;2023-09-09T12:40:34+08:00&quot;,
-        &quot;Driver&quot;: &quot;local&quot;,
-        &quot;Labels&quot;: null,
-        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/es-plugins/_data&quot;,
-        &quot;Name&quot;: &quot;es-plugins&quot;,
-        &quot;Options&quot;: null,
-        &quot;Scope&quot;: &quot;local&quot;
-    &#125;
-]
-</code></pre>
-<blockquote>
-<p>以上结果中,”Mountpoint”: “&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;es-plugins&#x2F;_data”是es配置文件地址</p>
-<p>安装ik分词器会用到</p>
-</blockquote>
-<pre><code class="shell"> mv ik/ /var/lib/docker/volumes/es-plugins/_data/  #将解压后的ik文件夹移动到此路径下
- #重启es
- docker restart es
-</code></pre>
-<h2 id="9-安装Redis"><a href="#9-安装Redis" class="headerlink" title="9.安装Redis"></a>9.安装Redis</h2><pre><code class="shell">#1 拉取镜像
-docker pull redis:7.0.10
-
-#2 在宿主机的 /var/lib/docker/volumes/redis-config/_data/目录下创建一个redis的配置文件，
-vim redis.conf
-# 内容如下所示
-#开启持久化
-appendonly yes
-port 6379
-# requirepass 1234
-bind 0.0.0.0
-
-#3 如果/var/lib/docker/volumes没有redis-config，创建数据卷 
-docker volume create redis-config
-
-#4 创建容器
-docker run -d -p 6379:6379 --restart=always \
--v redis-config:/etc/redis/config \
--v redis-data:/data \
---name b2c_redis redis \
-redis-server /etc/redis/config/redis.conf
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/docker/" style="color: #03a9f4">docker</a>
-        </span>
-        
-    </div>
-    <a href="/2024/07/13/Docker%E7%AC%94%E8%AE%B0/" class="go-post">阅读全文</a>
 </div>
 
 

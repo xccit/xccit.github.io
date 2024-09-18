@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Spring快速入门 | xccitのblog</title>
+    <meta name="author" content="CH_ywx" />
+    <meta name="description" content="人生如逆旅,我亦是行人" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/myavatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>XCCITのBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;XCCITのBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Spring快速入门</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/17
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/SSM/" style="color: #00bcd4">
+                    SSM
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Spring快速入门"><a href="#Spring快速入门" class="headerlink" title="Spring快速入门"></a>Spring快速入门</h1><h2 id="Spring概述"><a href="#Spring概述" class="headerlink" title="Spring概述"></a>Spring概述</h2><p>Spring框架是一个开源的J2EE应用程序框架，由Rod Johnson发起，旨在解决开发者在J2EE开发中遇到的常见问题。**‌ 它提供了一个轻量级的容器，通过<code>控制反转IoC</code>和<code>面向切面编程（AOP)</code>等核心机制，简化了企业级应用程序的开发。Spring框架不仅限于服务器端开发，而且由于其简单性、可测试性和松耦合性，可以应用于绝大部分Java应用中。</p>
+<h2 id="Spring特性"><a href="#Spring特性" class="headerlink" title="Spring特性"></a>Spring特性</h2><p>Spring框架的主要特性包括：</p>
+<ol>
+<li>‌<strong>轻量级</strong>‌：Spring的核心jar包很小，对代码几乎无污染，提供了轻量级的解决方案。</li>
+<li>‌<strong>面向接口编程</strong>‌：Spring底层设计遵循面向接口的开发规范，通过接口定义实现类的行为，提高了代码的灵活性和可扩展性。</li>
+<li>‌<strong>AOP支持</strong>‌：Spring提供了强大的AOP支持，使得开发者可以方便地处理日志、事务、权限验证等公共功能。</li>
+<li>‌<strong>整合其他框架</strong>‌：Spring可以单独使用，也可以与其他框架（如Struts、Hibernate等）无缝集成，降低了使用难度。</li>
+<li>‌<strong>降低API使用难度</strong>‌：Spring对Java EE API进行了封装，使其更易于使用，同时也降低了开发难度。</li>
+</ol>
+<p>Spring框架的架构包括多个模块，如Core模块提供基本的IOC和AOP功能，Data模块提供持久化数据的访问框架，而Web模块则提供Web应用程序的基础功能和编程框架。Spring框架的工作流程涉及嵌入容器中运行，通过定义Bean和配置XML文件来实现应用程序的启动和Bean的管理。</p>
+<p>总的来说，Spring框架通过其简洁的设计、强大的功能和灵活的扩展性，成为了Java企业级应用开发的首选框架之一‌。</p>
+<h2 id="IoC"><a href="#IoC" class="headerlink" title="IoC"></a>IoC</h2><p><code>IOC</code>全称<code>Inverse Of Control</code>,中文翻译为<code>控制反转</code>,是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。IOC的一个重点是在系统运行中，动态的向某个对象提供它所需要的其他对象。这一点是通过DI（<code>Dependency Injection</code>，依赖注入）来实现的。</p>
+<h3 id="IoC初体验"><a href="#IoC初体验" class="headerlink" title="IoC初体验"></a>IoC初体验</h3><h4 id="1-环境搭建"><a href="#1-环境搭建" class="headerlink" title="1.环境搭建"></a>1.环境搭建</h4><ul>
+<li><p>创建Maven工程</p>
+</li>
+<li><p>引入依赖</p>
+<pre><code class="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+  &lt;version&gt;6.1.12&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>创建实体类</p>
+<pre><code class="java">@Data
+public class Person &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+&#125;
+</code></pre>
+</li>
+<li><p>简化实体类操作</p>
+<pre><code class="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+  &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+  &lt;version&gt;1.18.34&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>Spring配置文件</p>
+<p><code>applicationContext.xml</code></p>
+<p>命名并不是统一的,有些开发会习惯性的命名为<code>spring.xml</code></p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+    &lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+        &lt;property name=&quot;name&quot; value=&quot;lucy&quot;/&gt;
+        &lt;property name=&quot;age&quot; value=&quot;18&quot;/&gt;
+        &lt;property name=&quot;gender&quot; value=&quot;女&quot;/&gt;
+        &lt;property name=&quot;id&quot; value=&quot;1&quot;/&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+</li>
+<li><p>测试</p>
+<pre><code class="java">public class App &#123;
+    public static void main( String[] args ) &#123;
+/*        Person person = new Person();
+        person.setId(1);
+        person.setName(&quot;张三&quot;);
+        person.setAge(20);
+        person.setGender(&quot;男&quot;);
+        System.out.println(person);*/
+        //ioc
+        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+        Person person = (Person) context.getBean(&quot;person&quot;);
+        System.out.println(person);
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>使用<code>ApplicationContext</code>来new实现类<code>ClassPathXmlApplicationContext</code>来加载配置文件,还有<code>FileSystemXmlApplicationContext</code>可加载非本项目的配置文件,只需全路径即可。获取Bean的方式也并不是只有使用配置文件的<code>id属性值</code>一种,还可以直接用<code>Xxx.class</code></p>
+</blockquote>
+</li>
+</ul>
+<p>输出结果:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240917224205210.png" alt="image-20240917224205210"></p>
+<h4 id="2-配置文件详解"><a href="#2-配置文件详解" class="headerlink" title="2.配置文件详解"></a>2.配置文件详解</h4><ul>
+<li><p><code>beans</code>:根标签,管理所有的bean</p>
+</li>
+<li><p><code>bean</code>:配置每一个需要被Spring管理的bean</p>
+<ul>
+<li><p><code>name</code>:给bean起一个名字,值不唯一</p>
+</li>
+<li><p><code>id</code>属性:给bean起一个名字,值唯一</p>
+</li>
+<li><p><code>class</code>属性:bean的全路径</p>
+</li>
+<li><p><code>property</code>标签:bean的属性</p>
+<p>​	<code>name</code>: 属性名</p>
+<p>​	<code>value</code>:属性值,只能写基本类型及字符串String</p>
+<p>​	<code>ref</code>:属性值,可以写引用类型,引用另外一个bean</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-复杂类型配置"><a href="#3-复杂类型配置" class="headerlink" title="3.复杂类型配置"></a>3.复杂类型配置</h4><h5 id="新建Cat类"><a href="#新建Cat类" class="headerlink" title="新建Cat类"></a>新建Cat类</h5><pre><code class="java">@Data
+public class Cat &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private String breed;
+&#125;
+</code></pre>
+<h5 id="改变Person"><a href="#改变Person" class="headerlink" title="改变Person"></a>改变Person</h5><pre><code class="java">@Data
+public class Person &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private Cat cat;
+&#125;
+</code></pre>
+<h5 id="配置person和cat"><a href="#配置person和cat" class="headerlink" title="配置person和cat"></a>配置person和cat</h5><pre><code class="xml">&lt;bean id=&quot;cat&quot; class=&quot;io.xccit.entity.Cat&quot;&gt;
+    &lt;property name=&quot;name&quot; value=&quot;mimi&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;3&quot;/&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;母&quot;/&gt;
+    &lt;property name=&quot;breed&quot; value=&quot;英国短毛猫&quot;/&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+    &lt;property name=&quot;name&quot; value=&quot;lucy&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;/&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;女&quot;/&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;cat&quot; ref=&quot;cat&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><pre><code class="java">ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+Person person = context.getBean(Person.class);
+System.out.println(person);
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240917225416370.png" alt="image-20240917225416370"></p>
+<h3 id="Ioc底层原理"><a href="#Ioc底层原理" class="headerlink" title="Ioc底层原理"></a>Ioc底层原理</h3><h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ul>
+<li>1.读取配置文件,解析</li>
+<li>2.通过反射机制实例化配置文件中的bean</li>
+</ul>
+<h4 id="手写Ioc"><a href="#手写Ioc" class="headerlink" title="手写Ioc"></a>手写Ioc</h4><h5 id="1-创建Maven工程"><a href="#1-创建Maven工程" class="headerlink" title="1.创建Maven工程"></a>1.创建Maven工程</h5><h5 id="2-引入依赖"><a href="#2-引入依赖" class="headerlink" title="2.引入依赖"></a>2.引入依赖</h5><pre><code class="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+  &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+  &lt;version&gt;1.18.34&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- dom4j 解析xml --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;dom4j&lt;/groupId&gt;
+  &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
+  &lt;version&gt;1.6.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h5 id="3-复制上一份代码中的配置文件及实体类"><a href="#3-复制上一份代码中的配置文件及实体类" class="headerlink" title="3.复制上一份代码中的配置文件及实体类"></a>3.复制上一份代码中的配置文件及实体类</h5><h5 id="4-定义ApplicationContext接口"><a href="#4-定义ApplicationContext接口" class="headerlink" title="4.定义ApplicationContext接口"></a>4.定义ApplicationContext接口</h5><pre><code class="java">public interface ApplicationContext &#123;
+    
+&#125;
+</code></pre>
+<h5 id="5-定义ClassPathXmlApplicationContext实现类"><a href="#5-定义ClassPathXmlApplicationContext实现类" class="headerlink" title="5.定义ClassPathXmlApplicationContext实现类"></a>5.定义ClassPathXmlApplicationContext实现类</h5><pre><code class="java">public class ClassPathXmlApplicationContext implements ApplicationContext &#123;
+
+&#125;
+</code></pre>
+<h5 id="6-定义-实现方法"><a href="#6-定义-实现方法" class="headerlink" title="6.定义&#x2F;实现方法"></a>6.定义&#x2F;实现方法</h5><pre><code class="java">public interface ApplicationContext &#123;
+    public Object getBean(String beanId);
+&#125;
+</code></pre>
+<pre><code class="java">public class ClassPathXmlApplicationContext implements ApplicationContext &#123;
+    private String configPath;
+    private Map&lt;String, Object&gt; beanMap = new HashMap&lt;&gt;();
+    public ClassPathXmlApplicationContext() &#123;
+        //指定默认的配置文件
+        this.configPath = &quot;spring02-custom-ioc\\src\\main\\resources\\applicationContext.xml&quot;;
+        analysisConfig(this.configPath);
+    &#125;
+    public ClassPathXmlApplicationContext(String configPath) &#123;
+        analysisConfig(configPath);
+    &#125;
+
+    /**
+     * 解析配置文件，将配置文件中的bean标签解析为bean对象，并放入beanMap中
+     * @param configPath 配置文件
+     */
+    public void analysisConfig(String configPath)&#123;
+        SAXReader saxReader = new SAXReader();
+        try &#123;
+            Document document = saxReader.read(configPath);
+            Element root = document.getRootElement();
+            Iterator&lt;Element&gt; elementIterator = root.elementIterator();
+            while(elementIterator.hasNext())&#123;
+                Element element = elementIterator.next();
+                if(&quot;bean&quot;.equals(element.getName()))&#123;
+                    String id = element.attributeValue(&quot;id&quot;);
+                    String className = element.attributeValue(&quot;class&quot;);
+                    Class&lt;?&gt; clazz = Class.forName(className);
+                    Object bean = clazz.newInstance();
+                    beanMap.put(id,bean);
+                &#125;
+            &#125;
+        &#125; catch (DocumentException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (ClassNotFoundException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (InstantiationException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (IllegalAccessException e) &#123;
+            throw new RuntimeException(e);
+        &#125;
+    &#125;
+
+    @Override
+    public Object getBean(String beanId) &#123;
+        return beanMap.get(beanId);
+    &#125;
+&#125;
+</code></pre>
+<h5 id="7-测试"><a href="#7-测试" class="headerlink" title="7.测试"></a>7.测试</h5><pre><code class="java">public class App &#123;
+    public static void main( String[] args ) &#123;
+        ApplicationContext context = new ClassPathXmlApplicationContext();
+        Person person = (Person) context.getBean(&quot;person&quot;);
+        System.out.println(person);
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240918212023333.png" alt="image-20240918212023333"></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 xccitのblog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;CH_ywx
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
