@@ -175,7 +175,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/SSM/" style="color: #00a596">
+                <a href="/tags/SSM/" style="color: #ffa2c4">
                     SSM
                 </a>
             </span>
@@ -380,6 +380,51 @@ System.out.println(person);
                     String className = element.attributeValue(&quot;class&quot;);
                     Class&lt;?&gt; clazz = Class.forName(className);
                     Object bean = clazz.newInstance();
+                    //给对象赋值
+                    Iterator&lt;Element&gt; propertyIterator = element.elementIterator();
+                    while(propertyIterator.hasNext())&#123;
+                        Element propertyElement = propertyIterator.next();
+                        String propertyName = propertyElement.attributeValue(&quot;name&quot;);
+                        String propertyValue = propertyElement.attributeValue(&quot;value&quot;);
+                        Field field = clazz.getDeclaredField(propertyName);
+                        String methodName = &quot;set&quot; + propertyName.substring(0,1).toUpperCase() + propertyName.substring(1);
+                        Method declaredMethod = clazz.getDeclaredMethod(methodName, field.getType());
+                        String typeName = field.getType().getName();
+                        //如果该对象的property有ref属性,则赋值为对应的bean对象
+                        if(propertyElement.attributeValue(&quot;ref&quot;) != null)&#123;
+                            Object refBean = beanMap.get(propertyElement.attributeValue(&quot;ref&quot;));
+                            declaredMethod.invoke(bean, refBean);
+                            continue;
+                        &#125;
+                        //调用set方法, 将属性值注入到对象中
+                        if (typeName.equals(&quot;int&quot;) || typeName.equals(&quot;java.lang.Integer&quot;))&#123;
+                            declaredMethod.invoke(bean, Integer.parseInt(propertyValue));
+                        &#125;
+                        if (typeName.equals(&quot;java.lang.String&quot;))&#123;
+                            declaredMethod.invoke(bean, propertyValue);
+                        &#125;
+                        if (typeName.equals(&quot;boolean&quot;) || typeName.equals(&quot;java.lang.Boolean&quot;))&#123;
+                            declaredMethod.invoke(bean, Boolean.parseBoolean(propertyValue));
+                        &#125;
+                        if (typeName.equals(&quot;double&quot;) || typeName.equals(&quot;java.lang.Double&quot;))&#123;
+                            declaredMethod.invoke(bean, Double.parseDouble(propertyValue));
+                        &#125;
+                        if (typeName.equals(&quot;float&quot;) || typeName.equals(&quot;java.lang.Float&quot;))&#123;
+                            declaredMethod.invoke(bean, Float.parseFloat(propertyValue));
+                        &#125;
+                        if (typeName.equals(&quot;long&quot;) || typeName.equals(&quot;java.lang.Long&quot;))&#123;
+                            declaredMethod.invoke(bean, Long.parseLong(propertyValue));
+                        &#125;
+                        if (typeName.equals(&quot;char&quot;) || typeName.equals(&quot;java.lang.Character&quot;))&#123;
+                            declaredMethod.invoke(bean, propertyValue.charAt(0));
+                        &#125;
+                        if (typeName.equals(&quot;short&quot;) || typeName.equals(&quot;java.lang.Short&quot;))&#123;
+                            declaredMethod.invoke(bean, Short.parseShort(propertyValue));
+                        &#125;
+                        if (typeName.equals(&quot;byte&quot;) || typeName.equals(&quot;java.lang.Byte&quot;))&#123;
+                            declaredMethod.invoke(bean, Byte.parseByte(propertyValue));
+                        &#125;
+                    &#125;
                     beanMap.put(id,bean);
                 &#125;
             &#125;
@@ -390,6 +435,12 @@ System.out.println(person);
         &#125; catch (InstantiationException e) &#123;
             throw new RuntimeException(e);
         &#125; catch (IllegalAccessException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (NoSuchFieldException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (NoSuchMethodException e) &#123;
+            throw new RuntimeException(e);
+        &#125; catch (InvocationTargetException e) &#123;
             throw new RuntimeException(e);
         &#125;
     &#125;
