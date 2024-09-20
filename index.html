@@ -551,6 +551,34 @@ User user = (User) context.getBean(&quot;user&quot;);
         http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
 &lt;/beans&gt;
 </code></pre>
+<h3 id="使用p名称空间"><a href="#使用p名称空间" class="headerlink" title="使用p名称空间"></a>使用p名称空间</h3><pre><code class="xml">&lt;bean id=&quot;cat&quot; class=&quot;io.xccit.entity.Cat&quot; p:id=&quot;1&quot; p:name=&quot;mimi&quot; p:age=&quot;3&quot; p:gender=&quot;母&quot; p:breed=&quot;英国短毛猫&quot;&gt;&lt;/bean&gt;
+
+&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot; p:id=&quot;1&quot; p:name=&quot;张三&quot; p:cat-ref=&quot;cat&quot;&gt;&lt;/bean&gt;
+
+&lt;bean id=&quot;person1&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;name&quot; value=&quot;张三&quot;/&gt;
+    &lt;property name=&quot;cat&quot; ref=&quot;cat&quot;&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<blockquote>
+<p>上面的案例中,person对应的bean的属性值与person1一致,只不过<code>赋值方法</code>不同,一个使用了property,一个使用了p名称空间</p>
+</blockquote>
+<p><code>直接加载配置文件,不做其他操作:</code></p>
+<pre><code class="java">ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240920151821582.png" alt="image-20240920151821582"></p>
+<p><code>创建了两个Person对象</code></p>
+<p>如需获取属性,直接获取该bean打印即可</p>
+<pre><code class="java">ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+Person person = (Person) context.getBean(&quot;person&quot;);
+Person person1 = (Person) context.getBean(&quot;person1&quot;);
+System.out.println(person);
+System.out.println(person1);
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240920152018747.png" alt="image-20240920152018747"></p>
+<p><code>完全一致</code></p>
 
             
         </div>
@@ -565,7 +593,7 @@ User user = (User) context.getBean(&quot;user&quot;);
         
         <span class="tag">
             
-            <a href="/tags/SSM/" style="color: #ff7d73">SSM</a>
+            <a href="/tags/SSM/" style="color: #03a9f4">SSM</a>
         </span>
         
     </div>
@@ -879,7 +907,7 @@ System.out.println(person);
         
         <span class="tag">
             
-            <a href="/tags/SSM/" style="color: #00a596">SSM</a>
+            <a href="/tags/SSM/" style="color: #03a9f4">SSM</a>
         </span>
         
     </div>
@@ -1089,7 +1117,7 @@ npm run dev
         
         <span class="tag">
             
-            <a href="/tags/SpringAI/" style="color: #ff7d73">SpringAI</a>
+            <a href="/tags/SpringAI/" style="color: #00bcd4">SpringAI</a>
         </span>
         
     </div>
@@ -1226,7 +1254,7 @@ zrem key value //删除该key的value
         
         <span class="tag">
             
-            <a href="/tags/Redis/" style="color: #ffa2c4">Redis</a>
+            <a href="/tags/Redis/" style="color: #00a596">Redis</a>
         </span>
         
     </div>
@@ -1460,7 +1488,7 @@ export const detail = (id)=&gt;&#123;
         
         <span class="tag">
             
-            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #00bcd4">前端开发</a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #ff7d73">前端开发</a>
         </span>
         
     </div>
@@ -4326,7 +4354,7 @@ class Outerr&#123;
         
         <span class="tag">
             
-            <a href="/tags/Java/" style="color: #03a9f4">Java</a>
+            <a href="/tags/Java/" style="color: #ff7d73">Java</a>
         </span>
         
     </div>
@@ -4425,7 +4453,7 @@ mysql -u root password &#39;password&#39;   --给mysql的root用户设置密码
         
         <span class="tag">
             
-            <a href="/tags/Linux/" style="color: #00bcd4">Linux</a>
+            <a href="/tags/Linux/" style="color: #ffa2c4">Linux</a>
         </span>
         
     </div>
@@ -4719,7 +4747,7 @@ public AjaxResult update(@RequestBody @Validated(Category.Update.class) Category
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #03a9f4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #ffa2c4">SpringBoot</a>
         </span>
         
     </div>
@@ -4863,7 +4891,7 @@ public class LoginInterceptor implements HandlerInterceptor &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
         </span>
         
     </div>
@@ -5195,7 +5223,7 @@ public class UserServiceImpl implements IUserService &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #ffa2c4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
         </span>
         
     </div>
