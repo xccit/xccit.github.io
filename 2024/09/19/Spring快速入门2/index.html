@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Spring快速入门2 | xccitのblog</title>
+    <meta name="author" content="CH_ywx" />
+    <meta name="description" content="人生如逆旅,我亦是行人" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/myavatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>XCCITのBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;XCCITのBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Spring快速入门2</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/9/19
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/SSM/" style="color: #ff7d73">
+                    SSM
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="Spring快速入门2"><a href="#Spring快速入门2" class="headerlink" title="Spring快速入门2"></a>Spring快速入门2</h1><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="构造方法赋值"><a href="#构造方法赋值" class="headerlink" title="构造方法赋值"></a>构造方法赋值</h3><h4 id="1-更改实体类"><a href="#1-更改实体类" class="headerlink" title="1.更改实体类"></a>1.更改实体类</h4><p><code>Person.java</code></p>
+<pre><code class="java">@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Person &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private Cat cat;
+&#125;
+</code></pre>
+<h4 id="2-更改配置文件"><a href="#2-更改配置文件" class="headerlink" title="2.更改配置文件"></a>2.更改配置文件</h4><pre><code class="xml">    &lt;bean id=&quot;person2&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+        &lt;constructor-arg name=&quot;id&quot; value=&quot;2&quot;&gt;&lt;/constructor-arg&gt;
+        &lt;constructor-arg name=&quot;age&quot; value=&quot;20&quot;&gt;&lt;/constructor-arg&gt;
+        &lt;constructor-arg name=&quot;gender&quot; value=&quot;男&quot;&gt;&lt;/constructor-arg&gt;
+        &lt;constructor-arg name=&quot;name&quot; value=&quot;Jackson&quot;&gt;&lt;/constructor-arg&gt;
+        &lt;constructor-arg name=&quot;cat&quot; ref=&quot;cat&quot;&gt;&lt;/constructor-arg&gt;
+    &lt;/bean&gt;
+</code></pre>
+<h4 id="3-测试"><a href="#3-测试" class="headerlink" title="3.测试"></a>3.测试</h4><pre><code class="java">        ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+        Person person = (Person)context.getBean(&quot;person2&quot;);
+        System.out.println(person);
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919132608571.png" alt="image-20240919132608571"></p>
+<blockquote>
+<p>Tips:配置文件中,使用构造方法赋值必须确保有该构造方法,如添加了带参构造,必须添加无参构造,不然会报错。另外<code>name</code>属性可以去掉,确保value或ref的顺序与构造方法参数的顺序一致,如顺序不一致,也会导致因类型转换问题报错,此时可以使用<code>index</code>属性解决,只需要在<code>constructor-arg</code>标签中添加<code>index</code>,属性,值为该参数所在的索引,例如(int id,String name),此时id的索引应该为0,name应该为1</p>
+</blockquote>
+<h2 id="IoC"><a href="#IoC" class="headerlink" title="IoC"></a>IoC</h2><h3 id="复杂类型注入"><a href="#复杂类型注入" class="headerlink" title="复杂类型注入"></a>复杂类型注入</h3><blockquote>
+<p>使用<code>ref</code>可以给单个引用类型赋值,如果一个对象与另外一个对象是<code>一对多</code>的关系,需要使用到集合又该怎么赋值呢?</p>
+</blockquote>
+<h4 id="1-List"><a href="#1-List" class="headerlink" title="1.List"></a>1.List</h4><pre><code class="java">@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Person &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private List&lt;Cat&gt; cat;
+&#125;
+</code></pre>
+<pre><code class="xml">&lt;bean id=&quot;cat&quot; class=&quot;io.xccit.entity.Cat&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;name&quot; value=&quot;mimi&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;3&quot;/&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;母&quot;/&gt;
+    &lt;property name=&quot;breed&quot; value=&quot;英国短毛猫&quot;/&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;cat2&quot; class=&quot;io.xccit.entity.Cat&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;2&quot;/&gt;
+    &lt;property name=&quot;name&quot; value=&quot;lucky&quot;/&gt;
+    &lt;property name=&quot;age&quot; value=&quot;3&quot;/&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;公&quot;/&gt;
+    &lt;property name=&quot;breed&quot; value=&quot;英国短毛猫&quot;/&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;name&quot; value=&quot;Kitty&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;女&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;cat&quot;&gt;
+        &lt;list value-type=&quot;io.xccit.entity.Cat&quot;&gt;
+            &lt;ref bean=&quot;cat&quot;&gt;&lt;/ref&gt;
+            &lt;ref bean=&quot;cat2&quot;&gt;&lt;/ref&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919133548992.png" alt="image-20240919133548992"></p>
+<h4 id="2-Map"><a href="#2-Map" class="headerlink" title="2.Map"></a>2.Map</h4><pre><code class="java">@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Person &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private List&lt;Cat&gt; cat;
+    private Map&lt;String,Object&gt; others;
+&#125;
+</code></pre>
+<pre><code class="xml">&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;name&quot; value=&quot;Kitty&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;女&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;cat&quot;&gt;
+        &lt;list value-type=&quot;io.xccit.entity.Cat&quot;&gt;
+            &lt;ref bean=&quot;cat&quot;&gt;&lt;/ref&gt;
+            &lt;ref bean=&quot;cat2&quot;&gt;&lt;/ref&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;others&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;address&quot; value=&quot;北京市&quot;&gt;&lt;/entry&gt;
+            &lt;entry key=&quot;phone&quot; value=&quot;18099565699&quot;&gt;&lt;/entry&gt;
+            &lt;entry key=&quot;email&quot; value=&quot;123456@qq.com&quot;&gt;&lt;/entry&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<h3 id="scope-作用域"><a href="#scope-作用域" class="headerlink" title="scope 作用域"></a>scope 作用域</h3><blockquote>
+<p>Spring管理的bean的作用域需要使用scope属性来进行管理,分别有四个值:</p>
+<ul>
+<li>singleton:单例模式,通过ioc获取的bean唯一。(默认值)</li>
+<li>prototype:多例模式，通过ioc获取的bean不唯一。</li>
+<li>request:请求有效，在一次Http请求中有效。</li>
+<li>session:会话有效，在一个用户会话内有效。</li>
+</ul>
+<p><code>request</code>和<code>session</code>仅适用于web项目,多数情况下使用<code>singleton</code>和<code>prototype</code></p>
+</blockquote>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><pre><code class="xml">&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot; scope=&quot;singleton&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;name&quot; value=&quot;Kitty&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;女&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;cat&quot;&gt;
+        &lt;list value-type=&quot;io.xccit.entity.Cat&quot;&gt;
+            &lt;ref bean=&quot;cat&quot;&gt;&lt;/ref&gt;
+            &lt;ref bean=&quot;cat2&quot;&gt;&lt;/ref&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;others&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;address&quot; value=&quot;北京市&quot;&gt;&lt;/entry&gt;
+            &lt;entry key=&quot;phone&quot; value=&quot;18099565699&quot;&gt;&lt;/entry&gt;
+            &lt;entry key=&quot;email&quot; value=&quot;123456@qq.com&quot;&gt;&lt;/entry&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;person2&quot; class=&quot;io.xccit.entity.Person&quot; scope=&quot;prototype&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;name&quot; value=&quot;Kitty&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;女&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;cat&quot;&gt;
+        &lt;list value-type=&quot;io.xccit.entity.Cat&quot;&gt;
+            &lt;ref bean=&quot;cat&quot;&gt;&lt;/ref&gt;
+            &lt;ref bean=&quot;cat2&quot;&gt;&lt;/ref&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;others&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;address&quot; value=&quot;北京市&quot;&gt;&lt;/entry&gt;
+            &lt;entry key=&quot;phone&quot; value=&quot;18099565699&quot;&gt;&lt;/entry&gt;
+            &lt;entry key=&quot;email&quot; value=&quot;123456@qq.com&quot;&gt;&lt;/entry&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+<p>分别配置一个scope为<code>singleton</code>和<code>prototype</code>的bean</p>
+<pre><code class="java">ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+Person person = (Person) context.getBean(&quot;person&quot;);
+Person person1 = (Person) context.getBean(&quot;person&quot;);
+System.out.println(person == person1);
+
+Person person2 = (Person) context.getBean(&quot;person2&quot;);
+Person person3 = (Person) context.getBean(&quot;person2&quot;);
+System.out.println(person2 == person3);
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919135020404.png" alt="image-20240919135020404"></p>
+<blockquote>
+<p>测试可得:单例模式下,获取的bean唯一,而多例模式下,获取的bean确实不唯一。并且创建对象的方式也不同,singleton会在加载配置文件时创建bean,而prototype在获取bean时才会创建bean,之后每一次获取时都会创建一次,通过无参构造创建。</p>
+</blockquote>
+<h2 id="Spring继承机制"><a href="#Spring继承机制" class="headerlink" title="Spring继承机制"></a>Spring继承机制</h2><p>Spring的继承主要在对象层面,可以实现子对象对父对象的属性继承,不同于Java层面的是,Java是子类对父类结构的继承。</p>
+<p><code>Java层面继承:</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919191459330.png" alt="image-20240919191459330"></p>
+<p><code>Spring层面继承:</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919191909763.png" alt="image-20240919191909763"></p>
+<h3 id="使用继承机制"><a href="#使用继承机制" class="headerlink" title="使用继承机制"></a>使用继承机制</h3><p><code>配置两个Person</code></p>
+<pre><code class="xml">&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot; scope=&quot;singleton&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;1&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;name&quot; value=&quot;Kitty&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;gender&quot; value=&quot;女&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;cat&quot;&gt;
+        &lt;list value-type=&quot;io.xccit.entity.Cat&quot;&gt;
+            &lt;ref bean=&quot;cat&quot;&gt;&lt;/ref&gt;
+            &lt;ref bean=&quot;cat2&quot;&gt;&lt;/ref&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;others&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;address&quot; value=&quot;北京市&quot;&gt;&lt;/entry&gt;
+            &lt;entry key=&quot;phone&quot; value=&quot;18099565699&quot;&gt;&lt;/entry&gt;
+            &lt;entry key=&quot;email&quot; value=&quot;123456@qq.com&quot;&gt;&lt;/entry&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;person2&quot; class=&quot;io.xccit.entity.Person&quot; parent=&quot;person&quot;&gt;&lt;/bean&gt;
+</code></pre>
+<p><code>测试代码</code></p>
+<pre><code class="java">ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+        Person person = (Person) context.getBean(&quot;person&quot;);
+        Person person1 = (Person) context.getBean(&quot;person2&quot;);
+        System.out.println(person);
+        System.out.println(person1);
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919194047771.png" alt="image-20240919194047771"></p>
+<blockquote>
+<p>使用<code>parent</code>属性可快速为bean指定父对象。</p>
+<p>值得一提的是，在Spring中，即使该类没有继承自<code>parent</code>指定的对象对应的类,属性值依然可以继承。只要确保该类定义时,与<code>parent</code>指定的bean所对应的类属性结构一致,才可以继承,否则会报错。</p>
+</blockquote>
+<p><code>测试使用不同类型的bean继承该bean是否可以</code></p>
+<p><code>User.java</code></p>
+<pre><code class="java">@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private List&lt;Cat&gt; cat;
+    private Map&lt;String,Object&gt; others;
+&#125;
+</code></pre>
+<p><code>applicationContext.xml</code></p>
+<pre><code class="xml">&lt;bean id=&quot;user&quot; class=&quot;io.xccit.entity.User&quot; parent=&quot;person2&quot;&gt;&lt;/bean&gt;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919195900842.png" alt="image-20240919195900842"></p>
+<p><code>tips:</code>如果User定义的属性结构中,<code>不包含</code>Person的某个属性,则继承会<code>失败</code></p>
+<pre><code class="java">@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919200052736.png" alt="image-20240919200052736"></p>
+<pre><code class="java">9月 19, 2024 8:00:28 下午 org.springframework.context.support.AbstractApplicationContext refresh
+警告: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;user&#39; defined in class path resource [applicationContext.xml]: Invalid property &#39;cat&#39; of bean class [io.xccit.entity.User]: Bean property &#39;cat&#39; is not writable or has an invalid setter method. Does the parameter type of the setter match the return type of the getter?
+Exception in thread &quot;main&quot; org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;user&#39; defined in class path resource [applicationContext.xml]: Invalid property &#39;cat&#39; of bean class [io.xccit.entity.User]: Bean property &#39;cat&#39; is not writable or has an invalid setter method. Does the parameter type of the setter match the return type of the getter?
+    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1740)
+    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1454)
+    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+    at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+    at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+    at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+    at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
+    at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+    at org.springframework.context.support.ClassPathXmlApplicationContext.&lt;init&gt;(ClassPathXmlApplicationContext.java:144)
+    at org.springframework.context.support.ClassPathXmlApplicationContext.&lt;init&gt;(ClassPathXmlApplicationContext.java:85)
+    at io.xccit.App.main(App.java:38)
+Caused by: org.springframework.beans.NotWritablePropertyException: Invalid property &#39;cat&#39; of bean class [io.xccit.entity.User]: Bean property &#39;cat&#39; is not writable or has an invalid setter method. Does the parameter type of the setter match the return type of the getter?
+    at org.springframework.beans.BeanWrapperImpl.createNotWritablePropertyException(BeanWrapperImpl.java:209)
+    at org.springframework.beans.AbstractNestablePropertyAccessor.processLocalProperty(AbstractNestablePropertyAccessor.java:430)
+    at org.springframework.beans.AbstractNestablePropertyAccessor.setPropertyValue(AbstractNestablePropertyAccessor.java:278)
+    at org.springframework.beans.AbstractNestablePropertyAccessor.setPropertyValue(AbstractNestablePropertyAccessor.java:269)
+    at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:104)
+    at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:79)
+    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1737)
+    ... 13 more
+</code></pre>
+<p>但是如果<code>User有自己的专属属性</code>,并且<code>还有Person的所有属性</code>,这是可以成功的</p>
+<pre><code class="java">@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private List&lt;Cat&gt; cat;
+    private Map&lt;String,Object&gt; others;
+    private String address;
+&#125;
+</code></pre>
+<pre><code class="java">Person(id=1, name=Kitty, age=18, gender=女, cat=[Cat(id=1, name=mimi, age=3, gender=母, breed=英国短毛猫), Cat(id=2, name=lucky, age=3, gender=公, breed=英国短毛猫)], others=&#123;address=北京市, phone=18099565699, email=123456@qq.com&#125;)
+User(id=1, name=Kitty, age=18, gender=女, cat=[Cat(id=1, name=mimi, age=3, gender=母, breed=英国短毛猫), Cat(id=2, name=lucky, age=3, gender=公, breed=英国短毛猫)], others=&#123;address=北京市, phone=18099565699, email=123456@qq.com&#125;, address=null)
+</code></pre>
+<blockquote>
+<p>上面为输出结果,截图截不全,所以直接贴文字</p>
+</blockquote>
+<h2 id="Spring依赖机制"><a href="#Spring依赖机制" class="headerlink" title="Spring依赖机制"></a>Spring依赖机制</h2><blockquote>
+<p>描述<code>对象(bean)</code>与<code>对象(bean)</code>之间的依赖关系,被依赖的bean先在ioc容器中创建,依赖其他bean的bean后创建</p>
+</blockquote>
+<pre><code class="xml">&lt;bean id=&quot;user&quot; class=&quot;io.xccit.entity.User&quot;&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+&lt;/bean&gt;
+</code></pre>
+<pre><code class="java">@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
+public class Person &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private List&lt;Cat&gt; cat;
+    private Map&lt;String,Object&gt; others;
+    public Person()&#123;
+        System.out.println(&quot;Person() invoked&quot;);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
+public class User &#123;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String gender;
+    private List&lt;Cat&gt; cat;
+    private Map&lt;String,Object&gt; others;
+    private String address;
+    public User()&#123;
+        System.out.println(&quot;User() invoked)&quot;);
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="java">ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+Person person = (Person) context.getBean(&quot;person&quot;);
+User user = (User) context.getBean(&quot;user&quot;);
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919205414582.png" alt="image-20240919205414582"></p>
+<blockquote>
+<p>无依赖关系时,按照xml中的配置自上而下依次创建</p>
+</blockquote>
+<h3 id="使用依赖机制"><a href="#使用依赖机制" class="headerlink" title="使用依赖机制"></a>使用依赖机制</h3><pre><code class="xml">&lt;bean id=&quot;user&quot; class=&quot;io.xccit.entity.User&quot; depends-on=&quot;person&quot;&gt;
+&lt;/bean&gt;
+&lt;bean id=&quot;person&quot; class=&quot;io.xccit.entity.Person&quot;&gt;
+&lt;/bean&gt;
+</code></pre>
+<blockquote>
+<p>使用<code>depends-on</code>属性来指定该bean依赖于哪个bean,被依赖的bean会先创建</p>
+</blockquote>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240919210407806.png" alt="image-20240919210407806"></p>
+<p>这次<code>person</code>的创建优先级高于<code>user</code></p>
+<h2 id="Spring配置的命名空间"><a href="#Spring配置的命名空间" class="headerlink" title="Spring配置的命名空间"></a>Spring配置的命名空间</h2><blockquote>
+<p>使用命名空间可以<code>简化配置文件</code>中bean与bean之间<code>关系的配置</code>以及<code>依赖注入</code></p>
+</blockquote>
+<h3 id="p名称空间"><a href="#p名称空间" class="headerlink" title="p名称空间"></a>p名称空间</h3><p>要使用p命名空间,首先xml的dtd中必须要有p命名空间的<code>schema</code></p>
+<pre><code class="xml-dtd">xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
+</code></pre>
+<p>完整的<code>xml-dtd</code>应该为:</p>
+<pre><code class="xml">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
+       xsi:schemaLocation=&quot;
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+&lt;/beans&gt;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 xccitのblog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;CH_ywx
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
