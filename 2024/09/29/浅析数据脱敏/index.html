@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>初识redis | xccitのblog</title>
+    <title>浅析数据脱敏 | xccitのblog</title>
     <meta name="author" content="CH_ywx" />
     <meta name="description" content="人生如逆旅,我亦是行人" />
     <meta name="keywords" content="" />
@@ -156,14 +156,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>初识redis</h1>
+        <h1>浅析数据脱敏</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/1
+            2024/9/29
         </span>
         
         
@@ -175,8 +175,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/Redis/" style="color: #ff7d73">
-                    Redis
+                <a href="/tags/Java%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/" style="color: #ffa2c4">
+                    Java开发技巧
                 </a>
             </span>
             
@@ -185,105 +185,35 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h1><blockquote>
-<p>Redis是使用C语言开发的一款高性能开源键值对非关系性数据库,数据间没有必然的关联关系,内部采用单线程机制进行工作,有高性能、高并发的特性,可进行数据持久化,数据灾难恢复</p>
-</blockquote>
-<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>通过百度网盘分享的文件：Redis-x64-3.2.100.msi<br>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/11co2TyJzmNyj4dw8NJWHIg?pwd=1209">https://pan.baidu.com/s/11co2TyJzmNyj4dw8NJWHIg?pwd=1209</a><br>提取码：1209</p>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p><a target="_blank" rel="noopener" href="https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-linux/">Install Redis on Linux | Docs</a></p>
-<h1 id="Redis使用场景"><a href="#Redis使用场景" class="headerlink" title="Redis使用场景"></a>Redis使用场景</h1><h2 id="作为缓存使用"><a href="#作为缓存使用" class="headerlink" title="作为缓存使用"></a>作为缓存使用</h2><ul>
-<li>业务功能设计,例如:秒杀、促销、抢票等</li>
-<li>高频访问数据,例如:在线人数统计</li>
+        <h1 id="浅析数据脱敏"><a href="#浅析数据脱敏" class="headerlink" title="浅析数据脱敏"></a>浅析数据脱敏</h1><h2 id="数据脱敏的概念"><a href="#数据脱敏的概念" class="headerlink" title="数据脱敏的概念"></a>数据脱敏的概念</h2><p><strong>数据脱敏是一种保护敏感信息的技术，通过对原始数据进行变换或修改来隐藏敏感信息，从而在非生产环境中安全使用脱敏后的数据</strong>。以下是对数据脱敏概念的具体介绍：</p>
+<ol>
+<li><strong>基本概念</strong>：数据脱敏，也称为数据去隐私化或数据变形，是对敏感数据进行有策略的修改或替换的过程，旨在防止未经授权的访问或泄露。这种技术通过特定的规则和策略，将敏感信息转换为看似相似但不含真正敏感细节的数据副本，以供开发、测试、分析或培训等非生产环境使用。</li>
+<li><strong>主要类型</strong>：静态数据脱敏通常在数据被提取并复制到非生产环境之前完成一次性脱敏处理，适用于数据外发场景，如提供给第三方或用于测试数据库。动态数据脱敏在数据查询过程中实时进行，当用户访问敏感数据时，系统自动对其进行脱敏处理，适用于直接连接生产数据库的场景。</li>
+<li><strong>实现方式</strong>：包括使用脚本手动编写代码进行脱敏，以及利用专业的数据脱敏产品进行自动化脱敏，后者能够提高脱敏效率并节省操作时间。</li>
+<li><strong>技术手段</strong>：常见的脱敏技术包括数据替换、屏蔽、加密、混淆和伪装等，这些方法可以根据实际业务场景选择，以满足数据一致性和可用性的需求。</li>
+<li><strong>应用场景</strong>：数据脱敏广泛应用于金融、医疗、政府等领域，特别是在涉及个人身份信息、联系方式、银行卡信息等敏感数据的处理中。</li>
+<li><strong>重要性</strong>：数据脱敏技术的重要性在于它能够在不降低数据价值的前提下，有效保护个人隐私和商业机密不被泄露。随着大数据和云计算的发展，数据脱敏成为了确保数据安全合规的关键措施之一。</li>
+</ol>
+<p>总的来说，数据脱敏是一种关键的信息安全技术，它通过多种手段和方法，有效地保护了敏感数据的安全，同时也支持了数据的有效利用。在实施数据脱敏时，需要综合考虑数据一致性、可用性和安全性的要求，选择合适的技术和方法来实现最佳的数据保护效果。</p>
+<h2 id="数据脱敏的实现方式"><a href="#数据脱敏的实现方式" class="headerlink" title="数据脱敏的实现方式"></a>数据脱敏的实现方式</h2><h3 id="1-前端脱敏"><a href="#1-前端脱敏" class="headerlink" title="1.前端脱敏"></a>1.前端脱敏</h3><ul>
+<li>后端返回的数据已经进行了脱敏处理</li>
+<li>后端返回的数据没有脱敏处理,前端使用JavaScript等脚本进行脱敏</li>
 </ul>
-<h2 id="系统功能优化"><a href="#系统功能优化" class="headerlink" title="系统功能优化"></a>系统功能优化</h2><ul>
-<li>单服务器升级集群</li>
-<li>Session、Token管理</li>
+<h3 id="2-后端脱敏"><a href="#2-后端脱敏" class="headerlink" title="2.后端脱敏"></a>2.后端脱敏</h3><ul>
+<li>数据存储时直接进行加密处理,例如AES、RSA等对称&#x2F;非对称加密方式</li>
 </ul>
-<h1 id="Redis基本使用"><a href="#Redis基本使用" class="headerlink" title="Redis基本使用"></a>Redis基本使用</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><pre><code class="shell">select 0 //选择0号数据库(0-15)
-dbsize //当前数据库key的总数
-exists key //查看某个key是否存在,存在返回1,不存在返回0
-keys * //获取当前数据库所有键
-get key //获取key对应的value
-type key //获取件对应的value的类型
-del key //删除指定的key:value
-expire key num //key:键 num:数字 给key设置n秒后过期
-ttl key //查看key剩余的过期时间
-persist key //去除key的过期时间
+<h2 id="前后端脱敏各自的弊端"><a href="#前后端脱敏各自的弊端" class="headerlink" title="前后端脱敏各自的弊端"></a>前后端脱敏各自的弊端</h2><h3 id="1-前端脱敏的弊端"><a href="#1-前端脱敏的弊端" class="headerlink" title="1.前端脱敏的弊端"></a>1.前端脱敏的弊端</h3><h4 id="1-1-安全性不够"><a href="#1-1-安全性不够" class="headerlink" title="1.1 安全性不够"></a>1.1 安全性不够</h4><p>总的来说,数据脱敏就是对一些敏感数据进行保护,不想被用户看到,但是前端接收到的数据为原文的话,即使JS等脚本进行处理,原来的响应结果也不会变,只是页面显示的东西变了而已,没有实际意义。</p>
+<h3 id="2-后端脱敏的弊端"><a href="#2-后端脱敏的弊端" class="headerlink" title="2.后端脱敏的弊端"></a>2.后端脱敏的弊端</h3><h4 id="2-1无法模糊检索"><a href="#2-1无法模糊检索" class="headerlink" title="2.1无法模糊检索"></a>2.1无法模糊检索</h4><p>如何理解检索呢?以查询用户信息为例,假如代入一个条件:<code>匹配手机号前三位为177,后四位为0000</code>的用户,假如是精确匹配,比如我就要<code>手机号为17799890000</code>这个用户的信息,那SQL可以是这样的:</p>
+<p>假设自定义一个解密函数为<code>deenc(phone varchar(11))</code>,那么SQL为:</p>
+<pre><code class="sql">SELECT username,nick_name,birthday,deenc(phone) as phone FROM t_user WHERE phone = &#39;edcXdejhopacahah89avavsaib&#39;;
 </code></pre>
-<h2 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h2><ul>
-<li>bind: 绑定redis自身的服务器的ip，不是绑定访问过来的IP地址，默认是127.0.0.1，即只允许本地访问</li>
-<li>port:  指定redis监听端口，默认为6379</li>
-<li>requirepass:  设置连接密码，客户端连接时，需要密码认证</li>
-<li>protected-mode: 开启保护模式(默认开启)，若开启且bind未配置密码也未设置，redis只接受本机连接</li>
-<li>timeout: 设置客户端连接时的超时时间，单位为秒，默认值：0代表禁用，永不关闭</li>
-</ul>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>Redis中的数据类型针对的是value的值,key永远是字符串</p>
-<h3 id="1-string字符串"><a href="#1-string字符串" class="headerlink" title="1.string字符串"></a>1.string字符串</h3><pre><code class="shell">set key value //存储
-get key //获取
-del key //删除
-
-mset key1 value1 key2 value2 ……  //存储多个
-mget key1 key2 …… //获取多个
-
-setex key seconds value //设置秒
-setex key milliseconds value //设置毫秒
+<p>其中,<code>edcXdejhopacahah89avavsaib</code>为前端传入的<code>17799890000</code>这条数据在后端被加密算法加密之后的数据,那么精确匹配的话,可以很快查询到这条数据,流程图可以是这样的:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240928235655491.png" alt="image-20240928235655491"></p>
+<p>但是,精确匹配只需要后端的业务层对前端传过来的数据进行加密,交给dao去数据库精确匹配即可,只需要查询这一条数据,并且将手机号解密后返回给前端,如果是模糊查询呢?比如<code>匹配手机号前三位为177,后四位为0000</code>的用户,那么正常的SQL应该是:</p>
+<pre><code class="sql">SELECT username,nick_name,birthday,deenc(phone) as phone FROM t_user WHERE deenc(phone) like &#39;177%0000&#39;;
 </code></pre>
-<h3 id="2-Hash哈希类型"><a href="#2-Hash哈希类型" class="headerlink" title="2.Hash哈希类型"></a>2.Hash哈希类型</h3><pre><code class="shell">hset key field value //存储 hset user username zhangsan
-hget key field  //获取一个  hget user username
-hgetall key //获取全部
-hdel key field  //删除 hdel user username
-</code></pre>
-<h3 id="3-list列表类型"><a href="#3-list列表类型" class="headerlink" title="3.list列表类型"></a>3.list列表类型</h3><ul>
-<li>采用双向链表linkedlist,支持重复元素</li>
-<li>可以添加一个元素到列表的头部或者尾部</li>
-</ul>
-<pre><code class="shell">lpush key value //将元素添加到列表头部
-rpush key value //将元素添加到列表尾部
-lrange key start end //获取start-end索引位置的元素
-lrange key 0 -1 //获取所有元素
-lpop key //删除最左边的元素
-rpop //删除最右边的元素
-</code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240901102627970.png" alt="image-20240901102627970"></p>
-<h3 id="4-set集合类型"><a href="#4-set集合类型" class="headerlink" title="4.set集合类型"></a>4.set集合类型</h3><h4 id="4-1无序集合"><a href="#4-1无序集合" class="headerlink" title="4.1无序集合"></a>4.1无序集合</h4><blockquote>
-<p>不允许重复,元素无序</p>
-</blockquote>
-<pre><code class="shell">sadd key value //存储
-sadd key value1,value2... //存储多个
-smembers key //获取该key的所有元素
-srem key value //删除该key的value
-</code></pre>
-<h4 id="4-2有序集合"><a href="#4-2有序集合" class="headerlink" title="4.2有序集合"></a>4.2有序集合</h4><blockquote>
-<p>元素不允许重复,但元素有序,每个元素都会关联一个double类型的分数</p>
-</blockquote>
-<pre><code class="shell">zadd key score value //存储
-zrange key start end //获取start至end之间的元素
-zrange key 0 -1 withscores //获取全部并带着分数
-zrem key value //删除该key的value
-</code></pre>
-<h1 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h1><h2 id="RDB方式"><a href="#RDB方式" class="headerlink" title="RDB方式"></a>RDB方式</h2><blockquote>
-<p>默认的数据持久化方式,不需要配置,在一定的时间间隔中,检测key的变化,最终持久化数据</p>
-</blockquote>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><code>redis.conf:</code></p>
-<ul>
-<li>save 500 1  :900秒后至少有1个key发生改变就持久化一次</li>
-<li>save 200 10  :300秒后至少有10key发生改变就持久化一次</li>
-<li>save 100 100 :50秒后至少有10000个key发生改变就持久化一次</li>
-</ul>
-<blockquote>
-<p>注意:修改配置文件后需要重启redis服务</p>
-</blockquote>
-<h2 id="AOF方式"><a href="#AOF方式" class="headerlink" title="AOF方式"></a>AOF方式</h2><blockquote>
-<p>通过日志记录对的方式,记录每一条命令的操作。每次操作后持久化数据。</p>
-</blockquote>
-<p><code>redis.conf</code></p>
-<ul>
-<li>appendonly no（关闭）</li>
-<li>appendonly yes（开启）</li>
-<li>appendfsync always  每次操作都持久化</li>
-<li>appendfsync everysec  每隔一秒持久化（默认值）</li>
-<li>appendfsync no  不持久化</li>
-</ul>
-
+<p>首先,需要将所有数据进行解密之后再匹配<code>177%0000</code>,假设数据库中有10000w条数据,那么我们会解密到什么时候呢?这是一道送命题。我们必须在<code>数据安全</code>与<code>用户体验</code>中做出选择。所以在数据脱敏这个问题上,基本上不会有公司做得很好,经过撞库等操作用户敏感信息被泄漏的事情并不少,这里就不点名了,<code>d(懂)d(的)d(都)d(懂)</code></p>
+<h2 id="优雅实现数据脱敏"><a href="#优雅实现数据脱敏" class="headerlink" title="优雅实现数据脱敏"></a>优雅实现数据脱敏</h2>
     </div>
     
     
