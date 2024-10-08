@@ -181,6 +181,416 @@
         
 
 <div class="post">
+    <a href="/2024/10/07/JDBC%E6%B5%85%E6%9E%90/">
+        <h2 class="post-title">JDBC浅析</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/7
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="浅析JDBC"><a href="#浅析JDBC" class="headerlink" title="浅析JDBC"></a>浅析JDBC</h1><blockquote>
+<p>基于MySQL8.0,聊一聊JDBC技术</p>
+</blockquote>
+<h2 id="JDBC定义"><a href="#JDBC定义" class="headerlink" title="JDBC定义"></a>JDBC定义</h2><blockquote>
+<p>JDBC（Java Database Connectivity，Java数据库连接）是Java语言中用于规范客户端程序如何访问数据库的应用程序接口。它提供了一套完整的机制，允许Java程序与各种关系型数据库进行交互。以下是关于JDBC的详细讨论：</p>
+</blockquote>
+<h3 id="1-JDBC的定义和作用"><a href="#1-JDBC的定义和作用" class="headerlink" title="1. JDBC的定义和作用"></a>1. JDBC的定义和作用</h3><ul>
+<li>JDBC是Sun Microsystems（现已被Oracle收购）制定的一个API规范，它定义了一组Java类和方法，用于执行SQL语句、处理查询结果以及管理数据库连接。</li>
+<li>JDBC的主要作用是提供一个通用的访问关系型数据库的接口，使得Java程序能够连接并操作各种不同的数据库，如MySQL、Oracle、SQL Server等。</li>
+</ul>
+<h3 id="2-JDBC的组成部分"><a href="#2-JDBC的组成部分" class="headerlink" title="2. JDBC的组成部分"></a>2. JDBC的组成部分</h3><ul>
+<li>JDBC API主要位于Java的<code>java.sql</code>包中，包含诸如<code>DriverManager</code>、<code>Connection</code>、<code>Statement</code>、<code>ResultSet</code>等核心类和接口。</li>
+<li><code>DriverManager</code>负责管理数据库驱动程序，<code>Connection</code>代表与数据库的连接，<code>Statement</code>用于执行SQL语句，而<code>ResultSet</code>则用于存储和处理查询结果。</li>
+</ul>
+<h3 id="3-JDBC的工作原理"><a href="#3-JDBC的工作原理" class="headerlink" title="3. JDBC的工作原理"></a>3. JDBC的工作原理</h3><ul>
+<li>JDBC通过驱动程序与数据库进行交互。驱动程序是一个实现了JDBC API规定的接口的Java类库，它负责将Java方法调用转换为对应的数据库操作。</li>
+<li>当Java程序需要与数据库通信时，它首先通过<code>DriverManager</code>获取一个<code>Connection</code>对象，然后使用这个对象创建一个或多个<code>Statement</code>对象来执行SQL语句。查询结果通过<code>ResultSet</code>对象返回给Java程序。</li>
+</ul>
+<h3 id="4-JDBC的应用场景"><a href="#4-JDBC的应用场景" class="headerlink" title="4. JDBC的应用场景"></a>4. JDBC的应用场景</h3><ul>
+<li>JDBC在Java Web开发中被广泛应用，用于实现数据库连接、数据查询、数据更新以及事务管理等功能。</li>
+<li>它允许开发人员通过编写Java代码来直接操作数据库，从而提高了应用程序的性能和可靠性。</li>
+</ul>
+<h3 id="5-JDBC的优势和局限性"><a href="#5-JDBC的优势和局限性" class="headerlink" title="5. JDBC的优势和局限性"></a>5. JDBC的优势和局限性</h3><ul>
+<li>优势：JDBC提供了一个统一的接口来访问多种关系型数据库，具有跨平台性和可移植性。此外，它还支持事务处理和连接池等高级功能。</li>
+<li>局限性：虽然JDBC提供了强大的功能，但在某些情况下，它可能不是最优的解决方案。例如，对于复杂的数据持久化需求，可能需要使用更高级的框架如Hibernate或MyBatis。</li>
+</ul>
+<h3 id="6-JDBC的常见错误及解决方案"><a href="#6-JDBC的常见错误及解决方案" class="headerlink" title="6. JDBC的常见错误及解决方案"></a>6. JDBC的常见错误及解决方案</h3><ul>
+<li>在使用JDBC时，可能会遇到诸如<code>ClassNotFoundException</code>、<code>SQLException</code>等异常。这些异常通常是由于驱动程序未正确加载、数据库连接信息错误或SQL语句语法错误等原因引起的。</li>
+<li>解决这些问题的方法包括确保驱动程序已正确添加到项目依赖中、检查数据库连接字符串和凭证是否有效以及验证SQL语句的语法等。</li>
+</ul>
+<p>总的来说，JDBC是Java程序与关系型数据库进行交互的重要桥梁，它提供了灵活且强大的功能来满足各种数据库操作需求。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p><code>SQL</code></p>
+<pre><code class="sql">/*
+ Navicat Premium Dump SQL
+
+ Source Server         : localhost_mysql
+ Source Server Type    : MySQL
+ Source Server Version : 80027 (8.0.27)
+ Source Host           : localhost:3306
+ Source Schema         : jdbc-demo
+
+ Target Server Type    : MySQL
+ Target Server Version : 80027 (8.0.27)
+ File Encoding         : 65001
+
+ Date: 08/10/2024 00:31:48
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_department
+-- ----------------------------
+DROP TABLE IF EXISTS `t_department`;
+CREATE TABLE `t_department`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT &#39;主键&#39;,
+  `dept_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT &#39;部门名称&#39;,
+  `dept_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT &#39;部门编码&#39;,
+  `dept_base_salary` decimal(10, 2) NOT NULL COMMENT &#39;部门基础工资&#39;,
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT &#39;部门简介&#39;,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_department
+-- ----------------------------
+INSERT INTO `t_department` VALUES (1, &#39;法务部&#39;, &#39;FWB&#39;, 5000.00, &#39;法务部&#39;);
+INSERT INTO `t_department` VALUES (2, &#39;运营部&#39;, &#39;YYB&#39;, 5000.00, &#39;运营部&#39;);
+INSERT INTO `t_department` VALUES (3, &#39;开发部&#39;, &#39;KFB&#39;, 7000.00, &#39;开发部&#39;);
+INSERT INTO `t_department` VALUES (4, &#39;宣传部&#39;, &#39;XCB&#39;, 4500.00, &#39;宣传部&#39;);
+INSERT INTO `t_department` VALUES (5, &#39;销售部&#39;, &#39;XSB&#39;, 3900.00, &#39;销售部&#39;);
+
+-- ----------------------------
+-- Table structure for t_employee
+-- ----------------------------
+DROP TABLE IF EXISTS `t_employee`;
+CREATE TABLE `t_employee`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT &#39;主键&#39;,
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT &#39;姓名&#39;,
+  `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT &#39;用户名&#39;,
+  `password` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT &#39;密码&#39;,
+  `nickname` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT &#39;昵称&#39;,
+  `emp_id` int NOT NULL COMMENT &#39;部门主键&#39;,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_employee
+-- ----------------------------
+INSERT INTO `t_employee` VALUES (1, &#39;江杰宏&#39;, &#39;Don Ross&#39;, &#39;J9ep8yW38S&#39;, &#39;Miss.&#39;, 4);
+INSERT INTO `t_employee` VALUES (2, &#39;袁云熙&#39;, &#39;Patrick Diaz&#39;, &#39;fht7Lu3AqX&#39;, &#39;Ms.&#39;, 1);
+INSERT INTO `t_employee` VALUES (3, &#39;邱致远&#39;, &#39;Stanley Graham&#39;, &#39;cRQ1X2xSai&#39;, &#39;Mrs.&#39;, 2);
+INSERT INTO `t_employee` VALUES (4, &#39;程安琪&#39;, &#39;Gary Tucker&#39;, &#39;tbRWPXTUg2&#39;, &#39;Miss.&#39;, 2);
+INSERT INTO `t_employee` VALUES (5, &#39;龙安琪&#39;, &#39;Donna Miller&#39;, &#39;TTZxZnxLhk&#39;, &#39;Prof.&#39;, 5);
+INSERT INTO `t_employee` VALUES (6, &#39;黄云熙&#39;, &#39;April Henderson&#39;, &#39;vEo0CYdokK&#39;, &#39;Miss.&#39;, 3);
+INSERT INTO `t_employee` VALUES (7, &#39;崔睿&#39;, &#39;Louise Sanchez&#39;, &#39;eRBKITreqy&#39;, &#39;Ms.&#39;, 2);
+INSERT INTO `t_employee` VALUES (8, &#39;卢杰宏&#39;, &#39;Lois Stephens&#39;, &#39;t9oRmXKPBb&#39;, &#39;Mr.&#39;, 2);
+INSERT INTO `t_employee` VALUES (9, &#39;董宇宁&#39;, &#39;Henry Ferguson&#39;, &#39;gQ9cc4BTvO&#39;, &#39;Mrs.&#39;, 4);
+INSERT INTO `t_employee` VALUES (10, &#39;阎宇宁&#39;, &#39;Jane Myers&#39;, &#39;HcbKG8mdpn&#39;, &#39;Prof.&#39;, 1);
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+</code></pre>
+<p><code>驱动版本</code></p>
+<pre><code class="xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;version&gt;8.0.33&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<h2 id="JDBC入门代码"><a href="#JDBC入门代码" class="headerlink" title="JDBC入门代码"></a>JDBC入门代码</h2><pre><code class="java">public class JDBCDemo &#123;
+    public static void main(String[] args) throws ClassNotFoundException, SQLException &#123;
+        // 加载驱动
+        Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+        // 连接数据库的参数
+        String jdbcUrl = &quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;;
+        String jdbcUser = &quot;root&quot;;
+        String jdbcPass = &quot;1234546&quot;;
+        // 获取连接对象
+        Connection connection = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPass);
+        // 获取执行sql语句的处理对象
+        Statement statement = connection.createStatement();
+        // 执行sql语句
+        String sql = &quot;select * from t_employee&quot;;
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) &#123;
+            int id = resultSet.getInt(&quot;id&quot;);
+            String name = resultSet.getString(&quot;name&quot;);
+            String username = resultSet.getString(&quot;username&quot;);
+            String password = resultSet.getString(&quot;password&quot;);
+            String nickname = resultSet.getString(&quot;nickname&quot;);
+            int empId = resultSet.getInt(&quot;emp_id&quot;);
+            System.out.println(id+&quot; &quot;+name+&quot; &quot;+username+&quot; &quot;+password+&quot; &quot;+nickname+&quot; &quot;+empId);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241008003315427.png" alt="image-20241008003315427"></p>
+<h2 id="JDBC如何实现CRUD"><a href="#JDBC如何实现CRUD" class="headerlink" title="JDBC如何实现CRUD"></a>JDBC如何实现CRUD</h2><h3 id="导入Junit单元测试"><a href="#导入Junit单元测试" class="headerlink" title="导入Junit单元测试"></a>导入Junit单元测试</h3><pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;4.13.2&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><p><code>在JDK1.6之后,JDBC中不用再写加载驱动这一步骤,直接获取连接即可</code></p>
+<pre><code class="java">@Test
+public void testInsert() &#123;
+    // 1.加载驱动(省略)
+    try &#123;
+        //2.获取连接
+        Connection connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;123456&quot;);
+        //3.获取执行sql的对象
+        Statement statement = connection.createStatement();
+        // 3.执行sql
+        int i = statement.executeUpdate(&quot;insert into t_employee(name,username,password,nickname,emp_id) values(&#39;张三&#39;,&#39;zhangsan&#39;,&#39;zhangsan123&#39;,&#39;张三&#39;,&#39;1&#39;)&quot;);
+        if (i &gt; 0) &#123;
+            System.out.println(&quot;插入成功&quot;);
+        &#125; else &#123;
+            System.out.println(&quot;插入失败&quot;);
+        &#125;
+    &#125; catch (SQLException e) &#123;
+        throw new RuntimeException(e);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><pre><code class="java">@Test
+public void testDelete() &#123;
+    // 1.加载驱动(省略)
+    try &#123;
+        //2.获取连接
+        Connection connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;123456&quot;);
+        //3.获取执行sql的对象
+        Statement statement = connection.createStatement();
+        // 3.执行sql
+        int i = statement.executeUpdate(&quot;delete from t_employee where id=&#39;11&#39;&quot;);
+        if (i &gt; 0) &#123;
+            System.out.println(&quot;删除成功&quot;);
+        &#125; else &#123;
+            System.out.println(&quot;删除失败&quot;);
+        &#125;
+    &#125; catch (SQLException e) &#123;
+        throw new RuntimeException(e);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><pre><code class="java">@Test
+public void testUpdate() &#123;
+    // 1.加载驱动(省略)
+    try &#123;
+        //2.获取连接
+        Connection connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;123456&quot;);
+        //3.获取执行sql的对象
+        Statement statement = connection.createStatement();
+        // 3.执行sql
+        int i = statement.executeUpdate(&quot;update t_employee set name=&#39;李四&#39;, username=&#39;lisi&#39;, password=&#39;lisi123&#39;, nickname=&#39;李四&#39;, emp_id=&#39;2&#39; where id=&#39;10&#39;&quot;);
+        if (i &gt; 0) &#123;
+            System.out.println(&quot;修改成功&quot;);
+        &#125; else &#123;
+            System.out.println(&quot;修改失败&quot;);
+        &#125;
+    &#125; catch (SQLException e) &#123;
+        throw new RuntimeException(e);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><p><code>多行多列</code></p>
+<pre><code class="java">@Test
+public void testSelect1() &#123;
+    // 1.加载驱动(省略)
+    try &#123;
+        //2.获取连接
+        Connection connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;123456&quot;);
+        //3.获取执行sql的对象
+        Statement statement = connection.createStatement();
+        // 3.执行sql,获取结果集
+        ResultSet resultSet = statement.executeQuery(&quot;SELECT * FROM t_employee&quot;);
+        //4.处理结果集
+        while (resultSet.next()) &#123;
+            String name = resultSet.getString(&quot;name&quot;);
+            String username = resultSet.getString(&quot;username&quot;);
+            String password = resultSet.getString(&quot;password&quot;);
+            String nickname = resultSet.getString(&quot;nickname&quot;);
+            String empId = resultSet.getString(&quot;emp_id&quot;);
+            System.out.println(name + &quot;\t&quot; + username + &quot;\t&quot; + password + &quot;\t&quot; + nickname + &quot;\t&quot; + empId);
+        &#125;
+    &#125; catch (SQLException e) &#123;
+        throw new RuntimeException(e);
+    &#125;
+&#125;
+</code></pre>
+<p><code>单行多列</code></p>
+<pre><code class="java">@Test
+public void testSelect2() &#123;
+    // 1.加载驱动(省略)
+    try &#123;
+        //2.获取连接
+        Connection connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;123456&quot;);
+        //3.获取执行sql的对象
+        Statement statement = connection.createStatement();
+        // 3.执行sql,获取结果集
+        int id = 1; // 假设用户输入的id为1
+        ResultSet resultSet = statement.executeQuery(&quot;SELECT * FROM t_employee WHERE id = &quot; + id);
+        //4.处理结果集
+        while (resultSet.next()) &#123;
+            int userId = resultSet.getInt(&quot;id&quot;);
+            String name = resultSet.getString(&quot;name&quot;);
+            String username = resultSet.getString(&quot;username&quot;);
+            String password = resultSet.getString(&quot;password&quot;);
+            String nickname = resultSet.getString(&quot;nickname&quot;);
+            String empId = resultSet.getString(&quot;emp_id&quot;);
+            System.out.println(userId + &quot;\t&quot; +name + &quot;\t&quot; + username + &quot;\t&quot; + password + &quot;\t&quot; + nickname + &quot;\t&quot; + empId);
+        &#125;
+    &#125; catch (SQLException e) &#123;
+        throw new RuntimeException(e);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="Statement对象的缺点及解决办法"><a href="#Statement对象的缺点及解决办法" class="headerlink" title="Statement对象的缺点及解决办法"></a>Statement对象的缺点及解决办法</h2><p>Statement对象的缺点主要包括<code>SQL拼接问题</code>和<code>SQL注入风险</code>。以下是详细的解释及解决办法：</p>
+<h3 id="1-SQL拼接问题"><a href="#1-SQL拼接问题" class="headerlink" title="1.SQL拼接问题"></a>1.SQL拼接问题</h3><ul>
+<li><p>问题描述：Statement对象在执行SQL语句时，需要通过字符串拼接的方式将变量值嵌入到SQL语句中。这种方式不仅繁琐，而且容易出错，特别是在处理复杂SQL语句或多个变量时。</p>
+</li>
+<li><p>解决办法：使用<code>PreparedStatement</code>对象替代Statement对象。PreparedStatement允许开发者通过占位符（?）来预编译SQL语句，并在执行前设置占位符的值。这种方式避免了繁琐的字符串拼接，提高了代码的可读性和可维护性。</p>
+</li>
+</ul>
+<h3 id="2-SQL注入风险"><a href="#2-SQL注入风险" class="headerlink" title="2.SQL注入风险"></a>2.<code>SQL注入风险</code></h3><ul>
+<li><p>问题描述：由于Statement对象通过字符串拼接的方式执行SQL语句，恶意用户可以利用这一点，通过输入特定的字符串来修改SQL语句的结构，从而执行非预期的数据库操作，这就是所谓的SQL注入攻击。SQL注入攻击可能导致数据泄露、数据篡改或数据库被非法控制等严重后果。</p>
+</li>
+<li><p>解决办法：同样，使用<code>PreparedStatement</code>对象可以有效防止SQL注入攻击。因为PreparedStatement对象在执行SQL语句前会对语句进行预编译，并将变量值与SQL语句分开处理。即使恶意用户输入了包含SQL关键词的字符串，这些字符串也只会被当作普通的变量值来处理，而无法改变SQL语句的结构。此外，数据库连接池等安全措施也可以进一步增强系统的安全性。</p>
+</li>
+</ul>
+<p>综上所述，为了解决Statement对象的缺点，推荐使用PreparedStatement对象来执行SQL语句。PreparedStatement对象不仅提高了代码的可读性和可维护性，还能有效防止SQL注入攻击，保障数据库的安全性。</p>
+<h3 id="SQL注入演示"><a href="#SQL注入演示" class="headerlink" title="SQL注入演示"></a>SQL注入演示</h3><pre><code class="java">public class SQLInjection &#123;
+    public static void main(String[] args) throws Exception &#123;
+        Connection connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;1209&quot;);
+        Statement statement = connection.createStatement();
+        System.out.print(&quot;请输入用户名：&quot;);
+        String input = new Scanner(System.in).nextLine();
+        ResultSet resultSet = statement.executeQuery(&quot;SELECT * FROM t_employee WHERE username=&#39;&quot; + input + &quot;&#39;&quot;);
+        while (resultSet.next()) &#123;
+            System.out.println(resultSet.getString(&quot;username&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;password&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;name&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;nickname&quot;));
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241008090941689.png" alt="image-20241008090941689"></p>
+<blockquote>
+<p>只是拼接了一个 ‘or 1&#x3D;1’这个条件,全表的数据一次性都查了出来</p>
+</blockquote>
+<h3 id="SQL注入解决方案"><a href="#SQL注入解决方案" class="headerlink" title="SQL注入解决方案"></a>SQL注入解决方案</h3><pre><code class="java">public class SQLInjection &#123;
+    public static void main(String[] args) throws Exception &#123;
+        Connection connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;1209&quot;);
+        //使用PreparedStatement防止SQL注入
+        PreparedStatement preparedStatement = connection.prepareStatement(&quot;SELECT * FROM t_employee WHERE username=?&quot;);
+        System.out.print(&quot;请输入用户名：&quot;);
+        String input = new Scanner(System.in).nextLine();
+        //给占位符赋值
+        preparedStatement.setString(1, input);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) &#123;
+            System.out.println(resultSet.getString(&quot;username&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;password&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;name&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;nickname&quot;));
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241008091445507.png" alt="image-20241008091445507"></p>
+<blockquote>
+<p>成功解决</p>
+</blockquote>
+<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><blockquote>
+<p>上述所有测试案例,代码都可以优化,并且没有进行<code>资源释放</code>这一操作</p>
+</blockquote>
+<p><code>优化后:</code></p>
+<pre><code class="java">public class SQLInjection &#123;
+    public static void main(String[] args) &#123;
+        /*Connection connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;1209&quot;);
+        Statement statement = connection.createStatement();
+        System.out.print(&quot;请输入用户名：&quot;);
+        String input = new Scanner(System.in).nextLine();
+        ResultSet resultSet = statement.executeQuery(&quot;SELECT * FROM t_employee WHERE username=&#39;&quot; + input + &quot;&#39;&quot;);
+        while (resultSet.next()) &#123;
+            System.out.println(resultSet.getString(&quot;username&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;password&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;name&quot;)+&quot; &quot;
+                    +resultSet.getString(&quot;nickname&quot;));
+        &#125;*/
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try &#123;
+            connection = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jdbc-demo&quot;, &quot;root&quot;, &quot;1209&quot;);
+            //使用PreparedStatement防止SQL注入
+            preparedStatement = connection.prepareStatement(&quot;SELECT * FROM t_employee WHERE username=?&quot;);
+            System.out.print(&quot;请输入用户名：&quot;);
+            String input = new Scanner(System.in).nextLine();
+            //给占位符赋值
+            preparedStatement.setString(1, input);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) &#123;
+                System.out.println(resultSet.getString(&quot;username&quot;)+&quot; &quot;
+                        +resultSet.getString(&quot;password&quot;)+&quot; &quot;
+                        +resultSet.getString(&quot;name&quot;)+&quot; &quot;
+                        +resultSet.getString(&quot;nickname&quot;));
+            &#125;
+        &#125; catch (SQLException e) &#123;
+            throw new RuntimeException(e);
+        &#125; finally &#123;
+            //关闭资源
+            try &#123;
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            &#125; catch (SQLException e) &#123;
+                throw new RuntimeException(e);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>资源释放牢记<code>先开后关</code>的原则,案例中先开的Connection,最后开的是ResultSet,关闭时优先关闭ResultSet,然后PreparedStatement,最后Connection</p>
+</blockquote>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/JavaWeb/" style="color: #ff7d73">JavaWeb</a>
+        </span>
+        
+    </div>
+    <a href="/2024/10/07/JDBC%E6%B5%85%E6%9E%90/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/09/29/%E6%B5%85%E6%9E%90%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F/">
         <h2 class="post-title">浅析数据脱敏</h2>
     </a>
@@ -590,7 +1000,7 @@ public class BankCardDesensitization implements IDesensitizationStrategy &#123;
         
         <span class="tag">
             
-            <a href="/tags/Java%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/" style="color: #ff7d73">Java开发技巧</a>
+            <a href="/tags/Java%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/" style="color: #00bcd4">Java开发技巧</a>
         </span>
         
     </div>
@@ -1010,7 +1420,7 @@ System.out.println(person1);
         
         <span class="tag">
             
-            <a href="/tags/SSM/" style="color: #00a596">SSM</a>
+            <a href="/tags/SSM/" style="color: #03a9f4">SSM</a>
         </span>
         
     </div>
@@ -1534,7 +1944,7 @@ npm run dev
         
         <span class="tag">
             
-            <a href="/tags/SpringAI/" style="color: #ffa2c4">SpringAI</a>
+            <a href="/tags/SpringAI/" style="color: #00bcd4">SpringAI</a>
         </span>
         
     </div>
@@ -1905,7 +2315,7 @@ export const detail = (id)=&gt;&#123;
         
         <span class="tag">
             
-            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #03a9f4">前端开发</a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #ffa2c4">前端开发</a>
         </span>
         
     </div>
@@ -4771,7 +5181,7 @@ class Outerr&#123;
         
         <span class="tag">
             
-            <a href="/tags/Java/" style="color: #00bcd4">Java</a>
+            <a href="/tags/Java/" style="color: #00a596">Java</a>
         </span>
         
     </div>
@@ -4870,7 +5280,7 @@ mysql -u root password &#39;password&#39;   --给mysql的root用户设置密码
         
         <span class="tag">
             
-            <a href="/tags/Linux/" style="color: #ff7d73">Linux</a>
+            <a href="/tags/Linux/" style="color: #00a596">Linux</a>
         </span>
         
     </div>
@@ -5164,155 +5574,11 @@ public AjaxResult update(@RequestBody @Validated(Category.Update.class) Category
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #ffa2c4">SpringBoot</a>
         </span>
         
     </div>
     <a href="/2024/08/05/SpringBoot-validation%E5%A6%82%E4%BD%95%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/08/03/JWT-SpringBoot%E5%81%9A%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA/">
-        <h2 class="post-title">JWT+SpringBoot做登录拦截</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/8/3
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="SpringBoot-JWT做登录拦截"><a href="#SpringBoot-JWT做登录拦截" class="headerlink" title="SpringBoot+JWT做登录拦截"></a>SpringBoot+JWT做登录拦截</h1><h2 id="1-为什么要做登录拦截"><a href="#1-为什么要做登录拦截" class="headerlink" title="1.为什么要做登录拦截?"></a>1.为什么要做登录拦截?</h2><p>项目为了防止接口被滥用,一般都会在除登录以及一些静态资源的访问之外将其他接口保护起来,为了安全访问必须登录之后才行。</p>
-<h2 id="2-项目准备工作"><a href="#2-项目准备工作" class="headerlink" title="2.项目准备工作"></a>2.项目准备工作</h2><h3 id="2-1-实体类"><a href="#2-1-实体类" class="headerlink" title="2.1 实体类"></a>2.1 实体类</h3><h3 id="2-2-Controller-Service-Mapper三件套"><a href="#2-2-Controller-Service-Mapper三件套" class="headerlink" title="2.2 Controller,Service,Mapper三件套"></a>2.2 Controller,Service,Mapper三件套</h3><h3 id="2-3-返回的状态信息"><a href="#2-3-返回的状态信息" class="headerlink" title="2.3 返回的状态信息"></a>2.3 返回的状态信息</h3><blockquote>
-<p>AjaxResult,AjaxHttpStatus</p>
-</blockquote>
-<h2 id="3-拦截器定义"><a href="#3-拦截器定义" class="headerlink" title="3.拦截器定义"></a>3.拦截器定义</h2><pre><code class="java">package io.xccit.event.interceptor;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.xccit.event.resut.AjaxHttpStatus;
-import io.xccit.event.resut.AjaxResult;
-import io.xccit.event.utils.JwtUtil;
-import io.xccit.event.utils.ThreadLocalUserUtil;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-
-import java.util.Map;
-
-/**
- * @author CH_ywx
- * @version 1.0
- * @create 2024/8/3
- * &lt;p&gt;登录拦截器&lt;/p&gt;
- */
-@Component
-public class LoginInterceptor implements HandlerInterceptor &#123;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;
-        String authorization = request.getHeader(&quot;Authorization&quot;);
-        try &#123;
-            Map&lt;String, Object&gt; claims = JwtUtil.verify(authorization);
-            ThreadLocalUserUtil.set(claims);
-            return true;
-        &#125; catch (Exception e) &#123;
-            response.setContentType(&quot;application/json&quot;);
-            response.setCharacterEncoding(&quot;UTF-8&quot;);
-            response.setStatus(AjaxHttpStatus.UNAUTHORIZED.getCode());
-            return false;
-        &#125;
-    &#125;
-
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;
-        ThreadLocalUserUtil.remove();
-    &#125;
-&#125;
-</code></pre>
-<blockquote>
-<p>以上代码中，由于项目没有使用SpringSecurity权限管理框架，所以在没有权限的状态下，默认只能拦截请求，也就是在preHandle函数返回false，那这种情况下对于用户来说,体验就很差。优化建议:</p>
-<p>1.导入Jackson库:使用Jackson库将AjaxResult对象转换为JSON字符串。<br>2.创建ObjectMapper实例:在类级别创建一个ObjectMapper实例，用于序列化AjaxResult对象。<br>3.构造AjaxResult:当JWT验证失败时，创建一个AjaxResult实例，设置状态码为401（未授权），并将其作为响应体的内容。<br>4.序列化和写入响应:使用ObjectMapper将AjaxResult对象序列化为JSON字符串。<br>5.使用response.getWriter()获取响应输出流，并将JSON字符串写入其中。这样，当JWT验证失败时，前端将收到一个符合AjaxResult格式的错误响应。</p>
-</blockquote>
-<p><strong>优化后的拦截器:</strong></p>
-<pre><code class="java">package io.xccit.event.interceptor;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.xccit.event.resut.AjaxHttpStatus;
-import io.xccit.event.resut.AjaxResult;
-import io.xccit.event.utils.JwtUtil;
-import io.xccit.event.utils.ThreadLocalUserUtil;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-
-import java.util.Map;
-
-/**
- * @author CH_ywx
- * @version 1.0
- * @create 2024/8/3
- * &lt;p&gt;登录拦截器&lt;/p&gt;
- */
-@Component
-public class LoginInterceptor implements HandlerInterceptor &#123;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;
-        String authorization = request.getHeader(&quot;Authorization&quot;);
-        try &#123;
-            Map&lt;String, Object&gt; claims = JwtUtil.verify(authorization);
-            ThreadLocalUserUtil.set(claims);
-            return true;
-        &#125; catch (Exception e) &#123;
-            response.setContentType(&quot;application/json&quot;);
-            response.setCharacterEncoding(&quot;UTF-8&quot;);
-            response.setStatus(AjaxHttpStatus.UNAUTHORIZED.getCode());
-            AjaxResult&lt;Void&gt; result = AjaxResult.fail(AjaxHttpStatus.UNAUTHORIZED);
-            response.getWriter().write(objectMapper.writeValueAsString(result));
-            return false;
-        &#125;
-    &#125;
-
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;
-        ThreadLocalUserUtil.remove();
-    &#125;
-&#125;
-</code></pre>
-<p>这样,当我们<code>未登录</code>时,返回的信息如下:</p>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240803232806469.png" alt="image-20240803232806469"></p>
-<p><code>登录后:</code></p>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240803232855964.png" alt="image-20240803232855964"></p>
-<p>完整代码,请访问我的github主页: <a target="_blank" rel="noopener" href="https://github.com/xccit">xccit (github.com)</a></p>
-<p>项目地址:<a target="_blank" rel="noopener" href="https://github.com/xccit/big-event">xccit&#x2F;big-event (github.com)</a></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
-        </span>
-        
-    </div>
-    <a href="/2024/08/03/JWT-SpringBoot%E5%81%9A%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA/" class="go-post">阅读全文</a>
 </div>
 
 
