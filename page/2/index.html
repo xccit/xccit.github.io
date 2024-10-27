@@ -181,6 +181,300 @@
         
 
 <div class="post">
+    <a href="/2024/08/05/SpringBoot-validation%E5%A6%82%E4%BD%95%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C/">
+        <h2 class="post-title">SpringBoot-validation如何分组校验</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/8/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="SpringBoot-validation如何分组校验"><a href="#SpringBoot-validation如何分组校验" class="headerlink" title="SpringBoot-validation如何分组校验"></a>SpringBoot-validation如何分组校验</h1><h2 id="1-分组校验的场景"><a href="#1-分组校验的场景" class="headerlink" title="1.分组校验的场景"></a>1.分组校验的场景</h2><p><code>实体类:</code></p>
+<pre><code class="java">/**
+* 
+* @TableName category
+*/
+public class Category implements Serializable &#123;
+
+
+    /**
+    * ID
+    */
+    @NotNull(message=&quot;[ID]不能为空&quot;)
+    @ApiModelProperty(&quot;ID&quot;)
+    private Integer id;
+    /**
+    * 分类名称
+    */
+    @NotBlank(message=&quot;[分类名称]不能为空&quot;)
+    @Size(max= 32,message=&quot;编码长度不能超过32&quot;)
+    @ApiModelProperty(&quot;分类名称&quot;)
+    @Length(max= 32,message=&quot;编码长度不能超过32&quot;)
+    private String categoryName;
+    /**
+    * 分类别名
+    */
+    @NotBlank(message=&quot;[分类别名]不能为空&quot;)
+    @Size(max= 32,message=&quot;编码长度不能超过32&quot;)
+    @ApiModelProperty(&quot;分类别名&quot;)
+    @Length(max= 32,message=&quot;编码长度不能超过32&quot;)
+    private String categoryAlias;
+    /**
+    * 创建人ID
+    */
+    @ApiModelProperty(&quot;创建人ID&quot;)
+    private Integer createUser;
+    /**
+    * 创建时间
+    */
+    @JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;,timezone = &quot;GMT+8&quot;)
+    @ApiModelProperty(&quot;创建时间&quot;)
+    private LocalDateTime createTime;
+    /**
+    * 修改时间
+    */
+    @JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;,timezone = &quot;GMT+8&quot;)
+    @ApiModelProperty(&quot;修改时间&quot;)
+    private LocalDateTime updateTime;
+
+    /**
+    * ID
+    */
+    public void setId(Integer id)&#123;
+    this.id = id;
+    &#125;
+
+    /**
+    * 分类名称
+    */
+    public void setCategoryName(String categoryName)&#123;
+    this.categoryName = categoryName;
+    &#125;
+
+    /**
+    * 分类别名
+    */
+    public void setCategoryAlias(String categoryAlias)&#123;
+    this.categoryAlias = categoryAlias;
+    &#125;
+
+    /**
+    * 创建人ID
+    */
+    public void setCreateUser(Integer createUser)&#123;
+    this.createUser = createUser;
+    &#125;
+
+    /**
+    * 创建时间
+    */
+    public void setCreateTime(LocalDateTime createTime)&#123;
+    this.createTime = createTime;
+    &#125;
+
+    /**
+    * 修改时间
+    */
+    public void setUpdateTime(LocalDateTime updateTime)&#123;
+    this.updateTime = updateTime;
+    &#125;
+
+
+    /**
+    * ID
+    */
+    public Integer getId()&#123;
+    return this.id;
+    &#125;
+
+    /**
+    * 分类名称
+    */
+    public String getCategoryName()&#123;
+    return this.categoryName;
+    &#125;
+
+    /**
+    * 分类别名
+    */
+    public String getCategoryAlias()&#123;
+    return this.categoryAlias;
+    &#125;
+
+    /**
+    * 创建人ID
+    */
+    public Integer getCreateUser()&#123;
+    return this.createUser;
+    &#125;
+
+    /**
+    * 创建时间
+    */
+    public LocalDateTime getCreateTime()&#123;
+    return this.createTime;
+    &#125;
+
+    /**
+    * 修改时间
+    */
+    public LocalDateTime getUpdateTime()&#123;
+    return this.updateTime;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;Category&#123;&quot; +
+                &quot;id=&quot; + id +
+                &quot;, categoryName=&#39;&quot; + categoryName + &#39;\&#39;&#39; +
+                &quot;, categoryAlias=&#39;&quot; + categoryAlias + &#39;\&#39;&#39; +
+                &quot;, createUser=&quot; + createUser +
+                &quot;, createTime=&quot; + createTime +
+                &quot;, updateTime=&quot; + updateTime +
+                &#39;&#125;&#39;;
+    &#125;
+&#125;
+</code></pre>
+<p><strong>上面的实体类定义中,通过使用注解的方式来开启对各个字段的值进行校验,不符合规则的值将会通过抛异常的方式返回前端</strong></p>
+<p><code>再来看Controller</code></p>
+<pre><code class="java">/**
+     * 添加分类
+     * @param category
+     * @return
+     */
+    @Operation(summary = &quot;添加分类&quot;)
+    @PostMapping()
+    public AjaxResult insert(@RequestBody @Validated Category category) &#123;
+        categoryService.insert(category);
+        return AjaxResult.success(AjaxHttpStatus.SUCCESS);
+    &#125;
+
+    /**
+     * 修改分类
+     * @param category
+     * @return
+     */
+    @Operation(summary = &quot;修改分类&quot;)
+    @PutMapping
+    public AjaxResult update(@RequestBody @Validated Category category) &#123;
+        categoryService.update(category);
+        return AjaxResult.success(AjaxHttpStatus.SUCCESS);
+    &#125;
+</code></pre>
+<p>**通过<code>@Validated</code>**注解开启校验规则,但是我们需要看两个请求的场景:</p>
+<h3 id="1-1-修改"><a href="#1-1-修改" class="headerlink" title="1.1 修改"></a>1.1 修改</h3><p>修改接口中，我们需要使用到实体类的主键ID进行修改，那实体类中id字段上面的@NotNull貌似是合理的，我们看结果：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805131959778.png" alt="image-20240805131959778"></p>
+<h3 id="1-2-添加"><a href="#1-2-添加" class="headerlink" title="1.2 添加"></a>1.2 添加</h3><p>在添加接口中，我们肯定是不会传ID的，毕竟数据库里面ID排到了多少，加上我们可能还会进行删除等测试，那ID谁又能知道是多少。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805132401050.png" alt="image-20240805132401050"></p>
+<p>这里捕获到了异常：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805132516315.png" alt="image-20240805132516315"></p>
+<pre><code class="java">    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public AjaxResult handleConstraintViolationException(ConstraintViolationException ex) &#123;
+        Set&lt;ConstraintViolation&lt;?&gt;&gt; constraintViolations = ex.getConstraintViolations();
+        List&lt;ConstraintViolation&lt;?&gt;&gt; list = constraintViolations.stream().toList();
+        System.out.println(list);
+        return AjaxResult.fail(AjaxHttpStatus.REQUEST_PARAM_ERROR);
+    &#125;
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public AjaxResult handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) &#123;
+        return AjaxResult.fail(AjaxHttpStatus.REQUEST_PARAM_ERROR);
+    &#125;
+</code></pre>
+<p>那这种场景下，我们难道要将实体类新建两次，每一种场景都用一个吗？答案肯定是不行，毕竟哪个开发有这么多精力一直去新建实体类。那有什么好的办法吗？答案是有的：分组校验</p>
+<h2 id="2-分组校验的使用"><a href="#2-分组校验的使用" class="headerlink" title="2.分组校验的使用"></a>2.分组校验的使用</h2><h3 id="2-1-实体类中分别定义关于修改和添加到接口："><a href="#2-1-实体类中分别定义关于修改和添加到接口：" class="headerlink" title="2.1 实体类中分别定义关于修改和添加到接口："></a>2.1 实体类中分别定义关于修改和添加到接口：</h3><pre><code class="java">public class Category implements Serializable &#123;
+
+    public interface Insert &#123;&#125;
+    public interface Update &#123;&#125;
+    
+    //xxx其他代码
+&#125;
+</code></pre>
+<h3 id="2-2-在校验的注解上加上groups属性"><a href="#2-2-在校验的注解上加上groups属性" class="headerlink" title="2.2 在校验的注解上加上groups属性"></a>2.2 在校验的注解上加上groups属性</h3><pre><code class="java"> /**
+    * ID
+    */
+@NotNull(message=&quot;[ID]不能为空&quot;, groups = &#123;Update.class&#125;)
+@ApiModelProperty(&quot;ID&quot;)
+private Integer id;
+/**
+* 分类名称
+*/
+@NotBlank(message=&quot;[分类名称]不能为空&quot;,groups = &#123;Insert.class, Update.class&#125;)
+@Size(max= 32,message=&quot;编码长度不能超过32&quot;)
+@ApiModelProperty(&quot;分类名称&quot;)
+@Length(max= 32,message=&quot;编码长度不能超过32&quot;)
+private String categoryName;
+/**
+* 分类别名
+*/
+@NotBlank(message=&quot;[分类别名]不能为空&quot;,groups = &#123;Insert.class, Update.class&#125;)
+@Size(max= 32,message=&quot;编码长度不能超过32&quot;)
+@ApiModelProperty(&quot;分类别名&quot;)
+@Length(max= 32,message=&quot;编码长度不能超过32&quot;)
+private String categoryAlias;
+</code></pre>
+<h3 id="2-3-Controller方法上在-Validated指定校验的分组接口"><a href="#2-3-Controller方法上在-Validated指定校验的分组接口" class="headerlink" title="2.3 Controller方法上在@Validated指定校验的分组接口"></a>2.3 Controller方法上在@Validated指定校验的分组接口</h3><pre><code class="java"> /**
+ * 添加分类
+ * @param category
+ * @return
+ */
+@Operation(summary = &quot;添加分类&quot;)
+@PostMapping()
+public AjaxResult insert(@RequestBody @Validated(Category.Insert.class) Category category) &#123;
+    categoryService.insert(category);
+    return AjaxResult.success(AjaxHttpStatus.SUCCESS);
+&#125;
+
+/**
+ * 修改分类
+ * @param category
+ * @return
+ */
+@Operation(summary = &quot;修改分类&quot;)
+@PutMapping
+public AjaxResult update(@RequestBody @Validated(Category.Update.class) Category category) &#123;
+    categoryService.update(category);
+    return AjaxResult.success(AjaxHttpStatus.SUCCESS);
+&#125;
+</code></pre>
+<p><strong>来，测试一把：</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805133113950.png" alt="image-20240805133113950"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805133144739.png" alt="image-20240805133144739"></p>
+<p><strong>数据库中的结果：</strong><br><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20240805133218945.png" alt="image-20240805133218945"></p>
+<h2 id="3-项目地址"><a href="#3-项目地址" class="headerlink" title="3.项目地址"></a>3.项目地址</h2><h3 id="3-1-github"><a href="#3-1-github" class="headerlink" title="3.1 github"></a>3.1 github</h3><p><a target="_blank" rel="noopener" href="https://github.com/xccit/big-event">xccit&#x2F;big-event: 大事件(黑马程序员项目改造) (github.com)</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/SpringBoot/" style="color: #00a596">SpringBoot</a>
+        </span>
+        
+    </div>
+    <a href="/2024/08/05/SpringBoot-validation%E5%A6%82%E4%BD%95%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/08/03/JWT-SpringBoot%E5%81%9A%E7%99%BB%E5%BD%95%E6%8B%A6%E6%88%AA/">
         <h2 class="post-title">JWT+SpringBoot做登录拦截</h2>
     </a>
@@ -317,7 +611,7 @@ public class LoginInterceptor implements HandlerInterceptor &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #ff7d73">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #00a596">SpringBoot</a>
         </span>
         
     </div>
@@ -649,7 +943,7 @@ public class UserServiceImpl implements IUserService &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #00a596">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
         </span>
         
     </div>
@@ -719,7 +1013,7 @@ public List&lt;User&gt; list(User user)
         
         <span class="tag">
             
-            <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #03a9f4">若依二次开发</a>
+            <a href="/tags/%E8%8B%A5%E4%BE%9D%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/" style="color: #00bcd4">若依二次开发</a>
         </span>
         
     </div>
@@ -1083,7 +1377,7 @@ REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDe
         
         <span class="tag">
             
-            <a href="/tags/%E4%BF%A1%E5%AE%89/" style="color: #ff7d73">信安</a>
+            <a href="/tags/%E4%BF%A1%E5%AE%89/" style="color: #00a596">信安</a>
         </span>
         
     </div>
@@ -1183,7 +1477,7 @@ public class TestDBAuth &#123;
         
         <span class="tag">
             
-            <a href="/tags/SpringBoot/" style="color: #00bcd4">SpringBoot</a>
+            <a href="/tags/SpringBoot/" style="color: #ffa2c4">SpringBoot</a>
         </span>
         
     </div>

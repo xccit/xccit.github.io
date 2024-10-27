@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Windows下常用开发环境搭建 | xccitのblog</title>
+    <meta name="author" content="CH_ywx" />
+    <meta name="description" content="人生如逆旅,我亦是行人" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/myavatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>XCCITのBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;XCCITのBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Windows下常用开发环境搭建</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/27
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/Docker/" style="color: #ff7d73">
+                    Docker
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <blockquote>
+<p><code>注意</code>:MySQL集群不用管,直接本机安装MySQL即可。Windows能安装对应的服务就直接安装，安装不了的用<code>WSL</code>，<code>不要用Docker</code>,<code>不要用Docker</code>,<code>不要用Docker</code></p>
+</blockquote>
+<h2 id="1-基础环境搭建"><a href="#1-基础环境搭建" class="headerlink" title="1.基础环境搭建"></a>1.基础环境搭建</h2><h3 id="1-1虚拟机-云服务器"><a href="#1-1虚拟机-云服务器" class="headerlink" title="1.1虚拟机&#x2F;云服务器"></a>1.1虚拟机&#x2F;云服务器</h3><h4 id="云服务器"><a href="#云服务器" class="headerlink" title="云服务器"></a>云服务器</h4><p>开启安全组规则</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241023233422392.png" alt="image-20241023233422392"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241023233447431.png" alt="image-20241023233447431"></p>
+<p><code>redis:6379</code></p>
+<h4 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h4><ul>
+<li><p>创建CentOS7镜像</p>
+</li>
+<li><p>NAT网络连接</p>
+</li>
+<li><p>端口转发规则</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241023233646668.png" alt="image-20241023233646668"></p>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241023233721797.png" alt="image-20241023233721797"></p>
+<p><code>主要注意5022到22的映射,其他端口都是一致的,按照安全组规则的端口进行转发即可</code></p>
+<ul>
+<li><p>使用MobaXterm连接虚拟机,IP填localhost,端口5022,能连接成功则代表端口转发成功</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241023234130998.png" alt="image-20241023234130998"></p>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241023234213481.png" alt="image-20241023234213481"></p>
+<ul>
+<li>基础的环境设置基本完成,关于<code>MobaXterm</code>的更多使用方式参考官网即可。<a target="_blank" rel="noopener" href="https://mobaxterm.mobatek.net/">MobaXterm free Xserver and tabbed SSH client for Windows</a></li>
+</ul>
+<h3 id="1-2安装Docker"><a href="#1-2安装Docker" class="headerlink" title="1.2安装Docker"></a>1.2安装Docker</h3><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241024080824446.png" alt="image-20241024080824446"></p>
+<blockquote>
+<p> 为了节省时间(避免在物理机上安装时繁琐的配置)以及避免程序间冲突,使用Docker来安装开发环境需要使用到的软件以及服务</p>
+</blockquote>
+<h4 id="1-2-1关闭SELINUX"><a href="#1-2-1关闭SELINUX" class="headerlink" title="1.2.1关闭SELINUX"></a>1.2.1关闭SELINUX</h4><pre><code class="shell">vim /etc/sysconfig/selinux
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241024082216153.png" alt="image-20241024082216153"></p>
+<pre><code class="shell">esc---&gt;:wq
+</code></pre>
+<p><code>重启CentOS</code></p>
+<h4 id="1-2-2更新yum"><a href="#1-2-2更新yum" class="headerlink" title="1.2.2更新yum"></a>1.2.2更新yum</h4><pre><code class="shell">yum update -y
+</code></pre>
+<h4 id="1-2-3安装docker"><a href="#1-2-3安装docker" class="headerlink" title="1.2.3安装docker"></a>1.2.3安装docker</h4><pre><code class="shell">yum install docker -y
+</code></pre>
+<h4 id="1-2-4启动-停止docker"><a href="#1-2-4启动-停止docker" class="headerlink" title="1.2.4启动&#x2F;停止docker"></a>1.2.4启动&#x2F;停止docker</h4><pre><code class="shell"># 启动
+service docker start
+# 停止
+service docker stop
+</code></pre>
+<h4 id="1-2-5镜像命令"><a href="#1-2-5镜像命令" class="headerlink" title="1.2.5镜像命令"></a>1.2.5镜像命令</h4><pre><code class="shell"># 查看所有镜像
+docker images
+# 删除镜像,前提:镜像已关闭
+docker rmi 镜像名
+# 拉取镜像
+docker pull 镜像名
+</code></pre>
+<h2 id="2-MySQL集群读写分离与主从同步原理"><a href="#2-MySQL集群读写分离与主从同步原理" class="headerlink" title="2.MySQL集群读写分离与主从同步原理"></a>2.MySQL集群读写分离与主从同步原理</h2><p>一个<code>高可用、高负载、高性能</code>的<code>三高</code>MySQL集群，至少需要<code>12</code>个MySQL节点。为什么需要这么多节点呢?</p>
+<h3 id="2-1数据同步"><a href="#2-1数据同步" class="headerlink" title="2.1数据同步"></a>2.1数据同步</h3><p>单节点的MySQL抗风险性很差，就这么一个MySQL，如果遇上故障数据库挂了，咱们开发的软件项目也就没法用<br>了。不管做的是电商、医疗、外卖、出行业务，软件系统全都歇菜了。俗话说鸡蛋不要放在一个篮子里，我们的<br>MySQL要有冗余节点。<br>既然要添加冗余节点，就必须借助于<code>数据同步</code>，保证两个MSQL节点数据完全一致。这样挂掉任何一个节点，另一个节点都能立即接替工作。MySQL白带了Master-Slave数据同步模式，也被称作主从同步模式。例如:MySQL A节点开启了binlog日志文件之后，MySQL A上面执行SQL语句(查询语句除外)都会被记录在binlog日志里面。MySQL B节点通过订阅MySOL A的binlog文件，能实时下载到这个日志文件，然后在MySOL B节点上运行这些SQL语句，于是就保证了自己的数据和MySQL A节点一致。</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241024090251808.png" alt="image-20241024090251808" style="zoom:50%;" />
+
+<h3 id="2-2读写分离"><a href="#2-2读写分离" class="headerlink" title="2.2读写分离"></a>2.2读写分离</h3><p>绝大多数Web系统都是读多写少的，比如电商网站，我们都是要货比三家，然后再下单购买。无论MySQL A还是<br>MySQL B单独工作的时候，读写操作都由一个节点执行，压力确实很大，所以我们可以给MySQL找帮手。于是搭<br>建MySQL集群的时候，我划定MySQL A用来处理写任务，MySQL B和MySQL C负责处理读请求。原来一个节点处理所有SQL语句变成三个节点来分担，MySQL集群的读写性能比单节点MySQL是翻倍的，能并发执行的SQL语句条数也翻倍了。</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241024091454057.png" alt="image-20241024091454057" style="zoom:50%;" />
+
+<p>上面的方案是”一主两从”，MySQL A节点负责写任务，MySQL B和MySQL C来处理读请求,但A和B、C的<code>主仆</code>身份是固定的,假如MySQL A宕机,那B和C都不能升级为写节点。解决这种困难的方式就是给MySQL A添加一个<code>双向同步</code>的MySQL D节点。</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241024121755795.png" alt="image-20241024121755795" style="zoom:50%;" />
+
+<p>这种双向同步的解决方案,会在MySQL A宕机后,MySQL D接替MySQL A的写任务,并且由于MySQL A宕机,MySQL B与C的数据也无法同步,这个时候的读节点就会使用到MySQL E与F,因为MySQL B与C无法自动切换到MySQL D节点下同步,所以给MySQL D配置了两个读节点:MySQL E与F。反之如果MySQL D宕机,那么写节点为MySQL A,读节点为MySQL B与C。</p>
+<p>通俗来说,封建时期的帝王家族,如果兄弟或者亲人之间篡位成功,势必要干掉旧皇帝的老臣,让自己的部下来弥补,读写分离的主节点切换亦是如此。</p>
+<h3 id="2-3数据切分"><a href="#2-3数据切分" class="headerlink" title="2.3数据切分"></a>2.3数据切分</h3><p>以中型电商系统为例,如果一张表的数据量达到2000万行,读写性能会急剧下降,这个时候就需要分库分表(数据切分),一个中型电商系统以订单表为例,每天大概会有2w条数据,一年就是大概730w条数据,一个MySQL节点肯定是不太够用的,我们以10个节点来存储的话,一个节点每年有73w条数据,这个时候数据库的压力就很小了。</p>
+<p>数据切分最基本的实现方式是对<code>表的主键取余</code>,以10个节点为例,每次数据库进行<code>INSERT</code>操作时,将主键对10取余,余数必然在0~9之间,以余数的值为参照,余数为0则MyCat将INSERT语句发送给MySQL A节点执行,1为MySQL B,以此类推。</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241024172724194.png" alt="image-20241024172724194" style="zoom:50%;" />
+
+<h3 id="2-4数据切分架构优化"><a href="#2-4数据切分架构优化" class="headerlink" title="2.4数据切分架构优化"></a>2.4数据切分架构优化</h3><p>数据切分也要满足<code>三高</code>–&gt;<code>高性能,高负载,高可用</code></p>
+<p>由于上面的架构中,MyCat下面有10个<code>切片</code>(A~J),但是以A为例,如果宕机,那没有能够接替A工作的切片,这个时候就要考虑对A进行优化了,以下图为例,将A分为A1和B1两个主节点,有A2,A3,B2,B3四个从节点,A1与B1之间双向同步,如果A1宕机,B1马上接替A1的工作。也就是说，这一个中型电商网站总共需要<code>60</code>个MySQL节点。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241024174647292.png" alt="image-20241024174647292"></p>
+<p>当然，如果60个节点还不够用，后期要么使用<code>增加切片</code>的方案,但是增加切片又要重新牵扯到数据切分与数据迁移,这个成本还是很高的,第二种方案就是使用<code>定期缩表</code>的方式,例如将几年前的数据迁移到HBase或者MongoDB这种大数据平台中,对于它们来说,缓存这些数据毫无压力,MySQL中只存储近几年的数据即可。</p>
+<h3 id="2-5本项目的解决方案"><a href="#2-5本项目的解决方案" class="headerlink" title="2.5本项目的解决方案"></a>2.5本项目的解决方案</h3><p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241024175516493.png" alt="image-20241024175516493"></p>
+<p>数据量不会太大,即使商用,每天可能几百条数据顶天了,使用读写分离+双向同步,也就是<code>主2从4</code>的MySQL集群方案即可。</p>
+<h3 id="2-6选用的版本"><a href="#2-6选用的版本" class="headerlink" title="2.6选用的版本"></a>2.6选用的版本</h3><p>使用MySQL<code>5.7</code>版本,因为<code>8.0</code>版本在某个主节点宕机修复完成之后,需要人工对比日志和维护,才能重新实现数据同步。比如A和B为<code>双向主动同步</code>,但是A节点宕机修复后,按道理A节点应该主动去B节点处同步数据,但是MySQL8.0无法自动完成。人工对比日志时，MySQL B节点必然还会有数据涌入，这个时候就不得不停掉整个后端业务来进行日志比对，然后再执行若干命令帮助MySQL A节点从MySQL B节点处同步数据，然后实现数据同步之后重新启动后端，这个成本实在是太高，所以使用MySQL5.7这种稳定的版本才更为可靠。</p>
+<h3 id="2-7中间件对比"><a href="#2-7中间件对比" class="headerlink" title="2.7中间件对比"></a>2.7中间件对比</h3><table>
+<thead>
+<tr>
+<th>中间件</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MyCat</td>
+<td>- 支持多种分片策略<br>- 提供了丰富的SQL优化功能<br>- 具有良好的可扩展性</td>
+<td>- 配置相对复杂<br>- 社区支持不如其他两种广泛</td>
+</tr>
+<tr>
+<td>ShardingSphere</td>
+<td>- 完全兼容MySQL语法<br>- 提供了强大的数据治理能力<br>- 可以在应用层实现数据分片</td>
+<td>- 性能可能略低于原生数据库<br>- 对于一些复杂的查询可能需要手动编写SQL</td>
+</tr>
+<tr>
+<td>ProxySQL</td>
+<td>- 高性能，低延迟<br>- 支持读写分离和负载均衡<br>- 管理界面友好，易于配置</td>
+<td>- 不支持所有类型的数据库（主要针对MySQL）<br>- 对于某些高级特性如事务处理的支持有限</td>
+</tr>
+</tbody></table>
+<p>即便<code>MyCat</code>每年只更新一个版本，也可以了。毕竟数据库产品本身变化就不大，每年出一个版本修补一<br>下BUG就够了。MyCat是阿里巴巴的产品，大家可以放心使用。而且MyCat有非常完备的资料，官方提供了400多页的《MyCat权威指南》，几乎把MyCat给讲透彻了，就凭这一点绝对给好评。</p>
+<p>根据现有的信息，MyCat的1.6系列版本中，1.6.5及之后的版本被认为是比较稳定的。特别是，有提到1.6.7.x版本也是稳定的选择，例如1.6.7.6版本被特定提及作为一个稳定版本。因此，在当前情况下，如果您正在寻找一个较为稳定的Mycat版本，可以考虑使用1.6.5或更高版本，如1.6.7.6。不过，最稳妥的做法是访问Mycat的官方资源或GitHub页面来获取最新版本的信息和确认其稳定性。此外，确保查阅相关的变更日志和社区反馈，以便了解任何潜在的问题或更新。<a target="_blank" rel="noopener" href="http://www.mycat.org.cn/">| MYCAT官方网站—中国第一开源分布式数据库中间件</a></p>
+<h2 id="3-搭建MySQL集群"><a href="#3-搭建MySQL集群" class="headerlink" title="3.搭建MySQL集群"></a>3.搭建MySQL集群</h2><blockquote>
+<p><code>Linux基础命令与vim的基本使用需要熟练掌握</code></p>
+<p>补充内容：<code>推荐的方式是：启动1--&gt;加1用户--&gt;关闭1--&gt;改1配置--&gt;启动1--&gt;启动2--&gt;关闭2--&gt;改2配置--&gt;启动2--&gt;启动3--&gt;关闭3--&gt;改3配置--&gt;启动3--&gt;开启2,3与1的主从同步</code></p>
+<p>按照以上步骤,执行4,5,6(特别注意<code>4</code>与<code>1</code>的操作要如出一辙)</p>
+<p><code>最后开启1与4的双向数据同步</code></p>
+</blockquote>
+<p>目前Docker已无法正常访问,使用:</p>
+<pre><code class="shell">docker pull m.daocloud.io/docker.io/library/mysql:5.7.41
+</code></pre>
+<p>来下载镜像。</p>
+<h3 id="3-1配置docker网段"><a href="#3-1配置docker网段" class="headerlink" title="3.1配置docker网段"></a>3.1配置docker网段</h3><p>由于Docker容器的IP地址是动态分配的，每次启动相同容器，它的IP地址都会有变化。这就非常影响数据库集群<br>的搭建，比如说MySQL B要同步MySQL A的数据，MySOL A容器的IP地址经常变来变去肯定是不行的，所以我<br>们要给每个Docker容器都分配固定的IP地址。<br>Docker默认的网段是 172.17.0.x的，有时候不同项目用到的容器都在同一个网段里面，难免我们使用的时候会<br>弄混淆了。所以不同项目用到的容器最好放在不同的网段。于是我们要为咱们的项目创建一个新的网段，创建容器<br>的时候，把它们的IP地址绑定到该网段。执行下面的命令，创建新的网段:</p>
+<pre><code class="shell">docker network create --subnet=172.18.0.0/18 customnet
+</code></pre>
+<h3 id="3-2创建MySQL节点"><a href="#3-2创建MySQL节点" class="headerlink" title="3.2创建MySQL节点"></a>3.2创建MySQL节点</h3><p>MySQL运行镜像创建一个容器的命令为:</p>
+<pre><code class="shell">docker run -it -d --name mysql_1 -p 7001:3306 \
+  --net customnet --ip 172.18.0.2 \
+  -m 400m -v /root/mysql_1/data:/var/lib/mysql \
+  -v /root/mysql_1/config:/etc/mysql/conf.d \
+  -e MYSQL_ROOT_PASSWORD=1209 \
+  -e TZ=Asia/Shanghai --privileged=true \
+  mysql:5.7.41 \
+  --lower_case_table_names=1
+</code></pre>
+<blockquote>
+<ul>
+<li><code>docker run</code>: 创建并运行一个新的容器。</li>
+<li><code>-it</code>: 使容器在交互模式下运行，并分配一个伪TTY（即使没有附加到终端也允许容器接收输入）。但是，因为后面有 <code>-d</code> 参数，<code>-it</code> 在这里不会生效，因为 <code>-d</code> 会使容器在后台运行。</li>
+<li><code>-d</code>: 在后台运行容器。</li>
+<li><code>--name mysql_1</code>: 给容器指定一个名字<code>mysql_1</code>。</li>
+<li><code>-p 7001:3306</code>: 将宿主机的7001端口映射到容器内的3306端口。</li>
+<li><code>--net customnet --ip 172.18.0.2</code>: 将容器连接到名为<code>customnet</code>的自定义网络，并且在这个网络中使用固定的IP地址<code>172.18.0.2</code>。</li>
+<li><code>-m 400m</code>: 设置容器的最大可用内存为400MB。</li>
+<li><code>-v /root/mysql_1/data:/var/lib/mysql</code>: 将宿主机上的<code>/root/mysql_1/data</code>目录挂载到容器内的<code>/var/lib/mysql</code>目录，用来持久化MySQL的数据文件。</li>
+<li><code>-v /root/mysql_1/config:/etc/mysql/conf.d</code>: 将宿主机上的<code>/root/mysql_1/config</code>目录挂载到容器内的<code>/etc/mysql/conf.d</code>目录，用来放置MySQL的额外配置文件。</li>
+<li><code>-e MYSQL_ROOT_PASSWORD=1209</code>: 设置MySQL的root用户的密码为<code>1209</code>。</li>
+<li><code>-e TZ=Asia/Shanghai</code>: 设置容器内部的时间区域为上海（Asia&#x2F;Shanghai）。</li>
+<li><code>--privileged=true</code>: 提供更多的权限给容器，允许容器执行某些需要root权限的操作。这通常是不必要的，除非你需要访问底层系统的特定功能。</li>
+<li><code>mysql:5.7.41</code>: 使用名为<code>mysql:5.7.41</code>的镜像来创建容器。</li>
+<li><code>--lower_case_table_names=1</code>: 传递给MySQL服务的启动参数，设置表名和列名在Linux系统上为小写敏感（即所有表名和列名都会转换为小写）。</li>
+</ul>
+<p>请注意，<code>--privileged</code>标志应该谨慎使用，因为它可能增加安全风险。只有当确实需要时才应启用该选项。此外，如果你不需要与容器进行交互，可以去掉<code>-it</code>选项。</p>
+</blockquote>
+<ul>
+<li><p>mysql_1</p>
+<blockquote>
+<p><code>注意</code>：咱们的镜像名应该是m.daocloud.io&#x2F;library&#x2F;mysql:5.7.41,使用</p>
+<pre><code class="shell">docker tag m.daocloud.io/library/mysql:5.7.41 mysql:5.7.41
+</code></pre>
+<p>改名之后使用</p>
+<pre><code class="shell">docker rmi m.daocloud.io/library/mysql:5.7.41
+</code></pre>
+<p>删掉原来的镜像即可，后续如果有新的镜像，一律如此操作。</p>
+</blockquote>
+<pre><code class="shell">docker run -it -d --name mysql_1 -p 7001:3306 \
+  --net customnet --ip 172.18.0.2 \
+  -m 400m -v /root/mysql_1/data:/var/lib/mysql \
+  -v /root/mysql_1/config:/etc/mysql/conf.d \
+  -e MYSQL_ROOT_PASSWORD=1209 \
+  -e TZ=Asia/Shanghai --privileged=true \
+  mysql:5.7.41 \
+  --lower_case_table_names=1
+</code></pre>
+</li>
+</ul>
+<h3 id="3-3创建用户"><a href="#3-3创建用户" class="headerlink" title="3.3创建用户"></a>3.3创建用户</h3><p>使用<code>Navicat</code>或其他可视化工具,新建用户:</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025084734925.png" alt="image-20241025084734925"></p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025084527398.png" alt="image-20241025084527398" style="zoom:50%;" />
+
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025084651619.png" alt="image-20241025084651619" style="zoom:50%;" />
+
+<p><code>使用刚才创建的sync用户连接MySQL_1容器</code></p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025085111621.png" alt="image-20241025085111621" style="zoom:50%;" />
+
+<p>测试连接能成功则代表操作是对的,否则需要检查刚才的操作。</p>
+<h3 id="3-4修改配置文件"><a href="#3-4修改配置文件" class="headerlink" title="3.4修改配置文件"></a>3.4修改配置文件</h3><blockquote>
+<p>首先需要停止mysql_1:</p>
+<pre><code class="shell">docker stop mysql_1
+</code></pre>
+</blockquote>
+<p>在<code>/root/mysql_1/config/</code>里创建<code>my.cnf</code>文件:</p>
+<pre><code class="shell">vim /root/mysql_1/config/my.cnf
+</code></pre>
+<p>文件内容为:</p>
+<pre><code class="ini">[mysqld]
+#字符集
+character_set_server=utf8
+#mysql编号(只能是数字)
+server_id=1
+#开启binlog,规定文件名称
+log_bin=mysql_bin
+#开启relaylog,规定文件名称
+relay_log=relay_bin
+#从库的写操作是否写入binlog
+log-slave-updates=1
+#采用严格的SQL语句模式
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+</code></pre>
+<p>编辑完成后按<code>ESC</code>输入<code>:wq</code>写入并退出</p>
+<p>然后重启mysql_1容器:</p>
+<pre><code class="shell">docker start mysql_1
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025131104896.png" alt="image-20241025131104896"></p>
+<h3 id="3-5创建其他MySQL节点及配置"><a href="#3-5创建其他MySQL节点及配置" class="headerlink" title="3.5创建其他MySQL节点及配置"></a>3.5创建其他MySQL节点及配置</h3><ul>
+<li><p><em>mysql_2</em></p>
+<pre><code class="shell">docker run -it -d --name mysql_2 -p 7002:3306 \
+  --net customnet --ip 172.18.0.3 \
+  -m 400m -v /root/mysql_2/data:/var/lib/mysql \
+  -v /root/mysql_2/config:/etc/mysql/conf.d \
+  -e MYSQL_ROOT_PASSWORD=1209 \
+  -e TZ=Asia/Shanghai --privileged=true \
+  mysql:5.7.41 \
+  --lower_case_table_names=1
+</code></pre>
+<pre><code class="ini">[mysqld]
+#字符集
+character_set_server=utf8
+#mysql编号,只能是数字
+server_id=2
+#开启binlog,规定文件名称
+log_bin=mysql_bin
+#开启relaylog,规定文件名称
+relay_log=relay_bin
+#限制普通账户无法使用INSERT UPDATE DELETE语句,但是该配置对管理员无效
+read-only=1
+#采用严格的SQL语句模式
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+</code></pre>
+</li>
+<li><p><em>mysql_3</em></p>
+<pre><code class="shell">docker run -it -d --name mysql_3 -p 7003:3306 \
+  --net customnet --ip 172.18.0.4 \
+  -m 400m -v /root/mysql_3/data:/var/lib/mysql \
+  -v /root/mysql_3/config:/etc/mysql/conf.d \
+  -e MYSQL_ROOT_PASSWORD=1209 \
+  -e TZ=Asia/Shanghai --privileged=true \
+  mysql:5.7.41 \
+  --lower_case_table_names=1
+</code></pre>
+<pre><code class="ini">[mysqld]
+#字符集
+character_set_server=utf8
+#mysql编号,只能是数字
+server_id=3
+#开启binlog,规定文件名称
+log_bin=mysql_bin
+#开启relaylog,规定文件名称
+relay_log=relay_bin
+#限制普通账户无法使用INSERT UPDATE DELETE语句,但是该配置对管理员无效
+read-only=1
+#采用严格的SQL语句模式
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+</code></pre>
+</li>
+<li><p><em>mysql_4</em></p>
+<blockquote>
+<p>注意:mysql_4也是主节点,需要添加一个用户(sync—&gt;123456)</p>
+<p>添加完用户后关闭,写配置,然后再启动</p>
+</blockquote>
+<pre><code class="shell">docker run -it -d --name mysql_4 -p 7004:3306 \
+  --net customnet --ip 172.18.0.5 \
+  -m 400m -v /root/mysql_4/data:/var/lib/mysql \
+  -v /root/mysql_4/config:/etc/mysql/conf.d \
+  -e MYSQL_ROOT_PASSWORD=1209 \
+  -e TZ=Asia/Shanghai --privileged=true \
+  mysql:5.7.41 \
+  --lower_case_table_names=1
+</code></pre>
+<pre><code class="ini">[mysqld]
+#字符集
+character_set_server=utf8
+#mysql编号,只能是数字
+server_id=4
+#开启binlog,规定文件名称
+log_bin=mysql_bin
+#开启relaylog,规定文件名称
+relay_log=relay_bin
+#从库的写操作是否写入binlog
+log-slave-updates=1
+#采用严格的SQL语句模式
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+</code></pre>
+</li>
+<li><p><em>mysql_5</em></p>
+<pre><code class="shell">docker run -it -d --name mysql_5 -p 7005:3306 \
+  --net customnet --ip 172.18.0.6 \
+  -m 400m -v /root/mysql_5/data:/var/lib/mysql \
+  -v /root/mysql_5/config:/etc/mysql/conf.d \
+  -e MYSQL_ROOT_PASSWORD=1209 \
+  -e TZ=Asia/Shanghai --privileged=true \
+  mysql:5.7.41 \
+  --lower_case_table_names=1
+</code></pre>
+<pre><code class="ini">[mysqld]
+#字符集
+character_set_server=utf8
+#mysql编号,只能是数字
+server_id=5
+#开启binlog,规定文件名称
+log_bin=mysql_bin
+#开启relaylog,规定文件名称
+relay_log=relay_bin
+#限制普通账户无法使用INSERT UPDATE DELETE语句,但是该配置对管理员无效
+read-only=1
+#采用严格的SQL语句模式
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+</code></pre>
+</li>
+<li><p><em>mysql_6</em></p>
+<pre><code class="shell">docker run -it -d --name mysql_6 -p 7006:3306 \
+  --net customnet --ip 172.18.0.7 \
+  -m 400m -v /root/mysql_6/data:/var/lib/mysql \
+  -v /root/mysql_6/config:/etc/mysql/conf.d \
+  -e MYSQL_ROOT_PASSWORD=1209 \
+  -e TZ=Asia/Shanghai --privileged=true \
+  mysql:5.7.41 \
+  --lower_case_table_names=1
+</code></pre>
+<pre><code class="ini">[mysqld]
+#字符集
+character_set_server=utf8
+#mysql编号,只能是数字
+server_id=6
+#开启binlog,规定文件名称
+log_bin=mysql_bin
+#开启relaylog,规定文件名称
+relay_log=relay_bin
+#限制普通账户无法使用INSERT UPDATE DELETE语句,但是该配置对管理员无效
+read-only=1
+#采用严格的SQL语句模式
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+</code></pre>
+<blockquote>
+<p>注意：需要重启每一个节点</p>
+<pre><code class="shell">docker restart mysql_x(替换数字)
+</code></pre>
+<p>1,4为主节点,2,3为1的从节点,5,6为4的从节点</p>
+<p>关于2,3,5,6从节点为何开启了binlog日志?这是为了后续业务需求扩大后配置更多的从节点,如果节点过多,两个主节点的网络和磁盘压力都很大,这个时候就需要从节点跟从节点直接同步数据,为了完成这一步骤,从节点也必须开启binlog日志才行。</p>
+</blockquote>
+</li>
+</ul>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025134017564.png" alt="image-20241025134017564" style="zoom:50%;" />
+
+<p>如图，F节点若要挂载更多的节点，就需要开启binlog日志，然后G与H从F同步数据。</p>
+<h3 id="3-6开启主从同步"><a href="#3-6开启主从同步" class="headerlink" title="3.6开启主从同步"></a>3.6开启主从同步</h3><p>使用Navicat在<code>mysql_2</code>节点上执行如下SQL语句：</p>
+<pre><code class="sql">#关闭主从同步
+stop slave;
+#设置同步主节点的IP，端口，用户，密码
+change master to master_host=&#39;172.18.0.2&#39;,master_port=3306,master_user=&#39;sync&#39;,master_password=&#39;123456&#39;;
+#开启主从同步
+start slave;
+#查询数据同步状态
+show slave status;
+</code></pre>
+<blockquote>
+<p>注意：如果成功，上述SQL执行完之后应该会打印两次<code>YES</code>，否则就是失败了，认真检查配置以及容器是否正常。如果不行，停止容器，删除容器,删除<code>/root</code>下该mysql容器映射的文件夹从头再来。也有可能会受本机的配置影响，在执行完第三条语句后等待<code>5~10s</code>之后再执行第四条看结果是否一致。</p>
+<pre><code class="shell">#停止容器
+docker stop 容器名（例如：mysql_2）
+#删除容器
+docker rmi 容器名（例如：mysql_2）
+</code></pre>
+</blockquote>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025140142354.png" alt="image-20241025140142354" style="zoom:50%;" />
+
+<blockquote>
+<p>mysql_2，mysql_3容器执行的四条SQL一致</p>
+<p>mysql_5，mysql_6容器执行的四条SQL一致，并且需要改一下master_host参数的值，使用mysql_4容器的IP地址，这个IP地址看你的mysql_4容器启动时使用了哪个IP，如果跟如上的配置一致，那就直接复制下面的SQL。</p>
+</blockquote>
+<pre><code class="sql">#关闭主从同步
+stop slave;
+#设置同步主节点的IP，端口，用户，密码
+change master to master_host=&#39;172.18.0.5&#39;,master_port=3306,master_user=&#39;sync&#39;,master_password=&#39;123456&#39;;
+#开启主从同步
+start slave;
+#查询数据同步状态
+show slave status;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025141112039.png" alt="image-20241025141112039"></p>
+<p>也可以配置完成之后批量重启:</p>
+<pre><code class="shell">docker restart $&#123;docker ps -q&#125;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025142632605.png" alt="image-20241025142632605"></p>
+<blockquote>
+<p>特别需要注意的是:mysql_1节点配置了一个用户:sync</p>
+<p>在mysql_4节点中也同样需要,如果mysql_4节点不配置用户,则mysql_5与mysql_6配置主从同步后查询结果如下:</p>
+</blockquote>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025143651820.png" alt="image-20241025143651820"></p>
+<p>如果是以上结果,给mysql_4节点创建sync用户后再执行一次查询即可。</p>
+<h3 id="3-7双向数据同步"><a href="#3-7双向数据同步" class="headerlink" title="3.7双向数据同步"></a>3.7双向数据同步</h3><p>双向数据同步是针对两个主节点的配置操作，希望两个主节点在运行中能够相互同步数据。</p>
+<blockquote>
+<p>使用<code>mysql_1</code>节点执行四条SQL：</p>
+<pre><code class="sql">stop slave;
+change master to master_host=&#39;172.18.0.5&#39;,master_port=3306,master_user=&#39;sync&#39;,master_password=&#39;123456&#39;;
+start slave;
+show slave status;
+</code></pre>
+</blockquote>
+<blockquote>
+<p>接着使用<code>mysql_4</code>节点来执行四条SQL：</p>
+<pre><code class="sql">stop slave;
+change master to master_host=&#39;172.18.0.2&#39;,master_port=3306,master_user=&#39;sync&#39;,master_password=&#39;123456&#39;;
+start slave;
+show slave status;
+</code></pre>
+</blockquote>
+<blockquote>
+<p>注意:如果这一步不成功,关闭容器,观察配置文件,再次启动容器。</p>
+<p>然后执行:</p>
+<pre><code class="sql">SHOW MASTER STATUS;
+</code></pre>
+<p>分别选中mysql_1与mysql_4执行,看File与Position的值</p>
+<p>然后重新执行上面的四条SQL,但是需要将第二条换一下:</p>
+<pre><code class="shell">change master to master_host=&#39;172.18.0.2&#39;,master_port=3306,master_user=&#39;sync&#39;,master_password=&#39;123456&#39;,MASTER_LOG_FILE=&#39;mysql_bin.000001&#39;,MASTER_LOG_POS=622;
+</code></pre>
+<p>其中MASTER_LOG_FILE为你查出来对方节点的File值,MASTER_LOG_POS为你查出来的对方节点的Position</p>
+</blockquote>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241025184648949.png" alt="image-20241025184648949"></p>
+<p>最终结果如上图所示就是对的。</p>
+<h3 id="3-8测试数据同步"><a href="#3-8测试数据同步" class="headerlink" title="3.8测试数据同步"></a>3.8测试数据同步</h3><ul>
+<li><p>导入SQL脚本到<code>mysql_1</code>或者<code>mysql_4</code>,观察其他mysql环境是否自动同步数据</p>
+</li>
+<li><p>执行docker stop mysql_2,模拟mysql_2宕机</p>
+</li>
+<li><p>在mysql_1中随便找一张表添加数据,过一会儿再启动mysql_2,看数据是否会自动同步</p>
+</li>
+</ul>
+<h3 id="3-9使用MyCat管理MySQL集群"><a href="#3-9使用MyCat管理MySQL集群" class="headerlink" title="3.9使用MyCat管理MySQL集群"></a>3.9使用MyCat管理MySQL集群</h3><blockquote>
+<p>Windows主机安装MyCat自行配置</p>
+</blockquote>
+<h3 id="3-10其他中间件"><a href="#3-10其他中间件" class="headerlink" title="3.10其他中间件"></a>3.10其他中间件</h3><ul>
+<li>MinIO 图片&#x2F;视频等静态资源存储</li>
+<li>Redis  数据缓存,降低MySQL读次数</li>
+<li>MongoDB 存储商品快照</li>
+<li>RabbitMQ 消息队列</li>
+</ul>
+<blockquote>
+<p>本项目用MongoDB数据库存储商品快照。这里我解释一下什么是商品快照。比如说订单记录直接关联商品id，如果你买的是苹果手机。店家修改了商品信息，苹果手机变成了小米手机，那么我们用表连接查询出来的该订单买的就是小米手机，你觉得你能容忍么?肯定不能。为了避免店家修改商品信息影响到已有的订单，所以我在项目中引入了商品快照。简单的说，就是店家每次修改商品信息，都会产生一个商品快照记录。买家的订单关联的是快照记录ID。店家不管怎么修改商品信息，都只生成新的快照记录，但是该订单关联的原有快照记录是不会改变的。其实具体过程要比这复杂很多，等我们写到这部分代码的时候，我再详细说明。<br>由于店家修改商品记录会产生新的快照记录，那么日积月累下来快照表保存的记录就会很多，所以用MySQL保存快照记录就不太适合了。我们可以用MongoDB或者HBase来存储。这两个数据库都适合保存海量数据，MongoDB可以存储TB级别的数据，HBase更是可以保存PB级别的记录。至于它们两个该选择哪一个也是有<br>参考标准的。如果需要对保存的数据做复杂条件查询，建议用HBase数据库。HBase挂载了Phoenix之后，可以支持SQL语句，各种复杂的CRUD操作都不在话下。由于MongoDB不支持SQL语句，所以MongoDB只适合数据的<br>简单读写，太复杂的查询条件是不可以的。本项目保存的商品快照，需要的查询条件并不复杂，所以用<br>MongoDB就够了。</p>
+</blockquote>
+<p>推荐<code>MySQL、MinIO、MongoDB</code>使用Windows主机来自行安装，由于<code>Redis</code>没有适用于Windows的二进制文件安装包，所以使用<code>WSL</code>子系统来安装配置，<code>RabbitMQ</code>同样使用wsl子系统。这里需要提醒：<code>MySQL集群环境做了解即可，目前Docker已经无法正常使用，我也实在是没有找到MyCat的image</code></p>
+<p>关于<code>wsl</code>如何使用，我不再赘述，建议安装后迁移到其他盘</p>
+<p><code>基本的wsl安装</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241026151947279.png" alt="image-20241026151947279"></p>
+<pre><code class="shell">wsl --install
+wsl --set-default-version 2
+wsl --list --online
+wsl --install -d 镜像名
+wsl
+#运行完以上命令，会进行第一次运行初始化，然后创建一个用户，填写用户名和密码，Linux系统密码不会显示，输入即可
+#为root账户设置密码
+sudo passwd root
+#输入密码
+su root
+#输入密码，如果成功则会切换到root账户
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241026151413848.png" alt="image-20241026151413848"></p>
+<pre><code class="shell">#关闭wsl
+wsl --shutdown
+#导出Ubuntu镜像为E:\wsl\ubuntu\ubuntu.tar
+wsl --export Ubuntu E:\wsl\ubuntu\ubuntu.tar
+#注销原本的Ubuntu子系统
+wsl --unregister Ubuntu
+#导入Ubuntu到E盘该目录
+wsl --import Ubuntu E:\wsl\ubuntu E:\wsl\ubuntu\ubuntu.tar
+#恢复Ubuntu原有的账户
+Ubuntu config --default-user xccit
+#启动ubuntu
+wsl
+</code></pre>
+<p>完成之后清理C盘冗余的垃圾文件即可。</p>
+<blockquote>
+<ul>
+<li><code>redis</code>配置：</li>
+</ul>
+<pre><code class="shell">apt install redis-server
+systemctl start redis-server
+systemctl enable redis-server
+vim /etc/redis/redis.conf
+</code></pre>
+<p>添加<code>requirepass 密码</code>，如果<code>protected mode yes</code>被注释或者值为no，则改为yes并取消注释即可</p>
+<pre><code class="shell">systemctl restart redis-server
+</code></pre>
+<ul>
+<li><code>rabbitmq</code>配置：</li>
+</ul>
+<pre><code class="shell">sudo apt install rabbitmq-server
+sudo systemctl start rabbitmq-server
+sudo systemctl enable rabbitmq-server
+#(可选）启用RabbitMQ管理插件来获取一个基于Web的UI
+#（可选）创建用户和设置权限（替换xccit和1209为你想设置的用户名和密码）
+sudo rabbitmqctl add_user xccit 1209
+sudo rabbitmqctl set_user_tags xccit administrator
+sudo rabbitmqctl set_permissions -p / xccit &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;
+</code></pre>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241026161231044.png" alt="image-20241026161231044"></p>
+<p>访问：<code>localhost:15672</code></p>
+<p>使用<code>xccit 1209</code>登录</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241026161314375.png" alt="image-20241026161314375"></p>
+<p><code>完成</code></p>
+<ul>
+<li><p><code>minio</code>配置：</p>
+<p>假设我的minio文件夹布局为：</p>
+<pre><code class="txt">D:\minio
+└─data
+|--bin
+    |--minio.exe
+|--logs
+</code></pre>
+<p>启动命令为（进入bin目录）:</p>
+<pre><code class="shell">minio server D:\minio\data
+</code></pre>
+<p>然后浏览器输入:<code>localhost:9000</code>,使用默认的<code>minioadmin minioadmin</code>登录</p>
+<p>创建存储桶，名称为<code>his</code>,接下来需要为存储桶设置权限：</p>
+<img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241026165259458.png" alt="image-20241026165259458" style="zoom:50%;" />
+
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20241026165459494.png" alt="image-20241026165459494"></p>
+</li>
+</ul>
+</blockquote>
+<p>关于MySQL、MongoDB、MinIO，下载对应的Windows安装包或者可执行文件，自行启动并测试即可</p>
+<h3 id="3-11前端开发环境"><a href="#3-11前端开发环境" class="headerlink" title="3.11前端开发环境"></a>3.11前端开发环境</h3><ul>
+<li>Vscode&#x2F;HBuilder</li>
+<li>Node.js LTS版本,不宜过高</li>
+<li>Chrome&#x2F;Edge</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 xccitのblog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;CH_ywx
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
