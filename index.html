@@ -181,6 +181,74 @@
         
 
 <div class="post">
+    <a href="/2025/04/03/Ollama%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2DeepSeek/">
+        <h2 class="post-title">Ollama本地部署DeepSeek</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/4/3
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
+<li>Windows 10及以上&#x2F;MacOS 10及以上</li>
+<li>Google Chrome或EDGE</li>
+<li>魔法上网（懂得都懂）</li>
+<li>足够的磁盘空间</li>
+<li>足够的显存&#x2F;内存</li>
+</ul>
+<h2 id="安装Ollama"><a href="#安装Ollama" class="headerlink" title="安装Ollama"></a>安装Ollama</h2><p><a target="_blank" rel="noopener" href="https://ollama.com/">Ollama</a></p>
+<p>点击官网地址,按照自己的系统下载安装即可</p>
+<h3 id="windows系统注意事项"><a href="#windows系统注意事项" class="headerlink" title="windows系统注意事项"></a>windows系统注意事项</h3><h4 id="1-指定安装位置"><a href="#1-指定安装位置" class="headerlink" title="1.指定安装位置"></a>1.指定安装位置</h4><p>在Ollama安装包位置,使用<code>PowerShell</code>或者<code>CMD</code>打开,执行如下命令:</p>
+<pre><code class="shell">OllamaSetup.exe /DIR=D:\ollama
+</code></pre>
+<p><code>D:\ollama</code>是可以指定的路径,Ollama会被安装在这个路径下</p>
+<p>其次,Ollama默认的模型路径在<code>UserHome/.ollama/models</code>下,需要在系统环境变量中指定自己的模型位置,否则全部怼在C盘,<code>危</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20250403161430993.png" alt="image-20250403161430993"></p>
+<p>完成之后重启电脑,然后安装模型即可</p>
+<h4 id="2-安装模型"><a href="#2-安装模型" class="headerlink" title="2.安装模型"></a>2.安装模型</h4><p><a target="_blank" rel="noopener" href="https://ollama.com/search">Ollama Search</a></p>
+<p>点击此链接,在Ollama官网选择自己要安装的模型(尽量匹配自己的电脑配置),查看右侧的安装命令,复制后在CMD执行即可.</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20250403161852158.png" alt="image-20250403161852158"></p>
+<p>完成后就可以在命令行界面交互了，至此，咱们就完成了本地部署。</p>
+<h2 id="使用PageAssist与本地模型交互"><a href="#使用PageAssist与本地模型交互" class="headerlink" title="使用PageAssist与本地模型交互"></a>使用PageAssist与本地模型交互</h2><p>首先需要使用<code>Google Chrome</code>或者<code>Microsoft EDGE</code>浏览器，在官方的插件商店，搜索<code>PageAssist</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20250403162857507.png" alt="image-20250403162857507"></p>
+<p>点进去之后点击<code>添加至Chrome</code></p>
+<h3 id="配置本地大模型"><a href="#配置本地大模型" class="headerlink" title="配置本地大模型"></a>配置本地大模型</h3><p>在Chrome中，Windows使用组合键<code>Ctrl+Shift+L</code>进入PageAssists,MacOS使用<code>Commond+Shift+L</code></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20250403163010595.png" alt="image-20250403163010595"></p>
+<p>等此处加载完成之后，开始配置。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20250403163155597.png" alt="image-20250403163155597"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20250403163245033.png" alt="image-20250403163245033"></p>
+<p>选择自己的模型，点击<code>New Chat</code></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/LLM/" style="color: #03a9f4">LLM</a>
+        </span>
+        
+    </div>
+    <a href="/2025/04/03/Ollama%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2DeepSeek/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/10/27/%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
         <h2 class="post-title">常用开发环境搭建</h2>
     </a>
@@ -737,7 +805,7 @@ sudo rabbitmqctl set_permissions -p / xccit &quot;.*&quot; &quot;.*&quot; &quot;
         
         <span class="tag">
             
-            <a href="/tags/docker/" style="color: #ff7d73">docker</a>
+            <a href="/tags/docker/" style="color: #03a9f4">docker</a>
         </span>
         
     </div>
@@ -1984,7 +2052,7 @@ System.out.println(person1);
         
         <span class="tag">
             
-            <a href="/tags/SSM/" style="color: #00bcd4">SSM</a>
+            <a href="/tags/SSM/" style="color: #00a596">SSM</a>
         </span>
         
     </div>
@@ -2298,7 +2366,7 @@ System.out.println(person);
         
         <span class="tag">
             
-            <a href="/tags/SSM/" style="color: #ffa2c4">SSM</a>
+            <a href="/tags/SSM/" style="color: #ff7d73">SSM</a>
         </span>
         
     </div>
@@ -2508,7 +2576,7 @@ npm run dev
         
         <span class="tag">
             
-            <a href="/tags/SpringAI/" style="color: #ffa2c4">SpringAI</a>
+            <a href="/tags/SpringAI/" style="color: #00a596">SpringAI</a>
         </span>
         
     </div>
@@ -2879,7 +2947,7 @@ export const detail = (id)=&gt;&#123;
         
         <span class="tag">
             
-            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #03a9f4">前端开发</a>
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="color: #ff7d73">前端开发</a>
         </span>
         
     </div>
@@ -5745,110 +5813,11 @@ class Outerr&#123;
         
         <span class="tag">
             
-            <a href="/tags/Java/" style="color: #ff7d73">Java</a>
+            <a href="/tags/Java/" style="color: #ffa2c4">Java</a>
         </span>
         
     </div>
     <a href="/2024/08/08/Java%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/08/08/Linux%E6%8C%82%E8%BD%BD%E5%85%89%E7%9B%98%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/">
-        <h2 class="post-title">Linux挂载光盘安装软件</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/8/8
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="挂载光盘安装Linux软件包"><a href="#挂载光盘安装Linux软件包" class="headerlink" title="挂载光盘安装Linux软件包"></a>挂载光盘安装Linux软件包</h1><pre><code class="shell">mkdir /media/CentOS
-mount -t /dev/cdrom /media/CentOS
-df -HT
-cd /etc/yum.repos.d/
-mkdir ./bak
-mv ./*.repo ./bak/
-cp ./bak/CentOS-Media.repo .
-vim CentOS-Media.repo
-</code></pre>
-<p>更改后的文件:</p>
-<pre><code class="shell"># CentOS-Media.repo
-#
-#  This repo can be used with mounted DVD media, verify the mount point for
-#  CentOS-7.  You can use this repo and yum to install items directly off the
-#  DVD ISO that we release.
-#
-# To use this repo, put in your DVD and use it with the other repos too:
-#  yum --enablerepo=c7-media [command]
-#  
-# or for ONLY the media repo, do this:
-#
-#  yum --disablerepo=\* --enablerepo=c7-media [command]
-
-[c7-media]
-name=CentOS-$releasever - Media
-baseurl=file:///media/CentOS7/  ---需要改的地方，挂载的光驱
-gpgcheck=1
-enabled=1 ---从0改到1开启光驱
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-
-~                                                                               
-~                                                                               
-~                                                
-</code></pre>
-<p> 依次执行以下命令:  </p>
-<pre><code class="shell">yum clean all
-yum repolist
-yum install ftp
-</code></pre>
-<h2 id="Telnet"><a href="#Telnet" class="headerlink" title="Telnet"></a>Telnet</h2><pre><code class="shell">yum install telnet telnet-server xinetd
-service xinetd start
-vim /etc/xinetd.d/telnet
-</code></pre>
-<p><img src="https://fastly.jsdelivr.net/gh/xccit/blog_images/images_resource/image-20210415185927765.png" alt="image-20210415185927765"></p>
-<pre><code class="shell">service xinetd restart
-</code></pre>
-<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><pre><code class="shell">yum install sshd  / openssh*
-service sshd start
-</code></pre>
-<h2 id="Vsftpd"><a href="#Vsftpd" class="headerlink" title="Vsftpd"></a>Vsftpd</h2><pre><code class="shell">yum install vsftpd
-service vsftpd start
-iptables -I INPUT -p tcp 21 --dport -j ACCEPT
-iptables -I INPUT -p udp 21 --dport -j ACCEPT
-vim /etc/vsftpd/vsftpd.conf,修改anonymous_enable = NO  --禁止匿名用户登陆
-去掉chroot_local_user = yes前的注释，限制用户访问家目录之外的地方
-</code></pre>
-<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><pre><code class="shell">yum install mysql mysql-server mysql-devel
-service mysqld start
-mysql -u root password &#39;password&#39;   --给mysql的root用户设置密码
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Linux/" style="color: #ffa2c4">Linux</a>
-        </span>
-        
-    </div>
-    <a href="/2024/08/08/Linux%E6%8C%82%E8%BD%BD%E5%85%89%E7%9B%98%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" class="go-post">阅读全文</a>
 </div>
 
 
@@ -5895,7 +5864,7 @@ mysql -u root password &#39;password&#39;   --给mysql的root用户设置密码
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2024 xccitのblog
+            2022 - 2025 xccitのblog
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
